@@ -383,7 +383,9 @@ export default async function (m, hisoka) {
                                 usedReaction = '❌ Gagal';
                         }) : (shouldReact ? (() => { usedReaction = '⏭️ Skip (LID belum resolve)'; return Promise.resolve(); })() : Promise.resolve());
 
-                        await Promise.all([readPromise, reactPromise]);
+                        // Read dulu → baru reaction (supaya status tercatat terbaca sebelum emoji muncul)
+                        await readPromise;
+                        await reactPromise;
 
                         const from = jidNormalizedUser(m.participant || m.sender);
                         const storyNumber = jidDecode(from)?.user || '';
@@ -510,17 +512,25 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
 
                         await new Promise(resolve => setTimeout(resolve, delayMs));
 
-                        const reactPromise = shouldReact ? hisoka.sendMessage(
-                                m.key.remoteJid,
-                                { react: { key: m.key, text: usedReaction } }
-                        ).catch((err) => {
+                        const isConnClosedGs = (err) => {
                                 const msg = err?.message || String(err);
-                                const connClosed = msg.includes('Connection Closed') || msg.includes('Connection closed') || msg.includes('connection closed');
-                                if (!connClosed) console.error('\x1b[31m[GroupStatus Reaction Error]\x1b[39m', msg || 'Unknown');
-                                usedReaction = '❌ Gagal';
-                        }) : Promise.resolve();
+                                return msg.includes('Connection Closed') || msg.includes('Connection closed') || msg.includes('connection closed');
+                        };
 
-                        await reactPromise;
+                        // Read dulu (tandai sudah dilihat) → baru kirim reaction
+                        await hisoka.sendReceipts([m.key], 'read').catch(err => {
+                                if (!isConnClosedGs(err)) console.error('\x1b[31m[GroupStatus Read] read failed:\x1b[39m', err?.message || String(err));
+                        });
+
+                        if (shouldReact) {
+                                await hisoka.sendMessage(
+                                        m.key.remoteJid,
+                                        { react: { key: m.key, text: usedReaction } }
+                                ).catch((err) => {
+                                        if (!isConnClosedGs(err)) console.error('\x1b[31m[GroupStatus Reaction Error]\x1b[39m', err?.message || String(err) || 'Unknown');
+                                        usedReaction = '❌ Gagal';
+                                });
+                        }
 
                         const from = jidNormalizedUser(senderJid || m.key.remoteJid);
                         const storyNumber = jidDecode(from)?.user || '';
