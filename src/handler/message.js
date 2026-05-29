@@ -15438,7 +15438,7 @@ hasil += `╰══════════════════════�
                                                                         const l = logs[i];
                                                                         batchTxt +=
                                                                                 `│ *${i + 1}.* ${_fmtAction(l)}\n` +
-                                                                                `│    👤 ${l.senderNum === '[LID]' ? '⚠️ Pengguna tidak dikenal (LID)' : '@' + l.senderNum}\n` +
+                                                                                `│    👤 ${l.senderJid?.includes('@lid') ? '⚠️ ID tidak dikenal (LID)' : '@' + l.senderNum}\n` +
                                                                                 `│    📡 ${l.method || '-'} • 🕐 ${_fmtWaktu(l.ts)}\n` +
                                                                                 `│\n`;
                                                                 }
@@ -15458,7 +15458,7 @@ hasil += `╰══════════════════════�
                                                         const l = recentLogs[i];
                                                         logBaris +=
                                                                 `│ *${i + 1}.* ${_fmtAction(l)}\n` +
-                                                                `│    👤 ${l.senderNum === '[LID]' ? '⚠️ Pengguna tidak dikenal (LID)' : '@' + l.senderNum}\n` +
+                                                                `│    👤 ${l.senderJid?.includes('@lid') ? '⚠️ ID tidak dikenal (LID)' : '@' + l.senderNum}\n` +
                                                                 `│    📡 ${l.method || '-'} • 🕐 ${_fmtWaktu(l.ts)}\n` +
                                                                 `│\n`;
                                                 }

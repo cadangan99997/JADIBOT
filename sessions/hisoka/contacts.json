@@ -27696,11 +27696,12 @@
     "jid": "6287715883031@s.whatsapp.net"
   },
   "62895711628080@s.whatsapp.net": {
-    "isContact": true,
-    "id": "62895711628080@s.whatsapp.net",
-    "name": "Arga ( Bot Md )",
+    "id": "137632747110463@lid",
     "lid": "137632747110463@lid",
-    "jid": "62895711628080@s.whatsapp.net"
+    "isContact": true,
+    "name": "Arga ( Bot Md )",
+    "jid": "62895711628080@s.whatsapp.net",
+    "notify": "Mp"
   },
   "6288705922833@s.whatsapp.net": {
     "isContact": true,
