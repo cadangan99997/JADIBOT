@@ -2579,7 +2579,8 @@ export default async function ({ message, type: messagesType }, hisoka) {
                 if (m.command && (!m.isBot || m.isOwner) && hisoka.loadedCommands?.some(c => c.toLowerCase() === m.command)) {
                         const _loc = m.isGroup ? `"${hisoka.getName(m.from)}"` : 'Private';
                         const _tag = hisoka?.isMainBot === false ? '\x1b[35m[JADIBOT]\x1b[39m ' : '';
-                        console.log(`\x1b[32m[CMD]\x1b[39m ${_tag}\x1b[36m${m.prefix || '.'}${m.command}\x1b[39m - ${m.pushName} @ ${_loc}`);
+                        const _who = m.isBot ? '\x1b[35m[BOT]\x1b[39m' : (m.isOwner ? '\x1b[33m[OWNER]\x1b[39m' : '');
+                        console.log(`\x1b[32m[CMD]\x1b[39m ${_tag}${_who ? _who + ' ' : ''}\x1b[36m${m.prefix || '.'}${m.command}\x1b[39m - ${m.pushName} @ ${_loc}`);
                 }
 
                 // Handle pending play choice DULUAN sebelum guard apapun
