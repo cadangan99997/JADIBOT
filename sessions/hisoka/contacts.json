@@ -2292,8 +2292,7 @@
     "isContact": true,
     "name": "Hamdan",
     "jid": "6283134844523@s.whatsapp.net",
-    "notify": "Anda Siapa?",
-    "verifiedName": "Anda Siapa?"
+    "notify": "Anda Siapa?"
   },
   "6282292807007@s.whatsapp.net": {
     "isContact": true,
@@ -19633,11 +19632,12 @@
     "jid": "62895386384139@s.whatsapp.net"
   },
   "6289666467284@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6289666467284@s.whatsapp.net",
-    "name": "-ParullAckerman",
+    "id": "22836525699074@lid",
     "lid": "22836525699074@lid",
-    "jid": "6289666467284@s.whatsapp.net"
+    "isContact": true,
+    "name": "-ParullAckerman",
+    "jid": "6289666467284@s.whatsapp.net",
+    "notify": "Parulll-nim"
   },
   "6285760598295@s.whatsapp.net": {
     "isContact": true,
@@ -26094,10 +26094,10 @@
     "jid": "6283844814756@s.whatsapp.net"
   },
   "6281345905196@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281345905196@s.whatsapp.net",
-    "name": "pushkontak wa 21",
+    "id": "276926941929540@lid",
     "lid": "276926941929540@lid",
+    "isContact": true,
+    "name": "pushkontak wa 21",
     "jid": "6281345905196@s.whatsapp.net",
     "notify": "."
   },
@@ -31831,7 +31831,7 @@
   "16029270945851@lid": {
     "id": "16029270945851@lid",
     "lid": "16029270945851@lid",
-    "imgUrl": "removed"
+    "imgUrl": "changed"
   },
   "217836463112395@lid": {
     "id": "217836463112395@lid",
@@ -31916,6 +31916,11 @@
   "237215741436024@lid": {
     "id": "237215741436024@lid",
     "lid": "237215741436024@lid",
+    "imgUrl": "changed"
+  },
+  "155194566418569@lid": {
+    "id": "155194566418569@lid",
+    "lid": "155194566418569@lid",
     "imgUrl": "changed"
   }
 }
