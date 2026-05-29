@@ -4618,10 +4618,10 @@
     "jid": "6285751505829@s.whatsapp.net"
   },
   "6285728458204@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285728458204@s.whatsapp.net",
-    "name": "√ Kanna",
+    "id": "49997814964231@lid",
     "lid": "49997814964231@lid",
+    "isContact": true,
+    "name": "√ Kanna",
     "jid": "6285728458204@s.whatsapp.net",
     "notify": "Tea.. Time"
   },
@@ -17223,10 +17223,10 @@
     "jid": "6281522840312@s.whatsapp.net"
   },
   "628972241704@s.whatsapp.net": {
-    "isContact": true,
-    "id": "628972241704@s.whatsapp.net",
-    "name": "√Rein ( Donasi Jadi Bot Sw )",
+    "id": "313582948481@lid",
     "lid": "313582948481@lid",
+    "isContact": true,
+    "name": "√Rein ( Donasi Jadi Bot Sw )",
     "jid": "628972241704@s.whatsapp.net",
     "notify": "Milim Nava"
   },
@@ -31816,5 +31816,15 @@
     "id": "45922142662757@lid",
     "lid": "45922142662757@lid",
     "imgUrl": "changed"
+  },
+  "200897581863137@lid": {
+    "id": "200897581863137@lid",
+    "lid": "200897581863137@lid",
+    "imgUrl": "changed"
+  },
+  "16029270945851@lid": {
+    "id": "16029270945851@lid",
+    "lid": "16029270945851@lid",
+    "imgUrl": "removed"
   }
 }

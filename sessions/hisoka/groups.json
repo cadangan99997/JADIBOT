@@ -219,6 +219,11 @@
     "memberAddMode": true,
     "participants": [
       {
+        "id": "81582920577063@lid",
+        "phoneNumber": "6289688206739@s.whatsapp.net",
+        "admin": null
+      },
+      {
         "id": "274255723921630@lid",
         "phoneNumber": "6289681008411@s.whatsapp.net",
         "admin": null
@@ -227,11 +232,6 @@
         "id": "97968623505429@lid",
         "phoneNumber": "6289667923162@s.whatsapp.net",
         "admin": "admin"
-      },
-      {
-        "id": "81582920577063@lid",
-        "phoneNumber": "6289688206739@s.whatsapp.net",
-        "admin": null
       }
     ],
     "ephemeralDuration": 86400
@@ -17611,6 +17611,10 @@
       },
       {
         "id": "48551014961215@lid",
+        "admin": null
+      },
+      {
+        "id": "12254263148701@lid",
         "admin": null
       },
       {
