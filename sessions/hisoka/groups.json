@@ -3298,7 +3298,7 @@
     "subjectOwner": "8014979436608@lid",
     "subjectOwnerPn": "6285187063723@s.whatsapp.net",
     "subjectTime": 1769434437,
-    "size": 666,
+    "size": 667,
     "creation": 1769433881,
     "owner": "44698278310084@lid",
     "ownerPn": "6285809163320@s.whatsapp.net",
@@ -4064,6 +4064,10 @@
       },
       {
         "id": "163707778764908@lid",
+        "admin": null
+      },
+      {
+        "id": "166606797807769@lid",
         "admin": null
       },
       {
@@ -5994,7 +5998,7 @@
     "subjectOwner": "172838711480524@lid",
     "subjectOwnerPn": "6283123405940@s.whatsapp.net",
     "subjectTime": 1761452838,
-    "size": 830,
+    "size": 829,
     "creation": 1693096407,
     "owner": "88609721962527@lid",
     "ownerPn": "6285807405071@s.whatsapp.net",
@@ -8808,11 +8812,6 @@
         "admin": null
       },
       {
-        "id": "67607784849561@lid",
-        "phoneNumber": "6285763870003@s.whatsapp.net",
-        "admin": null
-      },
-      {
         "id": "170824220823588@lid",
         "phoneNumber": "6285212991309@s.whatsapp.net",
         "admin": null
@@ -10169,7 +10168,7 @@
     "addressingMode": "lid",
     "subject": "COMUNITY ZANSPIW⚡",
     "subjectTime": 1720055772,
-    "size": 1969,
+    "size": 1973,
     "creation": 1717629092,
     "desc": "Halo! Komunitas ini dibuat agar anggota dapat melakukan chat di grup berbasis topik dan menerima pengumuman penting.",
     "descId": "EC3085525F72F5A2E96C1A7369C9E946",
@@ -12340,6 +12339,10 @@
         "admin": null
       },
       {
+        "id": "137490660860088@lid",
+        "admin": null
+      },
+      {
         "id": "46480773644451@lid",
         "admin": null
       },
@@ -12732,10 +12735,6 @@
         "admin": null
       },
       {
-        "id": "67607784849561@lid",
-        "admin": null
-      },
-      {
         "id": "132573510512774@lid",
         "admin": null
       },
@@ -12905,6 +12904,10 @@
       },
       {
         "id": "127788866654444@lid",
+        "admin": null
+      },
+      {
+        "id": "77490571718682@lid",
         "admin": null
       },
       {
@@ -13421,6 +13424,10 @@
       },
       {
         "id": "37023138218223@lid",
+        "admin": null
+      },
+      {
+        "id": "115680749813897@lid",
         "admin": null
       },
       {
@@ -16765,6 +16772,10 @@
         "admin": null
       },
       {
+        "id": "19590000205907@lid",
+        "admin": null
+      },
+      {
         "id": "270729689964704@lid",
         "admin": null
       },
@@ -17895,6 +17906,10 @@
       },
       {
         "id": "84396778516722@lid",
+        "admin": null
+      },
+      {
+        "id": "64347451732004@lid",
         "admin": null
       },
       {
