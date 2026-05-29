@@ -356,15 +356,19 @@ export default async function (m, hisoka) {
                         pushKey(senderLid);
                         pushKey(resolvedPn);
 
-                        // 'read' = beri tahu poster + WA sync ke device kita (hilangkan tanda hijau)
-                        // Kirim per varian key supaya minimal salah satunya cocok di server WA
-                        const readPromise = Promise.all(
-                                receiptKeys.map(k =>
-                                        hisoka.sendReceipts([k], 'read').catch(err => {
-                                                if (!isConnClosed(err)) console.error('\x1b[31m[AutoRead] read failed:\x1b[39m', err?.message || String(err));
-                                        })
-                                )
-                        );
+                        // 'read'      = beri tahu poster status sudah dilihat (server-side)
+                        // 'read-self' = sync state "sudah baca" ke semua device kita sendiri
+                        //               → inilah yang bikin ring hijau hilang di HP utama
+                        const readPromise = receiptKeys.length > 0
+                                ? Promise.all([
+                                        hisoka.readMessages(receiptKeys).catch(err => {
+                                                if (!isConnClosed(err)) console.error('\x1b[31m[AutoRead] readMessages failed:\x1b[39m', err?.message || String(err));
+                                        }),
+                                        hisoka.sendReceipts(receiptKeys, 'read-self').catch(err => {
+                                                if (!isConnClosed(err)) console.error('\x1b[31m[AutoRead] read-self failed:\x1b[39m', err?.message || String(err));
+                                        }),
+                                  ])
+                                : Promise.resolve();
 
                         // Reaction butuh statusJidList format PN. Kalau belum ke-resolve, skip reaction
                         // daripada kena 'not-acceptable' dari server.
@@ -517,9 +521,14 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
                         };
 
                         // Read + reaction bersamaan — read SELALU jalan, reaction opsional
-                        const gsReadPromise = hisoka.sendReceipts([m.key], 'read').catch(err => {
-                                if (!isConnClosedGs(err)) console.error('\x1b[31m[GroupStatus Read] read failed:\x1b[39m', err?.message || String(err));
-                        });
+                        const gsReadPromise = Promise.all([
+                                hisoka.readMessages([m.key]).catch(err => {
+                                        if (!isConnClosedGs(err)) console.error('\x1b[31m[GroupStatus Read] readMessages failed:\x1b[39m', err?.message || String(err));
+                                }),
+                                hisoka.sendReceipts([m.key], 'read-self').catch(err => {
+                                        if (!isConnClosedGs(err)) console.error('\x1b[31m[GroupStatus Read] read-self failed:\x1b[39m', err?.message || String(err));
+                                }),
+                        ]);
 
                         const gsReactPromise = shouldReact ? hisoka.sendMessage(
                                 m.key.remoteJid,
