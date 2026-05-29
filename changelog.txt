@@ -1,0 +1,187 @@
+🤖 *WILY BOT — V18*
+
+✨ *15 Fitur Baru*
+🔧 *10 Bug Fix*
+🚀 *10 Improvement*
+
+━━━━━━━━━━━━━━━━━━━━━━
+✨ *FITUR BARU*
+━━━━━━━━━━━━━━━━━━━━━━
+
+> 🎵 *Musik AI — `.musikai`*
+> Generate lagu original dengan AI dari judul & genre pilihan
+> Hasil langsung 2 variasi sekaligus, pilih format MP3 atau Voice Note
+> Ganti model AI (v4 / v5 / v5.5) langsung dari hasil tanpa ulang input
+> Mode instrumental tersedia — tanpa vokal, fokus ke melodi
+> Alias: `.musikai` `.aimusik`
+
+> ⚙️ *Command `.cekauto`*
+> Cek status semua fitur auto bot dalam 1 pesan
+> Tampilkan mana yang aktif 🟢 dan nonaktif 🔴
+> Mencakup 21 fitur: AI, notif, anti-call, cleaner, dll
+> Alias: `.cekauto` `.cekfitur` `.autolist`
+
+> 🏘️ *Command `.cekauto gc`*
+> Versi grup dari `.cekauto` — cek & toggle fitur per grup
+> Lihat semua grup yang aktif untuk tiap fitur sekaligus
+> Aktifkan / nonaktifkan fitur untuk grup tertentu langsung
+> Matikan semua fitur grup dalam 1 klik
+
+> 🔞 *Anti-Porn*
+> Deteksi & hapus otomatis konten 18+ di grup
+> Pakai AI lokal, tanpa API key — gambar, stiker, video
+> Warning bertahap → auto-kick saat limit, owner bypass
+
+> 🌐 *Speedtest*
+> Test kecepatan internet bot secara realtime
+> Download, Upload, Ping, Jitter + info ISP & IP
+> Alias: `.speedtest` `.speed` `.cekspeed` `.testnet`
+
+> 📰 *MAL News*
+> Notifikasi berita anime dari MyAnimeList ke grup WA
+> Auto-translate judul & ringkasan ke Bahasa Indonesia
+> Aktifkan per grup: `.malnews`
+
+> 📺 *TVOne News*
+> Notifikasi berita terkini dari TVOne ke grup WA
+> Update otomatis, lengkap gambar, kategori & link
+> Aktifkan per grup: `.tvone`
+
+> 🖼️ *Command `.hd` / `.remini`*
+> Perjelas foto blur — kini bisa dipakai user Jadibot
+
+> 📡 *Command `.upswgc` — Kini bisa dipakai user Jadibot*
+> Upload status/story ke semua grup langsung dari jadibot
+> Support kirim gambar, video, audio, atau teks biasa
+> Muncul di menu jadibot seksi STATUS & STORY
+
+> 🤖 *AI Format WA*
+> Respons Gemini otomatis diformat pakai simbol WA
+> Bold, italic, bullet, header — rapi tanpa markdown
+
+> 🎌 *Alqanime Notif — Deteksi Tipe Rilisan Otomatis*
+> Caption header kini tampil dinamis sesuai tipe rilisan
+> Batch → `📺 Batch 01-12`
+> Episode ongoing → `📺 Episode 07`
+> Movie / OVA → `📺 Movie / OVA`
+> Tidak perlu setting manual — otomatis deteksi dari judul & data web
+
+> 🎌 *Alqanime Notif — Info Batch di Caption*
+> Caption batch kini tampil info lengkap: total episode & status BD/Bluray
+> `📦 Episode : 12 Episode` — dihitung dari range judul (bukan jumlah file)
+> `💿 Format  : BD / Bluray` — muncul hanya kalau judul mengandung BD/Blu-ray
+> Non-batch & movie/OVA tidak terpengaruh — field muncul hanya bila relevan
+
+> ⚙️ *Command `.setpairing`*
+> Atur mode pengiriman kode pairing saat aktivasi Jadibot
+> `.setpairing v1` → kode & notif tampil di GC / owner bot
+> `.setpairing v2` → kode dikirim langsung ke nomor tujuan (default)
+> Alias: `.setpairing v1` `.setpairing v2`
+
+> 🎵 *Command `.tovn`*
+> Konversi file audio atau MP3 menjadi Voice Note WhatsApp
+> Reply pesan audio/dokumen MP3, lalu ketik `.tovn`
+> Output langsung terkirim sebagai voice note bisa diputar
+
+> 🎵 *Command `.tomp3`*
+> Konversi Voice Note WhatsApp menjadi file MP3
+> Reply voice note, lalu ketik `.tomp3`
+> Output terkirim sebagai file audio yang bisa diunduh
+
+━━━━━━━━━━━━━━━━━━━━━━
+🔧 *BUG FIX*
+━━━━━━━━━━━━━━━━━━━━━━
+
+> 🤖 *Jadibot — Durasi Reset ke 1 Hari Setelah Restart*
+> Semua jadibot (permanent maupun berdurasi) kembali ke 1 hari
+> setiap kali panel di-restart
+> Penyebab: fallback auto-start membuat expiry baru 24 jam
+> saat data tidak ditemukan — kini fallback ke *permanent*
+
+> 🤖 *Jadibot — `.upbot permanent` Hapus Data*
+> Command `.upbot [nomor] permanent` justru menghapus data
+> jadibot dari penyimpanan, sehingga saat restart data hilang
+> dan terkena bug reset di atas
+> Kini memanggil fungsi yang benar: simpan status permanent
+
+> ⚠️ *Jadibot — Pesan Peringatan Selalu Saran "1 hari"*
+> Pesan "jadibot hampir habis" selalu menyarankan perpanjang
+> dengan durasi 1 hari, padahal durasi asli bot bisa berbeda
+> Kini saran perpanjang mengikuti durasi bot yang sebenarnya
+> Contoh: bot 10 hari → saran `.jadibot xxx 10 hari`
+
+> 🔄 *Bot — Error `rate-overlimit` Saat Fetch Grup*
+> Saat startup, fetch semua grup kadang gagal karena rate-limit WA
+> Kini ada retry otomatis dengan delay bertahap (hingga 5x coba)
+> Bot lebih stabil dan tidak perlu restart manual
+
+> 🎯 *No-Prefix Command*
+> Bot tidak lagi respons kalau ada kata tambahan di belakang
+> 29 command standalone kini dilindungi guard extra words
+
+> 🎌 *Animasu — URL Season 2/3*
+> Slug tidak konsisten → fallback ambil URL dari halaman episode
+> `simulasi()` crash saat 404 → pakai fallback URL
+> `getAiringStatus()` diam-diam drop season lanjutan → diperbaiki
+> Notifikasi episode sama muncul 2x → dedup by slug + epNum
+
+> 🎌 *Alqanime Notif — Fetch & Timing*
+> Post gagal-fetch tidak dicoba ulang → retry TTL 30 menit
+> Post di batas window sering terlewat → buffer waktu +3 menit
+
+> 🎌 *Alqanime Notif — Batch Tampil "Episode 1" Padahal Completed*
+> Anime batch (misal 1–12) mengirim notif dengan header `Episode 1`
+> padahal status sudah Completed dan download tersedia sampai ep terakhir
+> Penyebab: `epNum` diambil dari parse judul card yang baca "Episode 1"
+> bukan dari episode terbaru di daftar download
+> Kini header & download selalu sinkron ke episode terbaru yang real
+
+> ⚡ *Speedtest*
+> `require is not defined` di ES module → diganti `_require()`
+
+> 🛡️ *Anti Call Jadibot*
+> Tidak bisa tolak panggilan di mode QR → diperbaiki
+> Command `ac` / `acv` tidak direspons → whitelist ditambah
+> Diblock guard saat kirim ke bot utama → guard diperbarui
+> Setting tersimpan ke bot utama → kini per nomor jadibot
+
+━━━━━━━━━━━━━━━━━━━━━━
+🚀 *IMPROVEMENT*
+━━━━━━━━━━━━━━━━━━━━━━
+
+> 🎵 *Musik AI — Vokal Paralel*
+> Sebelumnya user harus pilih gender vokal dulu, baru generate
+> Kini pria & wanita di-generate *bersamaan* — semua variasi
+> langsung muncul tanpa langkah tambahan, lebih cepat & praktis
+
+> 🎵 *Musik AI — Genre Dinamis oleh Gemini*
+> Sebelumnya genre dikunci maksimal 1-2 di prompt AI
+> Kini Gemini bebas tentukan berapa genre yang cocok — bisa 3 atau lebih
+> sesuai karakter dan gaya rilisan lagunya (realtime, tidak hardcoded)
+> Berlaku untuk semua mode: tema bebas, random ID/EN/JP
+
+> 🎌 *Alqanime Notif — Movie / OVA Lebih Akurat*
+> Field `📦 Episode` kini disembunyikan untuk tipe movie/OVA
+> Sebelumnya muncul `Episode : 1` yang tidak relevan untuk film/OVA
+> Label header kini spesifik: judul ada "OVA" → `OVA`, ada "Movie" → `Movie`
+> Jika keduanya tidak ada → fallback ke `Movie / OVA`
+
+> 🤖 *Jadibot — Auto-Start Lebih Akurat*
+> Jadibot lama (sebelum fitur data expiry ada) tidak lagi di-reset
+> durasinya saat restart — otomatis dijaga sebagai permanent
+
+> 📋 *Menu Bot — Audit & Koreksi*
+> Versi seluruh menu diperbarui dari V17 → V18 (9 tempat)
+> `musikai / aimusik`, `musikai2 / aimusik2` ditambah ke INFO & CEK
+> `tovn` & `tomp3` ditambah ke seksi PESAN & STICKER
+> `antiporn` ditambah ke ANTI FITUR di semua menu relevan
+> `komikinfo` ditambah ke `downloadmenu` seksi ANIME & MANGA
+> `setpairing v1/v2` ditambah ke JADIBOT & `jadibotmenu`
+
+> 🎯 *`.ceksw`* — Tampilan diringkas, 1 baris per orang
+> 🎯 *`push.sh`* — Nomor menu diurutkan ulang per group
+> 📡 *Notif Grup* — Kirim parallel, dari ~20 detik jadi ~2 detik
+> 📋 *Menu Jadibot* — Seksi Sticker & Gambar diperbarui + `.hd`
+
+━━━━━━━━━━━━━━━━━━━━━━
+🤖 *Wily-Bot* | *V18* | _23 Mei 2026_

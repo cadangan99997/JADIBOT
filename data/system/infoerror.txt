@@ -1,0 +1,46 @@
+════════════════════════════════════════════════════════════════════════
+  ██╗███╗   ██╗███████╗ ██████╗     ███████╗██████╗ ██████╗  ██████╗ ██████╗
+  ██║████╗  ██║██╔════╝██╔═══██╗    ██╔════╝██╔══██╗██╔══██╗██╔═══██╗██╔══██╗
+  ██║██╔██╗ ██║█████╗  ██║   ██║    █████╗  ██████╔╝██████╔╝██║   ██║██████╔╝
+  ██║██║╚██╗██║██╔══╝  ██║   ██║    ██╔══╝  ██╔══██╗██╔══██╗██║   ██║██╔══██╗
+  ██║██║ ╚████║██║     ╚██████╔╝    ███████╗██║  ██║██║  ██║╚██████╔╝██║  ██║
+  ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝     ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝
+════════════════════════════════════════════════════════════════════════
+  FILE     : infoerror.txt
+  Bot      : Wily Bot
+  Update   : 29/05/2026, 09.32.17  (realtime — diperbarui otomatis setiap ada error)
+════════════════════════════════════════════════════════════════════════
+
+  RINGKASAN
+────────────────────────────────────────────────────────────────────────
+  Total Jenis Error (unik)  : 1
+  Total Kejadian Error       : 1
+  Maks. Simpan               : 200 jenis error
+  Deduplikasi                : AKTIF — error sama digabung, tidak dicatat ulang
+  Urutan                     : Terbaru di atas
+
+  DAFTAR ERROR LENGKAP  [1 jenis, 1 kejadian total]
+────────────────────────────────────────────────────────────────────────
+
+┌───────────────────────────────────────────────────────────────────────
+│  #001  —  console.error
+├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+│  PESAN ERROR
+│  [31m[HotReload] ✗ Gagal reload 'src/handler/message.js', pakai versi lama.[39m
+│
+│  DETAIL
+│  Sumber      : console.error
+│  Frekuensi   : 1x (baru terjadi)
+│  Pertama     : 29/05/2026, 09.32.17
+│  Terakhir    : 29/05/2026, 09.32.17
+│
+│  STACK TRACE (3 baris pertama)
+│  ▶  Error: [31m[HotReload] ✗ Gagal reload 'src/handler/message.js', pakai versi lama.[39m
+│     at console.error (file:///home/runner/workspace/index.js:366:27)
+│     at Timeout._onTimeout (file:///home/runner/workspace/src/helper/hotReload.js:102:29)
+└───────────────────────────────────────────────────────────────────────
+
+════════════════════════════════════════════════════════════════════════
+  End of Report  —  Total: 1 jenis, 1 kejadian
+  Terakhir diperbarui: 29/05/2026, 09.32.17
+════════════════════════════════════════════════════════════════════════

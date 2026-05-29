@@ -1,0 +1,12 @@
+[
+  {
+    "gid": "120363419402989015@g.us",
+    "senderJid": "274255723921630@lid",
+    "senderNum": "274255723921630",
+    "action": "warn",
+    "warnCount": 1,
+    "maxWarn": 10,
+    "method": "Status WA",
+    "ts": 1780053412284
+  }
+]
