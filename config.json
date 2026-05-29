@@ -51,6 +51,13 @@
     "message": "",
     "whitelist": []
   },
+  "autoCallAudio": {
+    "enabled": false,
+    "audioPath": "./data/audio/call-reject.mp3",
+    "audioUrl": "",
+    "message": "Maaf, bot ini tidak bisa menerima panggilan. 🤖",
+    "whitelist": []
+  },
   "antiTagSW": {
     "enabled": true,
     "maxWarnings": 10

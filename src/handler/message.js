@@ -2623,6 +2623,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                 'readsw',
                                 'anticall', 'ac',
                                 'anticallvid', 'acv',
+                                'autocallaudio', 'aca',
                                 'tt', 'ig', 'fb', 'ytmp3', 'ytmp4', 'play',
                                 'sticker', 's',
                                 'toimg',
@@ -12946,6 +12947,130 @@ text += `│\n╰═════════════════╯`;
                                         logCommand(m, hisoka, 'anticallvid');
                                 } catch (error) {
                                         console.error('\x1b[31m[AntiCallVideo] Error:\x1b[39m', error.message);
+                                        await tolak(hisoka, m, `Error: ${error.message}`);
+                                }
+                                break;
+                        }
+
+                        case 'autocallaudio':
+                        case 'aca': {
+                                if (!m.isOwner) return;
+                                try {
+                                        const cfg = loadConfig();
+                                        const aca = cfg.autoCallAudio || { enabled: false, audioPath: './data/audio/call-reject.mp3', audioUrl: '', message: '', whitelist: [] };
+                                        const args = query ? query.split(' ') : [];
+                                        const argLower = args[0] ? args[0].toLowerCase() : '';
+
+                                        if (args.length === 0) {
+                                                let text = `╭═══『 *AUTO CALL AUDIO* 』═══╮\n│\n`;
+text += `│ *Status:* ${aca.enabled ? '✅ Aktif' : '❌ Nonaktif'}\n`;
+text += `│ *Audio:* ${aca.audioUrl || aca.audioPath || '(default)'}\n`;
+text += `│ *Pesan:* ${aca.message || '(kosong)'}\n`;
+text += `│ *Whitelist:* ${(aca.whitelist || []).length} nomor\n`;
+text += `│\n`;
+text += `│ *Cara Kerja:*\n`;
+text += `│ Tolak panggilan → kirim\n`;
+text += `│ voice note otomatis\n`;
+text += `│\n`;
+text += `│ *Penggunaan:*\n`;
+text += `│ .aca on/off\n`;
+text += `│ .aca url <link_audio_mp3>\n`;
+text += `│ .aca msg <pesan>\n`;
+text += `│ .aca list\n`;
+text += `│ .aca add <nomor>\n`;
+text += `│ .aca del <nomor>\n`;
+text += `│ .aca reset\n`;
+text += `│\n`;
+text += `╰═════════════════╯`;
+                                                await tolak(hisoka, m, text);
+                                                break;
+                                        }
+
+                                        const saveAca = (val) => {
+                                                const c = loadConfig();
+                                                c.autoCallAudio = val;
+                                                saveConfig(c);
+                                        };
+
+                                        if (argLower === 'on') {
+                                                if (aca.enabled) {
+                                                        await tolak(hisoka, m, 'ℹ️ Auto Call Audio sudah aktif');
+                                                } else {
+                                                        saveAca({ ...aca, enabled: true });
+                                                        await tolak(hisoka, m, '✅ Auto Call Audio diaktifkan\n\nSetiap ada yang nelpon → ditolak + kirim voice note otomatis 🎵');
+                                                }
+                                        } else if (argLower === 'off') {
+                                                if (!aca.enabled) {
+                                                        await tolak(hisoka, m, 'ℹ️ Auto Call Audio sudah nonaktif');
+                                                } else {
+                                                        saveAca({ ...aca, enabled: false });
+                                                        await tolak(hisoka, m, '❌ Auto Call Audio dinonaktifkan');
+                                                }
+                                        } else if (argLower === 'url') {
+                                                const newUrl = args.slice(1).join(' ').trim();
+                                                if (!newUrl) {
+                                                        await tolak(hisoka, m, `🔗 URL Audio saat ini:\n\n${aca.audioUrl || '(kosong, pakai file lokal)'}\n\nGunakan: .aca url <link_audio_mp3>`);
+                                                } else {
+                                                        saveAca({ ...aca, audioUrl: newUrl });
+                                                        await tolak(hisoka, m, `✅ URL Audio diubah:\n\n${newUrl}`);
+                                                }
+                                        } else if (argLower === 'msg' || argLower === 'message' || argLower === 'pesan') {
+                                                const newMsg = args.slice(1).join(' ');
+                                                if (!newMsg) {
+                                                        await tolak(hisoka, m, `📝 Pesan saat ini:\n\n${aca.message || '(kosong)'}\n\nGunakan: .aca msg <pesan baru>`);
+                                                } else {
+                                                        saveAca({ ...aca, message: newMsg });
+                                                        await tolak(hisoka, m, `✅ Pesan diubah:\n\n${newMsg}`);
+                                                }
+                                        } else if (argLower === 'list') {
+                                                const whitelist = aca.whitelist || [];
+                                                if (whitelist.length === 0) {
+                                                        await tolak(hisoka, m, '📋 Whitelist Auto Call Audio kosong\n\nGunakan .aca add <nomor> untuk menambahkan');
+                                                } else {
+                                                        let text = `╭═══『 *WHITELIST AUTO CALL AUDIO* 』═══╮\n│\n`;
+whitelist.forEach((num, i) => { text += `│ ${i + 1}. ${num}\n`; });
+text += `│\n╰═════════════════╯`;
+                                                        await tolak(hisoka, m, text);
+                                                }
+                                        } else if (argLower === 'add') {
+                                                const number = args[1] ? args[1].replace(/[^0-9]/g, '') : '';
+                                                if (!number) {
+                                                        await tolak(hisoka, m, '❌ Masukkan nomor!\n\nContoh: .aca add 628123456789');
+                                                        break;
+                                                }
+                                                const whitelist = aca.whitelist || [];
+                                                if (whitelist.includes(number)) {
+                                                        await tolak(hisoka, m, `ℹ️ Nomor ${number} sudah ada di whitelist`);
+                                                } else {
+                                                        whitelist.push(number);
+                                                        saveAca({ ...aca, whitelist });
+                                                        await tolak(hisoka, m, `✅ Nomor ${number} ditambahkan ke whitelist`);
+                                                }
+                                        } else if (argLower === 'del' || argLower === 'delete' || argLower === 'hapus') {
+                                                const number = args[1] ? args[1].replace(/[^0-9]/g, '') : '';
+                                                if (!number) {
+                                                        await tolak(hisoka, m, '❌ Masukkan nomor!\n\nContoh: .aca del 628123456789');
+                                                        break;
+                                                }
+                                                const whitelist = aca.whitelist || [];
+                                                const idx = whitelist.findIndex(n => n === number);
+                                                if (idx === -1) {
+                                                        await tolak(hisoka, m, `ℹ️ Nomor ${number} tidak ditemukan di whitelist`);
+                                                } else {
+                                                        whitelist.splice(idx, 1);
+                                                        saveAca({ ...aca, whitelist });
+                                                        await tolak(hisoka, m, `✅ Nomor ${number} dihapus dari whitelist`);
+                                                }
+                                        } else if (argLower === 'reset' || argLower === 'clear') {
+                                                saveAca({ ...aca, whitelist: [] });
+                                                await tolak(hisoka, m, '✅ Whitelist Auto Call Audio direset');
+                                        } else {
+                                                await tolak(hisoka, m, '❌ Perintah tidak valid. Gunakan .aca untuk melihat bantuan.');
+                                        }
+
+                                        logCommand(m, hisoka, 'autocallaudio');
+                                } catch (error) {
+                                        console.error('\x1b[31m[AutoCallAudio] Error:\x1b[39m', error.message);
                                         await tolak(hisoka, m, `Error: ${error.message}`);
                                 }
                                 break;

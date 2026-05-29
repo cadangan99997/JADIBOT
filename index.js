@@ -1917,13 +1917,13 @@ setTimeout(() => {
                                 const config = loadConfig();
                                 const antiCall = config.antiCall || { enabled: false, message: '', whitelist: [] };
                                 const antiCallVideo = config.antiCallVideo || { enabled: false, message: '', whitelist: [] };
+                                const autoCallAudio = config.autoCallAudio || { enabled: false, audioPath: '', audioUrl: '', message: '', whitelist: [] };
                                 
                                 const isVideoCall = call.isVideo === true;
                                 const currentConfig = isVideoCall ? antiCallVideo : antiCall;
                                 const featureName = isVideoCall ? 'AntiCallVideo' : 'AntiCall';
-                                
-                                if (!currentConfig.enabled) continue;
-                                
+
+                                // Resolve caller identity (shared for both features)
                                 let callerJid = call.from;
                                 let callerNumber = '';
                                 let callerName = '';
@@ -1975,6 +1975,53 @@ setTimeout(() => {
                                         callerNumber = jidDecode(call.from)?.user || call.from.replace(/[^0-9]/g, '');
                                         callerName = callerNumber;
                                 }
+
+                                // ── AutoCallAudio: reject + kirim voice note ──
+                                if (autoCallAudio.enabled && call.status === 'offer') {
+                                        const acaWhitelist = autoCallAudio.whitelist || [];
+                                        const acaWhitelisted = acaWhitelist.some(num => {
+                                                const cleanNum = num.replace(/[^0-9]/g, '');
+                                                return callerNumber.includes(cleanNum) || cleanNum.includes(callerNumber);
+                                        });
+
+                                        if (!acaWhitelisted) {
+                                                await hisoka.rejectCall(call.id, call.from);
+                                                console.log(`\x1b[32m[AutoCallAudio]\x1b[39m Rejected call from ${callerName} (${callerNumber}), kirim voice note...`);
+                                                await delay(800);
+
+                                                try {
+                                                        let audioSource = null;
+                                                        if (autoCallAudio.audioUrl && autoCallAudio.audioUrl.startsWith('http')) {
+                                                                audioSource = { url: autoCallAudio.audioUrl };
+                                                        } else {
+                                                                const audioFile = path.resolve(autoCallAudio.audioPath || './data/audio/call-reject.mp3');
+                                                                if (fs.existsSync(audioFile)) {
+                                                                        audioSource = fs.readFileSync(audioFile);
+                                                                }
+                                                        }
+
+                                                        if (audioSource) {
+                                                                await hisoka.sendMessage(callerJid, {
+                                                                        audio   : audioSource,
+                                                                        ptt     : true,
+                                                                        mimetype: 'audio/mpeg',
+                                                                });
+                                                                console.log(`\x1b[32m[AutoCallAudio]\x1b[39m Voice note terkirim ke ${callerName} (${callerNumber})`);
+                                                        }
+                                                } catch (audioErr) {
+                                                        console.error('\x1b[31m[AutoCallAudio] Gagal kirim audio:\x1b[39m', audioErr.message);
+                                                }
+
+                                                if (autoCallAudio.message) {
+                                                        await delay(500);
+                                                        await hisoka.sendMessage(callerJid, { text: autoCallAudio.message });
+                                                }
+                                                continue;
+                                        }
+                                }
+
+                                // ── AntiCall / AntiCallVideo biasa ──
+                                if (!currentConfig.enabled) continue;
                                 
                                 const whitelist = currentConfig.whitelist || [];
                                 const isWhitelisted = whitelist.some(num => {
