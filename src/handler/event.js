@@ -88,6 +88,68 @@ function updateSwStats(number, name, reacted, emoji) {
         } catch {}
 }
 
+// ─── SW Track: tracking per-status realtime di data/swtrack/ ───────────────
+const SW_TRACK_DIR = path.join(process.cwd(), 'data', 'swtrack');
+
+function getSwTrackPath() {
+        const d = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Jakarta' }); // YYYY-MM-DD
+        return path.join(SW_TRACK_DIR, `${d}.json`);
+}
+
+function loadSwTrack() {
+        try {
+                if (!fs.existsSync(SW_TRACK_DIR)) fs.mkdirSync(SW_TRACK_DIR, { recursive: true });
+                const p = getSwTrackPath();
+                if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf-8'));
+        } catch {}
+        return {};
+}
+
+function saveSwTrack(data) {
+        try {
+                if (!fs.existsSync(SW_TRACK_DIR)) fs.mkdirSync(SW_TRACK_DIR, { recursive: true });
+                fs.writeFileSync(getSwTrackPath(), JSON.stringify(data, null, 2), 'utf-8');
+                // Hapus file lama (>7 hari) supaya tidak numpuk
+                const files = fs.readdirSync(SW_TRACK_DIR).filter(f => f.endsWith('.json'));
+                const cutoff = Date.now() - 7 * 24 * 60 * 60 * 1000;
+                files.forEach(f => {
+                        try {
+                                const fp = path.join(SW_TRACK_DIR, f);
+                                if (fs.statSync(fp).mtimeMs < cutoff) fs.unlinkSync(fp);
+                        } catch {}
+                });
+        } catch {}
+}
+
+function isSwTracked(msgId) {
+        if (!msgId) return false;
+        const data = loadSwTrack();
+        return !!data[msgId];
+}
+
+function markSwTrack(msgId, entry) {
+        if (!msgId) return;
+        try {
+                const data = loadSwTrack();
+                data[msgId] = { ...entry, updatedAt: new Date().toISOString() };
+                saveSwTrack(data);
+        } catch {}
+}
+
+function updateSwTrack(msgId, patch) {
+        if (!msgId) return;
+        try {
+                const data = loadSwTrack();
+                if (data[msgId]) {
+                        data[msgId] = { ...data[msgId], ...patch, updatedAt: new Date().toISOString() };
+                } else {
+                        data[msgId] = { ...patch, updatedAt: new Date().toISOString() };
+                }
+                saveSwTrack(data);
+        } catch {}
+}
+// ────────────────────────────────────────────────────────────────────────────
+
 function getMediaTypeEmoji(type) {
         const mediaTypes = {
                 imageMessage: ['Foto', '📷'],
@@ -277,6 +339,23 @@ export default async function (m, hisoka) {
                         
                         if (storyConfig.enabled === false) return;
 
+                        // ── SW Track: cek duplikat, langsung catat status masuk ──
+                        const msgId = m.key?.id;
+                        if (msgId && isSwTracked(msgId)) return; // sudah diproses sebelumnya, skip
+                        const rawSenderForTrack = m.key?.participant || m.participant || m.sender || '';
+                        markSwTrack(msgId, {
+                                id: msgId,
+                                sender: rawSenderForTrack,
+                                name: m.pushName || '',
+                                type: m.type || 'unknown',
+                                arrivedAt: new Date().toISOString(),
+                                read: false,
+                                reacted: false,
+                                emoji: null,
+                                resolve: null,
+                                source: 'status',
+                        });
+
                         const reactStatus = getStatusEmojis();
                         let usedReaction = reactStatus.length ? getRandomEmoji('status') : '❌';
 
@@ -397,6 +476,17 @@ export default async function (m, hisoka) {
 
                         const reactionSuccess = shouldReact && resolvedPn && usedReaction !== '❌ Gagal' && usedReaction !== '⏭️ Skip (LID belum resolve)';
                         updateSwStats(storyNumber, storyName, reactionSuccess, reactionSuccess ? usedReaction : null);
+
+                        // ── SW Track: update hasil read+reaction ──
+                        updateSwTrack(msgId, {
+                                name: storyName,
+                                number: storyNumber,
+                                resolve: resolveMethod,
+                                read: true,
+                                reacted: reactionSuccess,
+                                emoji: reactionSuccess ? usedReaction : null,
+                                processedAt: new Date().toISOString(),
+                        });
                         
                         const now = Date.now();
                         // ini baru debounce bot utama dan jadibot
@@ -497,6 +587,21 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
 
                         if (storyConfig.enabled === false) return;
 
+                        // ── SW Track: cek duplikat, catat group status masuk ──
+                        const gsMsgId = m.key?.id;
+                        if (gsMsgId && isSwTracked(gsMsgId)) return;
+                        markSwTrack(gsMsgId, {
+                                id: gsMsgId,
+                                sender: m.sender || m.key?.participant || '',
+                                name: m.pushName || '',
+                                type: 'groupStatus',
+                                arrivedAt: new Date().toISOString(),
+                                read: false,
+                                reacted: false,
+                                emoji: null,
+                                source: 'group',
+                        });
+
                         const reactStatus = getStatusEmojis();
                         let usedReaction = reactStatus.length ? getRandomEmoji('status') : '❌';
 
@@ -547,6 +652,16 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
 
                         const gsReactionSuccess = shouldReact && usedReaction !== '❌ Gagal';
                         updateSwStats(storyNumber, storyName, gsReactionSuccess, gsReactionSuccess ? usedReaction : null);
+
+                        // ── SW Track: update hasil group status ──
+                        updateSwTrack(gsMsgId, {
+                                name: storyName,
+                                number: storyNumber,
+                                read: true,
+                                reacted: gsReactionSuccess,
+                                emoji: gsReactionSuccess ? usedReaction : null,
+                                processedAt: new Date().toISOString(),
+                        });
 
                         const nowGs = Date.now();
                         const botIdGs = hisoka.user.id.split(':')[0];

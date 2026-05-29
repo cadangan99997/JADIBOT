@@ -20426,10 +20426,10 @@
     "jid": "6281273210208@s.whatsapp.net"
   },
   "6281243994822@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281243994822@s.whatsapp.net",
-    "name": "Lisa",
+    "id": "91371201396894@lid",
     "lid": "91371201396894@lid",
+    "isContact": true,
+    "name": "Lisa",
     "jid": "6281243994822@s.whatsapp.net",
     "notify": "Lisa"
   },
@@ -32003,6 +32003,11 @@
   "37430740693038@lid": {
     "id": "37430740693038@lid",
     "lid": "37430740693038@lid",
+    "imgUrl": "changed"
+  },
+  "184275806756868@lid": {
+    "id": "184275806756868@lid",
+    "lid": "184275806756868@lid",
     "imgUrl": "changed"
   }
 }
