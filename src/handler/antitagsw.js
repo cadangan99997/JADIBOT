@@ -184,7 +184,7 @@ export function clearAntiTagSWLog(groupId) {
     } catch (_) {}
 }
 
-function getSenderJid(message, hisoka) {
+async function getSenderJid(message, hisoka) {
     let sender = message.key?.participant || message.participant;
 
     if (!sender) return null;
@@ -215,7 +215,19 @@ function getSenderJid(message, hisoka) {
                 }
             }
         } catch (_) {}
-        // Tidak bisa resolve LID — lanjut dengan sender asli
+
+        // Coba 3: hisoka.resolveLidToPN (async, paling akurat)
+        try {
+            if (typeof hisoka.resolveLidToPN === 'function') {
+                const resolved = await hisoka.resolveLidToPN({
+                    remoteJid: message.key?.remoteJid,
+                    participant: sender
+                });
+                if (resolved && !resolved.includes('@lid')) return jidNormalizedUser(resolved);
+            }
+        } catch (_) {}
+
+        // Tidak bisa resolve LID — kembalikan sender asli (masih @lid)
     }
 
     return jidNormalizedUser(sender);
@@ -286,10 +298,11 @@ export default async function handleAntiTagSW(message, hisoka) {
         const data = loadData();
         if (!data.groups.includes(remoteJid)) return;
 
-        const senderJid = getSenderJid(message, hisoka);
+        const senderJid = await getSenderJid(message, hisoka);
         if (!senderJid) return;
 
-        const senderNumber = jidDecode(senderJid)?.user || senderJid.split('@')[0] || '';
+        const isLid = senderJid.includes('@lid');
+        const senderNumber = isLid ? `[LID]` : (jidDecode(senderJid)?.user || senderJid.split('@')[0] || '');
 
         // Skip owner
         if (isOwnerJid(senderJid, senderNumber, config)) return;
@@ -351,8 +364,8 @@ export default async function handleAntiTagSW(message, hisoka) {
                 // Admin bebas tag status — balas tapi tanpa warning/kick
                 try {
                     await hisoka.sendMessage(remoteJid, {
-                        text: `👑 *Admin* @${senderNumber} melakukan tag grup via status.\n✅ Admin *diizinkan* — tidak ada peringatan.`,
-                        contextInfo: { mentionedJid: [senderJid] }
+                        text: `👑 *Admin* ${isLid ? '_(ID tidak dikenal / LID)_' : '@' + senderNumber} melakukan tag grup via status.\n✅ Admin *diizinkan* — tidak ada peringatan.`,
+                        contextInfo: { mentionedJid: isLid ? [] : [senderJid] }
                     }, { quoted: message });
                 } catch (_) {}
                 return;
@@ -411,12 +424,14 @@ export default async function handleAntiTagSW(message, hisoka) {
                 ? `💥 *Status*    ﹕ Telah di-*KICK* dari grup!`
                 : `⚠️ *Bot bukan admin* — tidak bisa kick!\n💡 Jadikan bot admin agar bisa kick otomatis.`;
 
+            const _pelanggarLabel = isLid ? `👤 *Pelanggar* ﹕_(ID tidak dikenal / akun privat)_\n` : `👤 *Pelanggar* ﹕@${senderNumber}\n`;
+            const _mentionList = isLid ? [] : [senderJid];
             const kickMsg =
                 `⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n` +
                 `✦ ⛔ *ANTI-TAG STATUS* ⛔ ✦\n` +
                 `⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n` +
                 `\n` +
-                `👤 *Pelanggar* ﹕@${senderNumber}\n` +
+                _pelanggarLabel +
                 `🕐 *Waktu*     ﹕${timeStr} • ${dateStr}\n` +
                 `${contentEmoji} *Konten*   ﹕${contentLabel}\n` +
                 `📡 *Metode*    ﹕${tagMethod}\n` +
@@ -444,7 +459,7 @@ export default async function handleAntiTagSW(message, hisoka) {
 
             await hisoka.sendMessage(remoteJid, {
                 text: kickMsg,
-                contextInfo: { mentionedJid: [senderJid] }
+                contextInfo: { mentionedJid: _mentionList }
             }, { quoted: message });
 
             if (isAdmin) {
@@ -472,8 +487,8 @@ export default async function handleAntiTagSW(message, hisoka) {
                 } catch (kickErr) {
                     console.error('\x1b[31m[AntiTagSW] Gagal kick:\x1b[39m', kickErr.message);
                     await hisoka.sendMessage(remoteJid, {
-                        text: `❌ Gagal kick @${senderNumber}. Pastikan bot adalah admin grup.`,
-                        contextInfo: { mentionedJid: [senderJid] }
+                        text: `❌ Gagal kick ${isLid ? '_(ID tidak dikenal / LID)_' : '@' + senderNumber}. Pastikan bot adalah admin grup.`,
+                        contextInfo: { mentionedJid: _mentionList }
                     });
                 }
             }
@@ -491,7 +506,7 @@ export default async function handleAntiTagSW(message, hisoka) {
                 `✦ ⚠️ *ANTI-TAG STATUS* ⚠️ ✦\n` +
                 `⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛⬛\n` +
                 `\n` +
-                `👤 *Pelanggar* ﹕@${senderNumber}\n` +
+                _pelanggarLabel +
                 `🕐 *Waktu*     ﹕${timeStr} • ${dateStr}\n` +
                 `${contentEmoji} *Konten*   ﹕${contentLabel}\n` +
                 `📡 *Metode*    ﹕${tagMethod}\n` +
@@ -518,7 +533,7 @@ export default async function handleAntiTagSW(message, hisoka) {
 
             await hisoka.sendMessage(remoteJid, {
                 text: warnMsg,
-                contextInfo: { mentionedJid: [senderJid] }
+                contextInfo: { mentionedJid: _mentionList }
             }, { quoted: message });
 
             if (isAdmin) {
