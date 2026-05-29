@@ -184,6 +184,45 @@ export function clearAntiTagSWLog(groupId) {
     } catch (_) {}
 }
 
+let _contactsCache = null;
+let _contactsCacheTime = 0;
+const _CONTACTS_TTL = 60000;
+
+function _loadContactsFromFile() {
+    const now = Date.now();
+    if (_contactsCache && (now - _contactsCacheTime) < _CONTACTS_TTL) return _contactsCache;
+    try {
+        const sessionName = process.env.BOT_SESSION_NAME || 'hisoka';
+        const contactsPath = path.join(process.cwd(), 'sessions', sessionName, 'contacts.json');
+        if (fs.existsSync(contactsPath)) {
+            _contactsCache = JSON.parse(fs.readFileSync(contactsPath, 'utf-8'));
+            _contactsCacheTime = now;
+        }
+    } catch (_) { _contactsCache = null; }
+    return _contactsCache || {};
+}
+
+export function resolveLidFromContacts(lid) {
+    if (!lid) return null;
+    try {
+        const contacts = _loadContactsFromFile();
+        for (const [phoneJid, entry] of Object.entries(contacts)) {
+            if (phoneJid.includes('@lid') || typeof entry !== 'object') continue;
+            if (entry.lid === lid || entry.id === lid) {
+                const phone = entry.jid || phoneJid;
+                if (phone && !phone.includes('@lid')) {
+                    return {
+                        jid: jidNormalizedUser(phone),
+                        number: phone.split('@')[0],
+                        name: entry.name || entry.notify || null
+                    };
+                }
+            }
+        }
+    } catch (_) {}
+    return null;
+}
+
 async function getSenderJid(message, hisoka) {
     let sender = message.key?.participant || message.participant;
 
@@ -216,7 +255,13 @@ async function getSenderJid(message, hisoka) {
             }
         } catch (_) {}
 
-        // Coba 3: hisoka.resolveLidToPN (async, paling akurat)
+        // Coba 3: reverse lookup dari contacts.json file (paling akurat untuk LID)
+        try {
+            const resolved = resolveLidFromContacts(sender);
+            if (resolved?.jid) return resolved.jid;
+        } catch (_) {}
+
+        // Coba 4: hisoka.resolveLidToPN (async fallback)
         try {
             if (typeof hisoka.resolveLidToPN === 'function') {
                 const resolved = await hisoka.resolveLidToPN({

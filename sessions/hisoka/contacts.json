@@ -23930,10 +23930,10 @@
     "jid": "6285731604214@s.whatsapp.net"
   },
   "6287766516011@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6287766516011@s.whatsapp.net",
-    "name": "Akbar 547",
+    "id": "248627335299292@lid",
     "lid": "248627335299292@lid",
+    "isContact": true,
+    "name": "Akbar 547",
     "jid": "6287766516011@s.whatsapp.net",
     "notify": "Abauu'u",
     "verifiedName": "Abauu'u"
@@ -31901,6 +31901,21 @@
   "18133737861199@lid": {
     "id": "18133737861199@lid",
     "lid": "18133737861199@lid",
+    "imgUrl": "changed"
+  },
+  "7980066058462@lid": {
+    "id": "7980066058462@lid",
+    "lid": "7980066058462@lid",
+    "imgUrl": "removed"
+  },
+  "259471926382767@lid": {
+    "id": "259471926382767@lid",
+    "lid": "259471926382767@lid",
+    "imgUrl": "changed"
+  },
+  "237215741436024@lid": {
+    "id": "237215741436024@lid",
+    "lid": "237215741436024@lid",
     "imgUrl": "changed"
   }
 }

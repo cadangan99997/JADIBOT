@@ -5998,7 +5998,7 @@
     "subjectOwner": "172838711480524@lid",
     "subjectOwnerPn": "6283123405940@s.whatsapp.net",
     "subjectTime": 1761452838,
-    "size": 829,
+    "size": 828,
     "creation": 1693096407,
     "owner": "88609721962527@lid",
     "ownerPn": "6285807405071@s.whatsapp.net",
@@ -9317,11 +9317,6 @@
         "admin": null
       },
       {
-        "id": "261946548998330@lid",
-        "phoneNumber": "6285142970580@s.whatsapp.net",
-        "admin": null
-      },
-      {
         "id": "38281798525129@lid",
         "phoneNumber": "6282372211860@s.whatsapp.net",
         "admin": null
@@ -11716,10 +11711,6 @@
       },
       {
         "id": "38281798525129@lid",
-        "admin": null
-      },
-      {
-        "id": "261946548998330@lid",
         "admin": null
       },
       {
@@ -17974,6 +17965,10 @@
       },
       {
         "id": "197990039957576@lid",
+        "admin": null
+      },
+      {
+        "id": "152321703043178@lid",
         "admin": null
       },
       {

@@ -37,7 +37,7 @@ import { getUptimeFormatted, getBotStats } from '../db/botStats.js';
 import { logError, formatErrorReport, clearErrors, generateErrorFileTxt, getInfoErrorTxtPath, getErrorStats } from '../db/errorLog.js';
 import { startJadibot, startJadibotQR, stopJadibot, jadibotMap, jadibotConnectedAt, pendingJadibotChoices, formatPairingCode, maskNumber, parseJadibotDuration, getJadibotExpiry, formatRemainingTime, getJadibotExpirySummary, cleanupExpiredJadibots, removeJadibotExpiry, setPermanentJadibot, ensureJadibotExpiry, extendJadibotExpiry, scheduleJadibotExpiry } from '../helper/jadibot.js';
 import { hasViewOnceCache, getViewOnceCache } from '../helper/voCache.js';
-import { isAntiTagSWEnabled, toggleAntiTagSW, resetWarnings, getWarnings, getAllAntiTagSWGroups, getAntiTagSWLog, clearAntiTagSWLog } from './antitagsw.js';
+import { isAntiTagSWEnabled, toggleAntiTagSW, resetWarnings, getWarnings, getAllAntiTagSWGroups, getAntiTagSWLog, clearAntiTagSWLog, resolveLidFromContacts } from './antitagsw.js';
 // yg bawah pindah ke sini
 import { injectMessage } from '../helper/inject.js';
 import listenEvent from './event.js';
@@ -15438,7 +15438,7 @@ hasil += `╰══════════════════════�
                                                                         const l = logs[i];
                                                                         batchTxt +=
                                                                                 `│ *${i + 1}.* ${_fmtAction(l)}\n` +
-                                                                                `│    👤 ${l.senderJid?.includes('@lid') ? '⚠️ ID tidak dikenal (LID)' : '@' + l.senderNum}\n` +
+                                                                                `│    👤 ${l.senderJid?.includes('@lid') ? (r=>r?('@'+r.number+(r.name?' ('+r.name+')':'')):'⚠️ ID tidak dikenal (LID)')(resolveLidFromContacts(l.senderJid)) : '@'+l.senderNum}\n` +
                                                                                 `│    📡 ${l.method || '-'} • 🕐 ${_fmtWaktu(l.ts)}\n` +
                                                                                 `│\n`;
                                                                 }
@@ -15458,7 +15458,7 @@ hasil += `╰══════════════════════�
                                                         const l = recentLogs[i];
                                                         logBaris +=
                                                                 `│ *${i + 1}.* ${_fmtAction(l)}\n` +
-                                                                `│    👤 ${l.senderJid?.includes('@lid') ? '⚠️ ID tidak dikenal (LID)' : '@' + l.senderNum}\n` +
+                                                                `│    👤 ${l.senderJid?.includes('@lid') ? (r=>r?('@'+r.number+(r.name?' ('+r.name+')':'')):'⚠️ ID tidak dikenal (LID)')(resolveLidFromContacts(l.senderJid)) : '@'+l.senderNum}\n` +
                                                                 `│    📡 ${l.method || '-'} • 🕐 ${_fmtWaktu(l.ts)}\n` +
                                                                 `│\n`;
                                                 }
