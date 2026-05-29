@@ -31,12 +31,6 @@ type = "image"
 title = "masjid isya malam"
 
 [[outputs]]
-id = "XHHvFLh_tTXfR1Nem4KPD"
-uri = "file://Perjalanan_Hidup_v1.mp3"
-type = "audio"
-title = "Perjalanan Hidup - Versi 1 (AI Generated)"
-
-[[outputs]]
 id = "VpwnSP7EemMjedo1fqQ-7"
 uri = "file://Janji_Selamanya_v1.mp3"
 type = "audio"
