@@ -21266,8 +21266,7 @@
     "isContact": true,
     "name": "Naizo 👍",
     "phoneNumber": "6285711200877@s.whatsapp.net",
-    "notify": "Albiverstappen",
-    "verifiedName": "Albiverstappen"
+    "notify": "Albiverstappen"
   },
   "6281226920651@s.whatsapp.net": {
     "isContact": true,
@@ -27610,7 +27609,8 @@
     "isContact": true,
     "name": "Agan Rizkia",
     "phoneNumber": "6289688206739@s.whatsapp.net",
-    "notify": "Wily"
+    "notify": "Wily",
+    "verifiedName": "Wily"
   },
   "6288270829865@s.whatsapp.net": {
     "isContact": true,
@@ -31363,5 +31363,15 @@
     "id": "133874231279813@lid",
     "lid": "133874231279813@lid",
     "imgUrl": "changed"
+  },
+  "161362005205108@lid": {
+    "id": "161362005205108@lid",
+    "lid": "161362005205108@lid",
+    "imgUrl": "changed"
+  },
+  "96724693606570@lid": {
+    "id": "96724693606570@lid",
+    "lid": "96724693606570@lid",
+    "imgUrl": "removed"
   }
 }
