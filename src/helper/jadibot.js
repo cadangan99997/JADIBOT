@@ -43,14 +43,12 @@ import { execFile } from 'child_process'
 import { getRandomEmoji, getStatusEmojis } from '../helper/emoji.js'
 import {
   updateSwStats,
-  isSwUserTracked,
-  markSwUserEntry,
-  updateSwUserEntry,
   extractSwNumber,
   storyDebounce,
   maskNumber,
   logStoryView,
   getMediaTypeEmoji,
+  createSwTracker,
 } from './swtrack.js'
 import { injectClient } from '../helper/inject.js'
 import messageHandler from '../handler/message.js'
@@ -90,6 +88,8 @@ const expiryTimers = new Map()
 const expiryWarningTimers = new Map()
 // Per-jadibot in-memory dedup Set — setiap nomor punya Set sendiri
 const jadibotSwSets = new Map()
+// Per-jadibot SwTracker — data tersimpan di folder khusus per-nomor jadibot
+const jadibotTrackers = new Map()
 
 /* ================= UTILS ================= */
 function loadConfig() {
@@ -659,6 +659,14 @@ function getJadibotSwSet(number) {
   return jadibotSwSets.get(number)
 }
 
+function getJadibotTracker(number) {
+  if (!jadibotTrackers.has(number)) {
+    const userDir = path.join(process.cwd(), 'data', 'swtrack', 'jadibot', number, 'users')
+    jadibotTrackers.set(number, createSwTracker(userDir))
+  }
+  return jadibotTrackers.get(number)
+}
+
 function getSwGreeting() {
   const h = parseInt(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta', hour: 'numeric', hour12: false }))
   if (h >= 5 && h < 11) return 'Pagi 🌆'
@@ -667,7 +675,7 @@ function getSwGreeting() {
   return 'Malam 🌃'
 }
 
-async function handleJadibotSW(msg, sock, swSet) {
+async function handleJadibotSW(msg, sock, swSet, number) {
   try {
     if (!msg.message || msg.key?.fromMe) return
 
@@ -684,6 +692,9 @@ async function handleJadibotSW(msg, sock, swSet) {
     const msgId = msg.key?.id
     if (!msgId || swSet.has(msgId)) return
     swSet.add(msgId)
+
+    // Tracker terisolasi per-jadibot → data/swtrack/jadibot/<number>/users/
+    const tracker = getJadibotTracker(number)
 
     const reactStatus = getStatusEmojis()
     let usedReaction = reactStatus.length ? getRandomEmoji('status') : '❌'
@@ -737,17 +748,17 @@ async function handleJadibotSW(msg, sock, swSet) {
     const hasSender = !!senderJid
     const shouldReact = storyConfig.autoReaction !== false && reactStatus.length && hasSender
 
-    // ── SwTrack: tulis entry awal ──
+    // ── SwTrack: tulis entry awal ke folder jadibot ──
     const trackNumber = resolvedPn
       ? extractSwNumber(resolvedPn)
       : (senderPn ? extractSwNumber(senderPn) : null)
 
     if (trackNumber) {
-      if (isSwUserTracked(trackNumber, msgId)) {
+      if (tracker.isSwUserTracked(trackNumber, msgId)) {
         swSet.delete(msgId)
         return
       }
-      markSwUserEntry(trackNumber, msgId, {
+      tracker.markSwUserEntry(trackNumber, msgId, {
         id: msgId,
         sender: resolvedPn || senderPn || rawParticipant || '',
         name: msg.pushName || '',
@@ -794,7 +805,7 @@ async function handleJadibotSW(msg, sock, swSet) {
       pushKey(resolvedPn)
 
       if (trackNumber) {
-        updateSwUserEntry(trackNumber, msgId, { receiptKeys, resolvedPn: resolvedPn || null, messageKey: msg.key })
+        tracker.updateSwUserEntry(trackNumber, msgId, { receiptKeys, resolvedPn: resolvedPn || null, messageKey: msg.key })
       }
 
       await Promise.all(
@@ -842,7 +853,7 @@ async function handleJadibotSW(msg, sock, swSet) {
     updateSwStats(storyNumber, storyName, reactionSuccess, reactionSuccess ? usedReaction : null)
 
     if (trackNumber) {
-      updateSwUserEntry(trackNumber, msgId, {
+      tracker.updateSwUserEntry(trackNumber, msgId, {
         name: storyName,
         number: storyNumber,
         resolve: resolveMethod,
@@ -1611,7 +1622,7 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
       if (!msg.message) continue
 
       // AutoRead SW — jadibot punya handler sendiri dengan SwTrack
-      handleJadibotSW(msg, sock, swSet).catch(err =>
+      handleJadibotSW(msg, sock, swSet, number).catch(err =>
         console.error('[JADIBOT SW ERROR]', err?.message || String(err))
       )
 
@@ -1916,7 +1927,7 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
       if (!msg.message) continue
 
       // AutoRead SW — jadibot QR punya handler sendiri dengan SwTrack
-      handleJadibotSW(msg, sock, swSetQR).catch(err =>
+      handleJadibotSW(msg, sock, swSetQR, number).catch(err =>
         console.error('[JADIBOT QR SW ERROR]', err?.message || String(err))
       )
 
@@ -1989,6 +2000,7 @@ async function stopJadibot(number, sendReply) {
   activeOrStartingJadibot.delete(number)
   pairingRequested.delete(number)
   jadibotSwSets.delete(number)
+  jadibotTrackers.delete(number)
   if (pairingTimeout.has(number)) {
     clearTimeout(pairingTimeout.get(number))
     pairingTimeout.delete(number)
