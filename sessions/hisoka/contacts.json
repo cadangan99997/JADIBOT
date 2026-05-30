@@ -1395,12 +1395,13 @@
     "phoneNumber": "628813744200@s.whatsapp.net"
   },
   "6281337711694@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281337711694@s.whatsapp.net",
-    "name": "! Wira V2",
+    "id": "249516745867409@lid",
     "lid": "249516745867409@lid",
+    "isContact": true,
+    "name": "! Wira V2",
     "jid": "6281337711694@s.whatsapp.net",
-    "phoneNumber": "6281337711694@s.whatsapp.net"
+    "phoneNumber": "6281337711694@s.whatsapp.net",
+    "notify": "."
   },
   "6285372801524@s.whatsapp.net": {
     "isContact": true,

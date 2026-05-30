@@ -1,0 +1,62 @@
+{
+  "AC2B41A40626E948C5F82BA534CC6A73": {
+    "id": "AC2B41A40626E948C5F82BA534CC6A73",
+    "sender": "274255723921630@lid",
+    "name": "Hen V1",
+    "type": "extendedTextMessage",
+    "arrivedAt": "2026-05-29T14:46:05.801Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "😚",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "updatedAt": "2026-05-29T14:46:21.465Z",
+    "number": "6289681008411",
+    "processedAt": "2026-05-29T14:46:21.464Z"
+  },
+  "ACE4F9412ABE74E367AD32E0FFC59DEB": {
+    "id": "ACE4F9412ABE74E367AD32E0FFC59DEB",
+    "sender": "274255723921630@lid",
+    "name": "Hen V1",
+    "type": "extendedTextMessage",
+    "arrivedAt": "2026-05-29T14:46:25.220Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🌘",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "updatedAt": "2026-05-29T14:46:36.531Z",
+    "number": "6289681008411",
+    "processedAt": "2026-05-29T14:46:36.531Z"
+  },
+  "ACD626210999ABF89E97167A33E1EAE4": {
+    "id": "ACD626210999ABF89E97167A33E1EAE4",
+    "sender": "274255723921630@lid",
+    "name": "Hen V1",
+    "type": "extendedTextMessage",
+    "arrivedAt": "2026-05-29T14:48:17.512Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "♀️",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "updatedAt": "2026-05-29T14:48:22.047Z",
+    "number": "6289681008411",
+    "processedAt": "2026-05-29T14:48:22.047Z"
+  },
+  "AC6A42FAFC5C646947F214C1CFA400B3": {
+    "id": "AC6A42FAFC5C646947F214C1CFA400B3",
+    "sender": "174577888038922@lid",
+    "name": "γυς ρου",
+    "type": "videoMessage",
+    "arrivedAt": "2026-05-29T14:51:04.409Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🧧",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "updatedAt": "2026-05-29T14:51:18.389Z",
+    "number": "6281393564657",
+    "processedAt": "2026-05-29T14:51:18.388Z"
+  }
+}

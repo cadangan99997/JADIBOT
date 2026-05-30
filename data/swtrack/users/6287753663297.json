@@ -1,0 +1,19 @@
+{
+  "AC786153F8FD0E691CF6715CD5A122F0": {
+    "id": "AC786153F8FD0E691CF6715CD5A122F0",
+    "sender": "6287753663297@s.whatsapp.net",
+    "name": "n.",
+    "type": "imageMessage",
+    "arrivedAt": "2026-05-30T07:30:50.113Z",
+    "read": true,
+    "reacted": false,
+    "emoji": null,
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "updatedAt": "2026-05-30T07:47:08.129Z",
+    "retriedOnStartup": true,
+    "retriedAt": "2026-05-30T07:45:22.063Z",
+    "deleted": true,
+    "skipReason": "no-resolvedPn-no-receiptKeys"
+  }
+}
