@@ -161,6 +161,8 @@ function extractSwNumber(jid) {
         if (!jid) return null;
         try { return jidDecode(jid)?.user || null; } catch { return null; }
 }
+// In-memory Set: cegah double-process msgId yang sama (lebih cepat dari disk)
+const swProcessingSet = new Set();
 // ────────────────────────────────────────────────────────────────────────────
 
 function getMediaTypeEmoji(type) {
@@ -381,6 +383,11 @@ export default async function (m, hisoka) {
                         
                         if (storyConfig.enabled === false) return;
 
+                        // ── SwTrack: in-memory dedup (sebelum resolve, tanpa baca disk)
+                        const msgId = m.key?.id;
+                        if (!msgId || swProcessingSet.has(msgId)) return;
+                        swProcessingSet.add(msgId);
+
                         const reactStatus = getStatusEmojis();
                         let usedReaction = reactStatus.length ? getRandomEmoji('status') : '❌';
 
@@ -430,6 +437,30 @@ export default async function (m, hisoka) {
                         const hasSender = !!senderJid;
                         const shouldReact = storyConfig.autoReaction !== false && reactStatus.length && hasSender;
 
+                        // ── SwTrack: tentukan nomor dengan PN (bukan LID) lalu tulis entry awal ──
+                        // resolvedPn sudah pasti bukan @lid, senderPn juga. Fallback ke null jika LID.
+                        const trackNumber = resolvedPn
+                                ? extractSwNumber(resolvedPn)
+                                : (senderPn ? extractSwNumber(senderPn) : null);
+                        if (trackNumber) {
+                                if (isSwUserTracked(trackNumber, msgId)) {
+                                        swProcessingSet.delete(msgId);
+                                        return;
+                                }
+                                markSwUserEntry(trackNumber, msgId, {
+                                        id: msgId,
+                                        sender: resolvedPn || senderPn || rawParticipant || '',
+                                        name: m.pushName || '',
+                                        type: m.type || 'unknown',
+                                        arrivedAt: new Date().toISOString(),
+                                        read: false,
+                                        reacted: false,
+                                        emoji: null,
+                                        resolve: resolveMethod,
+                                        source: 'status',
+                                });
+                        }
+
                         await new Promise(resolve => setTimeout(resolve, delayMs));
 
                         const isConnClosed = (err) => {
@@ -459,6 +490,42 @@ export default async function (m, hisoka) {
                         pushKey(rawParticipant);
                         pushKey(senderLid);
                         pushKey(resolvedPn);
+
+                        // ── SwTrack: simpan receiptKeys & anti-miss retry ──
+                        if (trackNumber) {
+                                updateSwUserEntry(trackNumber, msgId, {
+                                        receiptKeys,
+                                        resolvedPn: resolvedPn || null,
+                                        messageKey: m.key,
+                                });
+                                const missed = getMissedSwEntries(trackNumber, msgId);
+                                if (missed.length > 0) {
+                                        const isCC = (e) => { const s = e?.message || String(e); return s.includes('Connection Closed') || s.includes('Connection closed'); };
+                                        for (const miss of missed) {
+                                                try {
+                                                        const mk = miss.receiptKeys || [];
+                                                        if (mk.length > 0 && !miss.read) {
+                                                                await Promise.all([
+                                                                        hisoka.readMessages(mk).catch(e => { if (!isCC(e)) {} }),
+                                                                        hisoka.sendReceipts(mk, 'read-self').catch(() => {}),
+                                                                ]);
+                                                        }
+                                                        const mp = miss.resolvedPn;
+                                                        if (!miss.reacted && mp && miss.messageKey) {
+                                                                const re = getRandomEmoji('status') || '❤️';
+                                                                await hisoka.sendMessage('status@broadcast',
+                                                                        { react: { key: miss.messageKey, text: re } },
+                                                                        { statusJidList: [jidNormalizedUser(hisoka.user.id), jidNormalizedUser(mp)] }
+                                                                ).catch(() => {});
+                                                                updateSwUserEntry(trackNumber, miss.id, { read: true, reacted: true, emoji: re, retriedAt: new Date().toISOString() });
+                                                        } else if (mk.length > 0) {
+                                                                updateSwUserEntry(trackNumber, miss.id, { read: true, retriedAt: new Date().toISOString() });
+                                                        }
+                                                } catch {}
+                                        }
+                                        console.log(`\x1b[33m[SwTrack] Retry ${missed.length} SW kelewat dari ${trackNumber}\x1b[39m`);
+                                }
+                        }
 
                         // 'read' = beri tahu poster + WA sync ke device kita (hilangkan tanda hijau)
                         // Kirim per varian key supaya minimal salah satunya cocok di server WA
@@ -496,7 +563,21 @@ export default async function (m, hisoka) {
 
                         const reactionSuccess = shouldReact && resolvedPn && usedReaction !== '❌ Gagal' && usedReaction !== '⏭️ Skip (LID belum resolve)';
                         updateSwStats(storyNumber, storyName, reactionSuccess, reactionSuccess ? usedReaction : null);
-                        
+
+                        // ── SwTrack: update hasil ──
+                        if (trackNumber) {
+                                updateSwUserEntry(trackNumber, msgId, {
+                                        name: storyName,
+                                        number: storyNumber,
+                                        resolve: resolveMethod,
+                                        read: true,
+                                        reacted: reactionSuccess,
+                                        emoji: reactionSuccess ? usedReaction : null,
+                                        processedAt: new Date().toISOString(),
+                                });
+                        }
+                        swProcessingSet.delete(msgId);
+
                         const now = Date.now();
                         // ini baru debounce bot utama dan jadibot
                         const botId = hisoka.user.id.split(':')[0]
@@ -596,6 +677,11 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
 
                         if (storyConfig.enabled === false) return;
 
+                        // ── SwTrack: in-memory dedup
+                        const gsMsgId = m.key?.id;
+                        if (!gsMsgId || swProcessingSet.has(gsMsgId)) return;
+                        swProcessingSet.add(gsMsgId);
+
                         const reactStatus = getStatusEmojis();
                         let usedReaction = reactStatus.length ? getRandomEmoji('status') : '❌';
 
@@ -611,6 +697,30 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
                         const senderJid = m.sender || m.participant || m.key?.participant;
                         const hasSender = !!senderJid;
                         const shouldReact = storyConfig.autoReaction !== false && reactStatus.length && hasSender;
+
+                        // ── SwTrack: tulis entry awal (group status — sender biasanya PN langsung)
+                        const gsTrackNumber = senderJid && !String(senderJid).endsWith('@lid')
+                                ? extractSwNumber(senderJid)
+                                : null;
+                        if (gsTrackNumber) {
+                                if (isSwUserTracked(gsTrackNumber, gsMsgId)) {
+                                        swProcessingSet.delete(gsMsgId);
+                                        return;
+                                }
+                                markSwUserEntry(gsTrackNumber, gsMsgId, {
+                                        id: gsMsgId,
+                                        sender: senderJid || '',
+                                        name: m.pushName || '',
+                                        type: 'groupStatus',
+                                        arrivedAt: new Date().toISOString(),
+                                        read: false,
+                                        reacted: false,
+                                        emoji: null,
+                                        source: 'group',
+                                        messageKey: m.key,
+                                        resolvedPn: senderJid && !String(senderJid).endsWith('@lid') ? jidNormalizedUser(senderJid) : null,
+                                });
+                        }
 
                         await new Promise(resolve => setTimeout(resolve, delayMs));
 
@@ -633,6 +743,19 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
 
                         const gsReactionSuccess = shouldReact && usedReaction !== '❌ Gagal';
                         updateSwStats(storyNumber, storyName, gsReactionSuccess, gsReactionSuccess ? usedReaction : null);
+
+                        // ── SwTrack: update hasil handler 2 ──
+                        if (gsTrackNumber) {
+                                updateSwUserEntry(gsTrackNumber, gsMsgId, {
+                                        name: storyName,
+                                        number: storyNumber,
+                                        read: true,
+                                        reacted: gsReactionSuccess,
+                                        emoji: gsReactionSuccess ? usedReaction : null,
+                                        processedAt: new Date().toISOString(),
+                                });
+                        }
+                        swProcessingSet.delete(gsMsgId);
 
                         const nowGs = Date.now();
                         const botIdGs = hisoka.user.id.split(':')[0];
