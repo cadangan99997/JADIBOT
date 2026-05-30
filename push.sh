@@ -1707,13 +1707,16 @@ prepare_stage() {
     git rm -r --cached -q node_modules/ 2>>"$err_log" || true
   fi
 
-  # sessions/hisoka: untrack SEMUA sekaligus (cepat), lalu force-add yg penting di bawah.
-  # Cara ini jauh lebih cepat dari rm --cached satu per satu untuk ribuan file.
-  local _hisoka_tracked
-  _hisoka_tracked=$(git ls-files sessions/hisoka/ 2>/dev/null | wc -l | tr -d ' ')
-  if [ "$_hisoka_tracked" -gt 0 ]; then
-    echo -e "  ${C_YELLOW}🧹 Untrack ${_hisoka_tracked} file sessions/hisoka dari git index...${C_RESET}"
-    git rm -r --cached -q sessions/hisoka/ 2>>"$err_log" || true
+  # sessions/hisoka: untrack file JUNK saja (bukan file penting).
+  # Pakai grep -v untuk skip file penting, lalu rm --cached via xargs -P4 (paralel, cepat).
+  local _hisoka_junk_list
+  _hisoka_junk_list=$(git ls-files sessions/hisoka/ 2>/dev/null | grep -vE \
+    '(creds|contacts|groups|settings|app-state-sync-(key|version)-)' || true)
+  if [ -n "$_hisoka_junk_list" ]; then
+    local _junk_count
+    _junk_count=$(echo "$_hisoka_junk_list" | wc -l | tr -d ' ')
+    echo -e "  ${C_YELLOW}🧹 Untrack ${_junk_count} file cache WA (lid-mapping, device-list, dll)...${C_RESET}"
+    echo "$_hisoka_junk_list" | xargs -P4 -r git rm --cached -q 2>>"$err_log" || true
   fi
 
   # ⚠️  KEAMANAN: Auto-untrack .token.secret agar token asli tidak pernah ke-commit.
