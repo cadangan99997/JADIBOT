@@ -88,6 +88,81 @@ function updateSwStats(number, name, reacted, emoji) {
         } catch {}
 }
 
+// ─── SW Track: per-user tracking di data/swtrack/users/ ────────────────────
+const SW_TRACK_USER_DIR = path.join(process.cwd(), 'data', 'swtrack', 'users');
+const SW_ENTRY_TTL_MS = 26 * 60 * 60 * 1000; // 26 jam
+
+function getSwUserPath(number) {
+        if (!number) return null;
+        const num = String(number).replace(/[^0-9]/g, '');
+        if (!num) return null;
+        if (!fs.existsSync(SW_TRACK_USER_DIR)) fs.mkdirSync(SW_TRACK_USER_DIR, { recursive: true });
+        return path.join(SW_TRACK_USER_DIR, `${num}.json`);
+}
+
+function loadSwUser(number) {
+        try {
+                const p = getSwUserPath(number);
+                if (p && fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf-8'));
+        } catch {}
+        return {};
+}
+
+function saveSwUser(number, data) {
+        try {
+                const p = getSwUserPath(number);
+                if (!p) return;
+                const cutoff = Date.now() - SW_ENTRY_TTL_MS;
+                const pruned = {};
+                for (const [id, entry] of Object.entries(data)) {
+                        if (new Date(entry.arrivedAt || 0).getTime() >= cutoff) pruned[id] = entry;
+                }
+                fs.writeFileSync(p, JSON.stringify(pruned, null, 2), 'utf-8');
+        } catch {}
+}
+
+function isSwUserTracked(number, msgId) {
+        if (!number || !msgId) return false;
+        return !!loadSwUser(number)[msgId];
+}
+
+function markSwUserEntry(number, msgId, entry) {
+        if (!number || !msgId) return;
+        try {
+                const data = loadSwUser(number);
+                data[msgId] = { ...entry, updatedAt: new Date().toISOString() };
+                saveSwUser(number, data);
+        } catch {}
+}
+
+function updateSwUserEntry(number, msgId, patch) {
+        if (!number || !msgId) return;
+        try {
+                const data = loadSwUser(number);
+                data[msgId] = { ...(data[msgId] || {}), ...patch, updatedAt: new Date().toISOString() };
+                saveSwUser(number, data);
+        } catch {}
+}
+
+function getMissedSwEntries(number, excludeId) {
+        try {
+                const data = loadSwUser(number);
+                const cutoff = Date.now() - SW_ENTRY_TTL_MS;
+                return Object.values(data).filter(e => {
+                        if (!e || e.id === excludeId || e.deleted) return false;
+                        if (new Date(e.arrivedAt || 0).getTime() < cutoff) return false;
+                        return !e.read || !e.reacted;
+                });
+        } catch {}
+        return [];
+}
+
+function extractSwNumber(jid) {
+        if (!jid) return null;
+        try { return jidDecode(jid)?.user || null; } catch { return null; }
+}
+// ────────────────────────────────────────────────────────────────────────────
+
 function getMediaTypeEmoji(type) {
         const mediaTypes = {
                 imageMessage: ['Foto', '📷'],
