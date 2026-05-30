@@ -760,10 +760,39 @@ async function main() {
                                                         if (!pending.length) continue;
                                                         totalPending += pending.length;
 
+                                                        const _swDays=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+                                                        const _swMons=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+                                                        const _swPad=(s,w)=>{s=String(s||'');return s.length>=w?s:s+' '.repeat(w-s.length);};
+                                                        const _swBox=(entry,emoji,delMs)=>{
+                                                                const cy='\x1b[36m',wh='\x1b[37m',ye='\x1b[33m',gr='\x1b[32m',bl='\x1b[34m',or='\x1b[38;2;255;165;0m',pu='\x1b[38;2;180;120;255m',rs='\x1b[0m';
+                                                                const bW=35,cW=16,title='AutoReadStoryWhatsApp',tp=Math.floor((bW-title.length)/2);
+                                                                const d=new Date(new Date(entry.arrivedAt||Date.now()).toLocaleString('en-US',{timeZone:'Asia/Jakarta'}));
+                                                                const hh=d.getHours(),greeting=hh<10?'Subuh 🌙':hh<15?'Siang 🏙️':hh<18?'Sore 🌆':'Malam 🌙';
+                                                                const num=(entry.number||(entry.resolvedPn||'').split('@')[0])||'-';
+                                                                const masked=num.length>6?num.slice(0,4)+'****'+num.slice(-3):num;
+                                                                const rc=(entry.resolve||'').includes('PN')?gr:bl;
+                                                                console.log(`${cy}╭${'═'.repeat(bW)}╮${rs}`);
+                                                                console.log(`${cy}║${' '.repeat(tp)}${ye}${title}${rs}${cy}${' '.repeat(bW-tp-title.length)}║${rs}`);
+                                                                console.log(`${cy}├${'═'.repeat(bW)}┤${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Mode        : ${gr}${_swPad('Read+Reaction ✓',cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Tipe Story  : ${or}${_swPad(entry.type||'Teks 📝',cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Selamat     : ${pu}${_swPad(greeting,cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Hari        : ${bl}${_swPad(_swDays[d.getDay()]+' 🔁',cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Tanggal     : ${ye}${_swPad(`${d.getDate()} ${_swMons[d.getMonth()]} ${d.getFullYear()} 🗓️`,cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Waktu       : ${bl}${_swPad(d.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',hour12:false}).replace(':','.')+' ⏰',cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Nama        : ${wh}${_swPad(entry.name||num,cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Nomor       : ${wh}${_swPad(masked,cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Berhasil    : ${gr}${_swPad('Startup Retry ♻️',cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Reaksi      : ${_swPad(emoji||'Off ❌',cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Resolve     : ${rc}${_swPad((entry.resolve||'-')+' ♻️',cW)}${rs}`);
+                                                                console.log(`${cy}│${rs} ${wh}⭔ Delay       : ${or}${_swPad(delMs?(delMs/1000).toFixed(1)+' detik':'-',cW)}${rs}`);
+                                                                console.log(`${cy}└${'─'.repeat(13)}···${rs}`);
+                                                        };
                                                         for (const entry of pending) {
                                                                 try {
                                                                         // Pakai delay dari config sama seperti handler normal
-                                                                        await new Promise(r => setTimeout(r, randDelay()));
+                                                                        const usedDelay = randDelay();
+                                                                        await new Promise(r => setTimeout(r, usedDelay));
 
                                                                         const mKeys = entry.receiptKeys || [];
                                                                         // Retry read
@@ -797,6 +826,8 @@ async function main() {
                                                                                 updatedAt: new Date().toISOString(),
                                                                         };
                                                                         totalRetried++;
+                                                                        // Box log realtime per entry
+                                                                        _swBox(entry, newEmoji||(entry.reacted?entry.emoji:null), usedDelay);
                                                                 } catch {}
                                                         }
                                                         // Simpan kembali file yang sudah diupdate

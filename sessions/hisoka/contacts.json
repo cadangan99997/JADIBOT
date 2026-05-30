@@ -225,9 +225,9 @@
     "phoneNumber": "62882006688580@s.whatsapp.net"
   },
   "6285823980633@s.whatsapp.net": {
-    "id": "8697359138827@lid",
-    "lid": "8697359138827@lid",
     "isContact": true,
+    "id": "6285823980633@s.whatsapp.net",
+    "lid": "8697359138827@lid",
     "name": "Alfa Riozex",
     "jid": "6285823980633@s.whatsapp.net",
     "phoneNumber": "6285823980633@s.whatsapp.net",
@@ -3544,9 +3544,9 @@
     "phoneNumber": "6285823775965@s.whatsapp.net"
   },
   "6283171178574@s.whatsapp.net": {
-    "id": "164587508904124@lid",
-    "lid": "164587508904124@lid",
     "isContact": true,
+    "id": "6283171178574@s.whatsapp.net",
+    "lid": "164587508904124@lid",
     "name": "√ Atriara",
     "jid": "6283171178574@s.whatsapp.net",
     "phoneNumber": "6283171178574@s.whatsapp.net",
@@ -6757,9 +6757,9 @@
     "phoneNumber": "6281381359766@s.whatsapp.net"
   },
   "6283182665936@s.whatsapp.net": {
-    "id": "165536713416760@lid",
-    "lid": "165536713416760@lid",
     "isContact": true,
+    "id": "6283182665936@s.whatsapp.net",
+    "lid": "165536713416760@lid",
     "name": "ルトピ",
     "jid": "6283182665936@s.whatsapp.net",
     "notify": "Lui",
@@ -9370,9 +9370,9 @@
     "phoneNumber": "6287841774479@s.whatsapp.net"
   },
   "6282189076619@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282189076619@s.whatsapp.net",
+    "id": "84636709445686@lid",
     "lid": "84636709445686@lid",
+    "isContact": true,
     "name": "•√F",
     "jid": "6282189076619@s.whatsapp.net",
     "notify": "F",
@@ -23462,12 +23462,13 @@
     "phoneNumber": "6281328139682@s.whatsapp.net"
   },
   "6285779669266@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285779669266@s.whatsapp.net",
-    "name": "~ Lexy",
+    "id": "165717085294691@lid",
     "lid": "165717085294691@lid",
+    "isContact": true,
+    "name": "~ Lexy",
     "jid": "6285779669266@s.whatsapp.net",
-    "phoneNumber": "6285779669266@s.whatsapp.net"
+    "phoneNumber": "6285779669266@s.whatsapp.net",
+    "imgUrl": "removed"
   },
   "6283138135045@s.whatsapp.net": {
     "isContact": true,
@@ -25589,9 +25590,9 @@
     "phoneNumber": "6282163915906@s.whatsapp.net"
   },
   "62895323007900@s.whatsapp.net": {
-    "id": "184151135252580@lid",
-    "lid": "184151135252580@lid",
     "isContact": true,
+    "id": "62895323007900@s.whatsapp.net",
+    "lid": "184151135252580@lid",
     "name": "! Yuhiko Hoshino || オタク",
     "jid": "62895323007900@s.whatsapp.net",
     "phoneNumber": "62895323007900@s.whatsapp.net",
@@ -25782,9 +25783,9 @@
     "phoneNumber": "6285706477937@s.whatsapp.net"
   },
   "6287768752790@s.whatsapp.net": {
-    "id": "105420123283659@lid",
-    "lid": "105420123283659@lid",
     "isContact": true,
+    "id": "6287768752790@s.whatsapp.net",
+    "lid": "105420123283659@lid",
     "name": "¥ Andini",
     "jid": "6287768752790@s.whatsapp.net",
     "notify": "dinni.",
@@ -27923,9 +27924,9 @@
     "phoneNumber": "6282197111786@s.whatsapp.net"
   },
   "6287753663297@s.whatsapp.net": {
-    "id": "207417140891666@lid",
-    "lid": "207417140891666@lid",
     "isContact": true,
+    "id": "6287753663297@s.whatsapp.net",
+    "lid": "207417140891666@lid",
     "name": "▫️Jihaa",
     "jid": "6287753663297@s.whatsapp.net",
     "phoneNumber": "6287753663297@s.whatsapp.net",
@@ -28942,9 +28943,9 @@
     "phoneNumber": "6289506874225@s.whatsapp.net"
   },
   "6289637255001@s.whatsapp.net": {
-    "id": "22269875249278@lid",
-    "lid": "22269875249278@lid",
     "isContact": true,
+    "id": "6289637255001@s.whatsapp.net",
+    "lid": "22269875249278@lid",
     "name": "ׁׅ᥎ׁׅɑׁׅ݊ꪀꪱׁׁׁׅׅׅtׁׅɑׁׅ🌈🪻",
     "jid": "6289637255001@s.whatsapp.net",
     "phoneNumber": "6289637255001@s.whatsapp.net",
@@ -31953,9 +31954,9 @@
     "phoneNumber": "6285974692517@s.whatsapp.net"
   },
   "6285849012127@s.whatsapp.net": {
-    "id": "133848394391686@lid",
-    "lid": "133848394391686@lid",
     "isContact": true,
+    "id": "6285849012127@s.whatsapp.net",
+    "lid": "133848394391686@lid",
     "name": "Frost°•Titan🐹",
     "jid": "6285849012127@s.whatsapp.net",
     "phoneNumber": "6285849012127@s.whatsapp.net",
@@ -36465,5 +36466,33 @@
     "name": "pushkontakkk 516",
     "lid": "121423792197766@lid",
     "phoneNumber": "6283187215261@s.whatsapp.net"
+  },
+  "6285702323227@s.whatsapp.net": {
+    "isContact": true,
+    "id": "6285702323227@s.whatsapp.net",
+    "name": "Me For Who? - azra",
+    "lid": "189812573212683@lid",
+    "phoneNumber": "6285702323227@s.whatsapp.net"
+  },
+  "6281539349275@s.whatsapp.net": {
+    "isContact": true,
+    "id": "6281539349275@s.whatsapp.net",
+    "name": "▫️Roten Cell",
+    "lid": "101576714809446@lid",
+    "phoneNumber": "6281539349275@s.whatsapp.net"
+  },
+  "6285656814266@s.whatsapp.net": {
+    "isContact": true,
+    "id": "6285656814266@s.whatsapp.net",
+    "name": "√ky",
+    "lid": "112756598517986@lid",
+    "phoneNumber": "6285656814266@s.whatsapp.net"
+  },
+  "6282147199211@s.whatsapp.net": {
+    "isContact": true,
+    "id": "6282147199211@s.whatsapp.net",
+    "name": "Uzumaki Naruto - Eijil",
+    "lid": "131435327414428@lid",
+    "phoneNumber": "6282147199211@s.whatsapp.net"
   }
 }
