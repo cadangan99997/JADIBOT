@@ -17056,11 +17056,13 @@
     "phoneNumber": "6281377169796@s.whatsapp.net"
   },
   "6282139672290@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282139672290@s.whatsapp.net",
-    "name": "Ananda",
+    "id": "164746439479432@lid",
     "lid": "164746439479432@lid",
-    "phoneNumber": "6282139672290@s.whatsapp.net"
+    "isContact": true,
+    "name": "Ananda",
+    "phoneNumber": "6282139672290@s.whatsapp.net",
+    "notify": "Nixel",
+    "verifiedName": "Nixel"
   },
   "6282138841033@s.whatsapp.net": {
     "isContact": true,
