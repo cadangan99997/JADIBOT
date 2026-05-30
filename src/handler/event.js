@@ -498,7 +498,8 @@ export default async function (m, hisoka) {
                                         resolvedPn: resolvedPn || null,
                                         messageKey: m.key,
                                 });
-                                const missed = getMissedSwEntries(trackNumber, msgId);
+                                const missed = getMissedSwEntries(trackNumber, msgId)
+                                        .filter(e => !swProcessingSet.has(e.id)); // skip yg masih on-progress
                                 if (missed.length > 0) {
                                         const isCC = (e) => { const s = e?.message || String(e); return s.includes('Connection Closed') || s.includes('Connection closed'); };
                                         for (const miss of missed) {
