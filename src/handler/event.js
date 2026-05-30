@@ -458,6 +458,10 @@ export default async function (m, hisoka) {
                                         emoji: null,
                                         resolve: resolveMethod,
                                         source: 'status',
+                                        // Simpan dari awal agar retry bisa jalan walau bot crash sebelum updateSwUserEntry
+                                        number: trackNumber,
+                                        resolvedPn: resolvedPn || null,
+                                        messageKey: m.key || null,
                                 });
                         }
 
@@ -737,6 +741,7 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
                                         reacted: false,
                                         emoji: null,
                                         source: 'group',
+                                        number: gsTrackNumber,
                                         messageKey: m.key,
                                         resolvedPn: senderJid && !String(senderJid).endsWith('@lid') ? jidNormalizedUser(senderJid) : null,
                                 });
