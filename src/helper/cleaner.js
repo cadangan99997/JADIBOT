@@ -385,6 +385,17 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
                     }
                 } catch {}
             }
+
+            // Hapus lid-mapping-* SELALU — file ini cache sementara WA, auto-dibuat ulang
+            // oleh WhatsApp saat dibutuhkan. Tidak perlu disimpan sama sekali.
+            if (file.startsWith('lid-mapping-') && file.endsWith('.json')) {
+                try {
+                    const stat = fs.statSync(filePath)
+                    deletedSize += stat.size
+                    fs.unlinkSync(filePath)
+                    deletedSessions++
+                } catch {}
+            }
         }
 
         const total = deletedPreKeys + deletedSessions
@@ -393,7 +404,7 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
             console.log(
                 `\x1b[32m[SessionCleaner]\x1b[39m` +
                 ` Hapus ${deletedPreKeys} pre-key stale` +
-                (deletedSessions > 0 ? ` + ${deletedSessions} session lama` : '') +
+                (deletedSessions > 0 ? ` + ${deletedSessions} file cache (session/lid-mapping)` : '') +
                 ` → hemat ${sizeStr}`
             )
         }
