@@ -719,6 +719,7 @@ async function main() {
                         console.log(`${C}╚══════════════════════════════════╝${R}`);
 
                         // ── SW Track: startup retry — proses SW pending yang kelewat saat bot mati ──
+                        const swStartupTime = Date.now(); // Waktu bot connect — untuk filter entry lama vs baru
                         setTimeout(async () => {
                                 try {
                                         const swUsersDir = path.join(process.cwd(), 'data', 'swtrack', 'users');
@@ -726,11 +727,21 @@ async function main() {
                                         const userFiles = fs.readdirSync(swUsersDir).filter(f => f.endsWith('.json'));
                                         if (!userFiles.length) return;
 
+                                        const swCfg = loadConfig().autoReadStory || {};
+                                        if (swCfg.enabled === false) return;
+                                        const reactEmojis = getStatusEmojis();
+                                        const useRandom = swCfg.randomDelay !== false;
+                                        const dMin = swCfg.delayMinMs || 1000;
+                                        const dMax = swCfg.delayMaxMs || 20000;
+                                        const dFixed = swCfg.fixedDelayMs || 3000;
+                                        const randDelay = () => useRandom
+                                                ? Math.floor(Math.random() * (dMax - dMin)) + dMin
+                                                : dFixed;
+
                                         const TTL = 26 * 60 * 60 * 1000;
                                         const now = Date.now();
                                         let totalPending = 0;
                                         let totalRetried = 0;
-                                        const reactEmojis = getStatusEmojis();
 
                                         for (const file of userFiles) {
                                                 try {
@@ -739,7 +750,11 @@ async function main() {
                                                         const data = JSON.parse(rawData);
                                                         const pending = Object.values(data).filter(e => {
                                                                 if (!e || e.deleted) return false;
-                                                                if (now - new Date(e.arrivedAt || 0).getTime() >= TTL) return false;
+                                                                const arrived = new Date(e.arrivedAt || 0).getTime();
+                                                                if (now - arrived >= TTL) return false;
+                                                                // Hanya retry SW yang arrivedAt SEBELUM bot connect
+                                                                // (SW setelah connect diurus oleh handler normal)
+                                                                if (arrived >= swStartupTime) return false;
                                                                 return !e.read || !e.reacted;
                                                         });
                                                         if (!pending.length) continue;
@@ -747,6 +762,9 @@ async function main() {
 
                                                         for (const entry of pending) {
                                                                 try {
+                                                                        // Pakai delay dari config sama seperti handler normal
+                                                                        await new Promise(r => setTimeout(r, randDelay()));
+
                                                                         const mKeys = entry.receiptKeys || [];
                                                                         // Retry read
                                                                         if (mKeys.length > 0 && !entry.read) {
@@ -779,7 +797,6 @@ async function main() {
                                                                                 updatedAt: new Date().toISOString(),
                                                                         };
                                                                         totalRetried++;
-                                                                        await new Promise(r => setTimeout(r, 1500)); // jeda antar retry
                                                                 } catch {}
                                                         }
                                                         // Simpan kembali file yang sudah diupdate
@@ -788,7 +805,7 @@ async function main() {
                                         }
 
                                         if (totalRetried > 0) {
-                                                console.log(`\x1b[33m[SwTrack] Startup retry selesai: ${totalRetried}/${totalPending} SW pending diproses\x1b[39m`);
+                                                console.log(`\x1b[33m[SwTrack] Startup retry: ${totalRetried}/${totalPending} SW pending diproses\x1b[39m`);
                                         }
                                 } catch {}
                         }, 35000); // Tunggu 35 detik agar session & grup stabil dulu
