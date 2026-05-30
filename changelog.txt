@@ -5,9 +5,9 @@ _Sabar ya, lagi cek fitur lainnya_ 👀
 
 🤖 *WILY BOT — V19*
 
-✨ *4 Fitur Baru*
+✨ *5 Fitur Baru*
 🔧 *7 Bug Fix*
-🚀 *6 Improvement*
+🚀 *8 Improvement*
 
 ━━━━━━━━━━━━━━━━━━━━━━
 ✨ *FITUR BARU*
@@ -40,6 +40,15 @@ _Sabar ya, lagi cek fitur lainnya_ 👀
 > Mode random: `delayMinMs` (default 1s) — `delayMaxMs` (default 20s)
 > Mode fixed: `fixedDelayMs` (default 3s) saat `randomDelay: false`
 > Berlaku untuk SW biasa maupun SW grup
+
+> 🤖 *SwTrack di Jadibot — Tracking SW per Sesi Jadibot*
+> Jadibot kini punya handler SW sendiri (`handleJadibotSW`)
+> Support `status@broadcast` dan `groupStatusMessageV2`
+> LID resolve 3-layer: PN langsung → Signal Lib → Cache Grup Global
+> Read receipt, reaksi, SwStats, SwTrack — semua berjalan di jadibot
+> Console log AutoReadStory tampil dengan label nomor jadibot
+> Data SwTrack tersimpan terpisah per-jadibot (tidak campur bot utama)
+> Folder: `data/swtrack/jadibot/<nomor>/users/<kontak>.json`
 
 ━━━━━━━━━━━━━━━━━━━━━━
 🔧 *BUG FIX*
@@ -126,6 +135,21 @@ _Sabar ya, lagi cek fitur lainnya_ 👀
 > 📡 *AutoRead SW — Notif Telegram Support Group Status*
 > SW dari grup (groupStatusMessageV2) kini juga dikirim ke Telegram
 > Termasuk media (gambar/video) jika tersedia di dalam status grup
+
+> 🧹 *Refactor — Fungsi Duplikat Dipindah ke `swtrack.js`*
+> Semua fungsi SwTrack lokal di `event.js` dihapus (±220 baris)
+> Dipindah ke modul shared `src/helper/swtrack.js`
+> Berlaku: `updateSwStats`, `isSwUserTracked`, `markSwUserEntry`,
+> `updateSwUserEntry`, `getMissedSwEntries`, `extractSwNumber`,
+> `getMediaTypeEmoji`, `maskNumber`, `logStoryView`, `storyDebounce`
+> Tidak ada perubahan fungsional — hanya lebih rapi dan tidak redundan
+
+> 🏭 *`createSwTracker(dir)` — Factory Tracker Terisolasi*
+> Fungsi baru di `swtrack.js`: buat instance tracker per-folder custom
+> Return: `{ isSwUserTracked, markSwUserEntry, updateSwUserEntry, getMissedSwEntries }`
+> Digunakan jadibot agar data tidak tercampur dengan bot utama
+> Setiap jadibot punya tracker sendiri via `getJadibotTracker(number)`
+> Tracker & Set dedup dibersihkan otomatis saat jadibot di-stop
 
 ━━━━━━━━━━━━━━━━━━━━━━
 🤖 *Wily-Bot* | *V19* | _30 Mei 2026_
