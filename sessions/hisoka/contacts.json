@@ -6653,9 +6653,9 @@
     "phoneNumber": "6285890556913@s.whatsapp.net"
   },
   "6282239841068@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282239841068@s.whatsapp.net",
+    "id": "37572776599715@lid",
     "lid": "37572776599715@lid",
+    "isContact": true,
     "name": "√ Lyrn",
     "jid": "6282239841068@s.whatsapp.net",
     "notify": "yayayaya",
@@ -10600,10 +10600,10 @@
     "phoneNumber": "6282118065805@s.whatsapp.net"
   },
   "6287852533256@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6287852533256@s.whatsapp.net",
-    "name": "!!!Raska",
+    "id": "227049553821873@lid",
     "lid": "227049553821873@lid",
+    "isContact": true,
+    "name": "!!!Raska",
     "jid": "6287852533256@s.whatsapp.net",
     "notify": "‎",
     "phoneNumber": "6287852533256@s.whatsapp.net"
@@ -16159,7 +16159,9 @@
     "lid": "97968623505429@lid",
     "jid": "6289667923162@s.whatsapp.net",
     "notify": "Hen V2",
-    "phoneNumber": "6289667923162@s.whatsapp.net"
+    "phoneNumber": "6289667923162@s.whatsapp.net",
+    "ephemeralDuration": 604800,
+    "ephemeralSettingTimestamp": 1765714640
   },
   "6281524546154@s.whatsapp.net": {
     "isContact": true,
@@ -23801,9 +23803,9 @@
     "phoneNumber": "6288274216691@s.whatsapp.net"
   },
   "6289504802678@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6289504802678@s.whatsapp.net",
+    "id": "263445207371837@lid",
     "lid": "263445207371837@lid",
+    "isContact": true,
     "name": "! Rendra wa 126",
     "jid": "6289504802678@s.whatsapp.net",
     "notify": "Rendra pulang ada gulali",
