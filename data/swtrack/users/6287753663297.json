@@ -10,10 +10,11 @@
     "emoji": null,
     "resolve": "PN langsung ✓",
     "source": "status",
-    "updatedAt": "2026-05-30T07:47:08.129Z",
+    "updatedAt": "2026-05-30T09:08:49.176Z",
     "retriedOnStartup": true,
     "retriedAt": "2026-05-30T07:45:22.063Z",
     "deleted": true,
-    "skipReason": "no-resolvedPn-no-receiptKeys"
+    "skipReason": "no-resolvedPn-no-receiptKeys",
+    "deletedAt": "2026-05-30T09:08:49.176Z"
   }
 }
