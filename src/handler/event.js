@@ -465,7 +465,7 @@ export default async function (m, hisoka) {
 
                         const isConnClosed = (err) => {
                                 const msg = err?.message || String(err);
-                                return msg.includes('Connection Closed') || msg.includes('Connection closed') || msg.includes('connection closed');
+                                return msg.includes('Connection Closed') || msg.includes('Connection closed') || msg.includes('connection closed') || msg.includes('EPIPE') || msg.includes('write EPIPE') || msg.includes('Socket closed');
                         };
 
                         // Bangun beberapa varian key untuk receipt — pakai participant ASLI dari WA
@@ -501,7 +501,7 @@ export default async function (m, hisoka) {
                                 const missed = getMissedSwEntries(trackNumber, msgId)
                                         .filter(e => !swProcessingSet.has(e.id)); // skip yg masih on-progress
                                 if (missed.length > 0) {
-                                        const isCC = (e) => { const s = e?.message || String(e); return s.includes('Connection Closed') || s.includes('Connection closed'); };
+                                        const isCC = (e) => { const s = e?.message || String(e); return s.includes('Connection Closed') || s.includes('Connection closed') || s.includes('EPIPE') || s.includes('Socket closed'); };
                                         const _dayNamesR = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
                                         const _monNamesR = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
                                         for (const miss of missed) {
@@ -749,7 +749,7 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
                                 { react: { key: m.key, text: usedReaction } }
                         ).catch((err) => {
                                 const msg = err?.message || String(err);
-                                const connClosed = msg.includes('Connection Closed') || msg.includes('Connection closed') || msg.includes('connection closed');
+                                const connClosed = msg.includes('Connection Closed') || msg.includes('Connection closed') || msg.includes('connection closed') || msg.includes('EPIPE') || msg.includes('Socket closed');
                                 if (!connClosed) console.error('\x1b[31m[GroupStatus Reaction Error]\x1b[39m', msg || 'Unknown');
                                 usedReaction = '❌ Gagal';
                         }) : Promise.resolve();

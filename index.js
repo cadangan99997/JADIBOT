@@ -815,7 +815,8 @@ async function main() {
                                                                                         { statusJidList: [jidNormalizedUser(hisoka.user.id), jidNormalizedUser(mPn)] }
                                                                                 ).catch(() => { newEmoji = null; });
                                                                         }
-                                                                        // Update entry
+                                                                        // Update entry langsung + simpan ke disk per-entry
+                                                                        // (biar kalau bot restart lagi, tidak retry yang sama)
                                                                         data[entry.id] = {
                                                                                 ...entry,
                                                                                 read: true,
@@ -825,12 +826,13 @@ async function main() {
                                                                                 retriedAt: new Date().toISOString(),
                                                                                 updatedAt: new Date().toISOString(),
                                                                         };
+                                                                        try { fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8'); } catch {}
                                                                         totalRetried++;
                                                                         // Box log realtime per entry
-                                                                        _swBox(entry, newEmoji||(entry.reacted?entry.emoji:null), usedDelay);
+                                                                        try { _swBox(entry, newEmoji||(entry.reacted?entry.emoji:null), usedDelay); } catch {}
                                                                 } catch {}
                                                         }
-                                                        // Simpan kembali file yang sudah diupdate
+                                                        // Final save (pastikan state terbaru tersimpan)
                                                         fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
                                                 } catch {}
                                         }

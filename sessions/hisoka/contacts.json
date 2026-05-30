@@ -24057,12 +24057,13 @@
     "phoneNumber": "6287796303184@s.whatsapp.net"
   },
   "6281240568091@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281240568091@s.whatsapp.net",
-    "name": "!MALIK EVANGELION 🧢",
+    "id": "53987990585347@lid",
     "lid": "53987990585347@lid",
+    "isContact": true,
+    "name": "!MALIK EVANGELION 🧢",
     "jid": "6281240568091@s.whatsapp.net",
-    "phoneNumber": "6281240568091@s.whatsapp.net"
+    "phoneNumber": "6281240568091@s.whatsapp.net",
+    "imgUrl": "changed"
   },
   "6285366784810@s.whatsapp.net": {
     "isContact": true,
