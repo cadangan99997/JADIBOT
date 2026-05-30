@@ -21923,12 +21923,13 @@
     "phoneNumber": "6283897306262@s.whatsapp.net"
   },
   "6282112386871@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282112386871@s.whatsapp.net",
-    "name": "• Zilla",
+    "id": "260975114629354@lid",
     "lid": "260975114629354@lid",
+    "isContact": true,
+    "name": "• Zilla",
     "jid": "6282112386871@s.whatsapp.net",
-    "phoneNumber": "6282112386871@s.whatsapp.net"
+    "phoneNumber": "6282112386871@s.whatsapp.net",
+    "imgUrl": "changed"
   },
   "6285191321528@s.whatsapp.net": {
     "isContact": true,
