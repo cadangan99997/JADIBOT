@@ -1,12 +1,22 @@
 🤖 *WILY BOT — V19*
 
-✨ *3 Fitur Baru*
-🔧 *4 Bug Fix*
-🚀 *5 Improvement*
+✨ *4 Fitur Baru*
+🔧 *7 Bug Fix*
+🚀 *6 Improvement*
 
 ━━━━━━━━━━━━━━━━━━━━━━
 ✨ *FITUR BARU*
 ━━━━━━━━━━━━━━━━━━━━━━
+
+> 🛡️ *Anti-Tag SW — Cegah Tag Grup Lewat Status*
+> Cegah member mentag grup via status WA di grup manapun
+> Deteksi 3 metode sekaligus: tag status langsung, caption media, dan reply
+> Warning bertahap dengan progress bar (◆◆◇ 2/3)
+> Auto-kick + hapus pesan saat batas warning tercapai (default 3x)
+> Admin grup diizinkan — hanya diberi notif, tanpa warning/kick
+> Log pelanggaran tersimpan otomatis, maks 500 entri per bot
+> Toggle per grup: `.antitagsw on/off` | Global: `.antitagsw global on/off`
+> Atur batas warning: `.antitagsw warn <angka>`
 
 > 📊 *SwTrack — Tracking Per-User AutoRead SW*
 > Setiap SW yang dibaca/direact kini dicatat per kontak
@@ -30,6 +40,26 @@
 🔧 *BUG FIX*
 ━━━━━━━━━━━━━━━━━━━━━━
 
+> 🛡️ *Anti-Tag SW — Konflik dengan Anti-Delete*
+> Pesan yang dihapus otomatis oleh AntiTagSW ikut ditrigger anti-delete
+> Bot kirim notif "PESAN DIHAPUS" padahal itu dari fitur sendiri
+> Kini pakai `global.__antiTagSWDeletedIds` sebagai penanda
+> Anti-delete akan skip pesan yang sudah ditandai AntiTagSW
+
+> 🛡️ *Anti-Tag SW — Sender LID Tidak Teridentifikasi*
+> WA kini kirim participant dalam format LID (@lid) bukan PN
+> Bot tidak bisa identifikasi siapa yang mentag → warning tidak akurat
+> Kini ada 4-layer LID resolve khusus AntiTagSW:
+> 1️⃣ Dari `hisoka.contacts.read(lid)`
+> 2️⃣ Dari participants grup (lid ↔ phoneNumber)
+> 3️⃣ Reverse lookup dari `contacts.json` file (paling akurat)
+> 4️⃣ `hisoka.resolveLidToPN()` sebagai async fallback terakhir
+
+> 🛡️ *Anti-Tag SW — Status Bot Admin Tidak Akurat*
+> Bot kadang gagal hapus/kick karena status admin di-cache terlalu lama
+> Kini fetch live `groupMetadata` setiap ada pelanggaran
+> Fallback ke cache file → cache memory jika fetch gagal
+
 > 📡 *AutoRead SW — LID Tidak Bisa Direact*
 > WA kini kirim sender dalam format LID (@lid) bukan PN (@s.whatsapp.net)
 > Bot gagal kirim reaksi karena LID tidak dikenali sebagai JID valid
@@ -43,7 +73,7 @@
 > SW yang masuk berbarengan kadang diproses lebih dari sekali
 > Penyebab: tidak ada guard sebelum async delay berjalan
 > Kini pakai `swProcessingSet` (in-memory Set) sebagai dedup pertama
-> Dan `isSwUserTracked()` (disk) sebagai validasi kedua sebelum catat
+> Dan `isSwUserTracked()` (disk) sebagai validasi kedua
 
 > 📡 *AutoRead SW — SW Terlewat Saat readReceipt Gagal*
 > Beberapa SW tidak tercatat sebagai dibaca meski sudah diproses
@@ -64,6 +94,12 @@
 > Sebelumnya pakai fork custom Baileys
 > Kini langsung pakai `@whiskeysockets/baileys@latest` (official)
 > Lebih stabil, up-to-date, dan kompatibel dengan perubahan WA terbaru
+
+> 🛡️ *Anti-Tag SW — Deteksi Caption & Reply Tag*
+> Sebelumnya hanya deteksi pesan status langsung (`groupStatusMentionMessage`)
+> Kini juga deteksi tag grup via caption media (gambar/video/audio/dokumen)
+> Dan deteksi tag via reply ke pesan status — semua metode tercakup
+> Label konten tampil di notif: Gambar 🖼️ / Video 🎥 / Teks 💬 dll
 
 > 📊 *`.ceksw` — Stats Emoji & Active SW 24 Jam*
 > Stats per kontak kini lebih detail:
