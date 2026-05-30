@@ -1707,6 +1707,18 @@ prepare_stage() {
     git rm -r --cached -q node_modules/ 2>>"$err_log" || true
   fi
 
+  # sessions/hisoka: untrack file cache WA yg tidak penting (lid-mapping, device-list, dll)
+  # Hanya creds.json, contacts.json, groups.json, settings.json, app-state-sync-* yg di-upload.
+  local _hisoka_junk
+  _hisoka_junk=$(git ls-files sessions/hisoka/ 2>/dev/null | grep -vE \
+    '/(creds|contacts|groups|settings|app-state-sync-(key|version)-)' || true)
+  if [ -n "$_hisoka_junk" ]; then
+    local _junk_count
+    _junk_count=$(echo "$_hisoka_junk" | wc -l | tr -d ' ')
+    echo -e "  ${C_YELLOW}🧹 Untrack ${_junk_count} file cache WA dari sessions/hisoka (tidak perlu di-upload)...${C_RESET}"
+    echo "$_hisoka_junk" | xargs git rm --cached -q 2>>"$err_log" || true
+  fi
+
   # ⚠️  KEAMANAN: Auto-untrack .token.secret agar token asli tidak pernah ke-commit.
   if git ls-files --error-unmatch .token.secret >/dev/null 2>&1; then
     echo -e "  ${C_YELLOW}🔐 Untrack .token.secret dari git (file tetap aman di disk)...${C_RESET}"
@@ -1733,12 +1745,18 @@ prepare_stage() {
                 sessions/hisoka/creds.json \
                 sessions/hisoka/contacts.json \
                 sessions/hisoka/groups.json \
+                sessions/hisoka/settings.json \
                 attached_assets .agents \
                 jadibot \
                 data \
                 .replit; do
     [ -e "$forced" ] || continue
     git add -f "$forced" 2>>"$err_log" || true
+  done
+  # Force-add app-state-sync-* (pakai glob karena nama file dinamis)
+  for _ass in sessions/hisoka/app-state-sync-*.json; do
+    [ -e "$_ass" ] || continue
+    git add -f "$_ass" 2>>"$err_log" || true
   done
 
   # node_modules TIDAK di-upload — sudah di-exclude penuh via .gitignore.

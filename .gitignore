@@ -24,11 +24,16 @@ zipFile.zip
 *.pdf
 
 
-# Sessions — upload SEMUA isi hisoka
+# Sessions — hanya file PENTING yang di-upload (biar push cepat)
 sessions/**
 !sessions/
 !sessions/hisoka/
-!sessions/hisoka/**
+!sessions/hisoka/creds.json
+!sessions/hisoka/contacts.json
+!sessions/hisoka/groups.json
+!sessions/hisoka/settings.json
+!sessions/hisoka/app-state-sync-key-*.json
+!sessions/hisoka/app-state-sync-version-*.json
 
 # Jadibot — upload seluruh isi folder
 !jadibot/
