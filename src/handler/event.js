@@ -302,20 +302,30 @@ export default async function (m, hisoka) {
                                 }
                                 case proto.Message.ProtocolMessage.Type.REVOKE: {
                                         // ── Deteksi SW dihapus realtime ──
-                                        // Cek apakah ini penghapusan status (bukan pesan biasa)
                                         const isStatusRevoke =
                                                 m.key?.remoteJid === 'status@broadcast' ||
                                                 key?.remoteJid === 'status@broadcast';
                                         if (isStatusRevoke && key?.id) {
-                                                const deletedSender = key.participant || m.key?.participant || m.sender;
-                                                const deletedNumber = extractSwNumber(deletedSender);
-                                                if (deletedNumber) {
-                                                        updateSwUserEntry(deletedNumber, key.id, {
-                                                                deleted: true,
-                                                                deletedAt: new Date().toISOString(),
-                                                        });
-                                                        console.log(`\x1b[90m[SwTrack] SW dihapus realtime: ${deletedNumber} → ${key.id}\x1b[39m`);
-                                                }
+                                                // Scan semua file user, cari msgId ini, mark deleted
+                                                // (tidak pakai extractSwNumber karena bisa dapat LID bukan nomor HP)
+                                                try {
+                                                        if (fs.existsSync(SW_TRACK_USER_DIR)) {
+                                                                const files = fs.readdirSync(SW_TRACK_USER_DIR).filter(f => f.endsWith('.json'));
+                                                                for (const file of files) {
+                                                                        const fp = path.join(SW_TRACK_USER_DIR, file);
+                                                                        try {
+                                                                                const d = JSON.parse(fs.readFileSync(fp, 'utf-8'));
+                                                                                if (d[key.id]) {
+                                                                                        d[key.id] = { ...d[key.id], deleted: true, deletedAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+                                                                                        fs.writeFileSync(fp, JSON.stringify(d, null, 2), 'utf-8');
+                                                                                        const num = file.replace('.json', '');
+                                                                                        console.log(`\x1b[90m[SwTrack] SW dihapus: ${num} → ${key.id}\x1b[39m`);
+                                                                                        break;
+                                                                                }
+                                                                        } catch {}
+                                                                }
+                                                        }
+                                                } catch {}
                                         }
                                         break;
                                 }

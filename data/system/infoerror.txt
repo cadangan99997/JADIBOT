@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 30/05/2026, 07.06.40  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 30/05/2026, 07.12.32  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -23,25 +23,24 @@
 ────────────────────────────────────────────────────────────────────────
 
 ┌───────────────────────────────────────────────────────────────────────
-│  #001  —  console.error
+│  #001  —  unhandledRejection
 ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 │  PESAN ERROR
-│  [31mError in event handler:[39m
- extractSwNumber is not defined
+│  Connection Closed
 │
 │  DETAIL
-│  Sumber      : console.error
+│  Sumber      : unhandledRejection
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 30/05/2026, 07.06.40
-│  Terakhir    : 30/05/2026, 07.06.40
+│  Pertama     : 30/05/2026, 07.12.32
+│  Terakhir    : 30/05/2026, 07.12.32
 │
 │  STACK TRACE (3 baris pertama)
-│  ▶  Error: [31mError in event handler:[39m
-│     extractSwNumber is not defined
-│     at console.error (file:///home/runner/workspace/index.js:367:27)
+│  ▶  Error: Connection Closed
+│     at sendRawMessage (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:57:19)
+│     at sendNode (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:76:16)
 └───────────────────────────────────────────────────────────────────────
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 30/05/2026, 07.06.40
+  Terakhir diperbarui: 30/05/2026, 07.12.32
 ════════════════════════════════════════════════════════════════════════
