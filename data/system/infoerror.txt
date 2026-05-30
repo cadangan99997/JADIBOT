@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 29/05/2026, 13.44.17  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 30/05/2026, 06.56.48  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -23,23 +23,24 @@
 ────────────────────────────────────────────────────────────────────────
 
 ┌───────────────────────────────────────────────────────────────────────
-│  #001  —  command:antitagsw
+│  #001  —  unhandledRejection
 ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 │  PESAN ERROR
-│  _r is not defined
+│  Connection Closed
 │
 │  DETAIL
-│  Sumber      : command:antitagsw
+│  Sumber      : unhandledRejection
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 29/05/2026, 13.44.17
-│  Terakhir    : 29/05/2026, 13.44.17
+│  Pertama     : 30/05/2026, 06.56.48
+│  Terakhir    : 30/05/2026, 06.56.48
 │
 │  STACK TRACE (3 baris pertama)
-│  ▶  ReferenceError: _r is not defined
-│     at default (file:///home/runner/workspace/src/handler/message.js?t=1780062226541:15461:112)
+│  ▶  Error: Connection Closed
+│     at sendRawMessage (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:57:19)
+│     at sendNode (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:76:16)
 └───────────────────────────────────────────────────────────────────────
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 29/05/2026, 13.44.17
+  Terakhir diperbarui: 30/05/2026, 06.56.48
 ════════════════════════════════════════════════════════════════════════

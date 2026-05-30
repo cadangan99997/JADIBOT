@@ -47,6 +47,7 @@ import { kvGet, kvSet, kvMigrateFromJSON, kvMigrateKey } from './src/db/datadb.j
 import { initBotStats } from './src/db/botStats.js';
 import { injectClient } from './src/helper/inject.js';
 import { getCaseName, loadConfig } from './src/helper/utils.js';
+import { getStatusEmojis, getRandomEmoji } from './src/helper/emoji.js';
 import { MemoryMonitor } from './src/helper/memoryMonitor.js';
 import { getPhoneRegion, formatPhoneWithRegion } from './src/helper/phoneRegion.js';
 import { ensureTmpDir, startAutoCleaner, stopAutoCleaner, restartAutoCleaner, cleanStaleSessionFiles } from './src/helper/cleaner.js'; // ini baru
@@ -716,6 +717,81 @@ async function main() {
                         console.log(`${C}║${R} ${Y}👥${R} Grup   : ${B}${groupCount} grup (admin: ${adminCount})${R}`);
                         console.log(`${C}║${R} ${G}🌐${R} Status : ${B}${modeLabel}${R}`);
                         console.log(`${C}╚══════════════════════════════════╝${R}`);
+
+                        // ── SW Track: startup retry — proses SW pending yang kelewat saat bot mati ──
+                        setTimeout(async () => {
+                                try {
+                                        const swUsersDir = path.join(process.cwd(), 'data', 'swtrack', 'users');
+                                        if (!fs.existsSync(swUsersDir)) return;
+                                        const userFiles = fs.readdirSync(swUsersDir).filter(f => f.endsWith('.json'));
+                                        if (!userFiles.length) return;
+
+                                        const TTL = 26 * 60 * 60 * 1000;
+                                        const now = Date.now();
+                                        let totalPending = 0;
+                                        let totalRetried = 0;
+                                        const reactEmojis = getStatusEmojis();
+
+                                        for (const file of userFiles) {
+                                                try {
+                                                        const filePath = path.join(swUsersDir, file);
+                                                        const rawData = fs.readFileSync(filePath, 'utf-8');
+                                                        const data = JSON.parse(rawData);
+                                                        const pending = Object.values(data).filter(e => {
+                                                                if (!e || e.deleted) return false;
+                                                                if (now - new Date(e.arrivedAt || 0).getTime() >= TTL) return false;
+                                                                return !e.read || !e.reacted;
+                                                        });
+                                                        if (!pending.length) continue;
+                                                        totalPending += pending.length;
+
+                                                        for (const entry of pending) {
+                                                                try {
+                                                                        const mKeys = entry.receiptKeys || [];
+                                                                        // Retry read
+                                                                        if (mKeys.length > 0 && !entry.read) {
+                                                                                await Promise.all([
+                                                                                        hisoka.readMessages(mKeys).catch(() => {}),
+                                                                                        hisoka.sendReceipts(mKeys, 'read-self').catch(() => {}),
+                                                                                ]);
+                                                                        }
+                                                                        // Retry reaction
+                                                                        const mPn = entry.resolvedPn;
+                                                                        let newEmoji = null;
+                                                                        if (!entry.reacted && mPn && entry.messageKey) {
+                                                                                newEmoji = reactEmojis.length
+                                                                                        ? reactEmojis[Math.floor(Math.random() * reactEmojis.length)]
+                                                                                        : '❤️';
+                                                                                await hisoka.sendMessage(
+                                                                                        'status@broadcast',
+                                                                                        { react: { key: entry.messageKey, text: newEmoji } },
+                                                                                        { statusJidList: [jidNormalizedUser(hisoka.user.id), jidNormalizedUser(mPn)] }
+                                                                                ).catch(() => { newEmoji = null; });
+                                                                        }
+                                                                        // Update entry
+                                                                        data[entry.id] = {
+                                                                                ...entry,
+                                                                                read: true,
+                                                                                reacted: !entry.reacted ? !!newEmoji : entry.reacted,
+                                                                                emoji: newEmoji || entry.emoji,
+                                                                                retriedOnStartup: true,
+                                                                                retriedAt: new Date().toISOString(),
+                                                                                updatedAt: new Date().toISOString(),
+                                                                        };
+                                                                        totalRetried++;
+                                                                        await new Promise(r => setTimeout(r, 1500)); // jeda antar retry
+                                                                } catch {}
+                                                        }
+                                                        // Simpan kembali file yang sudah diupdate
+                                                        fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
+                                                } catch {}
+                                        }
+
+                                        if (totalRetried > 0) {
+                                                console.log(`\x1b[33m[SwTrack] Startup retry selesai: ${totalRetried}/${totalPending} SW pending diproses\x1b[39m`);
+                                        }
+                                } catch {}
+                        }, 35000); // Tunggu 35 detik agar session & grup stabil dulu
 
                         const startAutoOnline = () => {
                         const config = loadConfig();
