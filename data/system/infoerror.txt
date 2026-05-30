@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 30/05/2026, 07.40.15  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 30/05/2026, 11.44.33  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -23,24 +23,24 @@
 ────────────────────────────────────────────────────────────────────────
 
 ┌───────────────────────────────────────────────────────────────────────
-│  #001  —  unhandledRejection
+│  #001  —  console.error
 ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 │  PESAN ERROR
-│  Connection Closed
+│  [31m[HotReload] ✗ Gagal reload 'src/handler/event.js', pakai versi lama.[39m
 │
 │  DETAIL
-│  Sumber      : unhandledRejection
+│  Sumber      : console.error
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 30/05/2026, 07.40.15
-│  Terakhir    : 30/05/2026, 07.40.15
+│  Pertama     : 30/05/2026, 11.44.33
+│  Terakhir    : 30/05/2026, 11.44.33
 │
 │  STACK TRACE (3 baris pertama)
-│  ▶  Error: Connection Closed
-│     at sendRawMessage (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:57:19)
-│     at sendNode (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:76:16)
+│  ▶  Error: [31m[HotReload] ✗ Gagal reload 'src/handler/event.js', pakai versi lama.[39m
+│     at console.error (file:///home/runner/workspace/index.js:367:27)
+│     at Timeout._onTimeout (file:///home/runner/workspace/src/helper/hotReload.js:102:29)
 └───────────────────────────────────────────────────────────────────────
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 30/05/2026, 07.40.15
+  Terakhir diperbarui: 30/05/2026, 11.44.33
 ════════════════════════════════════════════════════════════════════════

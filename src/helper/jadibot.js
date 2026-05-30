@@ -28,6 +28,9 @@ const {
   useMultiFileAuthState,
   DisconnectReason,
   jidNormalizedUser,
+  jidDecode,
+  isJidGroup,
+  getContentType,
   delay,
   Browsers
 } = _require('@whiskeysockets/baileys');
@@ -37,7 +40,18 @@ import path from 'path'
 import pino from 'pino'
 import QRCode from 'qrcode'
 import { execFile } from 'child_process'
-import { getRandomEmoji } from '../helper/emoji.js'
+import { getRandomEmoji, getStatusEmojis } from '../helper/emoji.js'
+import {
+  updateSwStats,
+  isSwUserTracked,
+  markSwUserEntry,
+  updateSwUserEntry,
+  extractSwNumber,
+  storyDebounce,
+  maskNumber,
+  logStoryView,
+  getMediaTypeEmoji,
+} from './swtrack.js'
 import { injectClient } from '../helper/inject.js'
 import messageHandler from '../handler/message.js'
 import JSONDB from '../db/json.js'
@@ -74,6 +88,8 @@ const pairingTimeout = new Map()
 const pendingJadibotChoices = new Map()
 const expiryTimers = new Map()
 const expiryWarningTimers = new Map()
+// Per-jadibot in-memory dedup Set — setiap nomor punya Set sendiri
+const jadibotSwSets = new Map()
 
 /* ================= UTILS ================= */
 function loadConfig() {
@@ -82,12 +98,6 @@ function loadConfig() {
     if (fs.existsSync(p)) return JSON.parse(fs.readFileSync(p, 'utf-8'))
   } catch {}
   return {}
-}
-
-function maskNumber(num) {
-  const n = num.replace(/[^0-9]/g, '')
-  if (n.length <= 6) return n
-  return n.slice(0, 4) + '****' + n.slice(-4)
 }
 
 function isSessionValid(sessionDir) {
@@ -641,6 +651,252 @@ function formatPairingCode(code) {
   const clean = String(code).replace(/[^A-Z0-9]/gi, '').toUpperCase()
   if (clean.length === 8) return clean.slice(0, 4) + '-' + clean.slice(4)
   return code
+}
+
+/* ================= SW HANDLER JADIBOT ================= */
+function getJadibotSwSet(number) {
+  if (!jadibotSwSets.has(number)) jadibotSwSets.set(number, new Set())
+  return jadibotSwSets.get(number)
+}
+
+function getSwGreeting() {
+  const h = parseInt(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta', hour: 'numeric', hour12: false }))
+  if (h >= 5 && h < 11) return 'Pagi 🌆'
+  if (h >= 11 && h < 15) return 'Siang 🏙️'
+  if (h >= 15 && h < 18) return 'Sore 🌇'
+  return 'Malam 🌃'
+}
+
+async function handleJadibotSW(msg, sock, swSet) {
+  try {
+    if (!msg.message || msg.key?.fromMe) return
+
+    const remoteJid = msg.key?.remoteJid
+    const isStatusBroadcast = remoteJid === 'status@broadcast'
+    const isGroupStatus = !isStatusBroadcast && isJidGroup(remoteJid) && !!msg.message?.groupStatusMessageV2
+
+    if (!isStatusBroadcast && !isGroupStatus) return
+
+    const config = loadConfig()
+    const storyConfig = config.autoReadStory || {}
+    if (storyConfig.enabled === false) return
+
+    const msgId = msg.key?.id
+    if (!msgId || swSet.has(msgId)) return
+    swSet.add(msgId)
+
+    const reactStatus = getStatusEmojis()
+    let usedReaction = reactStatus.length ? getRandomEmoji('status') : '❌'
+
+    const useRandomDelay = storyConfig.randomDelay !== false
+    const delayMinMs = storyConfig.delayMinMs || 1000
+    const delayMaxMs = storyConfig.delayMaxMs || 20000
+    const fixedDelayMs = storyConfig.fixedDelayMs || 3000
+    const delayMs = useRandomDelay
+      ? Math.floor(Math.random() * (delayMaxMs - delayMinMs)) + delayMinMs
+      : fixedDelayMs
+
+    // ── Resolusi sender ──
+    const rawParticipant = msg.key?.participant || msg.participant || msg.sender
+    const senderPn = rawParticipant && !String(rawParticipant).endsWith('@lid') ? rawParticipant : null
+    let senderLid = rawParticipant && String(rawParticipant).endsWith('@lid') ? rawParticipant : null
+    if (!senderLid && msg.key?.participantAlt && String(msg.key.participantAlt).endsWith('@lid')) {
+      senderLid = msg.key.participantAlt
+    }
+
+    let resolveMethod = null
+    let resolvedPn = senderPn
+    if (resolvedPn) resolveMethod = 'PN langsung ✓'
+
+    // Coba resolve LID via Signal Lib
+    if (!resolvedPn && senderLid && sock?.signalRepository?.lidMapping?.getPNForLID) {
+      try {
+        const r = await sock.signalRepository.lidMapping.getPNForLID(senderLid)
+        if (r && !String(r).endsWith('@lid')) {
+          resolvedPn = jidNormalizedUser(r)
+          resolveMethod = 'Signal Lib ✓'
+        }
+      } catch (_) {}
+    }
+
+    // Fallback: cache LID->PN dari group metadata (shared dengan bot utama)
+    if (!resolvedPn && senderLid && typeof global.__lookupLidPn === 'function') {
+      try {
+        const r = global.__lookupLidPn(senderLid)
+        if (r && !String(r).endsWith('@lid')) {
+          resolvedPn = jidNormalizedUser(r)
+          resolveMethod = 'Cache Grup ✓'
+        }
+      } catch (_) {}
+    }
+
+    if (!resolvedPn && senderLid) resolveMethod = 'LID belum ke-resolve ❌'
+    if (!resolvedPn && !senderLid && rawParticipant) resolveMethod = 'Tanpa LID ⚠️'
+
+    const senderJid = resolvedPn || senderLid || rawParticipant
+    const hasSender = !!senderJid
+    const shouldReact = storyConfig.autoReaction !== false && reactStatus.length && hasSender
+
+    // ── SwTrack: tulis entry awal ──
+    const trackNumber = resolvedPn
+      ? extractSwNumber(resolvedPn)
+      : (senderPn ? extractSwNumber(senderPn) : null)
+
+    if (trackNumber) {
+      if (isSwUserTracked(trackNumber, msgId)) {
+        swSet.delete(msgId)
+        return
+      }
+      markSwUserEntry(trackNumber, msgId, {
+        id: msgId,
+        sender: resolvedPn || senderPn || rawParticipant || '',
+        name: msg.pushName || '',
+        type: getContentType(msg.message) || 'unknown',
+        arrivedAt: new Date().toISOString(),
+        read: false,
+        reacted: false,
+        emoji: null,
+        resolve: resolveMethod,
+        source: isGroupStatus ? 'group' : 'status',
+        number: trackNumber,
+        resolvedPn: resolvedPn || null,
+        messageKey: msg.key || null,
+      })
+    }
+
+    await new Promise(r => setTimeout(r, delayMs))
+
+    const isConnClosed = (err) => {
+      const s = err?.message || String(err)
+      return s.includes('Connection Closed') || s.includes('Connection closed') || s.includes('EPIPE') || s.includes('Socket closed')
+    }
+
+    // ── Read receipt ──
+    let readOk = false
+    if (isStatusBroadcast) {
+      const buildKey = (participant) => ({
+        ...msg.key,
+        remoteJid: 'status@broadcast',
+        ...(participant && { participant }),
+        fromMe: false,
+      })
+      const receiptKeys = []
+      const seenParts = new Set()
+      const pushKey = (p) => {
+        if (!p) return
+        const norm = jidNormalizedUser(p)
+        if (seenParts.has(norm)) return
+        seenParts.add(norm)
+        receiptKeys.push(buildKey(norm))
+      }
+      pushKey(rawParticipant)
+      pushKey(senderLid)
+      pushKey(resolvedPn)
+
+      if (trackNumber) {
+        updateSwUserEntry(trackNumber, msgId, { receiptKeys, resolvedPn: resolvedPn || null, messageKey: msg.key })
+      }
+
+      await Promise.all(
+        receiptKeys.map(k =>
+          sock.sendReceipts([k], 'read').catch(err => {
+            if (!isConnClosed(err)) console.error('\x1b[31m[Jadibot AutoRead] read failed:\x1b[39m', err?.message || String(err))
+          })
+        )
+      )
+      readOk = true
+    } else {
+      // Group status — tidak perlu receipt key
+      readOk = true
+    }
+
+    // ── Reaction ──
+    if (isStatusBroadcast && shouldReact && resolvedPn) {
+      await sock.sendMessage(
+        'status@broadcast',
+        { react: { key: msg.key, text: usedReaction } },
+        { statusJidList: [jidNormalizedUser(sock.user.id), jidNormalizedUser(resolvedPn)] }
+      ).catch(err => {
+        if (!isConnClosed(err)) console.error('\x1b[31m[Jadibot Reaction]\x1b[39m', err?.message || String(err))
+        usedReaction = '❌ Gagal'
+      })
+    } else if (isGroupStatus && shouldReact) {
+      await sock.sendMessage(
+        remoteJid,
+        { react: { key: msg.key, text: usedReaction } }
+      ).catch(err => {
+        if (!isConnClosed(err)) console.error('\x1b[31m[Jadibot GS Reaction]\x1b[39m', err?.message || String(err))
+        usedReaction = '❌ Gagal'
+      })
+    } else if (shouldReact && !resolvedPn && isStatusBroadcast) {
+      usedReaction = '⏭️ Skip (LID belum resolve)'
+    }
+
+    const reactionSuccess = shouldReact && usedReaction !== '❌ Gagal' && usedReaction !== '⏭️ Skip (LID belum resolve)'
+
+    // ── SwStats + SwTrack update ──
+    const from = jidNormalizedUser(senderJid || remoteJid)
+    const storyNumber = jidDecode(from)?.user || ''
+    const storyName = msg.pushName || storyNumber
+
+    updateSwStats(storyNumber, storyName, reactionSuccess, reactionSuccess ? usedReaction : null)
+
+    if (trackNumber) {
+      updateSwUserEntry(trackNumber, msgId, {
+        name: storyName,
+        number: storyNumber,
+        resolve: resolveMethod,
+        read: readOk,
+        reacted: reactionSuccess,
+        emoji: reactionSuccess ? usedReaction : null,
+        processedAt: new Date().toISOString(),
+      })
+    }
+
+    swSet.delete(msgId)
+
+    // ── Console log ──
+    const botId = sock.user?.id?.split(':')[0] || ''
+    const debounceKey = `jb:${botId}:${from}`
+    if (!storyDebounce.has(debounceKey)) {
+      storyDebounce.set(debounceKey, { time: Date.now(), count: 1 })
+
+      const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des']
+      const jakartaDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' }))
+
+      const innerType = isGroupStatus
+        ? (() => { const inner = msg.message?.groupStatusMessageV2?.message; return inner ? Object.keys(inner).find(k => k !== 'messageContextInfo') : null })()
+        : getContentType(msg.message)
+
+      logStoryView({
+        botId: maskNumber(botId),
+        mediaType: getMediaTypeEmoji(innerType),
+        greeting: getSwGreeting(),
+        dayName: dayNames[jakartaDate.getDay()],
+        date: `${jakartaDate.getDate()} ${monthNames[jakartaDate.getMonth()]} ${jakartaDate.getFullYear()} 🗓️`,
+        time: jakartaDate.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', hour12: false }).replace(':', '.') + ' ⏰',
+        name: storyName,
+        number: maskNumber(storyNumber),
+        success: reactionSuccess ? 'Iya ✓' : (readOk ? 'Baca ✓' : 'Gagal ❌'),
+        reaction: shouldReact ? usedReaction : 'Off ❌',
+        resolve: resolveMethod,
+        delaySeconds: (delayMs / 1000).toFixed(1),
+        mode: shouldReact ? `Read+Reaction ✓${isGroupStatus ? ' [Grup]' : ''}` : 'Read Only 👁️',
+      })
+
+      setTimeout(() => {
+        const d = storyDebounce.get(debounceKey)
+        if (d && d.count > 1) console.log(`\x1b[33m   └─ +${d.count - 1} story lainnya dari ${storyName}\x1b[39m`)
+        storyDebounce.delete(debounceKey)
+      }, 3000)
+    } else {
+      const d = storyDebounce.get(debounceKey)
+      if (d) { d.count++; storyDebounce.set(debounceKey, d) }
+    }
+  } catch (err) {
+    console.error('\x1b[31m[Jadibot SW Error]\x1b[39m', err?.message || String(err))
+  }
 }
 
 /* ================= PESAN RAPIH ================= */
@@ -1347,11 +1603,17 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
   })
 
   /* ================= MESSAGE ================= */
+  const swSet = getJadibotSwSet(number)
   sock.ev.on('messages.upsert', async ({ messages, type }) => {
     if (type !== 'notify') return
 
     for (const msg of messages) {
       if (!msg.message) continue
+
+      // AutoRead SW — jadibot punya handler sendiri dengan SwTrack
+      handleJadibotSW(msg, sock, swSet).catch(err =>
+        console.error('[JADIBOT SW ERROR]', err?.message || String(err))
+      )
 
       try {
         await messageHandler(
@@ -1647,10 +1909,17 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
     }
   })
 
+  const swSetQR = getJadibotSwSet(number)
   sock.ev.on('messages.upsert', async ({ messages, type }) => {
     if (type !== 'notify') return
     for (const msg of messages) {
       if (!msg.message) continue
+
+      // AutoRead SW — jadibot QR punya handler sendiri dengan SwTrack
+      handleJadibotSW(msg, sock, swSetQR).catch(err =>
+        console.error('[JADIBOT QR SW ERROR]', err?.message || String(err))
+      )
+
       try {
         await messageHandler({ message: msg, type: 'notify' }, sock)
       } catch (err) {
@@ -1719,6 +1988,7 @@ async function stopJadibot(number, sendReply) {
   stoppingJadibot.delete(number)
   activeOrStartingJadibot.delete(number)
   pairingRequested.delete(number)
+  jadibotSwSets.delete(number)
   if (pairingTimeout.has(number)) {
     clearTimeout(pairingTimeout.get(number))
     pairingTimeout.delete(number)

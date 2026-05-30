@@ -3484,11 +3484,12 @@
     "phoneNumber": "6285895381211@s.whatsapp.net"
   },
   "6281973145146@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281973145146@s.whatsapp.net",
-    "name": "√Salsaツ",
+    "id": "245023656403118@lid",
     "lid": "245023656403118@lid",
-    "phoneNumber": "6281973145146@s.whatsapp.net"
+    "isContact": true,
+    "name": "√Salsaツ",
+    "phoneNumber": "6281973145146@s.whatsapp.net",
+    "notify": "𝘿𝙚𝙡𝙩𝙖 𝙣𝙩4×"
   },
   "6283107049938@s.whatsapp.net": {
     "isContact": true,
@@ -27609,8 +27610,7 @@
     "isContact": true,
     "name": "Agan Rizkia",
     "phoneNumber": "6289688206739@s.whatsapp.net",
-    "notify": "Wily",
-    "verifiedName": "Wily"
+    "notify": "Wily"
   },
   "6288270829865@s.whatsapp.net": {
     "isContact": true,
@@ -31160,11 +31160,12 @@
     "phoneNumber": "6281340089526@s.whatsapp.net"
   },
   "6281215324028@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281215324028@s.whatsapp.net",
-    "name": "Mang Ai",
+    "id": "176931194552515@lid",
     "lid": "176931194552515@lid",
-    "phoneNumber": "6281215324028@s.whatsapp.net"
+    "isContact": true,
+    "name": "Mang Ai",
+    "phoneNumber": "6281215324028@s.whatsapp.net",
+    "notify": "harisulijar"
   },
   "62859106809070@s.whatsapp.net": {
     "isContact": true,
@@ -31378,5 +31379,15 @@
     "id": "264853470056587@lid",
     "lid": "264853470056587@lid",
     "imgUrl": "changed"
+  },
+  "48151264264410@lid": {
+    "id": "48151264264410@lid",
+    "lid": "48151264264410@lid",
+    "imgUrl": "changed"
+  },
+  "36580706254981@lid": {
+    "id": "36580706254981@lid",
+    "lid": "36580706254981@lid",
+    "imgUrl": "removed"
   }
 }
