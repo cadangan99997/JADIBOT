@@ -475,9 +475,41 @@
               "text": "Halo juga, Wily! 👋 Masih melek aja nih jam segini? Malam-malam gini ada apa nih? Hehee~ 😄"
             }
           ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 21.40 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Oh, ini dari anime *Maou-sama, Retry!* ✨ Karakter yang di atas itu *Luna Elegant*, gadis bertanduk pink yang lagi kaget/malu. Lalu, di bawah...\" | 👤 Wily]\nsalaj woi"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Eh, Wily~ kamu nulis '*salaj*' maksudnya '*salah*' ya? Hehee~ 😏\n\nTapi ini kan kamu sendiri yang ngasih info tentang anime *Maou-sama, Retry!* itu barusan, kok sekarang bilang salah? Yang mana nih yang bener?\n\nCoba dong kasih tahu aku yang benernya gimana, aku penasaran banget lho~ Jangan bikin aku bingung gini ah! 😜"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 21.42 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"wilyai off\\\" | 👤 Wily]\n⚠️ Sub-perintah tidak dikenal.\n\nGunakan:\n.wilyai on/off\n.wilyai replay on/off\n.wilyai pm | gc | all\n.wilyai reset"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Wily, itu kamu nulis `wilyai off\\` kan? Pantesan aja aku nggak kenal perintahnya! Kayaknya ada *slash* kebalik di belakang `off` itu deh. Makanya muncul pesan `Sub-perintah tidak dikenal` kayak yang kamu lihat barusan.\n\nKalau mau matiin atau nyalain aku, cukup ketik `*.wilyai off*` atau `*.wilyai on*` aja ya, Wily. Nggak perlu pakai tanda aneh-aneh gitu. Aku kan di sini buat nemenin kamu, kok malah mau dimatiin sih? 🥺"
+            }
+          ]
         }
       ],
-      "lastActivity": 1780237613601
+      "lastActivity": 1780238552870
     },
     "6289681008411@s.whatsapp.net_120363409714403483@g.us": {
       "messages": [
@@ -643,6 +675,11 @@
       "total_sent": 1,
       "moods": {},
       "last_sent": 1780237811
+    },
+    "https://cdn.ornzora.eu.cc/41f054d0-55e9-4d1a-abb7-6a49ac74769b-HONOLULU.webp": {
+      "total_sent": 1,
+      "moods": {},
+      "last_sent": 1780238551
     }
   },
   "sticker_story": {
@@ -669,6 +706,13 @@
         "context": "Eh? Ada VN yang dimainkan barusan ya Shikikan~? [REPLY-STIKER: kaget] Suara apa tuh? Hehee, Honolulu jadi penasaran deh! 😄",
         "was_fallback": 1,
         "sent_at": 1779467326
+      },
+      {
+        "sticker_url": "https://cdn.ornzora.eu.cc/41f054d0-55e9-4d1a-abb7-6a49ac74769b-HONOLULU.webp",
+        "mood": "",
+        "context": "Wily, itu kamu nulis `wilyai off\\` kan? Pantesan aja aku nggak kenal perintahnya! Kayaknya ada *slash* kebalik di belakang `off` itu deh. Makanya muncul pesan `Sub-perintah tidak dikenal` kayak yang k",
+        "was_fallback": 1,
+        "sent_at": 1780238551
       }
     ],
     "_120363192554714254@g.us": [

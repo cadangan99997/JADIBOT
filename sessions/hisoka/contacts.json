@@ -35,11 +35,12 @@
     "phoneNumber": "62895383180803@s.whatsapp.net"
   },
   "62882007407746@s.whatsapp.net": {
-    "isContact": true,
-    "id": "62882007407746@s.whatsapp.net",
-    "name": "√Afass",
+    "id": "69849254518919@lid",
     "lid": "69849254518919@lid",
-    "phoneNumber": "62882007407746@s.whatsapp.net"
+    "isContact": true,
+    "name": "√Afass",
+    "phoneNumber": "62882007407746@s.whatsapp.net",
+    "notify": "𝘼𝙛𝙖𝙨𝙨"
   },
   "6285211445304@s.whatsapp.net": {
     "isContact": true,
@@ -9376,11 +9377,12 @@
     "phoneNumber": "6281330151519@s.whatsapp.net"
   },
   "6281353726941@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281353726941@s.whatsapp.net",
-    "name": "Ikell🅥",
+    "id": "192706760442045@lid",
     "lid": "192706760442045@lid",
-    "phoneNumber": "6281353726941@s.whatsapp.net"
+    "isContact": true,
+    "name": "Ikell🅥",
+    "phoneNumber": "6281353726941@s.whatsapp.net",
+    "notify": "Ikell ♪"
   },
   "6283151925285@s.whatsapp.net": {
     "isContact": true,
@@ -31725,5 +31727,15 @@
     "id": "100116207763650@lid",
     "lid": "100116207763650@lid",
     "imgUrl": "removed"
+  },
+  "157655851106381@lid": {
+    "id": "157655851106381@lid",
+    "lid": "157655851106381@lid",
+    "imgUrl": "removed"
+  },
+  "17106854748264@lid": {
+    "id": "17106854748264@lid",
+    "lid": "17106854748264@lid",
+    "imgUrl": "changed"
   }
 }
