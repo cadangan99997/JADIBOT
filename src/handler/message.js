@@ -54,6 +54,14 @@ import { buildIgVisionPrompt, buildIgCaptionPrompt, buildIgFallbackCaption, pars
 import { hashSticker, lookupSticker, saveSticker, incrementStickerSeen, buildStickerContextHint, getStickerMemoryStats } from '../helper/stickerMemory.js';
 import { getJadibotAntidel, getJadibotReadsw, getJadibotAnticall, getJadibotAnticallvid, setJadibotUserSetting, getJadibotNumber } from '../helper/jadibotSettings.js';
 
+let _cachedTotalCmd = null;
+async function getTotalCmd() {
+    if (_cachedTotalCmd !== null) return _cachedTotalCmd;
+    const allCmds = await getCaseName(path.join(process.cwd(), 'src', 'handler', 'message.js'));
+    _cachedTotalCmd = allCmds.length || 0;
+    return _cachedTotalCmd;
+}
+
 const WILY_VERBOSE_LOGS = process.env.WILY_VERBOSE_LOGS === 'true' || process.env.BOT_DEBUG_LOG === 'true';
 const wilyLog = (...args) => {
         if (WILY_VERBOSE_LOGS) console.log(...args);
@@ -9264,8 +9272,7 @@ _📦 Powered by Wily Bot V18.1_ 🤖`;
                                         const um = Math.floor((uptime % 3600) / 60);
                                         const us = Math.floor(uptime % 60);
                                         const uptimeStr = `${uh} Jam ${um} Menit ${us} Detik`;
-                                        const allCmds = await getCaseName(path.join(process.cwd(), 'src', 'handler', 'message.js'));
-                                        const totalCmd = allCmds.length || 0;
+                                        const totalCmd = await getTotalCmd();
 
                                         await hisoka.sendMessage(m.from, { react: { text: `🌊`, key: m.key } }).catch(() => {});
 

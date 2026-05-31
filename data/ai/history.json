@@ -427,9 +427,25 @@
               "text": "Iya, serius Wily. Kalau kamu perhatiin *timestamp* di pesan WhatsApp, aku balesnya cepet kok. Nggak sampai semenit dari kamu kirim pesan sebelumnya.\n\n> Aku di sini beneran mau bantu kamu biar interaksi kita lancar dan nyaman.\n\nJadi, setelah lihat menu bot yang kamu kirim, ada yang mau kita bahas lebih lanjut atau ada hal lain yang bisa aku bantu? 😉"
             }
           ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 13.56 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Iya, serius Wily. Kalau kamu perhatiin *timestamp* di pesan WhatsApp, aku balesnya cepet kok. Nggak sampai semenit dari kamu kirim pesan seb...\" | 👤 Wily]\nLama kontol"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Wily, aku udah coba jelasin soal *timestamp* dan juga minta kamu untuk jaga bahasa. Kalau kamu terus-terusan pakai kata-kata kasar kayak gitu, aku jadi susah nih buat bantu kamu dengan nyaman, Wily."
+            }
+          ]
         }
       ],
-      "lastActivity": 1780210430651
+      "lastActivity": 1780210560276
     },
     "6289681008411@s.whatsapp.net_120363409714403483@g.us": {
       "messages": [

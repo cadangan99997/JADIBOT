@@ -82,5 +82,47 @@
       }
     ],
     "processedAt": "2026-05-31T06:47:27.734Z"
+  },
+  "AC5093982DDE36091032CE8A15BE82FE": {
+    "id": "AC5093982DDE36091032CE8A15BE82FE",
+    "sender": "6285136314199@s.whatsapp.net",
+    "name": "Nursaori_saossoryy",
+    "type": "extendedTextMessage",
+    "arrivedAt": "2026-05-31T06:55:48.284Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🇿🇦",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6285136314199",
+    "resolvedPn": "6285136314199@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6285136314199@s.whatsapp.net",
+      "fromMe": false,
+      "id": "AC5093982DDE36091032CE8A15BE82FE",
+      "participant": "90916371062907@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T06:56:05.918Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6285136314199@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC5093982DDE36091032CE8A15BE82FE",
+        "participant": "90916371062907@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6285136314199@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC5093982DDE36091032CE8A15BE82FE",
+        "participant": "6285136314199@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-05-31T06:56:05.917Z"
   }
 }
