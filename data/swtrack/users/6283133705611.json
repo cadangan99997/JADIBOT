@@ -40,5 +40,28 @@
       }
     ],
     "processedAt": "2026-05-31T08:06:37.060Z"
+  },
+  "AC76D571E09443D9530096CE0D797B25": {
+    "id": "AC76D571E09443D9530096CE0D797B25",
+    "sender": "6283133705611@s.whatsapp.net",
+    "name": "bi meli",
+    "type": "imageMessage",
+    "arrivedAt": "2026-05-31T10:34:59.348Z",
+    "read": false,
+    "reacted": false,
+    "emoji": null,
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6283133705611",
+    "resolvedPn": "6283133705611@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6283133705611@s.whatsapp.net",
+      "fromMe": false,
+      "id": "AC76D571E09443D9530096CE0D797B25",
+      "participant": "65743584522460@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T10:34:59.349Z"
   }
 }

@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 31/05/2026, 06.49.58  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 31/05/2026, 10.35.12  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -23,16 +23,16 @@
 ────────────────────────────────────────────────────────────────────────
 
 ┌───────────────────────────────────────────────────────────────────────
-│  #001  —  command:speedtest
+│  #001  —  unhandledRejection
 ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 │  PESAN ERROR
 │  Connection Closed
 │
 │  DETAIL
-│  Sumber      : command:speedtest
+│  Sumber      : unhandledRejection
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 31/05/2026, 06.49.58
-│  Terakhir    : 31/05/2026, 06.49.58
+│  Pertama     : 31/05/2026, 10.35.12
+│  Terakhir    : 31/05/2026, 10.35.12
 │
 │  STACK TRACE (3 baris pertama)
 │  ▶  Error: Connection Closed
@@ -42,5 +42,5 @@
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 31/05/2026, 06.49.58
+  Terakhir diperbarui: 31/05/2026, 10.35.12
 ════════════════════════════════════════════════════════════════════════
