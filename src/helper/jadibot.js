@@ -90,6 +90,8 @@ const expiryWarningTimers = new Map()
 const jadibotSwSets = new Map()
 // Per-jadibot SwTracker — data tersimpan di folder khusus per-nomor jadibot
 const jadibotTrackers = new Map()
+// Per-jadibot periodic SessionCleaner interval — bersihkan pre-key stale saat session jalan lama
+const jadibotCleanerTimers = new Map()
 
 /* ================= UTILS ================= */
 function loadConfig() {
@@ -1388,6 +1390,18 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
       persistConnectedAt(number, _connectTs)
       startingSocketMap.delete(number)
       pairingRequested.delete(number)
+
+      // Periodic SessionCleaner — bersihkan pre-key stale tiap 6 jam
+      // Penting untuk jadibot yang berjalan lama tanpa reconnect
+      if (jadibotCleanerTimers.has(number)) {
+        clearInterval(jadibotCleanerTimers.get(number))
+      }
+      const _cleanIntervalMs = (() => {
+        try { return (loadConfig()?.sessionCleaner?.jadibotIntervalHours || 6) * 60 * 60 * 1000 } catch { return 6 * 60 * 60 * 1000 }
+      })()
+      jadibotCleanerTimers.set(number, setInterval(() => {
+        cleanStaleSessionFiles(sessionDir)
+      }, _cleanIntervalMs))
       if (durationMs === 'permanent') {
         setPermanentJadibot(number, 'active')
       } else if (hasRequestedDuration) {
@@ -1739,6 +1753,18 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
       jadibotMap.set(number, sock)
       jadibotConnectedAt.set(number, _connectTs)
       persistConnectedAt(number, _connectTs)
+
+      // Periodic SessionCleaner — bersihkan pre-key stale tiap 6 jam
+      if (jadibotCleanerTimers.has(number)) {
+        clearInterval(jadibotCleanerTimers.get(number))
+      }
+      const _cleanIntervalMsQR = (() => {
+        try { return (loadConfig()?.sessionCleaner?.jadibotIntervalHours || 6) * 60 * 60 * 1000 } catch { return 6 * 60 * 60 * 1000 }
+      })()
+      jadibotCleanerTimers.set(number, setInterval(() => {
+        cleanStaleSessionFiles(sessionDir)
+      }, _cleanIntervalMsQR))
+
       if (durationMs === 'permanent') {
         setPermanentJadibot(number, 'active')
       } else if (hasRequestedDuration) {
@@ -2001,6 +2027,10 @@ async function stopJadibot(number, sendReply) {
   pairingRequested.delete(number)
   jadibotSwSets.delete(number)
   jadibotTrackers.delete(number)
+  if (jadibotCleanerTimers.has(number)) {
+    clearInterval(jadibotCleanerTimers.get(number))
+    jadibotCleanerTimers.delete(number)
+  }
   if (pairingTimeout.has(number)) {
     clearTimeout(pairingTimeout.get(number))
     pairingTimeout.delete(number)
