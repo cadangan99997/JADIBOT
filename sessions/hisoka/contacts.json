@@ -5356,11 +5356,12 @@
     "phoneNumber": "6283149240099@s.whatsapp.net"
   },
   "6282236587731@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282236587731@s.whatsapp.net",
-    "name": "Xphy",
+    "id": "238533960810702@lid",
     "lid": "238533960810702@lid",
-    "phoneNumber": "6282236587731@s.whatsapp.net"
+    "isContact": true,
+    "name": "Xphy",
+    "phoneNumber": "6282236587731@s.whatsapp.net",
+    "notify": "lyn"
   },
   "6283153006818@s.whatsapp.net": {
     "isContact": true,
@@ -12359,11 +12360,12 @@
     "phoneNumber": "6283894915251@s.whatsapp.net"
   },
   "60172160495@s.whatsapp.net": {
-    "isContact": true,
-    "id": "60172160495@s.whatsapp.net",
-    "name": "pushkontak wa 26",
+    "id": "67066115670033@lid",
     "lid": "67066115670033@lid",
-    "phoneNumber": "60172160495@s.whatsapp.net"
+    "isContact": true,
+    "name": "pushkontak wa 26",
+    "phoneNumber": "60172160495@s.whatsapp.net",
+    "notify": "aldysensei🍃"
   },
   "6287837752579@s.whatsapp.net": {
     "isContact": true,
@@ -18948,7 +18950,8 @@
     "isContact": true,
     "name": "! Fadli",
     "phoneNumber": "6285956660403@s.whatsapp.net",
-    "notify": "Cosmouz"
+    "notify": "Cosmouz",
+    "verifiedName": "Cosmouz"
   },
   "6285707611067@s.whatsapp.net": {
     "isContact": true,
