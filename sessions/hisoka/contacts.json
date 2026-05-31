@@ -18900,11 +18900,13 @@
     "phoneNumber": "6285784602986@s.whatsapp.net"
   },
   "6285956660403@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285956660403@s.whatsapp.net",
-    "name": "! Fadli",
+    "id": "176549462564879@lid",
     "lid": "176549462564879@lid",
-    "phoneNumber": "6285956660403@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Fadli",
+    "phoneNumber": "6285956660403@s.whatsapp.net",
+    "notify": "Cosmouz",
+    "verifiedName": "Cosmouz"
   },
   "6285707611067@s.whatsapp.net": {
     "isContact": true,
@@ -25382,11 +25384,12 @@
     "phoneNumber": "233547010475@s.whatsapp.net"
   },
   "6282252134009@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282252134009@s.whatsapp.net",
-    "name": "√ Elisa",
+    "id": "76790290767977@lid",
     "lid": "76790290767977@lid",
-    "phoneNumber": "6282252134009@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Elisa",
+    "phoneNumber": "6282252134009@s.whatsapp.net",
+    "notify": "NAKIRAN || ANNIHILATOR"
   },
   "6285380961401@s.whatsapp.net": {
     "isContact": true,
@@ -31221,6 +31224,11 @@
   "254541438173270@lid": {
     "id": "254541438173270@lid",
     "lid": "254541438173270@lid",
+    "imgUrl": "changed"
+  },
+  "5231286976652@lid": {
+    "id": "5231286976652@lid",
+    "lid": "5231286976652@lid",
     "imgUrl": "changed"
   }
 }

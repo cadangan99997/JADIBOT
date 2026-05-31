@@ -5719,8 +5719,8 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 greetingEmoji = '🌙';
                                         }
                                         
-                                        const speedText = latency < 100 ? 'Cepat' : latency < 500 ? 'Normal' : 'Lambat';
-                                        const speedEmoji = latency < 100 ? '🚀' : latency < 500 ? '⚡' : '🐢';
+                                        const speedText = latency < 100 ? 'Sangat Cepat' : latency < 300 ? 'Cepat' : latency < 700 ? 'Normal' : 'Lambat';
+                                        const speedEmoji = latency < 100 ? '🚀' : latency < 300 ? '⚡' : latency < 700 ? '🟡' : '🐢';
                                         
                                         const sessSeconds = Math.floor(sessionUptime);
                                         const sessMinutes = Math.floor(sessSeconds / 60);
@@ -5729,39 +5729,55 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                         const sessFormatted = `${sessDays}d ${sessHours % 24}h ${sessMinutes % 60}m`;
                                         
                                         const cpuCores = os.cpus().length;
-                                        const cpuModel = os.cpus()[0]?.model?.split(' ')[0] || 'Unknown';
                                         const totalMemGB = (os.totalmem() / 1024 / 1024 / 1024).toFixed(1);
                                         const freeMemGB = (os.freemem() / 1024 / 1024 / 1024).toFixed(1);
                                         const usedMemGB = (totalMemGB - freeMemGB).toFixed(1);
                                         const memPercent = ((usedMemGB / totalMemGB) * 100).toFixed(0);
                                         const nodeVersion = process.version;
                                         const platform = process.platform;
-                                        
+
+                                        const makeBar = (percent, len = 10) => {
+                                                const filled = Math.round((percent / 100) * len);
+                                                return '▓'.repeat(filled) + '░'.repeat(len - filled);
+                                        };
+                                        const ramBar = makeBar(Number(memPercent));
+                                        const latBar = makeBar(Math.min(latency / 10, 100));
+                                        const botMemPercent = ((memUsedMB / memTotalMB) * 100).toFixed(0);
+                                        const botMemBar = makeBar(Number(botMemPercent));
+
+                                        const totalMsg = stats.totalMessages || 0;
+                                        const totalCmd = stats.totalCommands || 0;
+
                                         const pingText = `
-╭═════════════════════╮
-║        🏓 *PONG!* 🏓        
-├═════════════════════┤
-│ 👋 Selamat  » ${greetingTime} ${greetingEmoji}
-│ ${speedEmoji} Speed  » ${speedText}
-│ ⚡ Latency  » ${latency}ms
-│ 🕐 Waktu  » ${timeStr}
-│ 📅 Tanggal  » ${dateStr}
-├═════════════════════┤
-║        📊 *BOT STATUS*        
-├═════════════════════┤
-│ ⏱️ Uptime  » ${stats.uptime.days}d ${stats.uptime.hours}h ${stats.uptime.minutes}m
-│ 🔄 Session  » ${sessFormatted}
-│ 🔁 Restart  » ${stats.totalRestarts}x
-│ 🟢 Status  » Online
-├═════════════════════┤
-║        💻 *SYSTEM INFO*        
-├═════════════════════┤
-│ 🧠 CPU  » ${cpuCores} Core
-│ 📟 RAM  » ${usedMemGB}/${totalMemGB}GB (${memPercent}%)
-│ 💾 Bot Mem  » ${memUsedMB}MB
-│ 🖥️ Platform  » ${platform}
-│ 📦 NodeJS  » ${nodeVersion}
-╰═════════════════════╯`;
+╭━━━━━━━━━━━━━━━━━━━━━━━╮
+┃   🏓 *PONG!* — Wily Bot   ┃
+╰━━━━━━━━━━━━━━━━━━━━━━━╯
+│
+│  ${greetingEmoji} *Selamat ${greetingTime}!*
+│  🕐 ${timeStr}  •  📅 ${dateStr}
+│
+├─「 📡 *KONEKSI* 」──────────
+│  ${speedEmoji} Speed    : *${speedText}*
+│  ⚡ Latency  : *${latency}ms*
+│  ${latBar}
+│
+├─「 📊 *BOT STATUS* 」───────
+│  🟢 Status   : *Online*
+│  ⏱️ Uptime   : *${stats.uptime.days}d ${stats.uptime.hours}h ${stats.uptime.minutes}m*
+│  🔄 Session  : *${sessFormatted}*
+│  🔁 Restart  : *${stats.totalRestarts}x*
+│  💬 Pesan    : *${totalMsg.toLocaleString('id')}*
+│  🔧 Perintah : *${totalCmd.toLocaleString('id')}*
+│
+├─「 💻 *SISTEM* 」──────────
+│  🧠 CPU      : *${cpuCores} Core* (${platform})
+│  📟 RAM      : *${usedMemGB}/${totalMemGB} GB* (${memPercent}%)
+│  ${ramBar} ${memPercent}%
+│  💾 Bot RAM  : *${memUsedMB}/${memTotalMB} MB*
+│  ${botMemBar} ${botMemPercent}%
+│  📦 Node.js  : *${nodeVersion}*
+│
+╰━━━━━━━━━━━━━━━━━━━━━━━╯`;
 
                                         let ppUrl;
                                         try {

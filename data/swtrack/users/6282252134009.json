@@ -82,5 +82,299 @@
       }
     ],
     "processedAt": "2026-05-30T11:55:10.937Z"
+  },
+  "AC4E52898DC990C6EC43EB09A34ACE0C": {
+    "id": "AC4E52898DC990C6EC43EB09A34ACE0C",
+    "sender": "6282252134009@s.whatsapp.net",
+    "name": "NAKIRAN || ANNIHILATOR",
+    "type": "videoMessage",
+    "arrivedAt": "2026-05-31T07:34:43.113Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🍋‍🟩",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6282252134009",
+    "resolvedPn": "6282252134009@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6282252134009@s.whatsapp.net",
+      "fromMe": false,
+      "id": "AC4E52898DC990C6EC43EB09A34ACE0C",
+      "participant": "76790290767977@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T07:35:02.634Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC4E52898DC990C6EC43EB09A34ACE0C",
+        "participant": "76790290767977@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC4E52898DC990C6EC43EB09A34ACE0C",
+        "participant": "6282252134009@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-05-31T07:35:02.634Z"
+  },
+  "ACE6B99DE29FCA2AE89D311194391B47": {
+    "id": "ACE6B99DE29FCA2AE89D311194391B47",
+    "sender": "6282252134009@s.whatsapp.net",
+    "name": "NAKIRAN || ANNIHILATOR",
+    "type": "videoMessage",
+    "arrivedAt": "2026-05-31T07:34:44.274Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🇺🇲",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6282252134009",
+    "resolvedPn": "6282252134009@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6282252134009@s.whatsapp.net",
+      "fromMe": false,
+      "id": "ACE6B99DE29FCA2AE89D311194391B47",
+      "participant": "76790290767977@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T07:34:49.577Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "ACE6B99DE29FCA2AE89D311194391B47",
+        "participant": "76790290767977@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "ACE6B99DE29FCA2AE89D311194391B47",
+        "participant": "6282252134009@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-05-31T07:34:49.577Z"
+  },
+  "AC6EB4466ECF4E207926781DC1B6807C": {
+    "id": "AC6EB4466ECF4E207926781DC1B6807C",
+    "sender": "6282252134009@s.whatsapp.net",
+    "name": "NAKIRAN || ANNIHILATOR",
+    "type": "videoMessage",
+    "arrivedAt": "2026-05-31T07:35:28.419Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🇹🇱",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6282252134009",
+    "resolvedPn": "6282252134009@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6282252134009@s.whatsapp.net",
+      "fromMe": false,
+      "id": "AC6EB4466ECF4E207926781DC1B6807C",
+      "participant": "76790290767977@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T07:35:42.537Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC6EB4466ECF4E207926781DC1B6807C",
+        "participant": "76790290767977@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC6EB4466ECF4E207926781DC1B6807C",
+        "participant": "6282252134009@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-05-31T07:35:42.537Z"
+  },
+  "AC8AB586A1B9776630B5EE47D18D4F60": {
+    "id": "AC8AB586A1B9776630B5EE47D18D4F60",
+    "sender": "6282252134009@s.whatsapp.net",
+    "name": "NAKIRAN || ANNIHILATOR",
+    "type": "videoMessage",
+    "arrivedAt": "2026-05-31T07:36:47.142Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🕠",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6282252134009",
+    "resolvedPn": "6282252134009@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6282252134009@s.whatsapp.net",
+      "fromMe": false,
+      "id": "AC8AB586A1B9776630B5EE47D18D4F60",
+      "participant": "76790290767977@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T07:37:00.886Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC8AB586A1B9776630B5EE47D18D4F60",
+        "participant": "76790290767977@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC8AB586A1B9776630B5EE47D18D4F60",
+        "participant": "6282252134009@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-05-31T07:37:00.886Z"
+  },
+  "ACDDF14E640B060A0F68C5C278F57DD8": {
+    "id": "ACDDF14E640B060A0F68C5C278F57DD8",
+    "sender": "6282252134009@s.whatsapp.net",
+    "name": "NAKIRAN || ANNIHILATOR",
+    "type": "videoMessage",
+    "arrivedAt": "2026-05-31T07:36:47.751Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🫴",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6282252134009",
+    "resolvedPn": "6282252134009@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6282252134009@s.whatsapp.net",
+      "fromMe": false,
+      "id": "ACDDF14E640B060A0F68C5C278F57DD8",
+      "participant": "76790290767977@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T07:36:59.627Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "ACDDF14E640B060A0F68C5C278F57DD8",
+        "participant": "76790290767977@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "ACDDF14E640B060A0F68C5C278F57DD8",
+        "participant": "6282252134009@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-05-31T07:36:59.626Z"
+  },
+  "ACB866B81EE4B22CB339A863920C11CE": {
+    "id": "ACB866B81EE4B22CB339A863920C11CE",
+    "sender": "6282252134009@s.whatsapp.net",
+    "name": "NAKIRAN || ANNIHILATOR",
+    "type": "videoMessage",
+    "arrivedAt": "2026-05-31T07:36:48.279Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🦶",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6282252134009",
+    "resolvedPn": "6282252134009@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6282252134009@s.whatsapp.net",
+      "fromMe": false,
+      "id": "ACB866B81EE4B22CB339A863920C11CE",
+      "participant": "76790290767977@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T07:36:52.197Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "ACB866B81EE4B22CB339A863920C11CE",
+        "participant": "76790290767977@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "ACB866B81EE4B22CB339A863920C11CE",
+        "participant": "6282252134009@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-05-31T07:36:52.196Z"
+  },
+  "AC80307E08F29C4E8CE3E0D8F65C1B99": {
+    "id": "AC80307E08F29C4E8CE3E0D8F65C1B99",
+    "sender": "6282252134009@s.whatsapp.net",
+    "name": "NAKIRAN || ANNIHILATOR",
+    "type": "videoMessage",
+    "arrivedAt": "2026-05-31T07:36:48.851Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🪧",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6282252134009",
+    "resolvedPn": "6282252134009@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6282252134009@s.whatsapp.net",
+      "fromMe": false,
+      "id": "AC80307E08F29C4E8CE3E0D8F65C1B99",
+      "participant": "76790290767977@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T07:37:00.561Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC80307E08F29C4E8CE3E0D8F65C1B99",
+        "participant": "76790290767977@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6282252134009@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC80307E08F29C4E8CE3E0D8F65C1B99",
+        "participant": "6282252134009@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-05-31T07:37:00.560Z"
   }
 }
