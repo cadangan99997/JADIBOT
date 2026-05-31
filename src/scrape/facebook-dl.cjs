@@ -186,20 +186,19 @@ async function handleFacebookDl(hisoka, m, query, ctx) {
         } catch (_) {}
     }
 
-    // Safety trim — WA caption max ~1024 chars, kita batasi 300 agar tidak kepotong
-    if (finalCaption.length > 300) finalCaption = finalCaption.substring(0, 297) + '...';
-
-    // ── Kirim media ──
+    // ── Kirim media tanpa caption, lalu caption sebagai teks terpisah (tidak ada batas panjang) ──
     if (mediaData.isVideo !== false) {
         await hisoka.sendMessage(m.from, {
-            video  : { url: mediaData.url },
-            caption: finalCaption,
+            video: { url: mediaData.url },
         }, { quoted: m });
     } else {
         await hisoka.sendMessage(m.from, {
-            image  : { url: mediaData.url },
-            caption: finalCaption,
+            image: { url: mediaData.url },
         }, { quoted: m });
+    }
+
+    if (finalCaption) {
+        await hisoka.sendMessage(m.from, { text: finalCaption }, { quoted: m });
     }
 
     logCommand(m, hisoka, 'facebook');

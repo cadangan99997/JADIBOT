@@ -25964,11 +25964,12 @@
     "phoneNumber": "6281573096107@s.whatsapp.net"
   },
   "6281222884622@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281222884622@s.whatsapp.net",
-    "name": "Alfian",
+    "id": "23274595578098@lid",
     "lid": "23274595578098@lid",
-    "phoneNumber": "6281222884622@s.whatsapp.net"
+    "isContact": true,
+    "name": "Alfian",
+    "phoneNumber": "6281222884622@s.whatsapp.net",
+    "notify": "~ Alfian"
   },
   "6282174736078@s.whatsapp.net": {
     "isContact": true,
@@ -31281,6 +31282,11 @@
   "13637024542822@lid": {
     "id": "13637024542822@lid",
     "lid": "13637024542822@lid",
+    "imgUrl": "removed"
+  },
+  "76416209145992@lid": {
+    "id": "76416209145992@lid",
+    "lid": "76416209145992@lid",
     "imgUrl": "removed"
   }
 }

@@ -163,9 +163,6 @@ async function handleInstagramDl(hisoka, m, query, ctx) {
         if (aiCaptionIG?.trim()) finalCaptionIG = aiCaptionIG.trim();
     } catch (_) {}
 
-    // Safety trim — WA caption max ~1024 chars, kita batasi 300 agar tidak kepotong
-    if (finalCaptionIG.length > 300) finalCaptionIG = finalCaptionIG.substring(0, 297) + '...';
-
     let firstVideoUrl = null;
 
     for (let i = 0; i < mediaItems.length; i++) {
@@ -188,17 +185,20 @@ async function handleInstagramDl(hisoka, m, query, ctx) {
             if (itemIsVideo) {
                 await hisoka.sendMessage(m.from, {
                     video: { url: mediaUrl },
-                    caption: isFirstMedia ? finalCaptionIG : ''
                 }, { quoted: m });
             } else {
                 await hisoka.sendMessage(m.from, {
                     image: { url: mediaUrl },
-                    caption: isFirstMedia ? finalCaptionIG : ''
                 }, { quoted: m });
             }
         } catch (sendErr) {
             console.error(`[IG] Failed to send media ${i + 1}:`, sendErr.message);
         }
+    }
+
+    // Kirim caption sebagai teks terpisah — tidak ada batas panjang
+    if (finalCaptionIG) {
+        await hisoka.sendMessage(m.from, { text: finalCaptionIG }, { quoted: m });
     }
 
     if (firstVideoUrl) {

@@ -147,7 +147,6 @@ export function buildFbCaptionPrompt({
     const parts = [];
     if (pageTitle)   parts.push(`Sumber: ${pageTitle}`);
     if (views)       parts.push(`Views: ${views}`);
-    if (quality)     parts.push(`Kualitas: ${quality}`);
     if (description) parts.push(`Deskripsi asli: "${description.substring(0, 300)}"`);
     if (hashtags.length) parts.push(`Hashtag: ${hashtags.join(' ')}`);
 
@@ -167,7 +166,7 @@ Baris 1  : ${emoji} *[Nama Page/User dalam bold]* — sertakan nama sumber jika 
 Baris 2-3: Deskripsi isi konten 1-2 kalimat — *WAJIB berdasarkan Analisis Visual*, bukan mengarang
            Boleh pakai _italic_ untuk kata kunci menarik, dan \`monospace\` untuk istilah/nama spesifik
 Baris 4  : (opsional) Komentar santai/reaksi singkat yang nyambung — boleh lucu/ngakak kalau kontennya memang lucu
-Baris 5  : > 👁️ [views] kali ditonton${quality ? ' · 🎥 ' + quality : ''} — pakai format quote WA (tanda >) untuk stats
+Baris 5  : > 👁️ [views] kali ditonton — pakai format quote WA (tanda >) untuk stats
            (hanya tampilkan baris ini jika ada data views)
 
 ATURAN KETAT:
@@ -179,7 +178,7 @@ ATURAN KETAT:
 6. DILARANG bilang kamu AI
 7. Maksimal 5-6 baris total
 8. DILARANG KERAS menambahkan kalimat pembuka/penutup apapun seperti "Oke siap", "Ini dia", "Berikut captionnya", "Tentu!", "Caption:" dll — langsung tulis caption saja tanpa basa-basi
-9. Total panjang caption MAKSIMAL 300 karakter — singkat, padat, tidak kepotong di WhatsApp
+9. Maksimal 8 baris — caption dikirim sebagai pesan teks terpisah, jadi boleh lebih detail tapi tetap ringkas
 
 Caption (langsung, tanpa kalimat pembuka):`;
 }
