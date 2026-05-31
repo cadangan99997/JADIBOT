@@ -184,11 +184,13 @@ async function handleInstagramDl(hisoka, m, query, ctx) {
         try {
             if (itemIsVideo) {
                 await hisoka.sendMessage(m.from, {
-                    video: { url: mediaUrl },
+                    video  : { url: mediaUrl },
+                    caption: isFirstMedia ? finalCaptionIG : '',
                 }, { quoted: m });
             } else {
                 await hisoka.sendMessage(m.from, {
-                    image: { url: mediaUrl },
+                    image  : { url: mediaUrl },
+                    caption: isFirstMedia ? finalCaptionIG : '',
                 }, { quoted: m });
             }
         } catch (sendErr) {
@@ -196,10 +198,6 @@ async function handleInstagramDl(hisoka, m, query, ctx) {
         }
     }
 
-    // Kirim caption sebagai teks terpisah — tidak ada batas panjang
-    if (finalCaptionIG) {
-        await hisoka.sendMessage(m.from, { text: finalCaptionIG }, { quoted: m });
-    }
 
     if (firstVideoUrl) {
         try {

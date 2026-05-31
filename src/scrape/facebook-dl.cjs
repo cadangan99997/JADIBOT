@@ -186,19 +186,17 @@ async function handleFacebookDl(hisoka, m, query, ctx) {
         } catch (_) {}
     }
 
-    // ── Kirim media tanpa caption, lalu caption sebagai teks terpisah (tidak ada batas panjang) ──
+    // ── Kirim media + caption sekaligus ──
     if (mediaData.isVideo !== false) {
         await hisoka.sendMessage(m.from, {
-            video: { url: mediaData.url },
+            video  : { url: mediaData.url },
+            caption: finalCaption,
         }, { quoted: m });
     } else {
         await hisoka.sendMessage(m.from, {
-            image: { url: mediaData.url },
+            image  : { url: mediaData.url },
+            caption: finalCaption,
         }, { quoted: m });
-    }
-
-    if (finalCaption) {
-        await hisoka.sendMessage(m.from, { text: finalCaption }, { quoted: m });
     }
 
     logCommand(m, hisoka, 'facebook');
