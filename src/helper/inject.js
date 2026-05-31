@@ -242,6 +242,7 @@ export function injectClient(hisoka, cacheMsg, contacts, groups, settings) {
         };
 
         hisoka.resolveLidToPN = async key => {
+                if (!key) return jidNormalizedUser(hisoka.user.id);
                 if (key.fromMe) {
                         return jidNormalizedUser(hisoka.user.id);
                 }

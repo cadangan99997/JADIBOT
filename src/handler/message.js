@@ -2123,7 +2123,17 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                         const _wilyTextHasBotNum = _wilyTextOnlyMention &&
                                                 _wilyOrigText.includes(wilyBotNum);
 
-                                        const isWilyMentionedFinal = isWilyMentioned || _wilyLidResolved || _wilyTextHasBotNum;
+                                        // Fallback 3: @everyone / @semua / @all — bot ikut merespons saat ada tagall di grup
+                                        const _wilyTagAll = m.isGroup && !!(
+                                                m.text?.match(/@(everyone|semua|all|group|grup)\b/i) ||
+                                                wilyMentionedJids.some(jid =>
+                                                        jid === '0@s.whatsapp.net' ||
+                                                        jid?.startsWith('0@') ||
+                                                        jid === 'everyone@broadcast'
+                                                )
+                                        );
+
+                                        const isWilyMentionedFinal = isWilyMentioned || _wilyLidResolved || _wilyTextHasBotNum || _wilyTagAll;
 
                                         // WilyAutoReply — respek scope: pm=hanya DM, gc=hanya grup, all=keduanya
                                         const isPrivateDM = !m.isGroup && m.from !== 'status@broadcast';
@@ -2208,7 +2218,10 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 const isStickerReply = isReplyToBotMsg && hasSticker;
 
                                                 if (!userMessage && !hasMedia) {
-                                                        userMessage = buildWilyFallbackUserPrompt(_wilyWasMentionOnly ? 'mention-only' : curType);
+                                                        const _wilyFallbackType = _wilyTagAll ? 'tagall'
+                                                                : _wilyWasMentionOnly ? 'mention-only'
+                                                                : curType;
+                                                        userMessage = buildWilyFallbackUserPrompt(_wilyFallbackType);
                                                 }
 
                                                 if (!userMessage && hasMedia) {

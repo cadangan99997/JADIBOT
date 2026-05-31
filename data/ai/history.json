@@ -515,6 +515,43 @@
         }
       ],
       "lastActivity": 1780209983994
+    },
+    "6283134844523@s.whatsapp.net_120363383540766761@g.us": {
+      "messages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 21.29 | 👤 Anda Siapa?]\nHalo!"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Malam juga Anda Siapa?! Ada yang bisa aku bantu malam ini? 😊"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 21.29 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Malam juga Anda Siapa?! Ada yang bisa aku bantu malam ini? 😊\" | 👤 Anda Siapa?]\nGw hanya tag gk bilang selamat mlm🗿"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Oh iya, maaf Anda Siapa?~ Aku kira tadi mau nyapa malam juga, soalnya udah malem banget nih. Hehe salah fokus aku 😅\n\nJadi, ada apa nih? Ada yang bisa aku bantu? 😄"
+            }
+          ]
+        }
+      ],
+      "lastActivity": 1780237771918
     }
   },
   "sticker_pattern": {

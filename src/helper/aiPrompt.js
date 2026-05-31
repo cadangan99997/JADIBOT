@@ -48,6 +48,7 @@ Aturan WAJIB:
 }
 
 export function buildWilyFallbackUserPrompt(mediaType = '') {
+    if (mediaType === 'tagall') return 'Seseorang menggunakan @semua / @everyone di grup sehingga semua anggota termasuk kamu ikut di-tag. Balas dengan singkat, santai, dan natural — seolah kamu ikut nimbrung di percakapan grup. Jangan bertele-tele, cukup 1-2 kalimat saja yang relevan dengan suasana grup.';
     if (mediaType === 'mention-only') return 'Seseorang men-tag kamu di grup tanpa mengetik pesan apapun. Balas dengan sapaan ramah dan natural, tanyakan apa yang bisa kamu bantu.';
     if (mediaType.includes('sticker')) return 'Pengguna mengirim sticker. Analisis ekspresi, emosi, gestur, dan maksud sticker ini, lalu balas dengan santai dan natural seperti merespons reaksi sticker tersebut.';
     if (mediaType.includes('video')) return 'Pengguna mengirim video. Berikan respons yang natural, minta mereka menjelaskan isi videonya atau tanyakan konteksnya dengan ramah.';
