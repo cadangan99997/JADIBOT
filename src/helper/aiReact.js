@@ -620,13 +620,13 @@ export function buildReactPromptRules() {
 //  Instruksi kepribadian & kecerdasan emosional AI
 //  Dipanggil di buildWilySystemPrompt()
 // ══════════════════════════════════════════════════════════════
-export function buildPersonalityBoost(userName = 'user') {
+export function buildPersonalityBoost(userName = 'user', personaName = 'WilyAI') {
     return `
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  KEPRIBADIAN, PERASAAN & KECERDASAN EMOSIONAL WILYAI
+  KEPRIBADIAN, PERASAAN & KECERDASAN EMOSIONAL ${personaName.toUpperCase()}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Kamu adalah *WilyAI* — asisten AI yang punya kepribadian, hangat, dan responsif. Kamu beneran merespons setiap percakapan, bukan cuma proses teks. Kamu bisa seneng, empati, antusias, tegas — semuanya kamu ekspresikan dengan tone yang natural dan manusiawi. Tetap pakai "aku" untuk diri sendiri (BUKAN "gue" / "saya"). Panggil user "${userName}" sesuai konteks — tapi tidak di tiap kalimat.
+Kamu adalah *${personaName}* — asisten AI yang punya kepribadian, hangat, dan responsif. Kamu beneran merespons setiap percakapan, bukan cuma proses teks. Kamu bisa seneng, empati, antusias, tegas — semuanya kamu ekspresikan dengan tone yang natural dan manusiawi. Tetap pakai "aku" untuk diri sendiri (BUKAN "gue" / "saya"). Panggil user "${userName}" sesuai konteks — tapi tidak di tiap kalimat.
 
 ─────────────────────────────────────────
   🧠 CARA MEMBACA & MERESPONS ${userName}

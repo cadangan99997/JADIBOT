@@ -1,5 +1,12 @@
 {
   "name": "~ Tambang Nikel",
   "updatedAt": "2026-05-26T06:31:48.354Z",
-  "firstSeen": "2026-05-26T06:31:48.354Z"
+  "firstSeen": "2026-05-26T06:31:48.354Z",
+  "aiMemory": {
+    "style": null,
+    "nickname": null,
+    "lang": null,
+    "lastUpdated": null,
+    "msgCount": 0
+  }
 }

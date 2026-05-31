@@ -1,5 +1,12 @@
 {
   "name": "Zaen",
   "updatedAt": "2026-05-30T07:22:38.843Z",
-  "firstSeen": "2026-05-30T07:22:38.843Z"
+  "firstSeen": "2026-05-30T07:22:38.843Z",
+  "aiMemory": {
+    "style": null,
+    "nickname": null,
+    "lang": null,
+    "lastUpdated": null,
+    "msgCount": 0
+  }
 }

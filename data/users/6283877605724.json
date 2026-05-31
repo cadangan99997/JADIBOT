@@ -1,5 +1,12 @@
 {
   "name": "Rizi",
   "updatedAt": "2026-05-29T11:08:52.138Z",
-  "firstSeen": "2026-05-29T11:08:52.138Z"
+  "firstSeen": "2026-05-29T11:08:52.138Z",
+  "aiMemory": {
+    "style": null,
+    "nickname": null,
+    "lang": null,
+    "lastUpdated": null,
+    "msgCount": 0
+  }
 }

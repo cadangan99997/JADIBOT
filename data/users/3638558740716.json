@@ -1,5 +1,12 @@
 {
   "name": "pou",
   "updatedAt": "2026-05-29T09:21:17.514Z",
-  "firstSeen": "2026-05-29T09:21:17.514Z"
+  "firstSeen": "2026-05-29T09:21:17.514Z",
+  "aiMemory": {
+    "style": null,
+    "nickname": null,
+    "lang": null,
+    "lastUpdated": null,
+    "msgCount": 0
+  }
 }

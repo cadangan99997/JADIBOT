@@ -1,5 +1,12 @@
 {
   "name": "lyn",
   "updatedAt": "2026-05-29T11:06:23.966Z",
-  "firstSeen": "2026-05-29T11:06:23.966Z"
+  "firstSeen": "2026-05-29T11:06:23.966Z",
+  "aiMemory": {
+    "style": null,
+    "nickname": null,
+    "lang": null,
+    "lastUpdated": null,
+    "msgCount": 0
+  }
 }

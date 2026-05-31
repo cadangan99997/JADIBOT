@@ -81,10 +81,14 @@
     "footer": "Version V19"
   },
   "wilyAI": {
-    "enabled": false,
+    "enabled": true,
     "autoReply": true,
     "privateReply": true,
-    "scope": "all"
+    "scope": "all",
+    "persona": {
+      "name": "WilyAI",
+      "greeting": "Siap! WilyAI di sini ✨"
+    }
   },
   "autoSimi": {
     "enabled": false,

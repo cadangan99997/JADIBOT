@@ -3509,11 +3509,12 @@
     "phoneNumber": "6283152130276@s.whatsapp.net"
   },
   "62859194760940@s.whatsapp.net": {
-    "isContact": true,
-    "id": "62859194760940@s.whatsapp.net",
-    "name": "!Fan",
+    "id": "257315869569067@lid",
     "lid": "257315869569067@lid",
-    "phoneNumber": "62859194760940@s.whatsapp.net"
+    "isContact": true,
+    "name": "!Fan",
+    "phoneNumber": "62859194760940@s.whatsapp.net",
+    "notify": "Fah"
   },
   "6285713762632@s.whatsapp.net": {
     "isContact": true,
@@ -31870,5 +31871,27 @@
     "id": "255889906921598@lid",
     "lid": "255889906921598@lid",
     "imgUrl": "removed"
+  },
+  "187015844888614@lid": {
+    "id": "187015844888614@lid",
+    "lid": "187015844888614@lid",
+    "imgUrl": "removed"
+  },
+  "193183585673232@lid": {
+    "id": "193183585673232@lid",
+    "lid": "193183585673232@lid",
+    "imgUrl": "changed"
+  },
+  "238882020974765@lid": {
+    "id": "238882020974765@lid",
+    "lid": "238882020974765@lid",
+    "imgUrl": "changed"
+  },
+  "6285817864236@s.whatsapp.net": {
+    "isContact": true,
+    "id": "6285817864236@s.whatsapp.net",
+    "name": "▫️Azkyzx_",
+    "lid": "149521384382497@lid",
+    "phoneNumber": "6285817864236@s.whatsapp.net"
   }
 }

@@ -1,5 +1,12 @@
 {
   "name": "CILL SI PENJAHAT.",
   "updatedAt": "2026-05-27T07:12:51.206Z",
-  "firstSeen": "2026-05-27T07:12:51.206Z"
+  "firstSeen": "2026-05-27T07:12:51.206Z",
+  "aiMemory": {
+    "style": null,
+    "nickname": null,
+    "lang": null,
+    "lastUpdated": null,
+    "msgCount": 0
+  }
 }

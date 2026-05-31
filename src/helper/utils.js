@@ -47,6 +47,27 @@ export function saveConfig(config) {
         }
 }
 
+export function getAIPersonaName() {
+        try {
+                const cfg = loadConfig();
+                const name = (cfg.wilyAI?.persona?.name || '').trim();
+                return name || 'WilyAI';
+        } catch (_) {
+                return 'WilyAI';
+        }
+}
+
+export function getAIPersonaGreeting() {
+        try {
+                const cfg = loadConfig();
+                const greeting = (cfg.wilyAI?.persona?.greeting || '').trim();
+                if (greeting) return greeting;
+                return `Siap! ${getAIPersonaName()} di sini ✨`;
+        } catch (_) {
+                return 'Siap! WilyAI di sini ✨';
+        }
+}
+
 export function updateConfig(key, value) {
         const config = loadConfig();
         config[key] = { ...config[key], ...value };

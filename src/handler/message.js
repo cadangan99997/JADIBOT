@@ -31,7 +31,7 @@ import crypto from 'crypto';
 import { exec } from 'child_process';
 import util from 'util';
 
-import { msToTime, loadConfig, saveConfig, getCaseName } from '../helper/utils.js';
+import { msToTime, loadConfig, saveConfig, getCaseName, getAIPersonaName, getAIPersonaGreeting } from '../helper/utils.js';
 import { stopAutoCleaner, restartAutoCleaner, cleanStaleSessionFiles, clearOldFiles, clearTmpFolder } from '../helper/cleaner.js';
 import { getUptimeFormatted, getBotStats } from '../db/botStats.js';
 import { logError, formatErrorReport, clearErrors, generateErrorFileTxt, getInfoErrorTxtPath, getErrorStats } from '../db/errorLog.js';
@@ -1965,6 +1965,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 const userMemory = detectAndUpdateMemory(m.sender, userMessage);
                                                 const systemPrompt = buildWilyAICommandPrompt({
                                                         userName, currentTime, currentDate, timeOfDay,
+                                                        personaName: getAIPersonaName(),
                                                         hasHistory: false,
                                                         quotedBotText,
                                                         isPrivate: !m.isGroup,
@@ -2006,7 +2007,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                         }
                                                         const autoVContents = [
                                                                 { role: 'user', parts: [{ text: systemPrompt }] },
-                                                                { role: 'model', parts: [{ text: `Siap! WilyAI di sini ✨` }] },
+                                                                { role: 'model', parts: [{ text: getAIPersonaGreeting() }] },
                                                                 { role: 'user', parts: [
                                                                         { inlineData: { mimeType: finalMime, data: finalBuffer.toString('base64') } },
                                                                         { text: userMessage || 'Analisis gambar/sticker ini.' },
@@ -2019,7 +2020,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 } else {
                                                         const autoContents = [
                                                                 { role: 'user', parts: [{ text: systemPrompt }] },
-                                                                { role: 'model', parts: [{ text: `Siap! WilyAI di sini ✨` }] },
+                                                                { role: 'model', parts: [{ text: getAIPersonaGreeting() }] },
                                                                 { role: 'user', parts: [{ text: userMessage }] },
                                                         ];
                                                         response = await gemini.chat({ contents: autoContents });
@@ -2296,6 +2297,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 const userMemory = detectAndUpdateMemory(m.sender, userMessage);
                                                 const systemPrompt = buildWilyAICommandPrompt({
                                                         userName, currentTime, currentDate, timeOfDay,
+                                                        personaName: getAIPersonaName(),
                                                         hasHistory: histMsgs.length > 0,
                                                         quotedBotText,
                                                         isPrivate: !m.isGroup,
@@ -2314,14 +2316,14 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 if (histMsgs.length > 0) {
                                                         contents = [
                                                                 { role: 'user', parts: [{ text: systemPrompt }] },
-                                                                { role: 'model', parts: [{ text: `Siap! WilyAI di sini ✨` }] },
+                                                                { role: 'model', parts: [{ text: getAIPersonaGreeting() }] },
                                                                 ...histMsgs,
                                                                 { role: 'user', parts: [{ text: wrapCurrentUserMessage(userMessage, currentMsgMeta) }] },
                                                         ];
                                                 } else {
                                                         contents = [
                                                                 { role: 'user', parts: [{ text: systemPrompt }] },
-                                                                { role: 'model', parts: [{ text: `Siap! WilyAI di sini ✨` }] },
+                                                                { role: 'model', parts: [{ text: getAIPersonaGreeting() }] },
                                                                 { role: 'user', parts: [{ text: userMessage }] },
                                                         ];
                                                 }
@@ -2365,7 +2367,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                                 if (histMsgs.length > 0) {
                                                                         const vContents = [
                                                                                 { role: 'user', parts: [{ text: systemPrompt }] },
-                                                                                { role: 'model', parts: [{ text: `Siap! WilyAI di sini ✨` }] },
+                                                                                { role: 'model', parts: [{ text: getAIPersonaGreeting() }] },
                                                                                 ...histMsgs,
                                                                                 { role: 'user', parts: [
                                                                                         { inlineData: { mimeType: finalMime, data: finalBuffer.toString('base64') } },
@@ -2378,7 +2380,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                                 } else {
                                                                         const vContentsNoHist = [
                                                                                 { role: 'user', parts: [{ text: systemPrompt }] },
-                                                                                { role: 'model', parts: [{ text: `Siap! WilyAI di sini ✨` }] },
+                                                                                { role: 'model', parts: [{ text: getAIPersonaGreeting() }] },
                                                                                 { role: 'user', parts: [
                                                                                         { inlineData: { mimeType: finalMime, data: finalBuffer.toString('base64') } },
                                                                                         { text: visionContextText },
@@ -2516,6 +2518,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 const pvUserMemory = detectAndUpdateMemory(m.sender, pvUserMsg);
                                                 const pvSystemPrompt = buildWilyAICommandPrompt({
                                                         userName: pvUserName, currentTime: pvCurrentTime, currentDate: pvCurrentDate, timeOfDay: pvTimeOfDay,
+                                                        personaName: getAIPersonaName(),
                                                         hasHistory: pvHistMsgs.length > 0,
                                                         quotedBotText: pvQuotedBotText,
                                                         isPrivate: true,

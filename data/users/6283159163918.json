@@ -1,5 +1,12 @@
 {
   "name": "Jeff",
   "updatedAt": "2026-05-23T13:38:32.008Z",
-  "firstSeen": "2026-05-23T13:38:32.008Z"
+  "firstSeen": "2026-05-23T13:38:32.008Z",
+  "aiMemory": {
+    "style": null,
+    "nickname": null,
+    "lang": null,
+    "lastUpdated": null,
+    "msgCount": 0
+  }
 }

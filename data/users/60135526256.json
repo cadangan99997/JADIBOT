@@ -1,5 +1,12 @@
 {
   "name": "Aizy",
   "updatedAt": "2026-05-23T02:38:09.647Z",
-  "firstSeen": "2026-05-23T02:38:09.647Z"
+  "firstSeen": "2026-05-23T02:38:09.647Z",
+  "aiMemory": {
+    "style": null,
+    "nickname": null,
+    "lang": null,
+    "lastUpdated": null,
+    "msgCount": 0
+  }
 }

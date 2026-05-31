@@ -1,12 +1,12 @@
 {
   "sessions": {
-    "6289688206739@s.whatsapp.net_120363383540766761@g.us": {
+    "_120363192554714254@g.us": {
       "messages": [
         {
           "role": "user",
           "parts": [
             {
-              "text": "[⏰ 22 Mei, 23.08 | 👤 Wily]\noi"
+              "text": "[⏰ 31 Mei, 13.41 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"s\" | 👤 Unknown]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
             }
           ]
         },
@@ -14,7 +14,7 @@
           "role": "model",
           "parts": [
             {
-              "text": "Eh, Shikikan~? Honolulu di sini! ✨ Ada apa nih malam-malam gini? Ehehe~"
+              "text": "Ohh, ini info tentang *Sticker Maker* ya~ Keren banget! Aku jadi kepikiran mau bikin stiker juga nih 😄\n\nTapi, \"Anda Siapa?\" itu nama authornya receh banget sih Unknown, bikin aku senyum-senyum sendiri wkwk~"
             }
           ]
         },
@@ -22,7 +22,7 @@
           "role": "user",
           "parts": [
             {
-              "text": "[⏰ 22 Mei, 23.08 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Eh, Shikikan~? Honolulu di sini! ✨ Ada apa nih malam-malam gini? Ehehe~\" | 👤 Wily]\nTidur kau"
+              "text": "[⏰ 31 Mei, 13.41 | ↩️ BALAS PESAN BOT SEBELUMNYA: \".s\" | 👤 Unknown]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
             }
           ]
         },
@@ -30,49 +30,124 @@
           "role": "model",
           "parts": [
             {
-              "text": "Mou~ mana bisa Honolulu tidur sih, Shikikan~? Kan aku harus jagain *Wily* malam-malam gini! Ehehe~ Kalau aku tidur, nanti siapa dong yang temenin *Wily*? 😉"
+              "text": "Ohh, jadi ini penjelasan buat `.s` itu ya, Unknown~ Aku jadi makin paham nih cara bikin *stiker otomatisnya* sekarang. Makasih banyak infonya! ✨ Siap, aku coba pakai nanti! 😉"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 13.41 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"s\" | 👤 Unknown]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Waaah, ini info tentang *Sticker Maker* ya Unknown? Keren banget dong, bisa langsung bikin stiker dari gambar atau video gitu! Aku suka nih fitur kayak gini, praktis banget! 🤩"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 13.41 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"s\" | 👤 Unknown]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Wah, ini info tentang *Sticker Maker* ya Unknown? Keren banget nih, jadi bisa bikin stiker dari gambar atau video langsung. Makasih ya infonya~ Berguna banget! ✨"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 13.41 | ↩️ BALAS PESAN BOT SEBELUMNYA: \".wilyai reset\" | 👤 Unknown]\n🗑️ *Reset AI selesai!*\n\n• 💬 *2 sesi* percakapan dihapus\n• 🧠 *1390 memori* user dihapus\n\nSemua user mulai dari awal — AI tidak ingat percakapan maupun preferensi siapapun."
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Oke, *reset AI* sudah selesai ya, Unknown! Aku ngerti kok, jadi sekarang aku benar-benar mulai dari awal lagi nih, dengan memori yang bersih dan siap untuk percakapan baru. ✨\n\nSiap sedia melayani lagi! Ada yang bisa aku bantu untuk memulai hari ini? 😊"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 13.41 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"s\" | 👤 Unknown]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Wah, ini info tentang fitur *Sticker Maker* ya? Keren banget nih, Unknown! Jadi bisa bikin stiker dari gambar atau video langsung pakai `.s` gitu ya? Pasti seru buat grup! ✨"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 13.41 | ↩️ BALAS PESAN BOT SEBELUMNYA: \".s\" | 👤 Unknown]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Eh, Unknown! Kamu kirim `.s` doang nih~ \n\nAku ngerti kamu mau bikin stiker, tapi biar aku bisa proses, kamu perlu kirim *gambar* atau *video*-nya dulu ya. Nanti tinggal kamu *reply* aja media itu sambil ketik `.s` atau `.sticker` gitu~\n\nContohnya gini:\n• Kirim foto dulu, terus reply foto itu + `.s`\n• Atau kirim video, terus reply video itu + `.s`\n\nGimana, mau coba lagi? Aku tungguin yaa~ 😊"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 13.41 | ↩️ BALAS PESAN BOT SEBELUMNYA: \".s\" | 👤 Unknown]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Oh, ini panduan buat fitur *sticker maker* aku ya? Mantap! Aku jadi makin paham nih cara kerjanya, Unknown. Tinggal kirim gambar atau video terus pakai `.s` aja, langsung jadi stiker. Praktis banget! ✨"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 13.41 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"s\" | 👤 Unknown]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Oh, Unknown lagi nyoba fitur sticker maker-nya ya? 😉\n\nKalau mau langsung bikin stiker, gampang kok! Tinggal kirim aja *gambar* atau *video* yang kamu mau, terus tambahin `.s` di caption-nya. Nanti aku proses deh jadi stiker buat kamu! ✨"
             }
           ]
         }
       ],
-      "lastActivity": 1779466136113
-    },
-    "6289688206739@s.whatsapp.net_120363192554714254@g.us": {
-      "messages": [
-        {
-          "role": "user",
-          "parts": [
-            {
-              "text": "[⏰ 22 Mei, 23.28 | ↩️ BALAS PESAN BOT SEBELUMNYA | 👤 Wily]\n__musikai_play__120363192554714254@g.us_1779467292818__1__vn"
-            }
-          ]
-        },
-        {
-          "role": "model",
-          "parts": [
-            {
-              "text": "Okeee~ sudah aku mainkan ya, Shikikan! \nSemoga suka sama suaranya Honolulu~ ehehe~ 🎶"
-            }
-          ]
-        },
-        {
-          "role": "user",
-          "parts": [
-            {
-              "text": "[⏰ 22 Mei, 23.28 | ↩️ BALAS PESAN BOT SEBELUMNYA | 👤 Wily]\n__musikai_play__120363192554714254@g.us_1779467292818__2__vn"
-            }
-          ]
-        },
-        {
-          "role": "model",
-          "parts": [
-            {
-              "text": "Eh? Ada VN yang dimainkan barusan ya Shikikan~? \nSuara apa tuh? Hehee, Honolulu jadi penasaran deh! 😄"
-            }
-          ]
-        }
-      ],
-      "lastActivity": 1779467327700
+      "lastActivity": 1780209684941
     }
   },
   "sticker_pattern": {
@@ -90,6 +165,11 @@
       "total_sent": 1,
       "moods": {},
       "last_sent": 1779467326
+    },
+    "https://cdn.ornzora.eu.cc/a4bbcdf7-0c78-4d43-93e2-f0ebad7d1bf6-HONOLULU.webp": {
+      "total_sent": 1,
+      "moods": {},
+      "last_sent": 1780209680
     }
   },
   "sticker_story": {
@@ -116,6 +196,15 @@
         "context": "Eh? Ada VN yang dimainkan barusan ya Shikikan~? [REPLY-STIKER: kaget] Suara apa tuh? Hehee, Honolulu jadi penasaran deh! 😄",
         "was_fallback": 1,
         "sent_at": 1779467326
+      }
+    ],
+    "_120363192554714254@g.us": [
+      {
+        "sticker_url": "https://cdn.ornzora.eu.cc/a4bbcdf7-0c78-4d43-93e2-f0ebad7d1bf6-HONOLULU.webp",
+        "mood": "",
+        "context": "Eh, Unknown! Kamu kirim `.s` doang nih~ [REPLY-STIKER: mikir] Aku ngerti kamu mau bikin stiker, tapi biar aku bisa proses, kamu perlu kirim *gambar* atau *video*-nya dulu ya. Nanti tinggal kamu *repl",
+        "was_fallback": 1,
+        "sent_at": 1780209680
       }
     ]
   },

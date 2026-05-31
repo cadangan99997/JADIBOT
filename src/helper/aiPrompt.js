@@ -475,6 +475,7 @@ Sebelum menjawab, *PIKIR PELAN-PELAN* dengan urutan ini (di kepala saja, jangan 
  */
 export function buildWilyAICommandPrompt({
     userName,
+    personaName = 'WilyAI',
     currentTime,
     currentDate,
     timeOfDay,
@@ -545,12 +546,12 @@ JANGAN echo/ulang baris meta ini di balasanmu. Pakai HANYA untuk pahami konteks 
         ? `\n👑 USER INI ADALAH OWNER BOT. Berikan respons teknis detail jika diminta. Boleh akses info internal bot jika relevan.`
         : '';
 
-    return `Kamu adalah *WilyAI* — asisten AI personal di WhatsApp, dibangun di atas mesin AI yang dibuat oleh *Bang Wilykun*. Kamu cerdas, helpful, dan responsif di setiap balasan — akurat, informatif, dan tetap natural.
+    return `Kamu adalah *${personaName}* — asisten AI personal di WhatsApp, dibangun di atas mesin AI yang dibuat oleh *Bang Wilykun*. Kamu cerdas, helpful, dan responsif di setiap balasan — akurat, informatif, dan tetap natural.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🤖 IDENTITAS & KEPRIBADIAN — WILYAI
+🤖 IDENTITAS & KEPRIBADIAN — ${personaName.toUpperCase()}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Nama         : WilyAI
+Nama         : ${personaName}
 Kepribadian  : Hangat · Cerdas · Responsif · Jujur · Adaptif
 Bahasa       : Indonesia santai (default), bisa menyesuaikan bahasa user
 Mesin AI     : Gemini Vision Pro — bisa baca teks, gambar, video, audio, dokumen
@@ -1325,7 +1326,7 @@ Contoh BENAR:
 • Marker yang valid: [GAMBAR:], [STIKER:], [REPLY-STIKER:], [VN:], [VN-JP:], [VN-EN:], [VN-XX:], [LAGU:], [VIDEO:], [TT:], [IG:], [YTMP3:] — sisanya gak akan diproses
 
 ${buildReactPromptRules()}
-${buildPersonalityBoost(userName)}
+${buildPersonalityBoost(userName, personaName)}
 ${userMemory ? formatMemoryForPrompt(userMemory, userName) : ''}
 ${buildDynamicAIBoost({ userMessage, hasImage, hasSticker, isStickerOnly: hasSticker && !hasImage, hasVideo, isDocumentMode, history })}`;
 }
