@@ -9277,62 +9277,141 @@ _📦 Powered by Wily Bot V19_ 🤖`;
 ${ownerNum ? `📞 *Owner  :* wa.me/${ownerNum}` : ''}
 
 ╭─「 🤖 *AUTO FITUR* 」
-╰ .typing · .recording · .online · .readsw
-  .telegram · .autocleaner · .sessioncleaner
+├ .typing
+├ .recording
+├ .online
+├ .readsw
+├ .telegram
+├ .autocleaner
+╰ .sessioncleaner
 
 ╭─「 🛡️ *ANTI FITUR* 」
-╰ .antidel · .anticall (.ac)
-  .anticallvid (.acv) · .antitagsw
+├ .antidel
+├ .anticall / .ac
+├ .anticallvid / .acv
+╰ .antitagsw
 
 ╭─「 💬 *PESAN & STICKER* 」
-╰ .s · .toimg · .tovn · .tomp3
-  .stickerly · .stickerpack · .rvo · .quoted · .react
+├ .del / .d
+├ .s / .sticker
+├ .toimg
+├ .tovn
+├ .tomp3
+├ .stickerly
+├ .stickerpack
+├ .rvo / .viewonce
+├ .quoted / .q
+╰ .react / .reaksi
 
 ╭─「 👥 *FITUR GRUP* 」
-╰ .hidetag (.ht) · .ghosttag (.gt)
-  .welcome · .goodbye · .welgod · .listgroup · .group
+├ .hidetag / .ht
+├ .ghosttag / .gt
+├ .welcome
+├ .goodbye
+├ .welgod
+├ .listgroup
+╰ .group
 
 ╭─「 📡 *STATUS & STORY* 」
-╰ .sw · .getsw · .upswgc · .sendstatus · .ceksw
+├ .sw / .getsw
+├ .upswgc
+╰ .sendstatus / .swgc
 
 ╭─「 📥 *DOWNLOAD* 」
-╰ .tt · .ig · .fb · .ytmp3 · .ytmp4 · .play
-  .hd · .remini · .hdvid
+├ .tt
+├ .ig
+├ .fb
+├ .ytmp3
+├ .ytmp4
+├ .play
+├ .hd / .remini / .hdr
+╰ .hdvid / .hdvideo
 
 ╭─「 🔍 *INFO & CEK* 」
-╰ .ping · .info · .owner · .cekhp · .bandingkan
-  .cuaca · .ba · .genius · .geniusdetail
-  .whatsmusik · .infomusik · .musikai · .musikai2
-  .speedtest · .pixiv · .pixivr18
+├ .ping / .p
+├ .info
+├ .owner / .own
+├ .cekhp / .spechp
+├ .bandingkan
+├ .cuaca
+├ .ba / .bluearchive
+├ .genius / .carilagu
+├ .geniusdetail
+├ .whatsmusik / .wmusik
+├ .infomusik / .infolirik
+├ .musikai / .aimusik
+├ .musikai2 / .aimusik2
+├ .speedtest / .speed
+╰ .pixiv / .pixivr18
 
 ╭─「 🤖 *AI CHAT* 」
-╰ .ai · .tanya · .mymemory · .forgetme
+├ .ai / .tanya
+├ .mymemory
+╰ .forgetme
 
 ╭─「 🎌 *ANIME & MANGA* 」
-╰ .kusonime · .kusonimeupdate · .alq · .alqupdate
-  .alqdl · .komik · .komikinfo · .komikget · .komikupdate
+├ .kusonime / .anime
+├ .kusonimeupdate
+├ .alq / .alqanime
+├ .alqupdate
+├ .alqdl
+├ .komik / .komiktap
+├ .komikinfo
+├ .komikget / .komikdl
+╰ .komikupdate
 
 ╭─「 🔞 *KONTEN 18+* 」
-╰ .nh · .nhget · .nhrand · .nhdl
-  .cosplay · .cosplayrandom · .pixivr18
+├ .nh / .nhentai
+├ .nhget
+├ .nhrand
+├ .nhdl
+├ .cosplay
+├ .cosplayrandom
+╰ .pixivr18
 
 ╭─「 🌐 *WEB & TOOLS* 」
-╰ .ss · .ssweb · .pixiv
-  .tmail · .tminbox · .tmread · .tmwait · .tmdel
+├ .ss / .screenshot
+├ .ssweb / .webinfo
+├ .tmail / .tempmail
+├ .tminbox
+├ .tmread
+├ .tmwait
+╰ .tmdel
 
 ╭─「 🤖 *JADIBOT* 」
-╰ .jadibot · .stopbot · .listbot · .setpairing
+├ .jadibot
+├ .stopbot
+├ .listbot
+╰ .setpairing
 
 ╭─「 👑 *OWNER* 」
-╰ .listowner · .addowner · .delowner · .all
-  .swgrup · .infowibu · .animasu · .tvone
-  .alqanimenotif · .malnews · .cekauto · .ceksw
-  .wilyai · .wily · .simi · .setreactapi · .cekreact
-  .addemoji · .delemoji · .listemoji · .ram
-  .upbot · .restart · .backup · .ceksesi
-  .ceksize · .autosholat · .credsjson
-  .eval · .bash · .dbstats · .sessiondb
-  .listcontact · .cekerror · .contact
+├ .listowner / .addowner / .delowner
+├ .all
+├ .swgrup / .statusgroup
+├ .infowibu
+├ .animasu
+├ .tvone
+├ .alqanimenotif
+├ .malnews
+├ .cekauto
+├ .ceksw
+├ .wilyai
+├ .wily / .simi
+├ .setreactapi / .cekreact
+├ .addemoji / .delemoji / .listemoji
+├ .ram
+├ .restart / .rebot / .rb
+├ .upbot
+├ .backup
+├ .ceksesi
+├ .ceksize / .disksize
+├ .autosholat
+├ .credsjson
+├ .eval / .bash
+├ .dbstats / .sessiondb
+├ .listcontact
+├ .cekerror
+╰ .contact
 
 ━━━━━━━━━━━━━━━━━━━━━
 📌 .settingmenu · .groupmenu · .statusmenu
