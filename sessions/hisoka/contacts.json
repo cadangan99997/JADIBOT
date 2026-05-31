@@ -19846,11 +19846,12 @@
     "phoneNumber": "6282175568178@s.whatsapp.net"
   },
   "62895704334234@s.whatsapp.net": {
-    "isContact": true,
-    "id": "62895704334234@s.whatsapp.net",
-    "name": "▫️Dinda",
+    "id": "142696211599405@lid",
     "lid": "142696211599405@lid",
-    "phoneNumber": "62895704334234@s.whatsapp.net"
+    "isContact": true,
+    "name": "▫️Dinda",
+    "phoneNumber": "62895704334234@s.whatsapp.net",
+    "notify": "dnda👇🏻"
   },
   "6281410210383@s.whatsapp.net": {
     "isContact": true,
@@ -31293,6 +31294,11 @@
   "48151264264410@lid": {
     "id": "48151264264410@lid",
     "lid": "48151264264410@lid",
+    "imgUrl": "changed"
+  },
+  "221513005437009@lid": {
+    "id": "221513005437009@lid",
+    "lid": "221513005437009@lid",
     "imgUrl": "changed"
   }
 }
