@@ -1,3 +1,78 @@
+🚀 *RILIS V19.1*
+_Update fitur & perbaikan_ 🔧
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+🤖 *WILY BOT — V19.1*
+
+✨ *2 Fitur Baru*
+🔧 *3 Bug Fix*
+🚀 *4 Improvement*
+
+━━━━━━━━━━━━━━━━━━━━━━
+✨ *FITUR BARU*
+━━━━━━━━━━━━━━━━━━━━━━
+
+> 🤖 *AI Caption untuk `.fb` — Facebook Downloader*
+> `.fb` kini dilengkapi AI caption otomatis seperti `.ig`
+> Gemini Vision menganalisis thumbnail video sebelum generate caption
+> Caption muncul langsung di video — tidak perlu pesan terpisah
+> Format WA lengkap: *bold*, _italic_, `monospace`, > quote
+> Data: nama page, views, deskripsi, hashtag, tipe media (reel/story/video)
+> File baru: `src/helper/AiPromptFb.js`
+
+> 🏓 *`.ping` — Tampilan Baru dengan Visual Bar*
+> Tampilan ping total dirombak — lebih informatif dan estetik
+> Bar visual `▓▓▓▓░░░░░░` untuk latency, RAM sistem, RAM bot
+> Speed lebih detail: Sangat Cepat / Cepat / Normal / Lambat (4 level)
+> Tambah info Total Pesan & Total Perintah yang sudah diproses
+> Seksi dipisah dengan header `├─「 📡 KONEKSI 」──`
+
+━━━━━━━━━━━━━━━━━━━━━━
+🔧 *BUG FIX*
+━━━━━━━━━━━━━━━━━━━━━━
+
+> 🤖 *`.fb` — Caption AI Muncul Kalimat Pembuka*
+> AI kadang menambahkan "Oke siap, Wily bantu bikinin caption-nya ya!"
+> Sebelum isi caption yang sebenarnya — caption jadi kepotong di WA
+> Prompt diperketat: `DILARANG KERAS menambahkan kalimat pembuka/penutup`
+> Prompt diakhiri `Caption (langsung, tanpa kalimat pembuka):` agar AI langsung ke isi
+
+> 🤖 *`.fb` — Method 2 Fallback Gagal Ekstrak URL Video*
+> Method 2 (fallback) pakai HTML dari `facebookexternalhit` UA
+> `browser_native_hd_url` tidak ada di HTML crawler — hanya muncul di Chrome UA
+> Fix: Method 2 sekarang fetch ulang halaman FB dengan Chrome UA secara terpisah
+> Identik dengan kode original sebelum refactor
+
+> 🗑️ *Hapus Fitur `autoCallAudio`*
+> Fitur tolak panggilan + kirim voice note otomatis dihapus permanen
+> Dihapus dari: `config.json`, `index.js` (logika), `message.js` (command `.aca`)
+
+━━━━━━━━━━━━━━━━━━━━━━
+🚀 *IMPROVEMENT*
+━━━━━━━━━━━━━━━━━━━━━━
+
+> 🤖 *`.fb` — Paralel Fetch Media + Meta HTML*
+> Sebelumnya fetch archive API dan meta HTML dilakukan berurutan
+> Kini keduanya jalan paralel via `Promise.allSettled` — lebih cepat
+> Thumbnail dari archive API dipakai untuk Gemini Vision analysis
+
+> 🤖 *`.ig` & `.fb` — Caption Nempel di Video, Tidak Terpisah*
+> Caption dikirim sebagai bagian dari pesan video/foto (bukan pesan teks terpisah)
+> Tidak ada batas panjang buatan — AI bebas generate sesuai konten
+> Caption panjang natural ~400–500 karakter, jauh di bawah limit WA 1024
+
+> 🤖 *`.fb` — Hapus Label "HD/SD" dari Caption*
+> Label kualitas video dihapus dari caption — tidak ada di dalam video
+> Hanya memenuhi teks tanpa informasi berguna bagi pengguna
+
+> 🤖 *AI Prompt `.ig` & `.fb` — Aturan Lebih Ketat*
+> Tambah rule: DILARANG kalimat pembuka/penutup apapun
+> Prompt diakhiri dengan petunjuk eksplisit agar AI langsung tulis caption
+> Batas baris dinaikkan ke 8 baris (dari 5-6) karena tidak ada limit karakter
+
+━━━━━━━━━━━━━━━━━━━━━━
+
 🚀 *RILIS V19*
 _Sabar ya, lagi cek fitur lainnya_ 👀
 
