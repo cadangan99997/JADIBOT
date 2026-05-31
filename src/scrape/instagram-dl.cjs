@@ -163,6 +163,9 @@ async function handleInstagramDl(hisoka, m, query, ctx) {
         if (aiCaptionIG?.trim()) finalCaptionIG = aiCaptionIG.trim();
     } catch (_) {}
 
+    // Safety trim — WA caption max ~1024 chars, kita batasi 300 agar tidak kepotong
+    if (finalCaptionIG.length > 300) finalCaptionIG = finalCaptionIG.substring(0, 297) + '...';
+
     let firstVideoUrl = null;
 
     for (let i = 0; i < mediaItems.length; i++) {

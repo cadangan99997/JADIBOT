@@ -183,8 +183,10 @@ ATURAN KETAT:
 6. DILARANG sertakan URL atau link
 7. DILARANG bilang kamu AI
 8. Maksimal 5-6 baris total
+9. DILARANG KERAS menambahkan kalimat pembuka/penutup apapun seperti "Oke siap", "Ini dia", "Berikut captionnya", "Tentu!", "Caption:" dll — langsung tulis caption saja tanpa basa-basi
+10. Total panjang caption MAKSIMAL 300 karakter — singkat, padat, tidak kepotong di WhatsApp
 
-Caption:`;
+Caption (langsung, tanpa kalimat pembuka):`;
 }
 
 /**

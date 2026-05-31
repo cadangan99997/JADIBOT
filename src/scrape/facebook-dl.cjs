@@ -186,6 +186,9 @@ async function handleFacebookDl(hisoka, m, query, ctx) {
         } catch (_) {}
     }
 
+    // Safety trim — WA caption max ~1024 chars, kita batasi 300 agar tidak kepotong
+    if (finalCaption.length > 300) finalCaption = finalCaption.substring(0, 297) + '...';
+
     // ── Kirim media ──
     if (mediaData.isVideo !== false) {
         await hisoka.sendMessage(m.from, {
