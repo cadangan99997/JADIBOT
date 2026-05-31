@@ -91,17 +91,28 @@ async function handleFacebookDl(hisoka, m, query, ctx) {
         metaHtml = metaHtmlResult.value || '';
     }
 
-    // Method 2: direct page scraping via axios jika archive gagal
+    // Method 2: direct page scraping dengan Chrome UA (browser_native_hd_url hanya muncul di Chrome UA)
     if (!mediaData) {
         try {
-            const rawHtml = metaHtml || '';
-            const cleaned = rawHtml.replace(/&quot;/g, '"').replace(/&amp;/g, '&');
+            const axios2 = (await import('axios')).default;
+            const { data: pageData } = await axios2.get(fbUrl, {
+                maxRedirects: 10,
+                headers: {
+                    'User-Agent'     : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                    'Accept'         : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Language': 'en-US,en;q=0.5',
+                    'sec-fetch-dest' : 'document',
+                    'sec-fetch-mode' : 'navigate',
+                    'sec-fetch-site' : 'none',
+                },
+                timeout: 20000,
+            });
+            const cleaned = pageData.replace(/&quot;/g, '"').replace(/&amp;/g, '&');
             const hdMatch  = cleaned.match(/"browser_native_hd_url":"([^"]+)"/)  || cleaned.match(/"playable_url_quality_hd":"([^"]+)"/);
             const sdMatch  = cleaned.match(/"browser_native_sd_url":"([^"]+)"/)  || cleaned.match(/"playable_url":"([^"]+)"/);
             const hdUrl    = hdMatch ? hdMatch[1].replace(/\\/g, '') : null;
             const sdUrl    = sdMatch ? sdMatch[1].replace(/\\/g, '') : null;
             const videoUrl = hdUrl || sdUrl;
-
             if (videoUrl && videoUrl.startsWith('https://')) {
                 mediaData = {
                     url    : videoUrl,
@@ -109,9 +120,10 @@ async function handleFacebookDl(hisoka, m, query, ctx) {
                     isHD   : !!hdUrl,
                     isVideo: true,
                 };
+                console.log('[FB] method2 Chrome UA success:', hdUrl ? 'HD' : 'SD');
             }
         } catch (e) {
-            console.log('[FB] direct scraping failed:', e.message);
+            console.log('[FB] method2 Chrome UA failed:', e.message);
         }
     }
 
