@@ -2835,11 +2835,12 @@
     "phoneNumber": "6282216501151@s.whatsapp.net"
   },
   "6287768752790@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6287768752790@s.whatsapp.net",
-    "name": "¥ Andini",
+    "id": "105420123283659@lid",
     "lid": "105420123283659@lid",
-    "phoneNumber": "6287768752790@s.whatsapp.net"
+    "isContact": true,
+    "name": "¥ Andini",
+    "phoneNumber": "6287768752790@s.whatsapp.net",
+    "notify": "dinni."
   },
   "6285768351775@s.whatsapp.net": {
     "isContact": true,
@@ -7056,11 +7057,13 @@
     "phoneNumber": "6282292807007@s.whatsapp.net"
   },
   "6281295543915@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281295543915@s.whatsapp.net",
-    "name": "Remi_ikan 111",
+    "id": "26547712958494@lid",
     "lid": "26547712958494@lid",
-    "phoneNumber": "6281295543915@s.whatsapp.net"
+    "isContact": true,
+    "name": "Remi_ikan 111",
+    "phoneNumber": "6281295543915@s.whatsapp.net",
+    "notify": "Arthur.remi_kan",
+    "verifiedName": "Arthur.remi_kan"
   },
   "628895573752@s.whatsapp.net": {
     "isContact": true,
@@ -7945,11 +7948,12 @@
     "phoneNumber": "6285277156966@s.whatsapp.net"
   },
   "6283182665936@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283182665936@s.whatsapp.net",
-    "name": "ルトピ",
+    "id": "165536713416760@lid",
     "lid": "165536713416760@lid",
-    "phoneNumber": "6283182665936@s.whatsapp.net"
+    "isContact": true,
+    "name": "ルトピ",
+    "phoneNumber": "6283182665936@s.whatsapp.net",
+    "notify": "Lui"
   },
   "6288233564018@s.whatsapp.net": {
     "isContact": true,
@@ -31196,6 +31200,27 @@
   "20500331913406@lid": {
     "id": "20500331913406@lid",
     "lid": "20500331913406@lid",
+    "imgUrl": "changed"
+  },
+  "26117780025351@lid": {
+    "id": "26117780025351@lid",
+    "lid": "26117780025351@lid",
+    "imgUrl": "changed"
+  },
+  "187015844888614@lid": {
+    "id": "187015844888614@lid",
+    "lid": "187015844888614@lid",
+    "imgUrl": "removed"
+  },
+  "6283123405940@s.whatsapp.net": {
+    "id": "172838711480524@lid",
+    "lid": "172838711480524@lid",
+    "notify": "rawrrrr amanah_selalu",
+    "verifiedName": "rawrrrr amanah_selalu"
+  },
+  "254541438173270@lid": {
+    "id": "254541438173270@lid",
+    "lid": "254541438173270@lid",
     "imgUrl": "changed"
   }
 }

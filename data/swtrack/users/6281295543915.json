@@ -20,7 +20,7 @@
       "participant": "26547712958494@lid",
       "addressingMode": "lid"
     },
-    "updatedAt": "2026-05-31T06:50:31.365Z",
+    "updatedAt": "2026-05-31T07:30:25.447Z",
     "receiptKeys": [
       {
         "remoteJid": "status@broadcast",
@@ -39,7 +39,9 @@
         "addressingMode": "lid"
       }
     ],
-    "processedAt": "2026-05-31T06:50:31.365Z"
+    "processedAt": "2026-05-31T06:50:31.365Z",
+    "deleted": true,
+    "deletedAt": "2026-05-31T07:30:25.447Z"
   },
   "A50E88202D8DA8D3F106046343E7CAAD": {
     "id": "A50E88202D8DA8D3F106046343E7CAAD",
@@ -84,5 +86,47 @@
       }
     ],
     "processedAt": "2026-05-31T06:55:59.240Z"
+  },
+  "A55054FBF11530BD5AD8A41FD7F6E488": {
+    "id": "A55054FBF11530BD5AD8A41FD7F6E488",
+    "sender": "6281295543915@s.whatsapp.net",
+    "name": "Arthur.remi_kan",
+    "type": "imageMessage",
+    "arrivedAt": "2026-05-31T07:30:25.432Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "📲",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6281295543915",
+    "resolvedPn": "6281295543915@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6281295543915@s.whatsapp.net",
+      "fromMe": false,
+      "id": "A55054FBF11530BD5AD8A41FD7F6E488",
+      "participant": "26547712958494@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-05-31T07:30:35.684Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6281295543915@s.whatsapp.net",
+        "fromMe": false,
+        "id": "A55054FBF11530BD5AD8A41FD7F6E488",
+        "participant": "26547712958494@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6281295543915@s.whatsapp.net",
+        "fromMe": false,
+        "id": "A55054FBF11530BD5AD8A41FD7F6E488",
+        "participant": "6281295543915@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-05-31T07:30:35.684Z"
   }
 }
