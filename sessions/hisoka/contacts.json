@@ -5383,12 +5383,11 @@
     "phoneNumber": "6283133481767@s.whatsapp.net"
   },
   "6281393564657@s.whatsapp.net": {
-    "id": "174577888038922@lid",
-    "lid": "174577888038922@lid",
     "isContact": true,
+    "id": "6281393564657@s.whatsapp.net",
     "name": "Yus ( Donasi Jadi Bot )",
-    "phoneNumber": "6281393564657@s.whatsapp.net",
-    "notify": "γυς ρου"
+    "lid": "174577888038922@lid",
+    "phoneNumber": "6281393564657@s.whatsapp.net"
   },
   "6281953115676@s.whatsapp.net": {
     "isContact": true,
@@ -7946,12 +7945,11 @@
     "phoneNumber": "6285277156966@s.whatsapp.net"
   },
   "6283182665936@s.whatsapp.net": {
-    "id": "165536713416760@lid",
-    "lid": "165536713416760@lid",
     "isContact": true,
+    "id": "6283182665936@s.whatsapp.net",
     "name": "ルトピ",
-    "phoneNumber": "6283182665936@s.whatsapp.net",
-    "notify": "Lui"
+    "lid": "165536713416760@lid",
+    "phoneNumber": "6283182665936@s.whatsapp.net"
   },
   "6288233564018@s.whatsapp.net": {
     "isContact": true,
@@ -9214,12 +9212,11 @@
     "phoneNumber": "6288272126443@s.whatsapp.net"
   },
   "6282178071400@s.whatsapp.net": {
-    "id": "207348589179086@lid",
-    "lid": "207348589179086@lid",
     "isContact": true,
+    "id": "6282178071400@s.whatsapp.net",
     "name": "! zyennn",
-    "phoneNumber": "6282178071400@s.whatsapp.net",
-    "notify": "ririw"
+    "lid": "207348589179086@lid",
+    "phoneNumber": "6282178071400@s.whatsapp.net"
   },
   "628985610088@s.whatsapp.net": {
     "isContact": true,
@@ -10895,12 +10892,11 @@
     "phoneNumber": "628888229791@s.whatsapp.net"
   },
   "6282388417118@s.whatsapp.net": {
-    "id": "20749339349072@lid",
-    "lid": "20749339349072@lid",
     "isContact": true,
+    "id": "6282388417118@s.whatsapp.net",
     "name": "~kaguya",
-    "phoneNumber": "6282388417118@s.whatsapp.net",
-    "notify": "Kaguya"
+    "lid": "20749339349072@lid",
+    "phoneNumber": "6282388417118@s.whatsapp.net"
   },
   "6285222772192@s.whatsapp.net": {
     "isContact": true,
@@ -10931,11 +10927,12 @@
     "phoneNumber": "6281514119923@s.whatsapp.net"
   },
   "6282272288038@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282272288038@s.whatsapp.net",
-    "name": "!akbar 001",
+    "id": "95666571350028@lid",
     "lid": "95666571350028@lid",
-    "phoneNumber": "6282272288038@s.whatsapp.net"
+    "isContact": true,
+    "name": "!akbar 001",
+    "phoneNumber": "6282272288038@s.whatsapp.net",
+    "notify": "Akbar"
   },
   "6285347065992@s.whatsapp.net": {
     "isContact": true,
@@ -18001,11 +17998,12 @@
     "phoneNumber": "6289527827379@s.whatsapp.net"
   },
   "62881025542877@s.whatsapp.net": {
-    "isContact": true,
-    "id": "62881025542877@s.whatsapp.net",
-    "name": "! Rara",
+    "id": "74797375574209@lid",
     "lid": "74797375574209@lid",
-    "phoneNumber": "62881025542877@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Rara",
+    "phoneNumber": "62881025542877@s.whatsapp.net",
+    "notify": "🫪"
   },
   "6285773323078@s.whatsapp.net": {
     "isContact": true,
@@ -18870,12 +18868,11 @@
     "phoneNumber": "6285248854027@s.whatsapp.net"
   },
   "6282398749686@s.whatsapp.net": {
-    "id": "278769147330729@lid",
-    "lid": "278769147330729@lid",
     "isContact": true,
+    "id": "6282398749686@s.whatsapp.net",
     "name": "•Andi Nur Intan",
-    "phoneNumber": "6282398749686@s.whatsapp.net",
-    "imgUrl": "changed"
+    "lid": "278769147330729@lid",
+    "phoneNumber": "6282398749686@s.whatsapp.net"
   },
   "6287749483860@s.whatsapp.net": {
     "isContact": true,
@@ -21230,13 +21227,11 @@
     "phoneNumber": "601123591034@s.whatsapp.net"
   },
   "6285711200877@s.whatsapp.net": {
-    "id": "168736715731040@lid",
-    "lid": "168736715731040@lid",
     "isContact": true,
+    "id": "6285711200877@s.whatsapp.net",
     "name": "Naizo 👍",
-    "phoneNumber": "6285711200877@s.whatsapp.net",
-    "notify": "Albiverstappen",
-    "verifiedName": "Albiverstappen"
+    "lid": "168736715731040@lid",
+    "phoneNumber": "6285711200877@s.whatsapp.net"
   },
   "6281226920651@s.whatsapp.net": {
     "isContact": true,
@@ -29941,12 +29936,11 @@
     "phoneNumber": "212773356578@s.whatsapp.net"
   },
   "6285136314199@s.whatsapp.net": {
-    "id": "90916371062907@lid",
-    "lid": "90916371062907@lid",
     "isContact": true,
+    "id": "6285136314199@s.whatsapp.net",
     "name": "! Nurul 🗿",
-    "phoneNumber": "6285136314199@s.whatsapp.net",
-    "notify": "Nursaori_saossoryy"
+    "lid": "90916371062907@lid",
+    "phoneNumber": "6285136314199@s.whatsapp.net"
   },
   "6283125952883@s.whatsapp.net": {
     "isContact": true,
@@ -30089,12 +30083,11 @@
     "phoneNumber": "6285947287336@s.whatsapp.net"
   },
   "628895426439@s.whatsapp.net": {
-    "id": "34522997501977@lid",
-    "lid": "34522997501977@lid",
     "isContact": true,
+    "id": "628895426439@s.whatsapp.net",
     "name": "diana Pratiwi",
-    "phoneNumber": "628895426439@s.whatsapp.net",
-    "imgUrl": "changed"
+    "lid": "34522997501977@lid",
+    "phoneNumber": "628895426439@s.whatsapp.net"
   },
   "6282237814685@s.whatsapp.net": {
     "isContact": true,
@@ -31194,5 +31187,15 @@
     "name": "pushkontakkk 439",
     "lid": "46416483319902@lid",
     "phoneNumber": "6285762664771@s.whatsapp.net"
+  },
+  "172640539001001@lid": {
+    "id": "172640539001001@lid",
+    "lid": "172640539001001@lid",
+    "imgUrl": "changed"
+  },
+  "20500331913406@lid": {
+    "id": "20500331913406@lid",
+    "lid": "20500331913406@lid",
+    "imgUrl": "changed"
   }
 }

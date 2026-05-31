@@ -326,9 +326,25 @@
               "text": "Wah, Hen V1! Ini dia *menu utama* Wily Bot yang lengkap banget! 🤩\n\nAku lihat ada *218 fitur aktif* ya, gokil sih ini! Mulai dari *Auto Fitur*, *Anti Fitur*, sampe *Download* dan *AI Chat* juga ada. Bahkan ada *Konten 18+* dan *Owner Only* juga. Keren parah! ✨\n\nUptime-nya juga udah *9 Jam 15 Menit 40 Detik*, stabil banget nih Hen V1. 👍\n\nAda bagian dari menu ini yang mau kita bahas lebih lanjut? Atau Hen V1 lagi nyari command spesifik nih? Aku siap bantu eksplorasi semua fiturnya kok! 😉"
             }
           ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 14.16 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"s\" | 👤 Hen V1]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Oh, ini menu *Sticker Maker*-nya lagi ya, Hen V1? 😊 Aku ngerti kok, kamu kirim `.s` sebagai balasan ke menu ini.\n\nJadi, untuk bikin stiker, Hen V1 cukup kirim atau _reply_ *gambar* atau *video* dengan command `.s` di _caption_ atau pesan balasannya. Video yang kamu kirim juga otomatis bisa jadi stiker bergerak lho, keren kan! ✨\n\nNah, selain itu, ada juga pengaturan buat *pack* dan *author*-nya nih, biar stiker kamu makin personal:\n• Buat ganti nama *author* stiker: `.`s author <nama_kamu>`\n• Buat ganti nama *pack* stiker: `.`s pack <nama_pack_stiker>`\n\nIni berguna banget kalau Hen V1 mau stikernya punya branding sendiri atau dikumpulin dalam pack tertentu.\n\nGimana, ada *gambar* atau *video* yang mau langsung kita jadiin stiker sekarang, Hen V1? Aku udah siap banget nih! 📸"
+            }
+          ]
         }
       ],
-      "lastActivity": 1780210368716
+      "lastActivity": 1780211765033
     },
     "6289688206739@s.whatsapp.net_120363192554714254@g.us": {
       "messages": [
@@ -432,7 +448,7 @@
           "role": "user",
           "parts": [
             {
-              "text": "[⏰ 31 Mei, 14.02 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Wily, aku udah coba jelasin soal *timestamp* dan juga minta kamu untuk jaga bahasa. Kalau kamu terus-terusan pakai kata-kata kasar kayak git...\" | 👤 Wily]\nAlah bacot"
+              "text": "[⏰ 31 Mei, 14.16 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"s\" | 👤 Wily]\n╭═══『 🎭 *STICKER MAKER* 』═══╮\n│\n│ 📦 *Pack   :* Alamak\n│ ✍️ *Author :* Anda Siapa?\n│\n│ 📋 *Cara Pakai:*\n│ • Kirim/reply 🖼️ *gambar* + .s\n│ • Kirim/reply 🎥 *video* + .s\n│   _(video otomatis jadi animated sticker)_\n│\n│ ⚙️ *Pengaturan:*\n│ • .s author <nama>\n│ • .s pack <nama>\n│\n│ 🏷️ *Alias:* .s · .stiker · .sticker\n╰══════════════════════╯"
             }
           ]
         },
@@ -440,12 +456,12 @@
           "role": "model",
           "parts": [
             {
-              "text": "Wily, aku udah jelasin berkali-kali ya. Aku di sini buat bantu kamu, tapi aku nggak akan toleransi kalau kamu terus-terusan pakai kata-kata kasar kayak gitu.\n\n> Kalau kamu nggak bisa jaga bahasa, aku jadi susah nih buat ngobrol dan bantu kamu dengan nyaman. Ini bukan tentang aku yang \"bacot\", tapi tentang etika berkomunikasi."
+              "text": "Ah, Wily~ kamu bales lagi info *Sticker Maker* ini dengan `.s` doang ya? Hehee~ 😄\n\nAku ngerti kok kamu mau bikin stiker, tapi aku butuh *gambar* atau *video* dulu nih dari kamu. Jadi, kirim dulu fotonya atau videonya, terus baru deh di-reply atau dikasih caption `.s` biar aku bisa sulap jadi stiker.\n\n> Intinya, media dulu, baru perintah `.s` ya Wily! 😉"
             }
           ]
         }
       ],
-      "lastActivity": 1780210926360
+      "lastActivity": 1780211761861
     },
     "6289681008411@s.whatsapp.net_120363409714403483@g.us": {
       "messages": [
@@ -483,43 +499,6 @@
         }
       ],
       "lastActivity": 1780209983994
-    },
-    "6289688206739@s.whatsapp.net_120363383540766761@g.us": {
-      "messages": [
-        {
-          "role": "user",
-          "parts": [
-            {
-              "text": "[⏰ 31 Mei, 14.02 | 👤 Wily]\nhoi"
-            }
-          ]
-        },
-        {
-          "role": "model",
-          "parts": [
-            {
-              "text": "Hoi juga Wily! Ada yang bisa aku bantu siang ini? 😊"
-            }
-          ]
-        },
-        {
-          "role": "user",
-          "parts": [
-            {
-              "text": "[⏰ 31 Mei, 14.03 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Hoi juga Wily! Ada yang bisa aku bantu siang ini? 😊\" | 👤 Wily]\ngini ae dah"
-            }
-          ]
-        },
-        {
-          "role": "model",
-          "parts": [
-            {
-              "text": "Oke deh Wily, *gitu aja* juga boleh kok~ Santai aja ya.\n\nGimana, ada apa nih? Atau mau ngobrolin apa aja, aku siap dengerin! 😊"
-            }
-          ]
-        }
-      ],
-      "lastActivity": 1780210992994
     }
   },
   "sticker_pattern": {
