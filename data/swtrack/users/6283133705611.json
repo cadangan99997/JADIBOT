@@ -47,9 +47,9 @@
     "name": "bi meli",
     "type": "imageMessage",
     "arrivedAt": "2026-05-31T10:34:59.348Z",
-    "read": false,
-    "reacted": false,
-    "emoji": null,
+    "read": true,
+    "reacted": true,
+    "emoji": "🥗",
     "resolve": "PN langsung ✓",
     "source": "status",
     "number": "6283133705611",
@@ -62,6 +62,8 @@
       "participant": "65743584522460@lid",
       "addressingMode": "lid"
     },
-    "updatedAt": "2026-05-31T10:34:59.349Z"
+    "updatedAt": "2026-05-31T10:38:06.572Z",
+    "retriedOnStartup": true,
+    "retriedAt": "2026-05-31T10:38:06.572Z"
   }
 }
