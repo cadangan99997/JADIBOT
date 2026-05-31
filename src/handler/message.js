@@ -2394,6 +2394,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                         }
                                                 }
 
+                                                const _stopTypingWily = startTyping(hisoka, m);
                                                 let response;
                                                 try {
                                                         if (imageBuffer && imageBuffer.length > 0) {
@@ -2467,6 +2468,8 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                         }
                                                 } catch (arErr) {
                                                         wilyError('\x1b[31m[WilyAutoReply] Error:\x1b[39m', arErr.message);
+                                                } finally {
+                                                        _stopTypingWily();
                                                 }
                                         }
 

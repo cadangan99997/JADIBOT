@@ -549,9 +549,25 @@
               "text": "Oh iya, maaf Anda Siapa?~ Aku kira tadi mau nyapa malam juga, soalnya udah malem banget nih. Hehe salah fokus aku 😅\n\nJadi, ada apa nih? Ada yang bisa aku bantu? 😄"
             }
           ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 21.30 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Oh iya, maaf Anda Siapa?~ Aku kira tadi mau nyapa malam juga, soalnya udah malem banget nih. Hehe salah fokus aku 😅 Jadi, ada apa nih? Ada ...\" | 👤 Anda Siapa?]\nKurang ngopi keknya 😂"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Wkwkwk, bener banget Anda Siapa?! 😂 Kayaknya aku butuh *espresso* nih biar nggak salah fokus lagi. Maklum, otaknya lagi mode *hemat energi* dari tadi pagi \n\nTapi serius, ada apa nih? Atau cuma mau becanda aja sama aku? 😄"
+            }
+          ]
         }
       ],
-      "lastActivity": 1780237771918
+      "lastActivity": 1780237812058
     }
   },
   "sticker_pattern": {
@@ -574,6 +590,11 @@
       "total_sent": 1,
       "moods": {},
       "last_sent": 1780209680
+    },
+    "https://cdn.ornzora.eu.cc/c3de99b6-bf96-46f6-bef7-d929c6399175-HONOLULU.webp": {
+      "total_sent": 1,
+      "moods": {},
+      "last_sent": 1780237811
     }
   },
   "sticker_story": {
@@ -616,6 +637,15 @@
         "context": "Hayo Unknown, kirim `.s` lagi nih~ Aku udah siap nih mau bikin stiker, tapi mana nih *gambar* atau *videonya*? [REPLY-STIKER: jahil] Aku tungguin ya, biar bisa langsung jadi stiker keren buat kamu! \ud83d",
         "was_fallback": 1,
         "sent_at": 1780209793
+      }
+    ],
+    "6283134844523@s.whatsapp.net_120363383540766761@g.us": [
+      {
+        "sticker_url": "https://cdn.ornzora.eu.cc/c3de99b6-bf96-46f6-bef7-d929c6399175-HONOLULU.webp",
+        "mood": "",
+        "context": "Wkwkwk, bener banget Anda Siapa?! 😂 Kayaknya aku butuh *espresso* nih biar nggak salah fokus lagi. Maklum, otaknya lagi mode *hemat energi* dari tadi pagi [REPLY-STIKER: absurd] Tapi serius, ada apa",
+        "was_fallback": 1,
+        "sent_at": 1780237811
       }
     ]
   },
