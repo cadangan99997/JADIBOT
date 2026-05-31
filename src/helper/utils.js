@@ -142,30 +142,45 @@ export function escapeRegExp(string = '') {
 
 export const getCaseName = fileOrCode => {
         return new Promise((resolve, reject) => {
-                const regex = /case\s+['"`]?(.*?)['"`]?\s*:/g;
-                let matches = [];
+                const processContent = (content) => {
+                        const lines = content.split('\n');
+                        const commands = [];
+                        let inCaseGroup = false;
+                        let firstInGroup = null;
+
+                        for (let i = 0; i < lines.length; i++) {
+                                const line = lines[i].trim();
+                                const caseMatch = line.match(/^case\s+['"`](.*?)['"`]\s*:/);
+
+                                if (caseMatch) {
+                                        if (!inCaseGroup) {
+                                                inCaseGroup = true;
+                                                firstInGroup = caseMatch[1];
+                                        }
+                                        if (line.includes('{')) {
+                                                commands.push(firstInGroup);
+                                                inCaseGroup = false;
+                                                firstInGroup = null;
+                                        }
+                                } else if (inCaseGroup) {
+                                        if (line.startsWith('{')) {
+                                                commands.push(firstInGroup);
+                                        }
+                                        inCaseGroup = false;
+                                        firstInGroup = null;
+                                }
+                        }
+
+                        return Array.from(new Set(commands));
+                };
 
                 if (!fs.existsSync(fileOrCode)) {
-                        let match;
-                        while ((match = regex.exec(fileOrCode)) !== null) {
-                                matches.push(match[1]);
-                        }
-
-                        return resolve(matches);
+                        return resolve(processContent(fileOrCode));
                 }
 
-                const readStream = fs.createReadStream(fileOrCode);
-
-                readStream.on('data', chunk => {
-                        let match;
-                        while ((match = regex.exec(chunk)) !== null) {
-                                matches.push(match[1]);
-                        }
-                });
-
-                readStream.on('end', () => {
-                        readStream.destroy();
-                        resolve(Array.from(new Set(matches)));
+                fs.readFile(fileOrCode, 'utf8', (err, content) => {
+                        if (err) return reject(err);
+                        resolve(processContent(content));
                 });
         });
 };
