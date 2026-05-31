@@ -330,9 +330,6 @@ export function restartAutoCleaner() {
  *  app-state-sync-key-*.json  Kunci sync WA state. Simpan 10 terbaru,
  *                              hapus sisanya. WA hanya butuh beberapa key.
  *
- *  lid-mapping-*.json         Cache LID↔PN sementara. SELALU hapus —
- *                              WA regenerasi otomatis setiap restart.
- *
  *  ❌ JANGAN PERNAH DIHAPUS:
  *  ─────────────────────────────────────────────────────────────
  *  creds.json                  Kredensial sesi utama. Hapus = logout total.
@@ -344,6 +341,8 @@ export function restartAutoCleaner() {
  *                              sender-key biasa). Hapus = gagal decode grup.
  *  tctoken-*.json              Token transport channel WA. Diperbarui aktif,
  *                              hapus bisa putus koneksi alternatif.
+ *  lid-mapping-*.json          Cache LID↔PN. Hapus = resolve nomor gagal di
+ *                              bot utama & jadibot (koneksi tidak akurat).
  * ════════════════════════════════════════════════════════════════
  */
 export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } = {}) {
@@ -375,7 +374,6 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
         let deletedIdentity   = 0
         let deletedDeviceList = 0
         let deletedAppState   = 0
-        let deletedLidMapping = 0
         let deletedSize       = 0
 
         // ── Kumpulkan app-state-sync-key untuk pruning ────────────────────────
@@ -461,13 +459,9 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
                 continue
             }
 
-            // lid-mapping-*: SELALU hapus — cache sementara, WA buat ulang otomatis
+            // lid-mapping-*: JANGAN HAPUS — cache LID↔PN penting untuk resolve koneksi bot utama & jadibot
             if (file.startsWith('lid-mapping-') && file.endsWith('.json')) {
-                try {
-                    deletedSize += fs.statSync(filePath).size
-                    fs.unlinkSync(filePath)
-                    deletedLidMapping++
-                } catch {}
+                continue
             }
         }
 
@@ -478,7 +472,6 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
         if (deletedIdentity   > 0) parts.push(`${deletedIdentity} identity-key`)
         if (deletedDeviceList > 0) parts.push(`${deletedDeviceList} device-list`)
         if (deletedSessions   > 0) parts.push(`${deletedSessions} session`)
-        if (deletedLidMapping > 0) parts.push(`${deletedLidMapping} lid-mapping`)
 
         if (parts.length > 0) {
             console.log(
