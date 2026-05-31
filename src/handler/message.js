@@ -9544,11 +9544,12 @@ tt | ig | fb | ytmp3 | ytmp4 | play
 hd/remini/hdr | hdvid/hdvideo
 
 「 🔍 *INFO & CEK* 」
+ping (.p) | info | owner/own
 cekhp/spechp/infohp | bandingkan
 cuaca | ba/bluearchive
 genius/carilagu | geniusdetail
-whatsmusik/wmusik
-musikai/aimusik | musikai2/aimusik2
+whatsmusik/wmusik | infomusik/infolirik
+speedtest/speed | musikai/aimusik | musikai2/aimusik2
 pixiv | pixivr18
 
 「 🤖 *AI CHAT* 」
@@ -9575,7 +9576,8 @@ listowner | addowner | delowner
 all | swgrup/statusgroup | infowibu | animasu | tvone | alqanimenotif | malnews | ceksw | cekauto | cekauto gc
 wily | simi | wilyai on/off | wilyai pm/gc/all | wilyai reset
 setreactapi | addemoji | delemoji | listemoji
-upbot | backup | ceksesi | eval | bash
+upbot | restart/rebot | backup | ceksesi | eval | bash
+ram | ceksize/disksize | autosholat | credsjson
 dbstats | sessiondb | listcontact
 cekerror | cekerror reset | contact
 
@@ -9939,9 +9941,14 @@ cekerror | cekerror reset | contact
 ╭─「 🛠️ *TOOLS TEKNIS* 」
 │
 ├➤ *.mati / .shutdown*  _→ Matikan bot sepenuhnya_
+├➤ *.restart / .rebot / .rb*  _→ Restart bot_
 ├➤ *.upbot*  _→ Update & restart bot_
 ├➤ *.backup*  _→ Backup sesi bot_
 ├➤ *.ceksesi*  _→ Cek status sesi aktif_
+├➤ *.ram*  _→ Cek penggunaan RAM & memori_
+├➤ *.ceksize / .disksize*  _→ Cek ukuran folder & disk_
+├➤ *.credsjson*  _→ Export sesi ke creds.json_
+├➤ *.autosholat on/off/test/status*  _→ Notif jadwal sholat_
 ├➤ *.eval [kode JS]*  _→ Eksekusi kode_
 ├➤ *.bash [perintah]*  _→ Eksekusi shell_
 ├➤ *.dbstats*  _→ Statistik database_

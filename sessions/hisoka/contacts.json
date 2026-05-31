@@ -23725,11 +23725,12 @@
     "phoneNumber": "628989195787@s.whatsapp.net"
   },
   "6285714738465@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285714738465@s.whatsapp.net",
-    "name": "Rdn_Sltn",
+    "id": "215706410967263@lid",
     "lid": "215706410967263@lid",
-    "phoneNumber": "6285714738465@s.whatsapp.net"
+    "isContact": true,
+    "name": "Rdn_Sltn",
+    "phoneNumber": "6285714738465@s.whatsapp.net",
+    "notify": "RenzZ~"
   },
   "6283156786350@s.whatsapp.net": {
     "isContact": true,
@@ -25230,7 +25231,7 @@
     "isContact": true,
     "name": "! Zacky Ariansyah",
     "phoneNumber": "6289678522775@s.whatsapp.net",
-    "notify": "Zacky Ariansyah"
+    "notify": "HarukiID"
   },
   "6283872605369@s.whatsapp.net": {
     "isContact": true,
