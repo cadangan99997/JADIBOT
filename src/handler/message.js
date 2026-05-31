@@ -9271,28 +9271,33 @@ _📦 Powered by Wily Bot V19_ 🤖`;
                                         await hisoka.sendMessage(m.from, { react: { text: `🌊`, key: m.key } }).catch(() => {});
 
                                         const teks =
-`╔══『 🤖 *WILY BOT V19* 』══╗
-║ 👤 ${(m.pushName || 'User').substring(0,16).padEnd(16)} ${m.isOwner ? '👑' : '👤'} ║
-║ ⏱️ ${uptimeStr.substring(0,17).padEnd(17)}  ║
-║ 📦 ${String(totalCmd).padStart(3)} fitur aktif        ║
-╚══════════════════════════╝
-
-╭─「 🤖 *AUTO FITUR* 」
+`╭═════════════════════╮
+║   🤖 *WILY BOT V19*   
+├═════════════════════┤
+│ 👤 » ${m.pushName || 'User'} ${m.isOwner ? '👑' : ''}
+│ ⏱️ » ${uptimeStr}
+│ 📦 » ${totalCmd} fitur aktif
+│ 🌐 » Online 🟢
+├═════════════════════┤
+║   🤖 *AUTO FITUR*   
+├═════════════════════┤
 │ .typing
 │ .recording
 │ .online
 │ .readsw
 │ .telegram
 │ .autocleaner
-╰ .sessioncleaner
-
-╭─「 🛡️ *ANTI FITUR* 」
+│ .sessioncleaner
+├═════════════════════┤
+║   🛡️ *ANTI FITUR*   
+├═════════════════════┤
 │ .antidel
 │ .anticall / .ac
 │ .anticallvid / .acv
-╰ .antitagsw
-
-╭─「 💬 *PESAN & STICKER* 」
+│ .antitagsw
+├═════════════════════┤
+║  💬 *PESAN & STICKER*  
+├═════════════════════┤
 │ .del / .d
 │ .s / .sticker
 │ .toimg
@@ -9302,23 +9307,26 @@ _📦 Powered by Wily Bot V19_ 🤖`;
 │ .stickerpack
 │ .rvo / .viewonce
 │ .quoted / .q
-╰ .react / .reaksi
-
-╭─「 👥 *FITUR GRUP* 」
+│ .react / .reaksi
+├═════════════════════┤
+║   👥 *FITUR GRUP*   
+├═════════════════════┤
 │ .hidetag / .ht
 │ .ghosttag / .gt
 │ .welcome
 │ .goodbye
 │ .welgod
 │ .listgroup
-╰ .group
-
-╭─「 📡 *STATUS & STORY* 」
+│ .group
+├═════════════════════┤
+║  📡 *STATUS & STORY*  
+├═════════════════════┤
 │ .sw / .getsw
 │ .upswgc
-╰ .sendstatus / .swgc
-
-╭─「 📥 *DOWNLOAD* 」
+│ .sendstatus / .swgc
+├═════════════════════┤
+║   📥 *DOWNLOAD*   
+├═════════════════════┤
 │ .tt
 │ .ig
 │ .fb
@@ -9326,9 +9334,10 @@ _📦 Powered by Wily Bot V19_ 🤖`;
 │ .ytmp4
 │ .play
 │ .hd / .remini / .hdr
-╰ .hdvid / .hdvideo
-
-╭─「 🔍 *INFO & CEK* 」
+│ .hdvid / .hdvideo
+├═════════════════════┤
+║   🔍 *INFO & CEK*   
+├═════════════════════┤
 │ .ping / .p
 │ .info
 │ .owner / .own
@@ -9343,14 +9352,16 @@ _📦 Powered by Wily Bot V19_ 🤖`;
 │ .musikai / .aimusik
 │ .musikai2 / .aimusik2
 │ .speedtest / .speed
-╰ .pixiv / .pixivr18
-
-╭─「 🤖 *AI CHAT* 」
+│ .pixiv / .pixivr18
+├═════════════════════┤
+║   🤖 *AI CHAT*   
+├═════════════════════┤
 │ .ai / .tanya
 │ .mymemory
-╰ .forgetme
-
-╭─「 🎌 *ANIME & MANGA* 」
+│ .forgetme
+├═════════════════════┤
+║  🎌 *ANIME & MANGA*  
+├═════════════════════┤
 │ .kusonime / .anime
 │ .kusonimeupdate
 │ .alq / .alqanime
@@ -9359,57 +9370,80 @@ _📦 Powered by Wily Bot V19_ 🤖`;
 │ .komik / .komiktap
 │ .komikinfo
 │ .komikget / .komikdl
-╰ .komikupdate
-
-╭─「 🔞 *KONTEN 18+* 」
+│ .komikupdate
+├═════════════════════┤
+║   🔞 *KONTEN 18+*   
+├═════════════════════┤
 │ .nh / .nhentai
 │ .nhget
 │ .nhrand
 │ .nhdl
 │ .cosplay
 │ .cosplayrandom
-╰ .pixivr18
-
-╭─「 🌐 *WEB & TOOLS* 」
+│ .pixivr18
+├═════════════════════┤
+║   🌐 *WEB & TOOLS*   
+├═════════════════════┤
 │ .ss / .screenshot
 │ .ssweb / .webinfo
 │ .tmail / .tempmail
 │ .tminbox
 │ .tmread
 │ .tmwait
-╰ .tmdel
-
-╭─「 🤖 *JADIBOT* 」
+│ .tmdel
+├═════════════════════┤
+║   🤖 *JADIBOT*   
+├═════════════════════┤
 │ .jadibot
 │ .stopbot
 │ .listbot
-╰ .setpairing
-
-╭─「 👑 *OWNER* 」
-│ .listowner  .addowner  .delowner
-│ .all          .swgrup
-│ .infowibu     .animasu
-│ .tvone        .malnews
+│ .setpairing
+├═════════════════════┤
+║   👑 *OWNER ONLY*   
+├═════════════════════┤
+│ .listowner
+│ .addowner
+│ .delowner
+│ .all
+│ .swgrup / .statusgroup
+│ .infowibu
+│ .animasu
+│ .tvone
+│ .malnews
 │ .alqanimenotif
-│ .cekauto      .ceksw
-│ .wilyai       .wily  .simi
-│ .setreactapi  .cekreact
-│ .addemoji  .delemoji  .listemoji
-│ .ram          .ceksize
-│ .restart      .upbot
-│ .backup       .ceksesi
-│ .autosholat   .credsjson
-│ .eval         .bash
-│ .dbstats      .sessiondb
-│ .listcontact  .cekerror
-╰ .contact      .mati
-
-╭─「 📋 *SUB MENU* 」
-│ .settingmenu  .groupmenu
-│ .statusmenu   .downloadmenu
-│ .jadibotmenu  .ownermenu
-╰ .allmenu
-`;
+│ .cekauto
+│ .ceksw
+│ .wilyai
+│ .wily / .simi
+│ .setreactapi / .cekreact
+│ .addemoji
+│ .delemoji
+│ .listemoji
+│ .ram
+│ .ceksize / .disksize
+│ .restart / .rebot / .rb
+│ .upbot
+│ .backup
+│ .ceksesi
+│ .autosholat
+│ .credsjson
+│ .eval / .bash
+│ .dbstats / .sessiondb
+│ .listcontact
+│ .cekerror
+│ .contact
+│ .mati / .shutdown
+├═════════════════════┤
+║   📋 *SUB MENU*   
+├═════════════════════┤
+│ .settingmenu
+│ .groupmenu
+│ .statusmenu
+│ .downloadmenu
+│ .jadibotmenu
+│ .ownermenu
+│ .allmenu
+╰═════════════════════╯`;
                                         const ppUser = await getUserProfilePictureUrl(hisoka, m.sender);
                                         const menuCtxInfo = ppUser
                                                 ? {
