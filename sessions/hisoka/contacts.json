@@ -3018,11 +3018,12 @@
     "phoneNumber": "6282143322723@s.whatsapp.net"
   },
   "6282239841068@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282239841068@s.whatsapp.net",
-    "name": "√ Lyrn",
+    "id": "37572776599715@lid",
     "lid": "37572776599715@lid",
-    "phoneNumber": "6282239841068@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Lyrn",
+    "phoneNumber": "6282239841068@s.whatsapp.net",
+    "notify": "yayayaya"
   },
   "62895422783101@s.whatsapp.net": {
     "isContact": true,
