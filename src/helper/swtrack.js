@@ -52,6 +52,38 @@ export function updateSwStats(number, name, reacted, emoji) {
         } catch {}
 }
 
+// ─── SwStats: pruning activeSW yang expired dari semua user ──────────────────
+export function pruneSwStats() {
+        try {
+                if (!fs.existsSync(SW_STATS_PATH)) return;
+                let stats = {};
+                try { stats = JSON.parse(fs.readFileSync(SW_STATS_PATH, 'utf-8')); } catch { return; }
+
+                const tsNow = Date.now();
+                const SW_TTL = 24 * 60 * 60 * 1000;
+                let pruned = 0;
+
+                const { _emojiStats, ...users } = stats;
+                for (const [num, entry] of Object.entries(users)) {
+                        if (!entry || typeof entry !== 'object') continue;
+                        if (!Array.isArray(entry.activeSW)) { entry.activeSW = []; continue; }
+                        const before = entry.activeSW.length;
+                        entry.activeSW = entry.activeSW.filter(t => tsNow - t < SW_TTL);
+                        pruned += before - entry.activeSW.length;
+                }
+
+                const sorted = Object.fromEntries(
+                        Object.entries(users).sort((a, b) => (b[1].reactions || 0) - (a[1].reactions || 0))
+                );
+                if (_emojiStats) sorted._emojiStats = _emojiStats;
+                fs.writeFileSync(SW_STATS_PATH, JSON.stringify(sorted, null, 2), 'utf-8');
+
+                if (pruned > 0) {
+                        console.log(`\x1b[32m[SwStats]\x1b[39m Pruned ${pruned} activeSW expired → data sekarang akurat realtime`);
+                }
+        } catch {}
+}
+
 // ─── SwTrack: per-user tracking di data/swtrack/users/ ───────────────────────
 export const SW_TRACK_USER_DIR = path.join(process.cwd(), 'data', 'swtrack', 'users');
 export const SW_ENTRY_TTL_MS = 26 * 60 * 60 * 1000; // 26 jam

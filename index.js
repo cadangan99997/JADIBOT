@@ -51,6 +51,7 @@ import { getStatusEmojis, getRandomEmoji } from './src/helper/emoji.js';
 import { MemoryMonitor } from './src/helper/memoryMonitor.js';
 import { getPhoneRegion, formatPhoneWithRegion } from './src/helper/phoneRegion.js';
 import { ensureTmpDir, startAutoCleaner, stopAutoCleaner, restartAutoCleaner, cleanStaleSessionFiles } from './src/helper/cleaner.js'; // ini baru
+import { pruneSwStats } from './src/helper/swtrack.js';
 import { startJadibot, jadibotMap, purgeExpiredJadibotSessions, getJadibotExpiry, formatRemainingTime, pauseAllJadibotTimers, resumeAllJadibotTimers, restoreConnectedAtMap } from './src/helper/jadibot.js';
 import { safeGetPNForLID } from './src/helper/socketCompat.js';
 import { saveViewOnceCache, cleanOldViewOnceCache, hasViewOnceCache } from './src/helper/voCache.js';
@@ -717,6 +718,9 @@ async function main() {
                         console.log(`${C}║${R} ${Y}👥${R} Grup   : ${B}${groupCount} grup (admin: ${adminCount})${R}`);
                         console.log(`${C}║${R} ${G}🌐${R} Status : ${B}${modeLabel}${R}`);
                         console.log(`${C}╚══════════════════════════════════╝${R}`);
+
+                        // ── SwStats: prune activeSW expired supaya data realtime & akurat ──
+                        try { pruneSwStats(); } catch {}
 
                         // ── SW Track: startup retry — proses SW pending yang kelewat saat bot mati ──
                         const swStartupTime = Date.now(); // Waktu bot connect — untuk filter entry lama vs baru
