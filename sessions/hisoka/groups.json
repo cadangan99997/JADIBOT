@@ -109,6 +109,34 @@
       }
     ]
   },
+  "120363409714403483@g.us": {
+    "id": "120363409714403483@g.us",
+    "addressingMode": "lid",
+    "subject": "TES BOT",
+    "subjectOwner": "97968623505429@lid",
+    "subjectOwnerPn": "6289667923162@s.whatsapp.net",
+    "subjectTime": 1780209868,
+    "size": 1,
+    "creation": 1780209868,
+    "owner": "97968623505429@lid",
+    "ownerPn": "6289667923162@s.whatsapp.net",
+    "owner_country_code": "ID",
+    "descTime": null,
+    "restrict": false,
+    "announce": false,
+    "isCommunity": false,
+    "isCommunityAnnounce": false,
+    "joinApprovalMode": false,
+    "memberAddMode": true,
+    "participants": [
+      {
+        "id": "97968623505429@lid",
+        "phoneNumber": "6289667923162@s.whatsapp.net",
+        "admin": "superadmin"
+      }
+    ],
+    "ephemeralDuration": 0
+  },
   "120363387297385463@g.us": {
     "id": "120363387297385463@g.us",
     "addressingMode": "lid",
@@ -125,6 +153,32 @@
     "isCommunityAnnounce": false,
     "joinApprovalMode": false,
     "memberAddMode": false,
+    "participants": [
+      {
+        "id": "97968623505429@lid",
+        "phoneNumber": "6289667923162@s.whatsapp.net",
+        "admin": "admin"
+      }
+    ]
+  },
+  "120363403141152006@g.us": {
+    "id": "120363403141152006@g.us",
+    "addressingMode": "lid",
+    "subject": "Pairing code join",
+    "subjectTime": 1752513208,
+    "size": 1,
+    "creation": 1752513208,
+    "desc": "https://chat.whatsapp.com/Kigj877f5jH7Hogvsx5E7y\n\nZsssggvsgfdazs",
+    "descId": "851FA124FF500CF2D0DAACBA9B840E9E",
+    "descOwner": "97968623505429@lid",
+    "descOwnerPn": "6289667923162@s.whatsapp.net",
+    "descTime": 1768637011,
+    "restrict": true,
+    "announce": false,
+    "isCommunity": false,
+    "isCommunityAnnounce": false,
+    "joinApprovalMode": false,
+    "memberAddMode": true,
     "participants": [
       {
         "id": "97968623505429@lid",
@@ -235,32 +289,6 @@
       }
     ],
     "ephemeralDuration": 86400
-  },
-  "120363403141152006@g.us": {
-    "id": "120363403141152006@g.us",
-    "addressingMode": "lid",
-    "subject": "Pairing code join",
-    "subjectTime": 1752513208,
-    "size": 1,
-    "creation": 1752513208,
-    "desc": "https://chat.whatsapp.com/Kigj877f5jH7Hogvsx5E7y\n\nZsssggvsgfdazs",
-    "descId": "851FA124FF500CF2D0DAACBA9B840E9E",
-    "descOwner": "97968623505429@lid",
-    "descOwnerPn": "6289667923162@s.whatsapp.net",
-    "descTime": 1768637011,
-    "restrict": true,
-    "announce": false,
-    "isCommunity": false,
-    "isCommunityAnnounce": false,
-    "joinApprovalMode": false,
-    "memberAddMode": true,
-    "participants": [
-      {
-        "id": "97968623505429@lid",
-        "phoneNumber": "6289667923162@s.whatsapp.net",
-        "admin": "admin"
-      }
-    ]
   },
   "120363425027620505@g.us": {
     "id": "120363425027620505@g.us",
@@ -17984,33 +18012,5 @@
         "admin": null
       }
     ]
-  },
-  "120363409714403483@g.us": {
-    "id": "120363409714403483@g.us",
-    "addressingMode": "lid",
-    "subject": "TES BOT",
-    "subjectOwner": "97968623505429@lid",
-    "subjectOwnerPn": "6289667923162@s.whatsapp.net",
-    "subjectTime": 1780209868,
-    "size": 1,
-    "creation": 1780209868,
-    "owner": "97968623505429@lid",
-    "ownerPn": "6289667923162@s.whatsapp.net",
-    "owner_country_code": "ID",
-    "descTime": null,
-    "restrict": false,
-    "announce": false,
-    "isCommunity": false,
-    "isCommunityAnnounce": false,
-    "joinApprovalMode": false,
-    "memberAddMode": true,
-    "participants": [
-      {
-        "id": "97968623505429@lid",
-        "phoneNumber": "6289667923162@s.whatsapp.net",
-        "admin": "superadmin"
-      }
-    ],
-    "ephemeralDuration": 0
   }
 }

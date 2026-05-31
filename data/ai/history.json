@@ -432,7 +432,7 @@
           "role": "user",
           "parts": [
             {
-              "text": "[⏰ 31 Mei, 13.56 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Iya, serius Wily. Kalau kamu perhatiin *timestamp* di pesan WhatsApp, aku balesnya cepet kok. Nggak sampai semenit dari kamu kirim pesan seb...\" | 👤 Wily]\nLama kontol"
+              "text": "[⏰ 31 Mei, 14.02 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Wily, aku udah coba jelasin soal *timestamp* dan juga minta kamu untuk jaga bahasa. Kalau kamu terus-terusan pakai kata-kata kasar kayak git...\" | 👤 Wily]\nAlah bacot"
             }
           ]
         },
@@ -440,12 +440,12 @@
           "role": "model",
           "parts": [
             {
-              "text": "Wily, aku udah coba jelasin soal *timestamp* dan juga minta kamu untuk jaga bahasa. Kalau kamu terus-terusan pakai kata-kata kasar kayak gitu, aku jadi susah nih buat bantu kamu dengan nyaman, Wily."
+              "text": "Wily, aku udah jelasin berkali-kali ya. Aku di sini buat bantu kamu, tapi aku nggak akan toleransi kalau kamu terus-terusan pakai kata-kata kasar kayak gitu.\n\n> Kalau kamu nggak bisa jaga bahasa, aku jadi susah nih buat ngobrol dan bantu kamu dengan nyaman. Ini bukan tentang aku yang \"bacot\", tapi tentang etika berkomunikasi."
             }
           ]
         }
       ],
-      "lastActivity": 1780210560276
+      "lastActivity": 1780210926360
     },
     "6289681008411@s.whatsapp.net_120363409714403483@g.us": {
       "messages": [
@@ -483,6 +483,43 @@
         }
       ],
       "lastActivity": 1780209983994
+    },
+    "6289688206739@s.whatsapp.net_120363383540766761@g.us": {
+      "messages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 14.02 | 👤 Wily]\nhoi"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Hoi juga Wily! Ada yang bisa aku bantu siang ini? 😊"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "[⏰ 31 Mei, 14.03 | ↩️ BALAS PESAN BOT SEBELUMNYA: \"Hoi juga Wily! Ada yang bisa aku bantu siang ini? 😊\" | 👤 Wily]\ngini ae dah"
+            }
+          ]
+        },
+        {
+          "role": "model",
+          "parts": [
+            {
+              "text": "Oke deh Wily, *gitu aja* juga boleh kok~ Santai aja ya.\n\nGimana, ada apa nih? Atau mau ngobrolin apa aja, aku siap dengerin! 😊"
+            }
+          ]
+        }
+      ],
+      "lastActivity": 1780210992994
     }
   },
   "sticker_pattern": {

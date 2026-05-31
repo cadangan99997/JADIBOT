@@ -54,14 +54,6 @@ import { buildIgVisionPrompt, buildIgCaptionPrompt, buildIgFallbackCaption, pars
 import { hashSticker, lookupSticker, saveSticker, incrementStickerSeen, buildStickerContextHint, getStickerMemoryStats } from '../helper/stickerMemory.js';
 import { getJadibotAntidel, getJadibotReadsw, getJadibotAnticall, getJadibotAnticallvid, setJadibotUserSetting, getJadibotNumber } from '../helper/jadibotSettings.js';
 
-let _cachedTotalCmd = null;
-async function getTotalCmd() {
-    if (_cachedTotalCmd !== null) return _cachedTotalCmd;
-    const allCmds = await getCaseName(path.join(process.cwd(), 'src', 'handler', 'message.js'));
-    _cachedTotalCmd = allCmds.length || 0;
-    return _cachedTotalCmd;
-}
-
 const WILY_VERBOSE_LOGS = process.env.WILY_VERBOSE_LOGS === 'true' || process.env.BOT_DEBUG_LOG === 'true';
 const wilyLog = (...args) => {
         if (WILY_VERBOSE_LOGS) console.log(...args);
@@ -9272,7 +9264,8 @@ _📦 Powered by Wily Bot V18.1_ 🤖`;
                                         const um = Math.floor((uptime % 3600) / 60);
                                         const us = Math.floor(uptime % 60);
                                         const uptimeStr = `${uh} Jam ${um} Menit ${us} Detik`;
-                                        const totalCmd = await getTotalCmd();
+                                        const allCmds = await getCaseName(path.join(process.cwd(), 'src', 'handler', 'message.js'));
+                                        const totalCmd = allCmds.length || 0;
 
                                         await hisoka.sendMessage(m.from, { react: { text: `🌊`, key: m.key } }).catch(() => {});
 
@@ -9596,6 +9589,94 @@ cekerror | cekerror reset | contact
                                     }
                                 }
                                 logCommand(m, hisoka, 'allmenu');
+                                break;
+                        }
+
+                        case 'tesbutton': {
+                                if (!m.isOwner) { await tolak(hisoka, m, '❌ Hanya owner yang bisa tes button!'); break; }
+                                const cfg = loadConfig();
+                                const footer = cfg?.botReply?.footer || '🤖 Wily Bot';
+
+                                const subCmd = (query || '').trim().toLowerCase();
+
+                                // ── Tipe 1: quick_reply (tombol balas cepat) ──
+                                if (!subCmd || subCmd === '1' || subCmd === 'reply') {
+                                        await hisoka.sendMessage(m.from, { react: { text: '🧪', key: m.key } });
+                                        let sent = false;
+                                        try {
+                                                const btn = new Button()
+                                                        .setBody(`*🧪 TES BUTTON — Tipe 1: Quick Reply*\n\nTombol di bawah adalah quick_reply.\nKlik tombol → bot terima sebagai pesan.\n\n_Ketik .tesbutton 2 untuk tipe list_\n_Ketik .tesbutton 3 untuk tipe URL/Copy_`)
+                                                        .setFooter(footer)
+                                                        .addReply('✅ Pilihan A', 'tesbutton_a')
+                                                        .addReply('❌ Pilihan B', 'tesbutton_b')
+                                                        .addReply('🔄 Coba Lagi', 'tesbutton_retry');
+                                                await btn.run(m.from, hisoka, { quoted: m });
+                                                sent = true;
+                                        } catch (_) {}
+                                        if (!sent) {
+                                                await hisoka.sendMessage(m.from, {
+                                                        text: `*🧪 TES BUTTON — Tipe 1: Quick Reply*\n\n❌ Format interaktif tidak didukung di versi WA ini.\n\nCoba kirim:\n.tesbutton 2 → List/Pilihan\n.tesbutton 3 → URL & Copy`
+                                                }, { quoted: m });
+                                        }
+                                        logCommand(m, hisoka, 'tesbutton');
+                                        break;
+                                }
+
+                                // ── Tipe 2: single_select (list pilihan dropdown) ──
+                                if (subCmd === '2' || subCmd === 'list') {
+                                        await hisoka.sendMessage(m.from, { react: { text: '📋', key: m.key } });
+                                        let sent = false;
+                                        try {
+                                                const btn = new Button()
+                                                        .setBody(`*🧪 TES BUTTON — Tipe 2: List/Select*\n\nKlik tombol "Lihat Pilihan" untuk buka dropdown.\n\n_Format ini paling kompatibel di banyak versi WA._`)
+                                                        .setFooter(footer)
+                                                        .addSelection('📂 Lihat Pilihan')
+                                                        .makeSections('🔧 Fitur Bot', '')
+                                                        .makeRow('', 'AI Chat', 'Tanya apa saja ke bot', 'list_ai')
+                                                        .makeRow('', 'Download TikTok', 'Unduh video TikTok', 'list_tt')
+                                                        .makeRow('', 'Buat Sticker', 'Kirim foto + .s', 'list_sticker')
+                                                        .makeSections('📥 Info', '')
+                                                        .makeRow('', 'Cek Status Bot', 'Ping & uptime', 'list_ping')
+                                                        .makeRow('', 'Menu Lengkap', 'Semua fitur', 'list_menu');
+                                                await btn.run(m.from, hisoka, { quoted: m });
+                                                sent = true;
+                                        } catch (_) {}
+                                        if (!sent) {
+                                                await hisoka.sendMessage(m.from, {
+                                                        text: `*🧪 TES BUTTON — Tipe 2: List/Select*\n\n❌ Format list tidak didukung di versi WA ini.\n\nCoba: .tesbutton 3 → URL & Copy`
+                                                }, { quoted: m });
+                                        }
+                                        logCommand(m, hisoka, 'tesbutton');
+                                        break;
+                                }
+
+                                // ── Tipe 3: cta_url + cta_copy ──
+                                if (subCmd === '3' || subCmd === 'url') {
+                                        await hisoka.sendMessage(m.from, { react: { text: '🔗', key: m.key } });
+                                        let sent = false;
+                                        try {
+                                                const btn = new Button()
+                                                        .setBody(`*🧪 TES BUTTON — Tipe 3: URL & Copy*\n\n🔗 Tombol buka link langsung\n📋 Tombol salin teks ke clipboard\n\n_Format ini didukung WA versi terbaru._`)
+                                                        .setFooter(footer)
+                                                        .addUrl('🌐 Buka Link', 'https://wa.me/', 'https://wa.me/')
+                                                        .addCopy('📋 Salin Kode', 'KODE-WILY-2025', 'copy_kode');
+                                                await btn.run(m.from, hisoka, { quoted: m });
+                                                sent = true;
+                                        } catch (_) {}
+                                        if (!sent) {
+                                                await hisoka.sendMessage(m.from, {
+                                                        text: `*🧪 TES BUTTON — Tipe 3: URL & Copy*\n\n❌ Format URL/Copy tidak didukung di versi WA ini.\n\nLink manual: https://wa.me/\nKode: KODE-WILY-2025`
+                                                }, { quoted: m });
+                                        }
+                                        logCommand(m, hisoka, 'tesbutton');
+                                        break;
+                                }
+
+                                // ── Info / help ──
+                                await hisoka.sendMessage(m.from, {
+                                        text: `*🧪 TES BUTTON — Panduan*\n\n*.tesbutton 1* — Quick Reply (tombol balas)\n*.tesbutton 2* — List/Select (dropdown pilihan)\n*.tesbutton 3* — URL & Copy (link + salin teks)\n\nMasing-masing punya fallback teks jika versi WA tidak support.`
+                                }, { quoted: m });
+                                logCommand(m, hisoka, 'tesbutton');
                                 break;
                         }
 

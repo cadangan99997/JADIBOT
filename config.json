@@ -81,7 +81,7 @@
     "footer": "Version V19"
   },
   "wilyAI": {
-    "enabled": true,
+    "enabled": false,
     "autoReply": true,
     "privateReply": true,
     "scope": "all",
