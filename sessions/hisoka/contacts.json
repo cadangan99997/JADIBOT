@@ -9075,11 +9075,12 @@
     "phoneNumber": "6287713492432@s.whatsapp.net"
   },
   "6288226422521@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6288226422521@s.whatsapp.net",
-    "name": "√ Cindy",
+    "id": "131597797978351@lid",
     "lid": "131597797978351@lid",
-    "phoneNumber": "6288226422521@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Cindy",
+    "phoneNumber": "6288226422521@s.whatsapp.net",
+    "notify": "cynny."
   },
   "6287750345327@s.whatsapp.net": {
     "isContact": true,

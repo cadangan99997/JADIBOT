@@ -9238,7 +9238,7 @@ ${masaAktifLine}
 
 ━━━━━━━━━━━━━━━━━━━━━━
 _⚙️ Setting tersimpan per-jadibot realtime_
-_📦 Powered by Wily Bot V18.1_ 🤖`;
+_📦 Powered by Wily Bot V19_ 🤖`;
                                                 let jbMenuSent = false;
                                                 try {
                                                         const btnJb = new Button()
@@ -9271,173 +9271,72 @@ _📦 Powered by Wily Bot V18.1_ 🤖`;
                                         await hisoka.sendMessage(m.from, { react: { text: `🌊`, key: m.key } }).catch(() => {});
 
                                         const teks =
-`👤 *${m.pushName || 'User'}*
-🎖️ ${m.isOwner ? '👑 *Owner*' : '🆓 *Pengguna Biasa*'}
-
-⏱️ *Uptime   :* ${uptimeStr}
-📦 *Fitur    :* ${totalCmd} fitur aktif
-🌐 *Status   :* Online 🟢
-🔖 *Versi    :* Wily Bot V18.1
-${ownerNum ? `📞 *Owner    :* wa.me/${ownerNum}` : ''}
+`👤 *${m.pushName || 'User'}*  ${m.isOwner ? '👑' : ''}
+⏱️ *Uptime :* ${uptimeStr}
+📦 *Fitur  :* ${totalCmd} aktif  •  🔖 *V19*
+${ownerNum ? `📞 *Owner  :* wa.me/${ownerNum}` : ''}
 
 ╭─「 🤖 *AUTO FITUR* 」
-├➤ *.typing on/off*
-├➤ *.recording on/off*
-├➤ *.online on/off*
-├➤ *.readsw on/off*
-├➤ *.telegram on/off*
-├➤ *.autocleaner on/off*
-╰➤ *.sessioncleaner on/off*
+╰ .typing · .recording · .online · .readsw
+  .telegram · .autocleaner · .sessioncleaner
 
 ╭─「 🛡️ *ANTI FITUR* 」
-├➤ *.antidel on/off*
-│   ├ *.antidel private on/off*
-│   ├ *.antidel group on/off*
-│   ├ *.antidel all on/off*
-│   ╰ *.antidel sendto self/chat/both*
-├➤ *.anticall / .ac on/off*
-│   ├ *.anticall msg [teks]*
-│   ├ *.anticall add/del [nomor]*
-│   ╰ *.anticall list*
-├➤ *.anticallvid / .acv on/off*
-│   ├ *.anticallvid msg [teks]*
-│   ├ *.anticallvid add/del [nomor]*
-│   ╰ *.anticallvid list*
-╰➤ *.antitagsw on/off*
-   ├ *.antitagsw global on/off*
-   ├ *.antitagsw status*
-   ╰ *.antitagsw reset*
+╰ .antidel · .anticall (.ac)
+  .anticallvid (.acv) · .antitagsw
 
 ╭─「 💬 *PESAN & STICKER* 」
-├➤ *.del / .d* — Hapus pesan (reply)
-├➤ *.s / .sticker*
-├➤ *.toimg*
-├➤ *.tovn* — Audio/MP3 → Voice Note
-├➤ *.tomp3* — Voice Note → MP3
-├➤ *.stickerly [query/link]*
-├➤ *.stickerpack [query]*
-├➤ *.rvo / .viewonce*
-├➤ *.quoted / .q*
-╰➤ *.react / .reaksi*
+╰ .s · .toimg · .tovn · .tomp3
+  .stickerly · .stickerpack · .rvo · .quoted · .react
 
 ╭─「 👥 *FITUR GRUP* 」
-├➤ *.hidetag / .ht [teks]*
-├➤ *.ghosttag / .gt [teks]*
-├➤ *.welcome on/off*
-│   ╰ *.setwelcome [teks]* — Set pesan custom
-├➤ *.goodbye on/off*
-│   ╰ *.setgoodbye [teks]* — Set pesan custom
-├➤ *.welgod on/off*
-│   ╰ *.setwelgod [teks]* — Set pesan custom
-├➤ *.listgroup*
-╰➤ *.group*
+╰ .hidetag (.ht) · .ghosttag (.gt)
+  .welcome · .goodbye · .welgod · .listgroup · .group
 
 ╭─「 📡 *STATUS & STORY* 」
-├➤ *.sw / .getsw*
-├➤ *.upswgc [caption]*
-├➤ *.sendstatus / .swgc*
-╰➤ *.antitagsw on/off*
+╰ .sw · .getsw · .upswgc · .sendstatus · .ceksw
 
 ╭─「 📥 *DOWNLOAD* 」
-├➤ *.tt [link]*
-├➤ *.ig [link]*
-├➤ *.fb [link]*
-├➤ *.ytmp3 [link]*
-├➤ *.ytmp4 [link]*
-├➤ *.play [judul]*
-├➤ *.hd / .remini*
-╰➤ *.hdvid / .hdvideo*
+╰ .tt · .ig · .fb · .ytmp3 · .ytmp4 · .play
+  .hd · .remini · .hdvid
 
 ╭─「 🔍 *INFO & CEK* 」
-├➤ *.ping / .p* — Cek latency & status bot
-├➤ *.info* — Status semua fitur aktif
-├➤ *.cekhp / .spechp [merk HP]*
-├➤ *.bandingkan [HP1] vs [HP2]*
-├➤ *.cuaca [kota/daerah]*
-├➤ *.ba / .bluearchive [nama]*
-├➤ *.genius / .carilagu [judul]*
-├➤ *.geniusdetail [id]*
-├➤ *.whatsmusik / .wmusik / .shazam*
-├➤ *.infomusik / .cekmusik* — Analisis audio (genre, mood, lirik)
-├➤ *.musikai / .aimusik [tema/random]*
-├➤ *.musikai2 / .aimusik2 [tema/random]*
-╰➤ *.speedtest / .speed / .cekspeed*
+╰ .ping · .info · .owner · .cekhp · .bandingkan
+  .cuaca · .ba · .genius · .geniusdetail
+  .whatsmusik · .infomusik · .musikai · .musikai2
+  .speedtest · .pixiv · .pixivr18
 
 ╭─「 🤖 *AI CHAT* 」
-├➤ *.ai / .tanya [pesan]*
-├➤ *.mymemory / .myprofile*
-╰➤ *.forgetme / .resetmemory*
+╰ .ai · .tanya · .mymemory · .forgetme
 
 ╭─「 🎌 *ANIME & MANGA* 」
-├➤ *.kusonime / .anime [judul]*
-├➤ *.kusonimeupdate*
-├➤ *.alq / .alqanime [judul]*
-├➤ *.alqupdate*
-├➤ *.alqdl [link]*
-├➤ *.komik / .komiktap [judul]*
-├➤ *.komikinfo [url]*
-├➤ *.komikget [url chapter]*
-╰➤ *.komikupdate*
+╰ .kusonime · .kusonimeupdate · .alq · .alqupdate
+  .alqdl · .komik · .komikinfo · .komikget · .komikupdate
 
 ╭─「 🔞 *KONTEN 18+* 」
-├➤ *.nh / .nhentai [judul/kode]*
-├➤ *.nhget [id]*
-├➤ *.nhrand*
-├➤ *.nhdl [id]*
-├➤ *.cosplay [query]*
-├➤ *.cosplayrandom*
-╰➤ *.pixivr18 [query]*
+╰ .nh · .nhget · .nhrand · .nhdl
+  .cosplay · .cosplayrandom · .pixivr18
 
 ╭─「 🌐 *WEB & TOOLS* 」
-├➤ *.ss / .screenshot [link]*
-├➤ *.ssweb / .webinfo [link]*
-├➤ *.pixiv [query]*
-├➤ *.tmail / .tempmail*
-├➤ *.tminbox*
-├➤ *.tmread [id]*
-├➤ *.tmwait*
-╰➤ *.tmdel*
+╰ .ss · .ssweb · .pixiv
+  .tmail · .tminbox · .tmread · .tmwait · .tmdel
 
 ╭─「 🤖 *JADIBOT* 」
-├➤ *.jadibot [nomor] [durasi]*
-├➤ *.stopbot [nomor]*
-├➤ *.listbot*
-├➤ *.setpairing v1/v2*
-╰➤ *.jadibotmenu*
+╰ .jadibot · .stopbot · .listbot · .setpairing
 
-╭─「 👑 *OWNER ONLY* 」
-├➤ *.listowner / .addowner / .delowner*
-├➤ *.all [teks]*
-├➤ *.swgrup / .statusgroup*
-├➤ *.infowibu*
-├➤ *.animasu*
-├➤ *.tvone*
-├➤ *.alqanimenotif*
-├➤ *.malnews*
-├➤ *.cekauto* / *.cekauto gc*
-├➤ *.ceksw on/off/reset*
-├➤ *.wilyai on/off*
-├➤ *.wily / .simi*
-├➤ *.setreactapi [key]*
-├➤ *.cekreact / .reactinfo*
-├➤ *.addemoji / .delemoji / .listemoji*
-├➤ *.ram*
-├➤ *.upbot*
-├➤ *.backup*
-├➤ *.ceksesi*
-├➤ *.sessionstat*
-├➤ *.eval / .bash*
-├➤ *.dbstats / .sessiondb*
-├➤ *.listcontact*
-├➤ *.credsjson [nomor]* — Generate creds.json
-├➤ *.autosholat* — Auto notif waktu sholat ke grup
-├➤ *.cekerror*
-╰➤ *.contact*
+╭─「 👑 *OWNER* 」
+╰ .listowner · .addowner · .delowner · .all
+  .swgrup · .infowibu · .animasu · .tvone
+  .alqanimenotif · .malnews · .cekauto · .ceksw
+  .wilyai · .wily · .simi · .setreactapi · .cekreact
+  .addemoji · .delemoji · .listemoji · .ram
+  .upbot · .restart · .backup · .ceksesi
+  .ceksize · .autosholat · .credsjson
+  .eval · .bash · .dbstats · .sessiondb
+  .listcontact · .cekerror · .contact
 
-📌 _Ketik_ *.settingmenu* _| .downloadmenu_
-📌 _Ketik_ *.groupmenu* _| .jadibotmenu_
-📌 _Ketik_ *.statusmenu* _| .ownermenu_
-
+━━━━━━━━━━━━━━━━━━━━━
+📌 .settingmenu · .groupmenu · .statusmenu
+📌 .downloadmenu · .jadibotmenu · .ownermenu · .allmenu
 `;
                                         const ppUser = await getUserProfilePictureUrl(hisoka, m.sender);
                                         const menuCtxInfo = ppUser
