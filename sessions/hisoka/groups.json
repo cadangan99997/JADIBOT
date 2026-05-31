@@ -10076,7 +10076,7 @@
     "addressingMode": "lid",
     "subject": "COMUNITY ZANSPIW⚡",
     "subjectTime": 1720055772,
-    "size": 1972,
+    "size": 1973,
     "creation": 1717629092,
     "desc": "Halo! Komunitas ini dibuat agar anggota dapat melakukan chat di grup berbasis topik dan menerima pengumuman penting.",
     "descId": "EC3085525F72F5A2E96C1A7369C9E946",
@@ -14844,6 +14844,10 @@
         "admin": null
       },
       {
+        "id": "92428467998809@lid",
+        "admin": null
+      },
+      {
         "id": "179401505435696@lid",
         "admin": null
       },
@@ -17978,10 +17982,6 @@
       },
       {
         "id": "254193512226986@lid",
-        "admin": null
-      },
-      {
-        "id": "92428467998809@lid",
         "admin": null
       }
     ]

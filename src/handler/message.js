@@ -2088,7 +2088,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                         (wilyBotLidNum && n === wilyBotLidNum); // LID format @lid
                                         }) || !!(m.text?.includes('@' + wilyBotNum));
                                         if (m.isGroup && !m.key?.fromMe && (wilyMentionedJids.length > 0)) {
-                                                wilyLog(`\x1b[33m[MentionDebug]\x1b[39m result=${isWilyMentioned} | jids=${JSON.stringify(wilyMentionedJids)} | botNum=${wilyBotNum} | botLidRaw=${wilyBotLidRaw} | botLidNum=${wilyBotLidNum}`);
+                                                wilyLog(`\x1b[33m[MentionDebug]\x1b[39m base=${isWilyMentioned} | jids=${JSON.stringify(wilyMentionedJids)} | botNum=${wilyBotNum} | botLidRaw=${wilyBotLidRaw} | botLidNum=${wilyBotLidNum}`);
                                         }
 
                                         const wilyQuotedParticipant = (m.content?.contextInfo?.participant || '').split('@')[0].split(':')[0];
@@ -2101,11 +2101,35 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 (_wilyCachedQuoted?.key?.fromMe === true)
                                         );
 
+                                        // Fallback: resolve LID mentions ke nomor regular,
+                                        // kasus: mention pakai @LIDnumber bukan @628xxx
+                                        const _wilyLidResolved = !isWilyMentioned && wilyMentionedJids
+                                                .filter(jid => jid?.endsWith('@lid'))
+                                                .some(lidJid => {
+                                                        try {
+                                                                const resolved = resolveLidFromContacts(lidJid);
+                                                                return resolved?.number && (
+                                                                        resolved.number === wilyBotNum ||
+                                                                        resolved.jid?.includes(wilyBotNum)
+                                                                );
+                                                        } catch (_) { return false; }
+                                                });
+
+                                        // Fallback 2: teks pesan hanya berisi @mention (tanpa teks lain)
+                                        // dan nomor bot ada di teks asli (sebelum strip)
+                                        const _wilyOrigText = m.text?.trim() || '';
+                                        const _wilyTextOnlyMention = _wilyOrigText !== '' &&
+                                                _wilyOrigText.replace(/@\d+/g, '').trim() === '';
+                                        const _wilyTextHasBotNum = _wilyTextOnlyMention &&
+                                                _wilyOrigText.includes(wilyBotNum);
+
+                                        const isWilyMentionedFinal = isWilyMentioned || _wilyLidResolved || _wilyTextHasBotNum;
+
                                         // WilyAutoReply — respek scope: pm=hanya DM, gc=hanya grup, all=keduanya
                                         const isPrivateDM = !m.isGroup && m.from !== 'status@broadcast';
                                         const isStickerMsg = getMediaTypeFromMessage(m) === 'stickerMessage';
                                         // Grup: trigger saat bot di-mention (pesan apapun) ATAU saat ada yang reply pesan bot (pesan apapun)
-                                        const triggerGroup = scopeAllowGC && m.isGroup && (isWilyMentioned || isReplyToBotMsg);
+                                        const triggerGroup = scopeAllowGC && m.isGroup && (isWilyMentionedFinal || isReplyToBotMsg);
                                         // Private: semua pesan yang masuk ke DM (teks, sticker, gambar, video, dll) langsung trigger bot
                                         const triggerPM    = scopeAllowPM && isPrivateDM;
                                         const isLoadedCommand = m.command && !m.isBot && hisoka.loadedCommands?.some(c => c.toLowerCase() === m.command);
@@ -2124,9 +2148,14 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 const currentDate = now.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'Asia/Jakarta' });
 
                                                 let userMessage = m.text?.trim() || '';
+                                                const _wilyMsgBeforeStrip = userMessage;
                                                 if (userMessage) {
                                                         userMessage = userMessage.replace(/@\d+/g, '').replace(/@bot/gi, '').trim();
                                                 }
+                                                // Deteksi: pesan asli hanya berisi @mention tanpa teks lain
+                                                const _wilyWasMentionOnly = _wilyMsgBeforeStrip !== '' &&
+                                                        userMessage === '' &&
+                                                        _wilyMsgBeforeStrip.replace(/@\d+/g, '').trim() === '';
 
                                                 // Deteksi media dari pesan saat ini atau pesan yang di-reply
                                                 let imageBuffer = null;
@@ -2179,7 +2208,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 const isStickerReply = isReplyToBotMsg && hasSticker;
 
                                                 if (!userMessage && !hasMedia) {
-                                                        userMessage = buildWilyFallbackUserPrompt(curType);
+                                                        userMessage = buildWilyFallbackUserPrompt(_wilyWasMentionOnly ? 'mention-only' : curType);
                                                 }
 
                                                 if (!userMessage && hasMedia) {

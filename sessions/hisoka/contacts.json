@@ -8111,11 +8111,12 @@
     "phoneNumber": "6287719379235@s.whatsapp.net"
   },
   "6283833697404@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283833697404@s.whatsapp.net",
-    "name": "Nadiya",
+    "id": "26345463611535@lid",
     "lid": "26345463611535@lid",
-    "phoneNumber": "6283833697404@s.whatsapp.net"
+    "isContact": true,
+    "name": "Nadiya",
+    "phoneNumber": "6283833697404@s.whatsapp.net",
+    "notify": "J"
   },
   "60132230085@s.whatsapp.net": {
     "isContact": true,
@@ -27623,8 +27624,7 @@
     "isContact": true,
     "name": "Agan Rizkia",
     "phoneNumber": "6289688206739@s.whatsapp.net",
-    "notify": "Wily",
-    "verifiedName": "Wily"
+    "notify": "Wily"
   },
   "6288270829865@s.whatsapp.net": {
     "isContact": true,
@@ -31700,5 +31700,20 @@
     "id": "28866559094941@lid",
     "lid": "28866559094941@lid",
     "imgUrl": "changed"
+  },
+  "168770907668613@lid": {
+    "id": "168770907668613@lid",
+    "lid": "168770907668613@lid",
+    "imgUrl": "changed"
+  },
+  "18391385538759@lid": {
+    "id": "18391385538759@lid",
+    "lid": "18391385538759@lid",
+    "imgUrl": "changed"
+  },
+  "50315642568788@lid": {
+    "id": "50315642568788@lid",
+    "lid": "50315642568788@lid",
+    "imgUrl": "removed"
   }
 }
