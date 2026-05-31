@@ -70,16 +70,17 @@ function startTyping(hisoka, m) {
         if (!hisoka || !jid) return () => {};
         let active = true;
         try { hisoka.sendPresenceUpdate('composing', jid); } catch (_) {}
+        // Refresh setiap 2500ms — WA auto-clear composing setelah ~3s tanpa refresh
         const interval = setInterval(() => {
                 if (active) { try { hisoka.sendPresenceUpdate('composing', jid); } catch (_) {} }
-        }, 5000);
+        }, 2500);
         const stop = () => {
                 if (!active) return;
                 active = false;
                 clearInterval(interval);
                 try { hisoka.sendPresenceUpdate('paused', jid); } catch (_) {}
         };
-        setTimeout(stop, 30000);
+        setTimeout(stop, 60000);
         return stop;
 }
 
@@ -2150,6 +2151,9 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                         return;
                                                 }
 
+                                                // Mulai typing SEGERA setelah cooldown check — sebelum download media
+                                                const _stopTypingWily = startTyping(hisoka, m);
+
                                                 const userName = getUserName(m.sender, m.pushName || 'Kak');
                                                 const now = new Date();
                                                 const hours = parseInt(now.toLocaleString('en-US', { hour: 'numeric', hour12: false, timeZone: 'Asia/Jakarta' }));
@@ -2394,7 +2398,6 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                         }
                                                 }
 
-                                                const _stopTypingWily = startTyping(hisoka, m);
                                                 let response;
                                                 try {
                                                         if (imageBuffer && imageBuffer.length > 0) {
