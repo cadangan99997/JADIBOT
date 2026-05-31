@@ -301,19 +301,49 @@ export function restartAutoCleaner() {
 }
 
 /**
- * Bersihkan pre-key files yang sudah benar-benar tidak dibutuhkan lagi.
+ * Bersihkan file sesi yang sudah tidak dibutuhkan dari folder sessions/<nama>.
+ * Berlaku untuk bot utama DAN setiap jadibot (dipanggil via cleanStaleSessionFiles(sessionDir)).
  *
- * CATATAN PENTING — mengapa perlu buffer aman:
- * Pre-key yang sudah diunggah ke server WhatsApp (ID < firstUnuploadedPreKeyId)
- * belum tentu sudah DIPAKAI. Server WhatsApp menyimpan pool pre-key dan
- * membagi-bagikannya ke kontak baru yang ingin memulai sesi terenkripsi.
- * Bot tetap membutuhkan file pre-key lokal untuk mendekripsi pesan pertama
- * dari kontak baru tersebut — jika file sudah dihapus, bot tidak bisa
- * merespons kontak baru (terlihat online tapi diam/bisu).
+ * ════════════════════════════════════════════════════════════════
+ *  PETA FILE SESI — MANA YANG BOLEH DIHAPUS & MANA YANG TIDAK
+ * ════════════════════════════════════════════════════════════════
  *
- * Solusi: hanya hapus pre-key yang ID-nya lebih dari SAFE_BUFFER di bawah
- * firstUnuploadedPreKeyId. Buffer 200 cukup karena WhatsApp biasanya
- * menyimpan maksimal 100–200 pre-key per perangkat di servernya.
+ *  ✅ AMAN DIHAPUS (ditangani fungsi ini):
+ *  ─────────────────────────────────────────────────────────────
+ *  pre-key-{id}.json          Kunci E2E calon. Hapus yg ID-nya
+ *                              < (nextPreKeyId - 200). Buffer 200
+ *                              melindungi dari race condition server.
+ *
+ *  session-{jid}.json         Sesi per kontak. Hapus jika > 30 hari
+ *                              tidak aktif. WA buat sesi baru otomatis.
+ *
+ *  sender-key-{grup}-{id}.json Kunci grup (non-memory). Hapus > 14 hari.
+ *                              WA negosiasi ulang kunci saat dibutuhkan.
+ *
+ *  identity-key-{jid}.json    Identitas Signal per kontak. Hapus > 60 hari
+ *                              (konservatif). WA fetch ulang saat bertemu.
+ *
+ *  device-list-{jid}.json     Daftar perangkat kontak. Hapus > 30 hari.
+ *                              WA refresh otomatis saat kirim pesan.
+ *
+ *  app-state-sync-key-*.json  Kunci sync WA state. Simpan 10 terbaru,
+ *                              hapus sisanya. WA hanya butuh beberapa key.
+ *
+ *  lid-mapping-*.json         Cache LID↔PN sementara. SELALU hapus —
+ *                              WA regenerasi otomatis setiap restart.
+ *
+ *  ❌ JANGAN PERNAH DIHAPUS:
+ *  ─────────────────────────────────────────────────────────────
+ *  creds.json                  Kredensial sesi utama. Hapus = logout total.
+ *  contacts.json               Cache semua kontak. Hapus = hilang semua kontak.
+ *  groups.json                 Cache semua grup. Hapus = hilang data grup.
+ *  settings.json               Pengaturan sesi lokal.
+ *  app-state-sync-version-*    Versi sync state WA. Hapus = resync penuh.
+ *  sender-key-memory-*.json    Cache kunci grup persistent (berbeda dengan
+ *                              sender-key biasa). Hapus = gagal decode grup.
+ *  tctoken-*.json              Token transport channel WA. Diperbarui aktif,
+ *                              hapus bisa putus koneksi alternatif.
+ * ════════════════════════════════════════════════════════════════
  */
 export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } = {}) {
     if (!skipConfigCheck) {
@@ -408,8 +438,9 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
                 continue
             }
 
-            // sender-key-*: hapus jika lebih dari 14 hari (kecuali sender-key-memory.json)
-            if (file.startsWith('sender-key-') && file.endsWith('.json') && file !== 'sender-key-memory.json') {
+            // sender-key-*: hapus jika lebih dari 14 hari
+            // JANGAN hapus sender-key-memory-* (cache persistent per grup/broadcast)
+            if (file.startsWith('sender-key-') && !file.startsWith('sender-key-memory') && file.endsWith('.json')) {
                 try {
                     const stat = fs.statSync(filePath)
                     if (now - stat.mtimeMs > AGE_SENDER_KEY) {
