@@ -151,5 +151,23 @@ _Sabar ya, lagi cek fitur lainnya_ 👀
 > Setiap jadibot punya tracker sendiri via `getJadibotTracker(number)`
 > Tracker & Set dedup dibersihkan otomatis saat jadibot di-stop
 
+> 🧹 *SessionCleaner — Pruning 6 Kategori File*
+> Sebelumnya hanya hapus pre-key & session-* & sender-key & lid-mapping
+> Sekarang mencakup semua akumulasi: 6 kategori dengan batas usia berbeda
+> `pre-key`         → ID < (nextPreKeyId - 200) — aman secara protokol
+> `session-*`       → > 30 hari tidak dipakai
+> `sender-key-*`    → > 14 hari (diperpendek dari 30 hari)
+> `identity-key-*`  → > 60 hari (konservatif, Signal protocol)
+> `device-list-*`   → > 30 hari tidak dipakai
+> `app-state-sync-key-*` → simpan 10 terbaru saja (by mtime)
+> `lid-mapping-*`   → SELALU hapus (cache sementara, WA buat ulang otomatis)
+> Log baru: `Hapus: X pre-key + Y app-state-key + Z sender-key → hemat XX KB`
+
+> 📊 *`.ceksesi` — Tampilkan 7 Kategori File + Info Pruning*
+> Sebelumnya hanya tampilkan 5 kategori (session, pre-key, sender-key, app-state-*)
+> Sekarang tampilkan: identity-key 🪪, device-list 📱, lid-mapping 🗺️ juga
+> Setiap baris dilengkapi deskripsi kebijakan pruning (kapan file dihapus)
+> Misal: "Kunci enkripsi per grup/SW — pruned >14 hari"
+
 ━━━━━━━━━━━━━━━━━━━━━━
 🤖 *Wily-Bot* | *V19* | _30 Mei 2026_

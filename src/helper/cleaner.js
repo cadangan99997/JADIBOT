@@ -329,6 +329,7 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
         const credsPath = path.join(sessionDir, 'creds.json')
         if (!fs.existsSync(credsPath)) return
 
+        // ── Batas aman hapus pre-key ──────────────────────────────────────────
         let safeDeleteBefore = 0
         try {
             const creds = JSON.parse(fs.readFileSync(credsPath, 'utf-8'))
@@ -338,23 +339,55 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
         } catch {}
 
         const files = fs.readdirSync(sessionDir)
-        let deletedPreKeys = 0
-        let deletedSessions = 0
-        let deletedSize = 0
         const now = Date.now()
-        const SESSION_MAX_AGE = 30 * 24 * 60 * 60 * 1000 // 30 hari
 
+        // Batas usia file per kategori
+        const AGE_SENDER_KEY  = 14 * 24 * 60 * 60 * 1000  // sender-key  → 14 hari
+        const AGE_SESSION     = 30 * 24 * 60 * 60 * 1000  // session-*   → 30 hari
+        const AGE_IDENTITY    = 60 * 24 * 60 * 60 * 1000  // identity-key→ 60 hari (konservatif)
+        const AGE_DEVICE_LIST = 30 * 24 * 60 * 60 * 1000  // device-list → 30 hari
+        const APP_STATE_KEEP  = 10                          // app-state-sync-key: simpan N terbaru
+
+        let deletedPreKeys    = 0
+        let deletedSessions   = 0
+        let deletedSenderKeys = 0
+        let deletedIdentity   = 0
+        let deletedDeviceList = 0
+        let deletedAppState   = 0
+        let deletedLidMapping = 0
+        let deletedSize       = 0
+
+        // ── Kumpulkan app-state-sync-key untuk pruning ────────────────────────
+        const appStateKeyFiles = []
+        for (const file of files) {
+            if (file.startsWith('app-state-sync-key-') && file.endsWith('.json')) {
+                try {
+                    const fp = path.join(sessionDir, file)
+                    const stat = fs.statSync(fp)
+                    appStateKeyFiles.push({ file, fp, mtime: stat.mtimeMs, size: stat.size })
+                } catch {}
+            }
+        }
+        // Urutkan terbaru dulu, hapus yang melampaui APP_STATE_KEEP
+        appStateKeyFiles.sort((a, b) => b.mtime - a.mtime)
+        for (let i = APP_STATE_KEEP; i < appStateKeyFiles.length; i++) {
+            try {
+                fs.unlinkSync(appStateKeyFiles[i].fp)
+                deletedSize += appStateKeyFiles[i].size
+                deletedAppState++
+            } catch {}
+        }
+
+        // ── Scan semua file lainnya ────────────────────────────────────────────
         for (const file of files) {
             const filePath = path.join(sessionDir, file)
 
-            // Hapus pre-key yang sudah sangat jauh di bawah batas aman
+            // pre-key: hapus yang ID-nya di bawah batas aman
             if (file.startsWith('pre-key-') && file.endsWith('.json')) {
-                const idStr = file.replace('pre-key-', '').replace('.json', '')
-                const id = parseInt(idStr, 10)
+                const id = parseInt(file.replace('pre-key-', '').replace('.json', ''), 10)
                 if (!isNaN(id) && id < safeDeleteBefore) {
                     try {
-                        const stat = fs.statSync(filePath)
-                        deletedSize += stat.size
+                        deletedSize += fs.statSync(filePath).size
                         fs.unlinkSync(filePath)
                         deletedPreKeys++
                     } catch {}
@@ -362,11 +395,11 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
                 continue
             }
 
-            // Hapus session-* yang sudah lebih dari 30 hari tidak dipakai
+            // session-*: hapus jika lebih dari 30 hari
             if (file.startsWith('session-') && file.endsWith('.json')) {
                 try {
                     const stat = fs.statSync(filePath)
-                    if (now - stat.mtimeMs > SESSION_MAX_AGE) {
+                    if (now - stat.mtimeMs > AGE_SESSION) {
                         deletedSize += stat.size
                         fs.unlinkSync(filePath)
                         deletedSessions++
@@ -375,37 +408,68 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
                 continue
             }
 
-            // Hapus sender-key-* yang sudah lebih dari 30 hari tidak dipakai
-            if (file.startsWith('sender-key-') && file.endsWith('.json')) {
+            // sender-key-*: hapus jika lebih dari 14 hari (kecuali sender-key-memory.json)
+            if (file.startsWith('sender-key-') && file.endsWith('.json') && file !== 'sender-key-memory.json') {
                 try {
                     const stat = fs.statSync(filePath)
-                    if (now - stat.mtimeMs > SESSION_MAX_AGE) {
+                    if (now - stat.mtimeMs > AGE_SENDER_KEY) {
                         deletedSize += stat.size
                         fs.unlinkSync(filePath)
+                        deletedSenderKeys++
                     }
                 } catch {}
+                continue
             }
 
-            // Hapus lid-mapping-* SELALU — file ini cache sementara WA, auto-dibuat ulang
-            // oleh WhatsApp saat dibutuhkan. Tidak perlu disimpan sama sekali.
-            if (file.startsWith('lid-mapping-') && file.endsWith('.json')) {
+            // identity-key-*: hapus jika lebih dari 60 hari
+            if (file.startsWith('identity-key-') && file.endsWith('.json')) {
                 try {
                     const stat = fs.statSync(filePath)
-                    deletedSize += stat.size
+                    if (now - stat.mtimeMs > AGE_IDENTITY) {
+                        deletedSize += stat.size
+                        fs.unlinkSync(filePath)
+                        deletedIdentity++
+                    }
+                } catch {}
+                continue
+            }
+
+            // device-list-*: hapus jika lebih dari 30 hari
+            if (file.startsWith('device-list-') && file.endsWith('.json')) {
+                try {
+                    const stat = fs.statSync(filePath)
+                    if (now - stat.mtimeMs > AGE_DEVICE_LIST) {
+                        deletedSize += stat.size
+                        fs.unlinkSync(filePath)
+                        deletedDeviceList++
+                    }
+                } catch {}
+                continue
+            }
+
+            // lid-mapping-*: SELALU hapus — cache sementara, WA buat ulang otomatis
+            if (file.startsWith('lid-mapping-') && file.endsWith('.json')) {
+                try {
+                    deletedSize += fs.statSync(filePath).size
                     fs.unlinkSync(filePath)
-                    deletedSessions++
+                    deletedLidMapping++
                 } catch {}
             }
         }
 
-        const total = deletedPreKeys + deletedSessions
-        if (total > 0) {
-            const sizeStr = formatBytes(deletedSize)
+        // ── Log ringkasan ─────────────────────────────────────────────────────
+        const parts = []
+        if (deletedPreKeys    > 0) parts.push(`${deletedPreKeys} pre-key`)
+        if (deletedAppState   > 0) parts.push(`${deletedAppState} app-state-key`)
+        if (deletedSenderKeys > 0) parts.push(`${deletedSenderKeys} sender-key`)
+        if (deletedIdentity   > 0) parts.push(`${deletedIdentity} identity-key`)
+        if (deletedDeviceList > 0) parts.push(`${deletedDeviceList} device-list`)
+        if (deletedSessions   > 0) parts.push(`${deletedSessions} session`)
+        if (deletedLidMapping > 0) parts.push(`${deletedLidMapping} lid-mapping`)
+
+        if (parts.length > 0) {
             console.log(
-                `\x1b[32m[SessionCleaner]\x1b[39m` +
-                ` Hapus ${deletedPreKeys} pre-key stale` +
-                (deletedSessions > 0 ? ` + ${deletedSessions} file cache (session/lid-mapping)` : '') +
-                ` → hemat ${sizeStr}`
+                `\x1b[32m[SessionCleaner]\x1b[39m Hapus: ${parts.join(' + ')} → hemat \x1b[33m${formatBytes(deletedSize)}\x1b[39m`
             )
         }
     } catch (err) {

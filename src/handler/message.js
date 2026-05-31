@@ -14917,41 +14917,50 @@ hasil += `╰══════════════════════�
                                         const files = fs.readdirSync(sesiDir);
                                         const total = files.length;
 
-                                        const EMOJI_MAP = {
-                                                'session':               '🔑',
-                                                'pre-key':               '🗝️',
-                                                'sender-key':            '📨',
-                                                'app-state-sync-key':    '🔄',
-                                                'app-state-sync-version':'📋',
-                                                'creds.json':            '🛡️',
-                                                'contacts.json':         '👥',
-                                                'groups.json':           '🫂',
-                                                'settings.json':         '⚙️',
-                                        };
-                                        const DESC_MAP = {
-                                                'session':               'Sesi & koneksi utama bot',
-                                                'pre-key':               'Kunci enkripsi pesan (E2E)',
-                                                'sender-key':            'Kunci enkripsi per grup/chat',
-                                                'app-state-sync-key':    'Sinkronisasi state WhatsApp',
-                                                'app-state-sync-version':'Versi sync state WA',
-                                                'creds.json':            'Kredensial utama bot',
-                                                'contacts.json':         'Cache kontak tersimpan',
-                                                'groups.json':           'Cache data grup',
-                                                'settings.json':         'Pengaturan sesi lokal',
-                                        };
+								const EMOJI_MAP = {
+									'pre-key':               '🗝️',
+									'session':               '🔑',
+									'sender-key':            '📨',
+									'identity-key':          '🪪',
+									'device-list':           '📱',
+									'lid-mapping':           '🗺️',
+									'app-state-sync-key':    '🔄',
+									'app-state-sync-version':'📋',
+									'creds.json':            '🛡️',
+									'contacts.json':         '👥',
+									'groups.json':           '🫂',
+									'settings.json':         '⚙️',
+								};
+								const DESC_MAP = {
+									'pre-key':               'Kunci enkripsi pesan (E2E) — pruned otomatis',
+									'session':               'Sesi & koneksi — pruned >30 hari',
+									'sender-key':            'Kunci enkripsi per grup/SW — pruned >14 hari',
+									'identity-key':          'Identitas kontak (Signal) — pruned >60 hari',
+									'device-list':           'Daftar perangkat kontak — pruned >30 hari',
+									'lid-mapping':           'Cache LID→PN — selalu pruned saat start',
+									'app-state-sync-key':    'Sinkronisasi state WA — simpan 10 terbaru',
+									'app-state-sync-version':'Versi sync state WA',
+									'creds.json':            'Kredensial utama bot',
+									'contacts.json':         'Cache kontak tersimpan',
+									'groups.json':           'Cache data grup',
+									'settings.json':         'Pengaturan sesi lokal',
+								};
 
-                                        const groups = {};
-                                        for (const file of files) {
-                                                const name = file.replace(/\.json$/, '');
-                                                let group;
-                                                if (name.startsWith('app-state-sync-key'))          group = 'app-state-sync-key';
-                                                else if (name.startsWith('app-state-sync-version'))  group = 'app-state-sync-version';
-                                                else if (name.startsWith('pre-key'))                 group = 'pre-key';
-                                                else if (name.startsWith('sender-key'))              group = 'sender-key';
-                                                else if (name.startsWith('session'))                 group = 'session';
-                                                else                                                  group = file;
-                                                groups[group] = (groups[group] || 0) + 1;
-                                        }
+								const groups = {};
+								for (const file of files) {
+									const name = file.replace(/\.json$/, '');
+									let group;
+									if (name.startsWith('app-state-sync-key'))          group = 'app-state-sync-key';
+									else if (name.startsWith('app-state-sync-version'))  group = 'app-state-sync-version';
+									else if (name.startsWith('pre-key'))                 group = 'pre-key';
+									else if (name.startsWith('sender-key'))              group = 'sender-key';
+									else if (name.startsWith('identity-key'))            group = 'identity-key';
+									else if (name.startsWith('device-list'))             group = 'device-list';
+									else if (name.startsWith('lid-mapping'))             group = 'lid-mapping';
+									else if (name.startsWith('session'))                 group = 'session';
+									else                                                  group = file;
+									groups[group] = (groups[group] || 0) + 1;
+								}
 
                                         const sorted = Object.entries(groups).sort((a, b) => b[1] - a[1]);
                                         const lines = sorted.map(([g, c]) => {
