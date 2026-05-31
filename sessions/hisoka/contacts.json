@@ -4704,11 +4704,12 @@
     "phoneNumber": "62895368734832@s.whatsapp.net"
   },
   "6285728458204@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285728458204@s.whatsapp.net",
-    "name": "√ Kanna",
+    "id": "49997814964231@lid",
     "lid": "49997814964231@lid",
-    "phoneNumber": "6285728458204@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Kanna",
+    "phoneNumber": "6285728458204@s.whatsapp.net",
+    "notify": "Tea.. Time"
   },
   "628992190066@s.whatsapp.net": {
     "isContact": true,
@@ -18930,7 +18931,8 @@
     "isContact": true,
     "name": "! Fadli",
     "phoneNumber": "6285956660403@s.whatsapp.net",
-    "notify": "Cosmouz"
+    "notify": "Cosmouz",
+    "verifiedName": "Cosmouz"
   },
   "6285707611067@s.whatsapp.net": {
     "isContact": true,
@@ -24045,11 +24047,12 @@
     "phoneNumber": "6282126910040@s.whatsapp.net"
   },
   "6285148076097@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285148076097@s.whatsapp.net",
-    "name": "!Grimlock☘️",
+    "id": "253214779773065@lid",
     "lid": "253214779773065@lid",
-    "phoneNumber": "6285148076097@s.whatsapp.net"
+    "isContact": true,
+    "name": "!Grimlock☘️",
+    "phoneNumber": "6285148076097@s.whatsapp.net",
+    "notify": "Grimlock☘️"
   },
   "6281362405684@s.whatsapp.net": {
     "isContact": true,
