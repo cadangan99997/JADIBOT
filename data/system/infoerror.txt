@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 31/05/2026, 06.41.52  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 31/05/2026, 06.49.58  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -23,24 +23,24 @@
 ────────────────────────────────────────────────────────────────────────
 
 ┌───────────────────────────────────────────────────────────────────────
-│  #001  —  console.error
+│  #001  —  command:speedtest
 ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 │  PESAN ERROR
-│  [31m[HotReload] ✗ Gagal reload 'src/handler/message.js', pakai versi lama.[39m
+│  Connection Closed
 │
 │  DETAIL
-│  Sumber      : console.error
+│  Sumber      : command:speedtest
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 31/05/2026, 06.41.52
-│  Terakhir    : 31/05/2026, 06.41.52
+│  Pertama     : 31/05/2026, 06.49.58
+│  Terakhir    : 31/05/2026, 06.49.58
 │
 │  STACK TRACE (3 baris pertama)
-│  ▶  Error: [31m[HotReload] ✗ Gagal reload 'src/handler/message.js', pakai versi lama.[39m
-│     at console.error (file:///home/runner/workspace/index.js:367:27)
-│     at Timeout._onTimeout (file:///home/runner/workspace/src/helper/hotReload.js:102:29)
+│  ▶  Error: Connection Closed
+│     at sendRawMessage (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:57:19)
+│     at sendNode (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:76:16)
 └───────────────────────────────────────────────────────────────────────
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 31/05/2026, 06.41.52
+  Terakhir diperbarui: 31/05/2026, 06.49.58
 ════════════════════════════════════════════════════════════════════════

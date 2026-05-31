@@ -17984,5 +17984,33 @@
         "admin": null
       }
     ]
+  },
+  "120363409714403483@g.us": {
+    "id": "120363409714403483@g.us",
+    "addressingMode": "lid",
+    "subject": "TES BOT",
+    "subjectOwner": "97968623505429@lid",
+    "subjectOwnerPn": "6289667923162@s.whatsapp.net",
+    "subjectTime": 1780209868,
+    "size": 1,
+    "creation": 1780209868,
+    "owner": "97968623505429@lid",
+    "ownerPn": "6289667923162@s.whatsapp.net",
+    "owner_country_code": "ID",
+    "descTime": null,
+    "restrict": false,
+    "announce": false,
+    "isCommunity": false,
+    "isCommunityAnnounce": false,
+    "joinApprovalMode": false,
+    "memberAddMode": true,
+    "participants": [
+      {
+        "id": "97968623505429@lid",
+        "phoneNumber": "6289667923162@s.whatsapp.net",
+        "admin": "superadmin"
+      }
+    ],
+    "ephemeralDuration": 0
   }
 }
