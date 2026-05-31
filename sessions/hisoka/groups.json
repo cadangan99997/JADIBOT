@@ -3296,7 +3296,7 @@
     "subjectOwner": "8014979436608@lid",
     "subjectOwnerPn": "6285187063723@s.whatsapp.net",
     "subjectTime": 1769434437,
-    "size": 667,
+    "size": 666,
     "creation": 1769433881,
     "owner": "44698278310084@lid",
     "ownerPn": "6285809163320@s.whatsapp.net",
@@ -5992,7 +5992,7 @@
     "subjectOwner": "172838711480524@lid",
     "subjectOwnerPn": "6283123405940@s.whatsapp.net",
     "subjectTime": 1761452838,
-    "size": 814,
+    "size": 812,
     "creation": 1693096407,
     "owner": "88609721962527@lid",
     "ownerPn": "6285807405071@s.whatsapp.net",
@@ -7563,11 +7563,6 @@
       {
         "id": "177477460733983@lid",
         "phoneNumber": "60105118610@s.whatsapp.net",
-        "admin": null
-      },
-      {
-        "id": "138539253629155@lid",
-        "phoneNumber": "6285821697496@s.whatsapp.net",
         "admin": null
       },
       {
@@ -10082,7 +10077,7 @@
     "addressingMode": "lid",
     "subject": "COMUNITY ZANSPIW⚡",
     "subjectTime": 1720055772,
-    "size": 1976,
+    "size": 1974,
     "creation": 1717629092,
     "desc": "Halo! Komunitas ini dibuat agar anggota dapat melakukan chat di grup berbasis topik dan menerima pengumuman penting.",
     "descId": "EC3085525F72F5A2E96C1A7369C9E946",
@@ -14033,10 +14028,6 @@
         "admin": null
       },
       {
-        "id": "74960785666135@lid",
-        "admin": null
-      },
-      {
         "id": "274608045424780@lid",
         "admin": null
       },
@@ -14983,10 +14974,6 @@
       },
       {
         "id": "223214433251549@lid",
-        "admin": null
-      },
-      {
-        "id": "138539253629155@lid",
         "admin": null
       },
       {

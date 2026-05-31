@@ -5293,11 +5293,12 @@
     "phoneNumber": "6285814761071@s.whatsapp.net"
   },
   "628995736876@s.whatsapp.net": {
-    "isContact": true,
-    "id": "628995736876@s.whatsapp.net",
-    "name": "Adrian ( Facebook )",
+    "id": "126942120571040@lid",
     "lid": "126942120571040@lid",
-    "phoneNumber": "628995736876@s.whatsapp.net"
+    "isContact": true,
+    "name": "Adrian ( Facebook )",
+    "phoneNumber": "628995736876@s.whatsapp.net",
+    "notify": "Adrian"
   },
   "6288294662053@s.whatsapp.net": {
     "isContact": true,
@@ -15601,11 +15602,12 @@
     "phoneNumber": "6282287608355@s.whatsapp.net"
   },
   "6285791556825@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285791556825@s.whatsapp.net",
-    "name": "NightMare | BadDreamer",
+    "id": "87552958685217@lid",
     "lid": "87552958685217@lid",
-    "phoneNumber": "6285791556825@s.whatsapp.net"
+    "isContact": true,
+    "name": "NightMare | BadDreamer",
+    "phoneNumber": "6285791556825@s.whatsapp.net",
+    "notify": "nmka.nam"
   },
   "6289673755557@s.whatsapp.net": {
     "isContact": true,
@@ -29943,11 +29945,12 @@
     "phoneNumber": "212773356578@s.whatsapp.net"
   },
   "6285136314199@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285136314199@s.whatsapp.net",
-    "name": "! Nurul 🗿",
+    "id": "90916371062907@lid",
     "lid": "90916371062907@lid",
-    "phoneNumber": "6285136314199@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Nurul 🗿",
+    "phoneNumber": "6285136314199@s.whatsapp.net",
+    "notify": "Nursaori_saossoryy"
   },
   "6283125952883@s.whatsapp.net": {
     "isContact": true,
@@ -31229,6 +31232,41 @@
   "5231286976652@lid": {
     "id": "5231286976652@lid",
     "lid": "5231286976652@lid",
+    "imgUrl": "changed"
+  },
+  "81488464883801@lid": {
+    "id": "81488464883801@lid",
+    "lid": "81488464883801@lid",
+    "imgUrl": "changed"
+  },
+  "186036927905850@lid": {
+    "id": "186036927905850@lid",
+    "lid": "186036927905850@lid",
+    "imgUrl": "changed"
+  },
+  "34522997501977@lid": {
+    "id": "34522997501977@lid",
+    "lid": "34522997501977@lid",
+    "imgUrl": "changed"
+  },
+  "176158285029624@lid": {
+    "id": "176158285029624@lid",
+    "lid": "176158285029624@lid",
+    "imgUrl": "removed"
+  },
+  "142730571325638@lid": {
+    "id": "142730571325638@lid",
+    "lid": "142730571325638@lid",
+    "imgUrl": "removed"
+  },
+  "2130672922820@lid": {
+    "id": "2130672922820@lid",
+    "lid": "2130672922820@lid",
+    "imgUrl": "changed"
+  },
+  "63235139080302@lid": {
+    "id": "63235139080302@lid",
+    "lid": "63235139080302@lid",
     "imgUrl": "changed"
   }
 }

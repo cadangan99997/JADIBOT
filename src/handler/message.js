@@ -51,6 +51,7 @@ import { kvGet } from '../db/datadb.js';
 import { sendAIReply } from '../helper/aiReact.js';
 import { buildSmartAlbumCaptionPrompt, buildSmartImageHistoryPrompt, buildSmartImageWaitPrompt, buildWilyAICommandPrompt, buildWilyFallbackUserPrompt, buildWilyMediaUserPrompt, buildWilyVisionContextPrompt, buildVideoDownloadCaptionPrompt, buildStickerAnalysisExtractionPrompt } from '../helper/aiPrompt.js';
 import { buildIgVisionPrompt, buildIgCaptionPrompt, buildIgFallbackCaption, parseIgMetaHtml, formatIgCount } from '../helper/AiPromptIg.js';
+import { buildFbVisionPrompt, buildFbCaptionPrompt, buildFbFallbackCaption, parseFbMetaHtml, formatFbCount } from '../helper/AiPromptFb.js';
 import { hashSticker, lookupSticker, saveSticker, incrementStickerSeen, buildStickerContextHint, getStickerMemoryStats } from '../helper/stickerMemory.js';
 import { getJadibotAntidel, getJadibotReadsw, getJadibotAnticall, getJadibotAnticallvid, setJadibotUserSetting, getJadibotNumber } from '../helper/jadibotSettings.js';
 
@@ -5719,8 +5720,8 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                                 greetingEmoji = '🌙';
                                         }
                                         
-                                        const speedText = latency < 100 ? 'Sangat Cepat' : latency < 300 ? 'Cepat' : latency < 700 ? 'Normal' : 'Lambat';
-                                        const speedEmoji = latency < 100 ? '🚀' : latency < 300 ? '⚡' : latency < 700 ? '🟡' : '🐢';
+                                        const speedText = latency < 100 ? 'Cepat' : latency < 500 ? 'Normal' : 'Lambat';
+                                        const speedEmoji = latency < 100 ? '🚀' : latency < 500 ? '⚡' : '🐢';
                                         
                                         const sessSeconds = Math.floor(sessionUptime);
                                         const sessMinutes = Math.floor(sessSeconds / 60);
@@ -5729,55 +5730,39 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                         const sessFormatted = `${sessDays}d ${sessHours % 24}h ${sessMinutes % 60}m`;
                                         
                                         const cpuCores = os.cpus().length;
+                                        const cpuModel = os.cpus()[0]?.model?.split(' ')[0] || 'Unknown';
                                         const totalMemGB = (os.totalmem() / 1024 / 1024 / 1024).toFixed(1);
                                         const freeMemGB = (os.freemem() / 1024 / 1024 / 1024).toFixed(1);
                                         const usedMemGB = (totalMemGB - freeMemGB).toFixed(1);
                                         const memPercent = ((usedMemGB / totalMemGB) * 100).toFixed(0);
                                         const nodeVersion = process.version;
                                         const platform = process.platform;
-
-                                        const makeBar = (percent, len = 10) => {
-                                                const filled = Math.round((percent / 100) * len);
-                                                return '▓'.repeat(filled) + '░'.repeat(len - filled);
-                                        };
-                                        const ramBar = makeBar(Number(memPercent));
-                                        const latBar = makeBar(Math.min(latency / 10, 100));
-                                        const botMemPercent = ((memUsedMB / memTotalMB) * 100).toFixed(0);
-                                        const botMemBar = makeBar(Number(botMemPercent));
-
-                                        const totalMsg = stats.totalMessages || 0;
-                                        const totalCmd = stats.totalCommands || 0;
-
+                                        
                                         const pingText = `
-╭━━━━━━━━━━━━━━━━━━━━━━━╮
-┃   🏓 *PONG!* — Wily Bot   ┃
-╰━━━━━━━━━━━━━━━━━━━━━━━╯
-│
-│  ${greetingEmoji} *Selamat ${greetingTime}!*
-│  🕐 ${timeStr}  •  📅 ${dateStr}
-│
-├─「 📡 *KONEKSI* 」──────────
-│  ${speedEmoji} Speed    : *${speedText}*
-│  ⚡ Latency  : *${latency}ms*
-│  ${latBar}
-│
-├─「 📊 *BOT STATUS* 」───────
-│  🟢 Status   : *Online*
-│  ⏱️ Uptime   : *${stats.uptime.days}d ${stats.uptime.hours}h ${stats.uptime.minutes}m*
-│  🔄 Session  : *${sessFormatted}*
-│  🔁 Restart  : *${stats.totalRestarts}x*
-│  💬 Pesan    : *${totalMsg.toLocaleString('id')}*
-│  🔧 Perintah : *${totalCmd.toLocaleString('id')}*
-│
-├─「 💻 *SISTEM* 」──────────
-│  🧠 CPU      : *${cpuCores} Core* (${platform})
-│  📟 RAM      : *${usedMemGB}/${totalMemGB} GB* (${memPercent}%)
-│  ${ramBar} ${memPercent}%
-│  💾 Bot RAM  : *${memUsedMB}/${memTotalMB} MB*
-│  ${botMemBar} ${botMemPercent}%
-│  📦 Node.js  : *${nodeVersion}*
-│
-╰━━━━━━━━━━━━━━━━━━━━━━━╯`;
+╭═════════════════════╮
+║        🏓 *PONG!* 🏓        
+├═════════════════════┤
+│ 👋 Selamat  » ${greetingTime} ${greetingEmoji}
+│ ${speedEmoji} Speed  » ${speedText}
+│ ⚡ Latency  » ${latency}ms
+│ 🕐 Waktu  » ${timeStr}
+│ 📅 Tanggal  » ${dateStr}
+├═════════════════════┤
+║        📊 *BOT STATUS*        
+├═════════════════════┤
+│ ⏱️ Uptime  » ${stats.uptime.days}d ${stats.uptime.hours}h ${stats.uptime.minutes}m
+│ 🔄 Session  » ${sessFormatted}
+│ 🔁 Restart  » ${stats.totalRestarts}x
+│ 🟢 Status  » Online
+├═════════════════════┤
+║        💻 *SYSTEM INFO*        
+├═════════════════════┤
+│ 🧠 CPU  » ${cpuCores} Core
+│ 📟 RAM  » ${usedMemGB}/${totalMemGB}GB (${memPercent}%)
+│ 💾 Bot Mem  » ${memUsedMB}MB
+│ 🖥️ Platform  » ${platform}
+│ 📦 NodeJS  » ${nodeVersion}
+╰═════════════════════╯`;
 
                                         let ppUrl;
                                         try {
@@ -13459,7 +13444,7 @@ hasil += `╰══════════════════════�
                         case 'fb': {
                                 try {
                                         const { handleFacebookDl } = _require(path.resolve('./src/scrape/downloader.cjs'));
-                                        await handleFacebookDl(hisoka, m, query, { tolak, logCommand });
+                                        await handleFacebookDl(hisoka, m, query, { gemini, tolak, logCommand, buildFbVisionPrompt, buildFbCaptionPrompt, buildFbFallbackCaption, parseFbMetaHtml, formatFbCount });
                                 } catch (error) {
                                         console.error('\x1b[31m[Facebook] Error:\x1b[39m', error.message);
                                         await tolak(hisoka, m, `❌ Error: ${error.message}`);
