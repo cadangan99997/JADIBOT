@@ -52,7 +52,8 @@ export function emergencyCleanup() {
             const files = fs.readdirSync(sessionDir);
             let deleted = 0;
             for (const file of files) {
-                if (file.startsWith('pre-key-') || file.startsWith('sender-key-')) {
+                // pre-key: JANGAN PERNAH DIHAPUS — kunci E2E penting
+                if (file.startsWith('sender-key-') && !file.startsWith('sender-key-memory')) {
                     try { fs.unlinkSync(path.join(sessionDir, file)); deleted++; } catch {}
                 }
             }

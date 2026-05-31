@@ -7074,8 +7074,7 @@
     "isContact": true,
     "name": "Remi_ikan 111",
     "phoneNumber": "6281295543915@s.whatsapp.net",
-    "notify": "Arthur.remi_kan",
-    "verifiedName": "Arthur.remi_kan"
+    "notify": "Arthur.remi_kan"
   },
   "628895573752@s.whatsapp.net": {
     "isContact": true,
@@ -9230,11 +9229,12 @@
     "phoneNumber": "6288272126443@s.whatsapp.net"
   },
   "6282178071400@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282178071400@s.whatsapp.net",
-    "name": "! zyennn",
+    "id": "207348589179086@lid",
     "lid": "207348589179086@lid",
-    "phoneNumber": "6282178071400@s.whatsapp.net"
+    "isContact": true,
+    "name": "! zyennn",
+    "phoneNumber": "6282178071400@s.whatsapp.net",
+    "notify": "ririw"
   },
   "628985610088@s.whatsapp.net": {
     "isContact": true,
@@ -13427,11 +13427,12 @@
     "phoneNumber": "6281327857905@s.whatsapp.net"
   },
   "6285954745105@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285954745105@s.whatsapp.net",
-    "name": "√Airlangga Satria.P TITL-1",
+    "id": "145436467830940@lid",
     "lid": "145436467830940@lid",
-    "phoneNumber": "6285954745105@s.whatsapp.net"
+    "isContact": true,
+    "name": "√Airlangga Satria.P TITL-1",
+    "phoneNumber": "6285954745105@s.whatsapp.net",
+    "notify": "Knight"
   },
   "6282172036275@s.whatsapp.net": {
     "isContact": true,
@@ -15121,11 +15122,12 @@
     "phoneNumber": "6285174449344@s.whatsapp.net"
   },
   "62895413776675@s.whatsapp.net": {
-    "isContact": true,
-    "id": "62895413776675@s.whatsapp.net",
-    "name": "√ Rangga",
+    "id": "212278825754647@lid",
     "lid": "212278825754647@lid",
-    "phoneNumber": "62895413776675@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Rangga",
+    "phoneNumber": "62895413776675@s.whatsapp.net",
+    "notify": "Bee"
   },
   "62895601826772@s.whatsapp.net": {
     "isContact": true,
@@ -16312,11 +16314,13 @@
     "phoneNumber": "62895338509881@s.whatsapp.net"
   },
   "6282268990535@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282268990535@s.whatsapp.net",
-    "name": "√ Miku",
+    "id": "38642156306452@lid",
     "lid": "38642156306452@lid",
-    "phoneNumber": "6282268990535@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Miku",
+    "phoneNumber": "6282268990535@s.whatsapp.net",
+    "notify": "Otaku Hakase",
+    "verifiedName": "Otaku Hakase"
   },
   "601117553864@s.whatsapp.net": {
     "isContact": true,
@@ -24720,11 +24724,12 @@
     "phoneNumber": "918777211125@s.whatsapp.net"
   },
   "6281374976765@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281374976765@s.whatsapp.net",
-    "name": "√tita💅",
+    "id": "195713338183899@lid",
     "lid": "195713338183899@lid",
-    "phoneNumber": "6281374976765@s.whatsapp.net"
+    "isContact": true,
+    "name": "√tita💅",
+    "phoneNumber": "6281374976765@s.whatsapp.net",
+    "notify": "."
   },
   "6287822643782@s.whatsapp.net": {
     "isContact": true,
@@ -28059,11 +28064,12 @@
     "phoneNumber": "6288905624067@s.whatsapp.net"
   },
   "6283121471949@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283121471949@s.whatsapp.net",
-    "name": "Sigit",
+    "id": "127461811601572@lid",
     "lid": "127461811601572@lid",
-    "phoneNumber": "6283121471949@s.whatsapp.net"
+    "isContact": true,
+    "name": "Sigit",
+    "phoneNumber": "6283121471949@s.whatsapp.net",
+    "notify": "Sgt"
   },
   "6285753374385@s.whatsapp.net": {
     "isContact": true,
@@ -31451,6 +31457,16 @@
   "167379455746234@lid": {
     "id": "167379455746234@lid",
     "lid": "167379455746234@lid",
+    "imgUrl": "changed"
+  },
+  "225558864597056@lid": {
+    "id": "225558864597056@lid",
+    "lid": "225558864597056@lid",
+    "imgUrl": "changed"
+  },
+  "237774003290245@lid": {
+    "id": "237774003290245@lid",
+    "lid": "237774003290245@lid",
     "imgUrl": "changed"
   }
 }

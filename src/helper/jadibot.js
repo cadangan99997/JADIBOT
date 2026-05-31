@@ -90,7 +90,7 @@ const expiryWarningTimers = new Map()
 const jadibotSwSets = new Map()
 // Per-jadibot SwTracker — data tersimpan di folder khusus per-nomor jadibot
 const jadibotTrackers = new Map()
-// Per-jadibot periodic SessionCleaner interval — bersihkan pre-key stale saat session jalan lama
+// Per-jadibot periodic SessionCleaner interval — bersihkan session/sender-key lama saat session jalan lama
 const jadibotCleanerTimers = new Map()
 
 /* ================= UTILS ================= */
@@ -1186,7 +1186,7 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
 
   fs.mkdirSync(sessionDir, { recursive: true })
 
-  // Bersihkan pre-key stale & session lama sebelum load
+  // Bersihkan session lama sebelum load (pre-key tidak disentuh)
   cleanStaleSessionFiles(sessionDir)
 
   const { state, saveCreds } = await useMultiFileAuthState(sessionDir)
@@ -1391,7 +1391,7 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
       startingSocketMap.delete(number)
       pairingRequested.delete(number)
 
-      // Periodic SessionCleaner — bersihkan pre-key stale tiap 6 jam
+      // Periodic SessionCleaner — bersihkan session/sender-key lama tiap 6 jam
       // Penting untuk jadibot yang berjalan lama tanpa reconnect
       if (jadibotCleanerTimers.has(number)) {
         clearInterval(jadibotCleanerTimers.get(number))
@@ -1754,7 +1754,7 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
       jadibotConnectedAt.set(number, _connectTs)
       persistConnectedAt(number, _connectTs)
 
-      // Periodic SessionCleaner — bersihkan pre-key stale tiap 6 jam
+      // Periodic SessionCleaner — bersihkan session/sender-key lama tiap 6 jam
       if (jadibotCleanerTimers.has(number)) {
         clearInterval(jadibotCleanerTimers.get(number))
       }
