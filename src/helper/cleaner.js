@@ -359,15 +359,6 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
         const credsPath = path.join(sessionDir, 'creds.json')
         if (!fs.existsSync(credsPath)) return
 
-        // ── Batas aman hapus pre-key ──────────────────────────────────────────
-        let safeDeleteBefore = 0
-        try {
-            const creds = JSON.parse(fs.readFileSync(credsPath, 'utf-8'))
-            const firstUnuploaded = creds?.nextPreKeyId ?? creds?.firstUnuploadedPreKeyId ?? 0
-            const SAFE_BUFFER = 200
-            safeDeleteBefore = Math.max(0, firstUnuploaded - SAFE_BUFFER)
-        } catch {}
-
         const files = fs.readdirSync(sessionDir)
         const now = Date.now()
 
@@ -378,7 +369,6 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
         const AGE_DEVICE_LIST = 30 * 24 * 60 * 60 * 1000  // device-list → 30 hari
         const APP_STATE_KEEP  = 10                          // app-state-sync-key: simpan N terbaru
 
-        let deletedPreKeys    = 0
         let deletedSessions   = 0
         let deletedSenderKeys = 0
         let deletedIdentity   = 0
@@ -412,16 +402,8 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
         for (const file of files) {
             const filePath = path.join(sessionDir, file)
 
-            // pre-key: hapus yang ID-nya di bawah batas aman
+            // pre-key: JANGAN PERNAH DIHAPUS — kunci E2E penting, biarkan WA manage sendiri
             if (file.startsWith('pre-key-') && file.endsWith('.json')) {
-                const id = parseInt(file.replace('pre-key-', '').replace('.json', ''), 10)
-                if (!isNaN(id) && id < safeDeleteBefore) {
-                    try {
-                        deletedSize += fs.statSync(filePath).size
-                        fs.unlinkSync(filePath)
-                        deletedPreKeys++
-                    } catch {}
-                }
                 continue
             }
 
@@ -490,7 +472,6 @@ export function cleanStaleSessionFiles(sessionDir, { skipConfigCheck = false } =
 
         // ── Log ringkasan ─────────────────────────────────────────────────────
         const parts = []
-        if (deletedPreKeys    > 0) parts.push(`${deletedPreKeys} pre-key`)
         if (deletedAppState   > 0) parts.push(`${deletedAppState} app-state-key`)
         if (deletedSenderKeys > 0) parts.push(`${deletedSenderKeys} sender-key`)
         if (deletedIdentity   > 0) parts.push(`${deletedIdentity} identity-key`)

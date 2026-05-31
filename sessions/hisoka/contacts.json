@@ -18926,8 +18926,7 @@
     "isContact": true,
     "name": "! Fadli",
     "phoneNumber": "6285956660403@s.whatsapp.net",
-    "notify": "Cosmouz",
-    "verifiedName": "Cosmouz"
+    "notify": "Cosmouz"
   },
   "6285707611067@s.whatsapp.net": {
     "isContact": true,
@@ -19007,11 +19006,12 @@
     "phoneNumber": "628895588287@s.whatsapp.net"
   },
   "6282213720788@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282213720788@s.whatsapp.net",
-    "name": "Fhandy",
+    "id": "56010702086266@lid",
     "lid": "56010702086266@lid",
-    "phoneNumber": "6282213720788@s.whatsapp.net"
+    "isContact": true,
+    "name": "Fhandy",
+    "phoneNumber": "6282213720788@s.whatsapp.net",
+    "notify": "-unravel-"
   },
   "6282363896226@s.whatsapp.net": {
     "isContact": true,
@@ -27600,8 +27600,7 @@
     "isContact": true,
     "name": "Agan Rizkia",
     "phoneNumber": "6289688206739@s.whatsapp.net",
-    "notify": "Wily",
-    "verifiedName": "Wily"
+    "notify": "Wily"
   },
   "6288270829865@s.whatsapp.net": {
     "isContact": true,
