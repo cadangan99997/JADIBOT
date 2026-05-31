@@ -29046,8 +29046,7 @@
     "isContact": true,
     "name": "Arga",
     "phoneNumber": "6285150762138@s.whatsapp.net",
-    "notify": "AE MyRep",
-    "verifiedName": "AE MyRep"
+    "notify": "AE MyRep"
   },
   "6283831464069@s.whatsapp.net": {
     "isContact": true,
@@ -31471,5 +31470,15 @@
     "id": "237774003290245@lid",
     "lid": "237774003290245@lid",
     "imgUrl": "changed"
+  },
+  "4870711021709@lid": {
+    "id": "4870711021709@lid",
+    "lid": "4870711021709@lid",
+    "imgUrl": "removed"
+  },
+  "232830512664775@lid": {
+    "id": "232830512664775@lid",
+    "lid": "232830512664775@lid",
+    "imgUrl": "removed"
   }
 }
