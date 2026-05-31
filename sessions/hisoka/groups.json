@@ -5996,7 +5996,7 @@
     "subjectOwner": "172838711480524@lid",
     "subjectOwnerPn": "6283123405940@s.whatsapp.net",
     "subjectTime": 1761452838,
-    "size": 813,
+    "size": 811,
     "creation": 1693096407,
     "owner": "88609721962527@lid",
     "ownerPn": "6285807405071@s.whatsapp.net",
@@ -6390,11 +6390,6 @@
         "admin": null
       },
       {
-        "id": "106786510094442@lid",
-        "phoneNumber": "628212635912@s.whatsapp.net",
-        "admin": null
-      },
-      {
         "id": "260932701814994@lid",
         "phoneNumber": "6285158163940@s.whatsapp.net",
         "admin": null
@@ -6727,11 +6722,6 @@
       {
         "id": "74767478583450@lid",
         "phoneNumber": "66992646337@s.whatsapp.net",
-        "admin": null
-      },
-      {
-        "id": "70987907395801@lid",
-        "phoneNumber": "6285353997861@s.whatsapp.net",
         "admin": null
       },
       {
@@ -10086,7 +10076,7 @@
     "addressingMode": "lid",
     "subject": "COMUNITY ZANSPIW⚡",
     "subjectTime": 1720055772,
-    "size": 1978,
+    "size": 1969,
     "creation": 1717629092,
     "desc": "Halo! Komunitas ini dibuat agar anggota dapat melakukan chat di grup berbasis topik dan menerima pengumuman penting.",
     "descId": "EC3085525F72F5A2E96C1A7369C9E946",
@@ -10628,10 +10618,6 @@
         "admin": null
       },
       {
-        "id": "152682463539306@lid",
-        "admin": null
-      },
-      {
         "id": "1216247529618@lid",
         "admin": null
       },
@@ -10673,10 +10659,6 @@
       },
       {
         "id": "217064040083507@lid",
-        "admin": null
-      },
-      {
-        "id": "263767313150055@lid",
         "admin": null
       },
       {
@@ -11437,10 +11419,6 @@
         "admin": null
       },
       {
-        "id": "190525420392530@lid",
-        "admin": null
-      },
-      {
         "id": "17712596168792@lid",
         "admin": null
       },
@@ -12078,10 +12056,6 @@
       },
       {
         "id": "71360881643685@lid",
-        "admin": null
-      },
-      {
-        "id": "120843904544872@lid",
         "admin": null
       },
       {
@@ -12781,6 +12755,10 @@
         "admin": null
       },
       {
+        "id": "253571295613123@lid",
+        "admin": null
+      },
+      {
         "id": "19225095712952@lid",
         "admin": null
       },
@@ -12934,10 +12912,6 @@
       },
       {
         "id": "176450812571667@lid",
-        "admin": null
-      },
-      {
-        "id": "26771219067052@lid",
         "admin": null
       },
       {
@@ -14033,10 +14007,6 @@
         "admin": null
       },
       {
-        "id": "114873983865013@lid",
-        "admin": null
-      },
-      {
         "id": "178812843249819@lid",
         "admin": null
       },
@@ -14082,10 +14052,6 @@
       },
       {
         "id": "89327384133826@lid",
-        "admin": null
-      },
-      {
-        "id": "197998596354158@lid",
         "admin": null
       },
       {
@@ -14466,10 +14432,6 @@
       },
       {
         "id": "267293162475770@lid",
-        "admin": null
-      },
-      {
-        "id": "251973349703713@lid",
         "admin": null
       },
       {
@@ -16726,10 +16688,6 @@
         "admin": null
       },
       {
-        "id": "70987907395801@lid",
-        "admin": null
-      },
-      {
         "id": "232989795582178@lid",
         "admin": null
       },
@@ -17371,10 +17329,6 @@
         "admin": null
       },
       {
-        "id": "106786510094442@lid",
-        "admin": null
-      },
-      {
         "id": "80522399223937@lid",
         "admin": null
       },
@@ -18012,6 +17966,18 @@
       },
       {
         "id": "254193512226986@lid",
+        "admin": null
+      },
+      {
+        "id": "167615930597452@lid",
+        "admin": null
+      },
+      {
+        "id": "218137681236020@lid",
+        "admin": null
+      },
+      {
+        "id": "269724264968231@lid",
         "admin": null
       }
     ]
