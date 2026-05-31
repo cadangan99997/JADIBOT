@@ -6199,8 +6199,7 @@
     "isContact": true,
     "name": "Hamdan",
     "phoneNumber": "6283134844523@s.whatsapp.net",
-    "notify": "Anda Siapa?",
-    "verifiedName": "Anda Siapa?"
+    "notify": "Anda Siapa?"
   },
   "6282252587337@s.whatsapp.net": {
     "isContact": true,
@@ -31690,6 +31689,16 @@
   "238354125820047@lid": {
     "id": "238354125820047@lid",
     "lid": "238354125820047@lid",
+    "imgUrl": "changed"
+  },
+  "274667621343478@lid": {
+    "id": "274667621343478@lid",
+    "lid": "274667621343478@lid",
+    "imgUrl": "changed"
+  },
+  "28866559094941@lid": {
+    "id": "28866559094941@lid",
+    "lid": "28866559094941@lid",
     "imgUrl": "changed"
   }
 }
