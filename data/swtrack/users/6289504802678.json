@@ -48,9 +48,9 @@
     "name": "Rendra pulang ada gulali",
     "type": "videoMessage",
     "arrivedAt": "2026-06-01T06:01:14.638Z",
-    "read": false,
-    "reacted": false,
-    "emoji": null,
+    "read": true,
+    "reacted": true,
+    "emoji": "🧑‍🔬",
     "resolve": "PN langsung ✓",
     "source": "status",
     "number": "6289504802678",
@@ -63,6 +63,8 @@
       "participant": "263445207371837@lid",
       "addressingMode": "lid"
     },
-    "updatedAt": "2026-06-01T06:01:14.639Z"
+    "updatedAt": "2026-06-01T06:36:45.745Z",
+    "retriedOnStartup": true,
+    "retriedAt": "2026-06-01T06:36:45.745Z"
   }
 }
