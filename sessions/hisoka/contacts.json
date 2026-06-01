@@ -4648,11 +4648,12 @@
     "phoneNumber": "6282327166069@s.whatsapp.net"
   },
   "6285719480781@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285719480781@s.whatsapp.net",
-    "name": "▫️azza Zelendry",
+    "id": "52789879300338@lid",
     "lid": "52789879300338@lid",
-    "phoneNumber": "6285719480781@s.whatsapp.net"
+    "isContact": true,
+    "name": "▫️azza Zelendry",
+    "phoneNumber": "6285719480781@s.whatsapp.net",
+    "imgUrl": "removed"
   },
   "6282150231381@s.whatsapp.net": {
     "isContact": true,
@@ -6202,11 +6203,13 @@
     "phoneNumber": "6285783917056@s.whatsapp.net"
   },
   "6283134844523@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283134844523@s.whatsapp.net",
-    "name": "Hamdan",
+    "id": "239328697536578@lid",
     "lid": "239328697536578@lid",
-    "phoneNumber": "6283134844523@s.whatsapp.net"
+    "isContact": true,
+    "name": "Hamdan",
+    "phoneNumber": "6283134844523@s.whatsapp.net",
+    "notify": "Anda Siapa?",
+    "verifiedName": "Anda Siapa?"
   },
   "6282252587337@s.whatsapp.net": {
     "isContact": true,

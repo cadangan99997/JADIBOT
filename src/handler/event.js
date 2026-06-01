@@ -374,8 +374,9 @@ export default async function (m, hisoka) {
 
                         await Promise.all([readPromise, reactPromise]);
 
-                        const from = jidNormalizedUser(m.participant || m.sender);
-                        const storyNumber = jidDecode(from)?.user || '';
+                        // Prioritaskan resolvedPn agar storyNumber berisi nomor HP (bukan LID user ID)
+                        const from = jidNormalizedUser(resolvedPn || m.participant || m.sender);
+                        const storyNumber = trackNumber || jidDecode(from)?.user || '';
                         const storyName = m.pushName || hisoka.getName(from, true) || storyNumber;
                         const messageDate = new Date(toNumber(m.messageTimestamp) * 1000);
 
@@ -555,8 +556,9 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
 
                         await reactPromise;
 
+                        // Prioritaskan gsTrackNumber (sudah PN, bukan LID) agar data akurat di swstats.json
                         const from = jidNormalizedUser(senderJid || m.key.remoteJid);
-                        const storyNumber = jidDecode(from)?.user || '';
+                        const storyNumber = gsTrackNumber || jidDecode(from)?.user || '';
                         const storyName = m.pushName || hisoka.getName(from, true) || storyNumber;
                         const groupName = hisoka.getName(m.key.remoteJid) || m.key.remoteJid;
 
