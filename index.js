@@ -190,14 +190,37 @@ function saveBotAdminStatus(hisoka, allGroups) {
     const botNumber = (hisoka.user?.id || '').split('@')[0].split(':')[0];
     if (!botNumber) return;
     const data = loadBotAdminData();
+
+    // Bangun set ID grup yang bot masih ada di dalamnya (sumber: groupFetchAllParticipating)
+    const activeGroupIds = new Set(allGroups.map(g => g.id).filter(Boolean));
+
+    // Hapus entry lama yang bot sudah tidak ada — cleanup data sebelum fix real-time
+    let cleaned = 0;
+    for (const gid of Object.keys(data)) {
+      if (!activeGroupIds.has(gid)) {
+        delete data[gid];
+        cleaned++;
+      }
+    }
+    if (cleaned > 0) {
+      console.info(`\x1b[33m[BotAdmin] Cleanup: ${cleaned} entry lama dihapus (bot sudah tidak di grup)\x1b[39m`);
+    }
+
+    // Update status admin berdasarkan metadata realtime
     for (const g of allGroups) {
       const participant = (g.participants || []).find(p => {
         const rawJid = p.jid || p.phoneNumber || p.id || '';
         const pNum = rawJid.split('@')[0].split(':')[0];
         return pNum === botNumber;
       });
-      data[g.id] = !!participant?.admin;
+      // Jika bot tidak ditemukan di participants (kemungkinan format LID), pertahankan nilai lama jika ada
+      if (participant !== undefined) {
+        data[g.id] = !!participant?.admin;
+      } else if (!(g.id in data)) {
+        data[g.id] = false;
+      }
     }
+
     saveBotAdminData(data);
     const adminGroups = Object.values(data).filter(Boolean).length;
     console.info(`\x1b[32m→ Admin    :\x1b[39m ${Object.keys(data).length} grup, admin di ${adminGroups}`);
