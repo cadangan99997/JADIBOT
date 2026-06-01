@@ -1,3 +1,12 @@
 {
-  "bots": {}
+  "bots": {
+    "6285188150676": {
+      "number": "6285188150676",
+      "permanent": true,
+      "status": "active",
+      "createdAt": 1780303679719,
+      "updatedAt": 1780303679719,
+      "durationText": "Permanent"
+    }
+  }
 }

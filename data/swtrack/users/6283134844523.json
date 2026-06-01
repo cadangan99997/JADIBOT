@@ -311,9 +311,9 @@
     "name": "Anda Siapa?",
     "type": "extendedTextMessage",
     "arrivedAt": "2026-06-01T08:41:56.740Z",
-    "read": false,
-    "reacted": false,
-    "emoji": null,
+    "read": true,
+    "reacted": true,
+    "emoji": "♿",
     "resolve": "PN langsung ✓",
     "source": "status",
     "number": "6283134844523",
@@ -326,6 +326,25 @@
       "participant": "239328697536578@lid",
       "addressingMode": "lid"
     },
-    "updatedAt": "2026-06-01T08:41:56.740Z"
+    "updatedAt": "2026-06-01T08:42:14.183Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6283134844523@s.whatsapp.net",
+        "fromMe": false,
+        "id": "A512CB2FF908439B3BC4F4A98580D21B",
+        "participant": "239328697536578@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6283134844523@s.whatsapp.net",
+        "fromMe": false,
+        "id": "A512CB2FF908439B3BC4F4A98580D21B",
+        "participant": "6283134844523@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-06-01T08:42:14.183Z"
   }
 }

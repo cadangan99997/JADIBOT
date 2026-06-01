@@ -1,0 +1,11 @@
+{
+  "6285188150676": {
+    "antidel": {
+      "enabled": true,
+      "privateChat": true,
+      "groupChat": true,
+      "sendTo": "self"
+    },
+    "updatedAt": 1780303717356
+  }
+}
