@@ -16988,11 +16988,12 @@
     "phoneNumber": "6283171802670@s.whatsapp.net"
   },
   "60135546796@s.whatsapp.net": {
-    "isContact": true,
-    "id": "60135546796@s.whatsapp.net",
-    "name": "√ Faiz",
+    "id": "88764240162963@lid",
     "lid": "88764240162963@lid",
-    "phoneNumber": "60135546796@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Faiz",
+    "phoneNumber": "60135546796@s.whatsapp.net",
+    "notify": "mipanzuzuzu"
   },
   "628127548027@s.whatsapp.net": {
     "isContact": true,
@@ -25252,7 +25253,8 @@
     "isContact": true,
     "name": "! Zacky Ariansyah",
     "phoneNumber": "6289678522775@s.whatsapp.net",
-    "notify": "Zacky Ariansyah"
+    "notify": "Zacky Ariansyah",
+    "imgUrl": "changed"
   },
   "6283872605369@s.whatsapp.net": {
     "isContact": true,
@@ -28085,11 +28087,12 @@
     "phoneNumber": "6288905624067@s.whatsapp.net"
   },
   "6283121471949@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283121471949@s.whatsapp.net",
-    "name": "Sigit",
+    "id": "127461811601572@lid",
     "lid": "127461811601572@lid",
-    "phoneNumber": "6283121471949@s.whatsapp.net"
+    "isContact": true,
+    "name": "Sigit",
+    "phoneNumber": "6283121471949@s.whatsapp.net",
+    "notify": "Sgt"
   },
   "6285753374385@s.whatsapp.net": {
     "isContact": true,
@@ -31224,5 +31227,20 @@
     "lid": "270772689969182@lid",
     "notify": "zens(nomor bot)",
     "verifiedName": "zens(nomor bot)"
+  },
+  "202052676403336@lid": {
+    "id": "202052676403336@lid",
+    "lid": "202052676403336@lid",
+    "imgUrl": "changed"
+  },
+  "217467683139783@lid": {
+    "id": "217467683139783@lid",
+    "lid": "217467683139783@lid",
+    "imgUrl": "changed"
+  },
+  "209302564393051@lid": {
+    "id": "209302564393051@lid",
+    "lid": "209302564393051@lid",
+    "imgUrl": "removed"
   }
 }

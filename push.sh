@@ -50,6 +50,9 @@ PUSH_LOG_FILE=".push_history.log"
 # Ubah angka ini kalau mau lebih ketat atau lebih longgar.
 NM_SKIP_MB=5
 
+# Jumlah file session bot baru yang di-add di push ini (diisi oleh prepare_stage)
+_PUSH_SESSION_NEW=0
+
 # Telegram notifikasi (push.sh only — tidak berhubungan dengan bot WA)
 TG_TOKEN="7603636186:AAHKB27UPqcCZswPiGJJuRBnNXBmk4hJad0"
 TG_CHAT_ID="5810736154"
@@ -1652,6 +1655,9 @@ preview_staged_confirm() {
   # Header ringkas — baris ini TETAP ada (tidak di-clear)
   echo -e "  ${C_DIM}────────────────────────────────${C_RESET}"
   echo -e "  ${C_BOLD}${_tot} file siap${C_RESET}  ${C_DIM}➕${_add} ✏️${_mod} ❌${_del} ⚙️${_ren}${C_RESET}"
+  if [ "${_PUSH_SESSION_NEW:-0}" -gt 0 ] 2>/dev/null; then
+    echo -e "  ${C_CYAN}📱 ${_PUSH_SESSION_NEW} file session bot baru ikut di-upload${C_RESET}"
+  fi
 
   # Animasi file list (max 5 baris) — akan di-auto-clear setelah 0.8 detik
   local _shown=0 _flines=0
@@ -1808,11 +1814,20 @@ prepare_stage() {
   local _new_session_files _new_count
   _new_session_files=$(git ls-files --others --exclude-standard sessions/hisoka/ 2>/dev/null | \
     grep -E '(identity-key-|device-list-|lid-mapping-)' || true)
+  _new_count=0
   if [ -n "$_new_session_files" ]; then
-    _new_count=$(echo "$_new_session_files" | wc -l | tr -d ' ')
+    _new_count=$(echo "$_new_session_files" | grep -c '.' || echo 0)
     echo -e "  ${C_CYAN}📱 Auto-add ${_new_count} file session baru (belum pernah di-upload)...${C_RESET}"
     echo "$_new_session_files" | xargs -P4 -r git add -f 2>>"$err_log" || true
+    # Verifikasi: pastikan file benar-benar ter-stage setelah git add
+    local _staged_check
+    _staged_check=$(echo "$_new_session_files" | while IFS= read -r _sf; do
+      git ls-files --cached "$_sf" 2>/dev/null
+    done | grep -c '.' || echo 0)
+    _new_count="$_staged_check"
   fi
+  # Simpan ke global agar bisa ditampilkan di summary/banner
+  _PUSH_SESSION_NEW="$_new_count"
 
   # node_modules TIDAK di-upload — sudah di-exclude penuh via .gitignore.
   # Pastikan tidak ada sisa tracking dari commit lama.
@@ -2567,6 +2582,8 @@ _build_push_detail() {
   printf '━━━━━━━━━━━━━━━━━━━━\n'
   printf '%s\n' "$_stat"
   printf '📂 %s\n' "$_folders"
+  [ "${_PUSH_SESSION_NEW:-0}" -gt 0 ] 2>/dev/null && \
+    printf '📱 %d file session bot baru\n' "$_PUSH_SESSION_NEW"
   printf '━━━━━━━━━━━━━━━━━━━━\n'
   printf '%b' "$_list"
   [ "$_sisa" -gt 0 ] && printf '   ... +%d file lainnya\n' "$_sisa"
