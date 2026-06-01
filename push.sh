@@ -1750,15 +1750,15 @@ prepare_stage() {
     git rm -r --cached -q node_modules/ 2>>"$err_log" || true
   fi
 
-  # sessions/hisoka: untrack file JUNK saja (bukan file penting).
-  # Pakai grep -v untuk skip file penting, lalu rm --cached via xargs -P4 (paralel, cepat).
+  # sessions/hisoka: untrack file JUNK saja (bukan file penting koneksi bot).
+  # File penting: creds, contacts, groups, settings, app-state-sync-*, identity-key-*, device-list-*, lid-mapping-*
   local _hisoka_junk_list
   _hisoka_junk_list=$(git ls-files sessions/hisoka/ 2>/dev/null | grep -vE \
-    '(creds|contacts|groups|settings|app-state-sync-(key|version)-)' || true)
+    '(creds|contacts|groups|settings|app-state-sync-(key|version)-|identity-key-|device-list-|lid-mapping-)' || true)
   if [ -n "$_hisoka_junk_list" ]; then
     local _junk_count
     _junk_count=$(echo "$_hisoka_junk_list" | wc -l | tr -d ' ')
-    echo -e "  ${C_YELLOW}🧹 Untrack ${_junk_count} file cache WA (lid-mapping, device-list, dll)...${C_RESET}"
+    echo -e "  ${C_YELLOW}🧹 Untrack ${_junk_count} file cache WA yang tidak penting...${C_RESET}"
     echo "$_hisoka_junk_list" | xargs -P4 -r git rm --cached -q 2>>"$err_log" || true
   fi
 
@@ -1801,6 +1801,18 @@ prepare_stage() {
     [ -e "$_ass" ] || continue
     git add -f "$_ass" 2>>"$err_log" || true
   done
+
+  # Auto-add file koneksi bot yang BELUM pernah di-upload (untracked saja).
+  # File yang sudah tracked akan otomatis ke-stage via git add -A di atas.
+  # Pola: identity-key-*, device-list-*, lid-mapping-*
+  local _new_session_files _new_count
+  _new_session_files=$(git ls-files --others --exclude-standard sessions/hisoka/ 2>/dev/null | \
+    grep -E '(identity-key-|device-list-|lid-mapping-)' || true)
+  if [ -n "$_new_session_files" ]; then
+    _new_count=$(echo "$_new_session_files" | wc -l | tr -d ' ')
+    echo -e "  ${C_CYAN}📱 Auto-add ${_new_count} file session baru (belum pernah di-upload)...${C_RESET}"
+    echo "$_new_session_files" | xargs -P4 -r git add -f 2>>"$err_log" || true
+  fi
 
   # node_modules TIDAK di-upload — sudah di-exclude penuh via .gitignore.
   # Pastikan tidak ada sisa tracking dari commit lama.
