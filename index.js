@@ -798,7 +798,7 @@ async function main() {
                                                                 const num=(entry.number||(entry.resolvedPn||'').split('@')[0])||'-';
                                                                 const masked=num.length>6?num.slice(0,4)+'****'+num.slice(-3):num;
                                                                 const rc=(entry.resolve||'').includes('PN')?gr:bl;
-                                                                console.log(`${cy}╭${'═'.repeat(bW)}╮${rs}`);
+                                                                console.log(`${cy}┌${'═'.repeat(bW)}┐${rs}`);
                                                                 console.log(`${cy}║${' '.repeat(tp)}${ye}${title}${rs}${cy}${' '.repeat(bW-tp-title.length)}║${rs}`);
                                                                 console.log(`${cy}├${'═'.repeat(bW)}┤${rs}`);
                                                                 console.log(`${cy}│${rs} ${wh}⭔ Mode        : ${gr}${_swPad('Read+Reaction ✓',cW)}${rs}`);

@@ -283,7 +283,7 @@ export function logStoryView(data) {
         const delayStr = delaySeconds !== null ? `${delaySeconds} detik` : '-';
         const modeStr = mode === 'Off ❌' ? 'Read Only' : (mode.startsWith('Read') ? mode : 'Read+Reaction ✓');
 
-        console.log(`${cyan}╭${'═'.repeat(boxWidth)}╮${reset}`);
+        console.log(`${cyan}┌${'═'.repeat(boxWidth)}┐${reset}`);
         console.log(`${cyan}║${' '.repeat(titlePadding)}${yellow}${title}${reset}${cyan}${' '.repeat(boxWidth - titlePadding - title.length)}║${reset}`);
         console.log(`${cyan}├${'═'.repeat(boxWidth)}┤${reset}`);
         if (botId) {

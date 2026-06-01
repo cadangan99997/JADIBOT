@@ -5817,11 +5817,13 @@
     "phoneNumber": "62881038119847@s.whatsapp.net"
   },
   "18258961472@s.whatsapp.net": {
-    "isContact": true,
-    "id": "18258961472@s.whatsapp.net",
-    "name": "Hamdan [ NOKOS ]",
+    "id": "54392187277397@lid",
     "lid": "54392187277397@lid",
-    "phoneNumber": "18258961472@s.whatsapp.net"
+    "isContact": true,
+    "name": "Hamdan [ NOKOS ]",
+    "phoneNumber": "18258961472@s.whatsapp.net",
+    "notify": "Anda Siapa??",
+    "verifiedName": "Anda Siapa??"
   },
   "6285711662550@s.whatsapp.net": {
     "isContact": true,
@@ -6364,11 +6366,12 @@
     "phoneNumber": "6281272625255@s.whatsapp.net"
   },
   "6285175463174@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285175463174@s.whatsapp.net",
-    "name": "sunshine jpeg",
+    "id": "156182794784889@lid",
     "lid": "156182794784889@lid",
-    "phoneNumber": "6285175463174@s.whatsapp.net"
+    "isContact": true,
+    "name": "sunshine jpeg",
+    "phoneNumber": "6285175463174@s.whatsapp.net",
+    "notify": "sunshine.jpeg"
   },
   "6285264286057@s.whatsapp.net": {
     "isContact": true,
@@ -7090,7 +7093,8 @@
     "isContact": true,
     "name": "Remi_ikan 111",
     "phoneNumber": "6281295543915@s.whatsapp.net",
-    "notify": "Arthur.remi_kan"
+    "notify": "Arthur.remi_kan",
+    "verifiedName": "Arthur.remi_kan"
   },
   "628895573752@s.whatsapp.net": {
     "isContact": true,
@@ -9246,11 +9250,12 @@
     "phoneNumber": "6288272126443@s.whatsapp.net"
   },
   "6282178071400@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282178071400@s.whatsapp.net",
-    "name": "! zyennn",
+    "id": "207348589179086@lid",
     "lid": "207348589179086@lid",
-    "phoneNumber": "6282178071400@s.whatsapp.net"
+    "isContact": true,
+    "name": "! zyennn",
+    "phoneNumber": "6282178071400@s.whatsapp.net",
+    "notify": "ririw"
   },
   "628985610088@s.whatsapp.net": {
     "isContact": true,
@@ -13461,11 +13466,13 @@
     "phoneNumber": "6285822700005@s.whatsapp.net"
   },
   "6285188150676@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285188150676@s.whatsapp.net",
-    "name": "γυς ρου [ NOKOS 2 ]",
+    "id": "3638558740716@lid",
     "lid": "3638558740716@lid",
-    "phoneNumber": "6285188150676@s.whatsapp.net"
+    "isContact": true,
+    "name": "γυς ρου [ NOKOS 2 ]",
+    "phoneNumber": "6285188150676@s.whatsapp.net",
+    "notify": "pou",
+    "verifiedName": "pou"
   },
   "6289502933684@s.whatsapp.net": {
     "isContact": true,
@@ -19235,11 +19242,12 @@
     "phoneNumber": "6287865022924@s.whatsapp.net"
   },
   "6287860371877@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6287860371877@s.whatsapp.net",
-    "name": "! Fuma Kotaro",
+    "id": "200356231442552@lid",
     "lid": "200356231442552@lid",
-    "phoneNumber": "6287860371877@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Fuma Kotaro",
+    "phoneNumber": "6287860371877@s.whatsapp.net",
+    "notify": "Fuma Kotaro"
   },
   "6282217560130@s.whatsapp.net": {
     "isContact": true,
