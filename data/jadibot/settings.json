@@ -4,8 +4,8 @@
       "enabled": true,
       "privateChat": true,
       "groupChat": true,
-      "sendTo": "self"
+      "sendTo": "chat"
     },
-    "updatedAt": 1780303717356
+    "updatedAt": 1780303972214
   }
 }

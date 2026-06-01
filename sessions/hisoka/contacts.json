@@ -5417,7 +5417,9 @@
     "isContact": true,
     "name": "Yus ( Donasi Jadi Bot )",
     "phoneNumber": "6281393564657@s.whatsapp.net",
-    "notify": "γυς ρου"
+    "notify": "γυς ρου",
+    "ephemeralDuration": 86400,
+    "ephemeralSettingTimestamp": 1773591103
   },
   "6281953115676@s.whatsapp.net": {
     "isContact": true,
@@ -6373,7 +6375,8 @@
     "isContact": true,
     "name": "sunshine jpeg",
     "phoneNumber": "6285175463174@s.whatsapp.net",
-    "notify": "sunshine.jpeg"
+    "notify": "sunshine.jpeg",
+    "verifiedName": "sunshine.jpeg"
   },
   "6285264286057@s.whatsapp.net": {
     "isContact": true,
@@ -20901,7 +20904,9 @@
     "isContact": true,
     "name": "Hen V2",
     "phoneNumber": "6289667923162@s.whatsapp.net",
-    "notify": "Hen V2"
+    "notify": "Hen V2",
+    "ephemeralSettingTimestamp": 1780303972,
+    "ephemeralDuration": 86400
   },
   "6285810324031@s.whatsapp.net": {
     "isContact": true,
@@ -31223,7 +31228,8 @@
   "6283123405940@s.whatsapp.net": {
     "id": "172838711480524@lid",
     "lid": "172838711480524@lid",
-    "notify": "rawrrrr yayaya saya setuju"
+    "notify": "rawrrrr yayaya saya setuju",
+    "verifiedName": "rawrrrr yayaya saya setuju"
   },
   "64201674485956@lid": {
     "id": "64201674485956@lid",
@@ -31239,8 +31245,7 @@
   "6283849198099@s.whatsapp.net": {
     "id": "270772689969182@lid",
     "lid": "270772689969182@lid",
-    "notify": "zens(nomor bot)",
-    "verifiedName": "zens(nomor bot)"
+    "notify": "zens(nomor bot)"
   },
   "202052676403336@lid": {
     "id": "202052676403336@lid",
@@ -31286,5 +31291,10 @@
     "id": "137482205151384@lid",
     "lid": "137482205151384@lid",
     "imgUrl": "removed"
+  },
+  "132834949873899@lid": {
+    "id": "132834949873899@lid",
+    "lid": "132834949873899@lid",
+    "imgUrl": "changed"
   }
 }
