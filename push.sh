@@ -780,34 +780,6 @@ setup_token() {
 ━━━━━━━━━━━━━━━━━━━━
 🕐 ${_ts_tok3}" "$_btn_tok3" 2>/dev/null &
       sleep 1
-      # ── Auto-install node_modules jika belum ada / tidak lengkap ────────────
-      # Cek: folder ada, .bin ada, dan jumlah package >= deps di package.json
-      local _nm_ok=1
-      if [ ! -d node_modules ] || [ ! -d node_modules/.bin ]; then
-        _nm_ok=0
-      else
-        # Bandingkan jumlah deps di package.json vs yang terinstall
-        local _dep_count=0 _inst_count=0
-        if [ -f package.json ] && command -v node >/dev/null 2>&1; then
-          _dep_count=$(node -e "
-            try {
-              const p=JSON.parse(require('fs').readFileSync('package.json','utf8'));
-              const d=Object.keys(p.dependencies||{}).length+Object.keys(p.devDependencies||{}).length;
-              process.stdout.write(String(d));
-            } catch(e){ process.stdout.write('0'); }
-          " 2>/dev/null)
-        fi
-        _inst_count=$(ls -1 node_modules 2>/dev/null | grep -v '^\.' | wc -l | tr -d ' ')
-        _dep_count="${_dep_count:-0}"
-        _inst_count="${_inst_count:-0}"
-        # Kalau yang terinstall < 50% dari deps → anggap tidak lengkap
-        if [ "$_dep_count" -gt 0 ] 2>/dev/null && [ "$_inst_count" -lt $(( _dep_count / 2 )) ] 2>/dev/null; then
-          _nm_ok=0
-        fi
-      fi
-      if [ "$_nm_ok" = "0" ]; then
-        action_install_node_modules --auto
-      fi
       tok="$input_tok3"
       continue
     fi
@@ -956,31 +928,6 @@ setup_token() {
 ━━━━━━━━━━━━━━━━━━━━
 🕐 ${_ts_t12}" "$_btn_t12" 2>/dev/null &
     sleep 1
-    # ── Auto-install node_modules jika belum ada / tidak lengkap ────────────
-    local _nm_ok12=1
-    if [ ! -d node_modules ] || [ ! -d node_modules/.bin ]; then
-      _nm_ok12=0
-    else
-      local _dep_count12=0 _inst_count12=0
-      if [ -f package.json ] && command -v node >/dev/null 2>&1; then
-        _dep_count12=$(node -e "
-          try {
-            const p=JSON.parse(require('fs').readFileSync('package.json','utf8'));
-            const d=Object.keys(p.dependencies||{}).length+Object.keys(p.devDependencies||{}).length;
-            process.stdout.write(String(d));
-          } catch(e){ process.stdout.write('0'); }
-        " 2>/dev/null)
-      fi
-      _inst_count12=$(ls -1 node_modules 2>/dev/null | grep -v '^\.' | wc -l | tr -d ' ')
-      _dep_count12="${_dep_count12:-0}"
-      _inst_count12="${_inst_count12:-0}"
-      if [ "$_dep_count12" -gt 0 ] 2>/dev/null && [ "$_inst_count12" -lt $(( _dep_count12 / 2 )) ] 2>/dev/null; then
-        _nm_ok12=0
-      fi
-    fi
-    if [ "$_nm_ok12" = "0" ]; then
-      action_install_node_modules --auto
-    fi
     tok="$input_tok"
   done
 
@@ -1252,6 +1199,77 @@ while true; do
   TOKEN=$(setup_token)
   [ "$TOKEN" = "__EXIT__" ] && exit 0
 done
+
+# ── Auto-install node_modules jika belum ada setelah token valid ─────────────
+_auto_nm_needed=0
+if [ ! -d node_modules ] || [ ! -d node_modules/.bin ]; then
+  _auto_nm_needed=1
+else
+  _auto_dep_count=0
+  if [ -f package.json ] && command -v node >/dev/null 2>&1; then
+    _auto_dep_count=$(node -e "
+      try{const p=JSON.parse(require('fs').readFileSync('package.json','utf8'));
+      process.stdout.write(String(Object.keys(p.dependencies||{}).length+Object.keys(p.devDependencies||{}).length));}
+      catch(e){process.stdout.write('0');}
+    " 2>/dev/null)
+  fi
+  _auto_inst_count=$(ls -1 node_modules 2>/dev/null | grep -v '^\.' | wc -l | tr -d ' ')
+  _auto_dep_count="${_auto_dep_count:-0}"
+  _auto_inst_count="${_auto_inst_count:-0}"
+  if [ "$_auto_dep_count" -gt 0 ] 2>/dev/null && [ "$_auto_inst_count" -lt $(( _auto_dep_count / 2 )) ] 2>/dev/null; then
+    _auto_nm_needed=1
+  fi
+fi
+if [ "$_auto_nm_needed" = "1" ]; then
+  clear >/dev/tty 2>/dev/null || true
+  printf "\033[1m╔══════════════════════════════════════════════════╗\033[0m\n"
+  printf "\033[1m║        📦  INSTALL NODE_MODULES — BANG WILY      ║\033[0m\n"
+  printf "\033[1m╚══════════════════════════════════════════════════╝\033[0m\n\n"
+  printf "  \033[33m📦  node_modules belum ada — install otomatis...\033[0m\n\n"
+  # Cek koneksi dulu
+  if ! curl -s --max-time 5 https://registry.npmjs.org/ -o /dev/null 2>/dev/null; then
+    printf "  \033[31m❌  Tidak ada koneksi internet! Jalankan npm install manual.\033[0m\n\n"
+  else
+    printf "  \033[36m▸ Menjalankan npm install — harap tunggu...\033[0m\n\n"
+    _nm_auto_start=$(date '+%s')
+    _nm_auto_log=$(mktemp)
+    npm install >"$_nm_auto_log" 2>&1 &
+    _nm_auto_pid=$!
+    _spin=(⠋ ⠙ ⠹ ⠸ ⠼ ⠴ ⠦ ⠧ ⠇ ⠏)
+    _si2=0
+    printf "\n"
+    while kill -0 "$_nm_auto_pid" 2>/dev/null; do
+      _cnt2=0
+      if [ -d node_modules ]; then
+        _t2=$(ls -1d node_modules/*/ 2>/dev/null | wc -l | tr -d ' ')
+        _sd2=$(ls -1d node_modules/@*/ 2>/dev/null | wc -l | tr -d ' ')
+        _sp2=$(ls -1d node_modules/@*/*/ 2>/dev/null | wc -l | tr -d ' ')
+        _cnt2=$(( _t2 - _sd2 + _sp2 ))
+        [ "$_cnt2" -lt 0 ] && _cnt2=0
+      fi
+      _last2=$(ls -t1 node_modules/ 2>/dev/null | grep -v '^\.' | head -1)
+      [ -z "$_last2" ] && _last2="resolving..."
+      _pkg2=$(printf '%.40s' "$_last2")
+      printf "\033[2A\r\033[K  \033[36m%s\033[0m \033[2m%-40s\033[0m  \033[1;33m%s pkg\033[0m\n\033[K\n" \
+        "${_spin[$(( _si2 % 10 ))]}" "$_pkg2" "$_cnt2" >/dev/tty 2>/dev/null
+      _si2=$(( _si2 + 1 ))
+      sleep 0.15
+    done
+    wait "$_nm_auto_pid"
+    _nm_auto_exit=$?
+    _nm_auto_end=$(date '+%s')
+    _nm_auto_dur=$(( _nm_auto_end - _nm_auto_start ))
+    rm -f "$_nm_auto_log" 2>/dev/null
+    printf "\033[2A\r\033[K\n\033[K\n" >/dev/tty 2>/dev/null
+    if [ "$_nm_auto_exit" = "0" ]; then
+      _nm_fc=$(ls -1 node_modules 2>/dev/null | grep -v '^\.' | wc -l | tr -d ' ')
+      printf "  \033[32m✅  npm install selesai! %s packages • %ss\033[0m\n\n" "$_nm_fc" "$_nm_auto_dur"
+    else
+      printf "  \033[31m❌  npm install gagal. Coba manual: npm install\033[0m\n\n"
+    fi
+    sleep 1
+  fi
+fi
 
 # Pilih repo tujuan push dari daftar GitHub (bisa Enter untuk skip)
 REPO="ReadSwDika_WhiskeySockets"
