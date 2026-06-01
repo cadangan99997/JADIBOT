@@ -12215,9 +12215,12 @@ if (isJadibot) text += jadibotNote;
                                                                         const uData = JSON.parse(fs.readFileSync(path.join(swTrackDir, file), 'utf-8'));
                                                                         const retriedEntries = Object.values(uData).filter(e => e && e.retriedOnStartup === true);
                                                                         if (retriedEntries.length > 0) {
-                                                                                const sukses = retriedEntries.filter(e => e.reacted === true).length;
+                                                                                const suksesEntries = retriedEntries.filter(e => e.reacted === true);
+                                                                                const sukses = suksesEntries.length;
                                                                                 const gagal  = retriedEntries.length - sukses;
-                                                                                // Nama: prioritas dari entry, fallback dari swstats nanti
+                                                                                // Kumpulkan emoji unik dari retry yang berhasil
+                                                                                const emojis = [...new Set(suksesEntries.map(e => e.emoji).filter(Boolean))];
+                                                                                // Nama: prioritas dari entry retry, fallback semua entry
                                                                                 const withName = retriedEntries.find(e => e.name) || Object.values(uData).find(e => e && e.name);
                                                                                 const name = withName?.name || num;
                                                                                 // Waktu retry terakhir
@@ -12226,7 +12229,7 @@ if (isJadibot) text += jadibotNote;
                                                                                         .filter(Boolean)
                                                                                         .sort()
                                                                                         .pop() || null;
-                                                                                swRetryMap[num] = { total: retriedEntries.length, sukses, gagal, name, lastAt };
+                                                                                swRetryMap[num] = { total: retriedEntries.length, sukses, gagal, emojis, name, lastAt };
                                                                         }
                                                                 } catch {}
                                                         }
@@ -12257,9 +12260,13 @@ if (isJadibot) text += jadibotNote;
                                                 .sort((a, b) => getActiveSW(b) - getActiveSW(a))
                                                 .slice(0, 10);
 
-                                        // Top startup retry — urutkan terbanyak di atas
+                                        // Top startup retry — berhasil di atas, gagal di bawah, lalu terbanyak
                                         const topRetry = Object.entries(swRetryMap)
-                                                .sort((a, b) => b[1].total - a[1].total)
+                                                .sort((a, b) =>
+                                                        b[1].sukses - a[1].sukses ||   // sukses terbanyak dulu
+                                                        a[1].gagal  - b[1].gagal  ||   // gagal lebih sedikit naik
+                                                        b[1].total  - a[1].total        // total terbanyak terakhir
+                                                )
                                                 .slice(0, 10);
 
                                         const sortedEmojis = Object.entries(emojiStats)
@@ -12310,8 +12317,10 @@ if (isJadibot) text += jadibotNote;
 
                                         if (topRetry.length > 0) {
                                                 const totalAllRetry = topRetry.reduce((s, [, r]) => s + r.total, 0);
+                                                const totalSuksesAll = topRetry.reduce((s, [, r]) => s + r.sukses, 0);
+                                                const totalGagalAll  = topRetry.reduce((s, [, r]) => s + r.gagal, 0);
                                                 text += `├──『 ♻️ *TOP STARTUP RETRY* 』\n`;
-                                                text += `│ 📦 Total diproses ulang: ${totalAllRetry} SW\n`;
+                                                text += `│ 📦 Total: ${totalAllRetry} SW  ✅${totalSuksesAll} berhasil  ❌${totalGagalAll} gagal\n`;
                                                 text += `│\n`;
                                                 for (let i = 0; i < topRetry.length; i++) {
                                                         const [num, r] = topRetry[i];
@@ -12320,17 +12329,24 @@ if (isJadibot) text += jadibotNote;
                                                         let waktu = '';
                                                         if (r.lastAt) {
                                                                 try {
-                                                                        waktu = ' · ' + new Date(r.lastAt).toLocaleString('id-ID', {
+                                                                        waktu = new Date(r.lastAt).toLocaleString('id-ID', {
                                                                                 timeZone: 'Asia/Jakarta',
                                                                                 hour: '2-digit', minute: '2-digit',
                                                                                 day: '2-digit', month: 'short'
                                                                         });
                                                                 } catch {}
                                                         }
-                                                        const sukBadge = r.sukses > 0 ? `✅${r.sukses}` : '';
-                                                        const gaiBadge = r.gagal > 0 ? ` ❌${r.gagal}` : '';
-                                                        text += `│ ${medals[i]} *${nama}*\n`;
-                                                        text += `│    ↳ ${r.total}x retry  ${sukBadge}${gaiBadge}${waktu}\n`;
+                                                        // Emoji yang dipakai (maks 3 biar tidak panjang)
+                                                        const emojiStr = r.emojis && r.emojis.length > 0
+                                                                ? '  ' + r.emojis.slice(0, 3).join(' ')
+                                                                : '';
+                                                        // Badge sukses/gagal
+                                                        const sukBadge = r.sukses > 0 ? `✅ ${r.sukses} berhasil` : '';
+                                                        const gaiBadge = r.gagal  > 0 ? `❌ ${r.gagal} gagal`    : '';
+                                                        const badge = [sukBadge, gaiBadge].filter(Boolean).join('  ');
+                                                        text += `│ ${medals[i]} *${nama}*${emojiStr}\n`;
+                                                        text += `│    ↳ ${r.total}x retry  ${badge}\n`;
+                                                        if (waktu) text += `│    🕐 ${waktu} WIB\n`;
                                                 }
                                                 text += `│\n`;
                                         }
