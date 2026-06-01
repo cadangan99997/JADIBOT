@@ -1638,21 +1638,40 @@ setTimeout(() => {
                 switch (action) {
                         case 'add': {
                                 existingGroup.participants = [...(existingGroup.participants || []), ...participants];
-                                // Jika bot sendiri yang di-add ke grup, auto-add ke Anti Tag SW
+                                // Jika bot sendiri yang di-add ke grup, auto-add ke Anti Tag SW + set botadmin = false (belum admin)
                                 const botAdded = participants.some(p => {
                                         const rawJid = p.jid || p.phoneNumber || p.id || '';
                                         const pNum = rawJid.split('@')[0].split(':')[0];
                                         return pNum === botNumber;
                                 });
-                                if (botAdded) autoAddGroupToAntiTagSW(id);
+                                if (botAdded) {
+                                        autoAddGroupToAntiTagSW(id);
+                                        updateBotAdminStatus(id, botNumber, false);
+                                        console.info(`\x1b[32m[BotAdmin] Bot masuk grup ${id} → set admin=false (belum dipromote)\x1b[39m`);
+                                }
                                 break;
                         }
-                        case 'remove':
+                        case 'remove': {
                                 existingGroup.participants = (existingGroup.participants || []).filter(p => {
                                         const existId = p.phoneNumber || p.id;
                                         return !participants.some(removed => areJidsSameUser(existId, removed.phoneNumber || removed.id));
                                 });
+                                // Jika bot sendiri yang di-remove/keluar → hapus dari botadmin.json
+                                const botRemoved = participants.some(p => {
+                                        const rawJid = p.jid || p.phoneNumber || p.id || '';
+                                        const pNum = rawJid.split('@')[0].split(':')[0];
+                                        return pNum === botNumber;
+                                });
+                                if (botRemoved) {
+                                        try {
+                                                const botAdminData = loadBotAdminData();
+                                                delete botAdminData[id];
+                                                saveBotAdminData(botAdminData);
+                                                console.info(`\x1b[33m[BotAdmin] Bot keluar grup ${id} → dihapus dari botadmin.json\x1b[39m`);
+                                        } catch (_) {}
+                                }
                                 break;
+                        }
                         case 'promote':
                         case 'demote': {
                                 existingGroup.participants = (existingGroup.participants || []).map(p => {

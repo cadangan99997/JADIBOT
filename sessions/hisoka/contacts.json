@@ -17796,11 +17796,12 @@
     "phoneNumber": "6285716060925@s.whatsapp.net"
   },
   "628983815413@s.whatsapp.net": {
-    "isContact": true,
-    "id": "628983815413@s.whatsapp.net",
-    "name": "!Vancétyrhard",
+    "id": "98011673796637@lid",
     "lid": "98011673796637@lid",
-    "phoneNumber": "628983815413@s.whatsapp.net"
+    "isContact": true,
+    "name": "!Vancétyrhard",
+    "phoneNumber": "628983815413@s.whatsapp.net",
+    "imgUrl": "changed"
   },
   "6288989114949@s.whatsapp.net": {
     "isContact": true,
@@ -27609,7 +27610,8 @@
     "isContact": true,
     "name": "Agan Rizkia",
     "phoneNumber": "6289688206739@s.whatsapp.net",
-    "notify": "Wily"
+    "notify": "Wily",
+    "verifiedName": "Wily"
   },
   "6288270829865@s.whatsapp.net": {
     "isContact": true,
