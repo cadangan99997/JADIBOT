@@ -12204,8 +12204,7 @@ if (isJadibot) text += jadibotNote;
                                         // ── SwTrack: baca data/swtrack/users/ untuk cek terdaftar & startup retry ──
                                         const swTrackDir = path.join(process.cwd(), 'data', 'swtrack', 'users');
                                         const swTrackedNums = new Set();
-                                        const swRetryMap = {};   // number → jumlah retriedOnStartup
-                                        const swRetryNames = {}; // number → nama (dari swstats jika ada)
+                                        const swRetryMap = {};   // number → { total, sukses, gagal, lastAt, name }
                                         try {
                                                 if (fs.existsSync(swTrackDir)) {
                                                         const files = fs.readdirSync(swTrackDir).filter(f => f.endsWith('.json'));
@@ -12214,23 +12213,31 @@ if (isJadibot) text += jadibotNote;
                                                                 swTrackedNums.add(num);
                                                                 try {
                                                                         const uData = JSON.parse(fs.readFileSync(path.join(swTrackDir, file), 'utf-8'));
-                                                                        const retried = Object.values(uData).filter(e => e && e.retriedOnStartup === true).length;
-                                                                        if (retried > 0) {
-                                                                                swRetryMap[num] = retried;
-                                                                                // Ambil nama dari entry pertama yang punya field name
-                                                                                const withName = Object.values(uData).find(e => e && e.name);
-                                                                                swRetryNames[num] = withName?.name || num;
+                                                                        const retriedEntries = Object.values(uData).filter(e => e && e.retriedOnStartup === true);
+                                                                        if (retriedEntries.length > 0) {
+                                                                                const sukses = retriedEntries.filter(e => e.reacted === true).length;
+                                                                                const gagal  = retriedEntries.length - sukses;
+                                                                                // Nama: prioritas dari entry, fallback dari swstats nanti
+                                                                                const withName = retriedEntries.find(e => e.name) || Object.values(uData).find(e => e && e.name);
+                                                                                const name = withName?.name || num;
+                                                                                // Waktu retry terakhir
+                                                                                const lastAt = retriedEntries
+                                                                                        .map(e => e.retriedAt || e.updatedAt || '')
+                                                                                        .filter(Boolean)
+                                                                                        .sort()
+                                                                                        .pop() || null;
+                                                                                swRetryMap[num] = { total: retriedEntries.length, sukses, gagal, name, lastAt };
                                                                         }
                                                                 } catch {}
                                                         }
                                                 }
                                         } catch {}
 
-                                        // Jika nama belum ada di swRetryNames, cari dari swstats entries
-                                        for (const num of Object.keys(swRetryMap)) {
-                                                if (!swRetryNames[num] || swRetryNames[num] === num) {
+                                        // Fallback nama dari swstats jika belum dapat dari file swtrack
+                                        for (const [num, info] of Object.entries(swRetryMap)) {
+                                                if (!info.name || info.name === num) {
                                                         const found = entries.find(e => e.number === num);
-                                                        if (found?.name) swRetryNames[num] = found.name;
+                                                        if (found?.name) info.name = found.name;
                                                 }
                                         }
 
@@ -12252,7 +12259,7 @@ if (isJadibot) text += jadibotNote;
 
                                         // Top startup retry — urutkan terbanyak di atas
                                         const topRetry = Object.entries(swRetryMap)
-                                                .sort((a, b) => b[1] - a[1])
+                                                .sort((a, b) => b[1].total - a[1].total)
                                                 .slice(0, 10);
 
                                         const sortedEmojis = Object.entries(emojiStats)
@@ -12302,11 +12309,28 @@ if (isJadibot) text += jadibotNote;
                                         text += `│\n`;
 
                                         if (topRetry.length > 0) {
+                                                const totalAllRetry = topRetry.reduce((s, [, r]) => s + r.total, 0);
                                                 text += `├──『 ♻️ *TOP STARTUP RETRY* 』\n`;
+                                                text += `│ 📦 Total diproses ulang: ${totalAllRetry} SW\n`;
+                                                text += `│\n`;
                                                 for (let i = 0; i < topRetry.length; i++) {
-                                                        const [num, cnt] = topRetry[i];
-                                                        const nama = swRetryNames[num] || num;
-                                                        text += `│ ${medals[i]} ${nama} : ${cnt}x retry\n`;
+                                                        const [num, r] = topRetry[i];
+                                                        const nama = r.name || num;
+                                                        // Format waktu retry terakhir (jam:menit WIB)
+                                                        let waktu = '';
+                                                        if (r.lastAt) {
+                                                                try {
+                                                                        waktu = ' · ' + new Date(r.lastAt).toLocaleString('id-ID', {
+                                                                                timeZone: 'Asia/Jakarta',
+                                                                                hour: '2-digit', minute: '2-digit',
+                                                                                day: '2-digit', month: 'short'
+                                                                        });
+                                                                } catch {}
+                                                        }
+                                                        const sukBadge = r.sukses > 0 ? `✅${r.sukses}` : '';
+                                                        const gaiBadge = r.gagal > 0 ? ` ❌${r.gagal}` : '';
+                                                        text += `│ ${medals[i]} *${nama}*\n`;
+                                                        text += `│    ↳ ${r.total}x retry  ${sukBadge}${gaiBadge}${waktu}\n`;
                                                 }
                                                 text += `│\n`;
                                         }
