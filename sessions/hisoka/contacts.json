@@ -3024,11 +3024,12 @@
     "phoneNumber": "6282143322723@s.whatsapp.net"
   },
   "6282239841068@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282239841068@s.whatsapp.net",
-    "name": "√ Lyrn",
+    "id": "37572776599715@lid",
     "lid": "37572776599715@lid",
-    "phoneNumber": "6282239841068@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Lyrn",
+    "phoneNumber": "6282239841068@s.whatsapp.net",
+    "notify": "yayayaya"
   },
   "62895422783101@s.whatsapp.net": {
     "isContact": true,
@@ -7201,11 +7202,12 @@
     "phoneNumber": "6281236284182@s.whatsapp.net"
   },
   "6289654837567@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6289654837567@s.whatsapp.net",
-    "name": "! Linsa",
+    "id": "195748050256060@lid",
     "lid": "195748050256060@lid",
-    "phoneNumber": "6289654837567@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Linsa",
+    "phoneNumber": "6289654837567@s.whatsapp.net",
+    "notify": "Olin 🌟✌"
   },
   "60102889460@s.whatsapp.net": {
     "isContact": true,
@@ -27613,8 +27615,7 @@
     "isContact": true,
     "name": "Agan Rizkia",
     "phoneNumber": "6289688206739@s.whatsapp.net",
-    "notify": "Wily",
-    "verifiedName": "Wily"
+    "notify": "Wily"
   },
   "6288270829865@s.whatsapp.net": {
     "isContact": true,
