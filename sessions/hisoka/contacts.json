@@ -6214,8 +6214,7 @@
     "isContact": true,
     "name": "Hamdan",
     "phoneNumber": "6283134844523@s.whatsapp.net",
-    "notify": "Anda Siapa?",
-    "verifiedName": "Anda Siapa?"
+    "notify": "Anda Siapa?"
   },
   "6282252587337@s.whatsapp.net": {
     "isContact": true,
@@ -18940,11 +18939,13 @@
     "phoneNumber": "6285784602986@s.whatsapp.net"
   },
   "6285956660403@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285956660403@s.whatsapp.net",
-    "name": "! Fadli",
+    "id": "176549462564879@lid",
     "lid": "176549462564879@lid",
-    "phoneNumber": "6285956660403@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Fadli",
+    "phoneNumber": "6285956660403@s.whatsapp.net",
+    "notify": "Cosmouz",
+    "verifiedName": "Cosmouz"
   },
   "6285707611067@s.whatsapp.net": {
     "isContact": true,
@@ -27915,11 +27916,12 @@
     "phoneNumber": "6282242737408@s.whatsapp.net"
   },
   "6287753663297@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6287753663297@s.whatsapp.net",
-    "name": "▫️Jihaa",
+    "id": "207417140891666@lid",
     "lid": "207417140891666@lid",
-    "phoneNumber": "6287753663297@s.whatsapp.net"
+    "isContact": true,
+    "name": "▫️Jihaa",
+    "phoneNumber": "6287753663297@s.whatsapp.net",
+    "notify": "n."
   },
   "6287796524304@s.whatsapp.net": {
     "isContact": true,
@@ -31248,6 +31250,21 @@
   "95717674717216@lid": {
     "id": "95717674717216@lid",
     "lid": "95717674717216@lid",
+    "imgUrl": "changed"
+  },
+  "105428562227256@lid": {
+    "id": "105428562227256@lid",
+    "lid": "105428562227256@lid",
+    "imgUrl": "changed"
+  },
+  "250934001180818@lid": {
+    "id": "250934001180818@lid",
+    "lid": "250934001180818@lid",
+    "imgUrl": "changed"
+  },
+  "53274875039845@lid": {
+    "id": "53274875039845@lid",
+    "lid": "53274875039845@lid",
     "imgUrl": "changed"
   }
 }
