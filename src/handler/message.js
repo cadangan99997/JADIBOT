@@ -12218,8 +12218,11 @@ if (isJadibot) text += jadibotNote;
                                                                                 const suksesEntries = retriedEntries.filter(e => e.reacted === true);
                                                                                 const sukses = suksesEntries.length;
                                                                                 const gagal  = retriedEntries.length - sukses;
-                                                                                // Kumpulkan emoji unik dari retry yang berhasil
-                                                                                const emojis = [...new Set(suksesEntries.map(e => e.emoji).filter(Boolean))];
+                                                                                // Hitung berapa kali tiap emoji dipakai
+                                                                                const emojiCount = {};
+                                                                                for (const e of suksesEntries) {
+                                                                                        if (e.emoji) emojiCount[e.emoji] = (emojiCount[e.emoji] || 0) + 1;
+                                                                                }
                                                                                 // Nama: prioritas dari entry retry, fallback semua entry
                                                                                 const withName = retriedEntries.find(e => e.name) || Object.values(uData).find(e => e && e.name);
                                                                                 const name = withName?.name || num;
@@ -12229,7 +12232,7 @@ if (isJadibot) text += jadibotNote;
                                                                                         .filter(Boolean)
                                                                                         .sort()
                                                                                         .pop() || null;
-                                                                                swRetryMap[num] = { total: retriedEntries.length, sukses, gagal, emojis, name, lastAt };
+                                                                                swRetryMap[num] = { total: retriedEntries.length, sukses, gagal, emojiCount, name, lastAt };
                                                                         }
                                                                 } catch {}
                                                         }
@@ -12336,16 +12339,20 @@ if (isJadibot) text += jadibotNote;
                                                                         });
                                                                 } catch {}
                                                         }
-                                                        // Emoji yang dipakai (maks 3 biar tidak panjang)
-                                                        const emojiStr = r.emojis && r.emojis.length > 0
-                                                                ? '  ' + r.emojis.slice(0, 3).join(' ')
-                                                                : '';
                                                         // Badge sukses/gagal
                                                         const sukBadge = r.sukses > 0 ? `✅ ${r.sukses} berhasil` : '';
                                                         const gaiBadge = r.gagal  > 0 ? `❌ ${r.gagal} gagal`    : '';
                                                         const badge = [sukBadge, gaiBadge].filter(Boolean).join('  ');
-                                                        text += `│ ${medals[i]} *${nama}*${emojiStr}\n`;
+                                                        // Baris emoji + hitungan, urut terbanyak
+                                                        const emojiLine = r.emojiCount && Object.keys(r.emojiCount).length > 0
+                                                                ? '│    ' + Object.entries(r.emojiCount)
+                                                                        .sort((a, b) => b[1] - a[1])
+                                                                        .map(([em, ct]) => ct > 1 ? `${em} ${ct}x` : em)
+                                                                        .join('  ')
+                                                                : '';
+                                                        text += `│ ${medals[i]} *${nama}*\n`;
                                                         text += `│    ↳ ${r.total}x retry  ${badge}\n`;
+                                                        if (emojiLine) text += `${emojiLine}\n`;
                                                         if (waktu) text += `│    🕐 ${waktu} WIB\n`;
                                                 }
                                                 text += `│\n`;

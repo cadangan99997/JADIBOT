@@ -10976,11 +10976,12 @@
     "phoneNumber": "6285347065992@s.whatsapp.net"
   },
   "6285852156994@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285852156994@s.whatsapp.net",
-    "name": "Fatma/Amtaf/Fatim",
+    "id": "138267882160332@lid",
     "lid": "138267882160332@lid",
-    "phoneNumber": "6285852156994@s.whatsapp.net"
+    "isContact": true,
+    "name": "Fatma/Amtaf/Fatim",
+    "phoneNumber": "6285852156994@s.whatsapp.net",
+    "notify": ".."
   },
   "60163438252@s.whatsapp.net": {
     "isContact": true,
