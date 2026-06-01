@@ -15356,7 +15356,9 @@ hasil += `╰══════════════════════�
                                                                         const pNum = (p.jid || p.id || '').split('@')[0].split(':')[0];
                                                                         return pNum === botNum;
                                                                 });
-                                                                botIsAdmin = !!botP?.admin;
+                                                                // Jika bot ditemukan di participants → pakai realtime
+                                                                // Jika tidak ditemukan (misal format LID) → fallback ke botadmin.json
+                                                                botIsAdmin = botP !== undefined ? !!botP.admin : (botAdminCache[gid] === true);
                                                         }
                                                 } catch {
                                                         try {
