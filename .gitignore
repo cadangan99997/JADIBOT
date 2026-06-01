@@ -34,6 +34,9 @@ sessions/**
 !sessions/hisoka/settings.json
 !sessions/hisoka/app-state-sync-key-*.json
 !sessions/hisoka/app-state-sync-version-*.json
+!sessions/hisoka/identity-key-*.json
+!sessions/hisoka/device-list-*.json
+!sessions/hisoka/lid-mapping-*.json
 
 # Jadibot — upload seluruh isi folder
 !jadibot/

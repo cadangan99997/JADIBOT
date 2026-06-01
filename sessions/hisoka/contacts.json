@@ -7090,7 +7090,8 @@
     "isContact": true,
     "name": "Remi_ikan 111",
     "phoneNumber": "6281295543915@s.whatsapp.net",
-    "notify": "Arthur.remi_kan"
+    "notify": "Arthur.remi_kan",
+    "verifiedName": "Arthur.remi_kan"
   },
   "628895573752@s.whatsapp.net": {
     "isContact": true,
@@ -22284,11 +22285,12 @@
     "phoneNumber": "6283163084366@s.whatsapp.net"
   },
   "6281527116245@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281527116245@s.whatsapp.net",
-    "name": "pushkontak wa 234",
+    "id": "273469174468614@lid",
     "lid": "273469174468614@lid",
-    "phoneNumber": "6281527116245@s.whatsapp.net"
+    "isContact": true,
+    "name": "pushkontak wa 234",
+    "phoneNumber": "6281527116245@s.whatsapp.net",
+    "notify": "Liu Jing (刘静)"
   },
   "6285854557180@s.whatsapp.net": {
     "isContact": true,
@@ -31205,5 +31207,22 @@
     "lid": "172838711480524@lid",
     "notify": "rawrrrr yayaya saya setuju",
     "verifiedName": "rawrrrr yayaya saya setuju"
+  },
+  "64201674485956@lid": {
+    "id": "64201674485956@lid",
+    "lid": "64201674485956@lid",
+    "imgUrl": "removed"
+  },
+  "6281319859673@s.whatsapp.net": {
+    "id": "203942663303197@lid",
+    "lid": "203942663303197@lid",
+    "notify": "Galang Purnama",
+    "verifiedName": "Galang Purnama"
+  },
+  "6283849198099@s.whatsapp.net": {
+    "id": "270772689969182@lid",
+    "lid": "270772689969182@lid",
+    "notify": "zens(nomor bot)",
+    "verifiedName": "zens(nomor bot)"
   }
 }
