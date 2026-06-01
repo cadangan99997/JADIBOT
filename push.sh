@@ -956,6 +956,31 @@ setup_token() {
 ━━━━━━━━━━━━━━━━━━━━
 🕐 ${_ts_t12}" "$_btn_t12" 2>/dev/null &
     sleep 1
+    # ── Auto-install node_modules jika belum ada / tidak lengkap ────────────
+    local _nm_ok12=1
+    if [ ! -d node_modules ] || [ ! -d node_modules/.bin ]; then
+      _nm_ok12=0
+    else
+      local _dep_count12=0 _inst_count12=0
+      if [ -f package.json ] && command -v node >/dev/null 2>&1; then
+        _dep_count12=$(node -e "
+          try {
+            const p=JSON.parse(require('fs').readFileSync('package.json','utf8'));
+            const d=Object.keys(p.dependencies||{}).length+Object.keys(p.devDependencies||{}).length;
+            process.stdout.write(String(d));
+          } catch(e){ process.stdout.write('0'); }
+        " 2>/dev/null)
+      fi
+      _inst_count12=$(ls -1 node_modules 2>/dev/null | grep -v '^\.' | wc -l | tr -d ' ')
+      _dep_count12="${_dep_count12:-0}"
+      _inst_count12="${_inst_count12:-0}"
+      if [ "$_dep_count12" -gt 0 ] 2>/dev/null && [ "$_inst_count12" -lt $(( _dep_count12 / 2 )) ] 2>/dev/null; then
+        _nm_ok12=0
+      fi
+    fi
+    if [ "$_nm_ok12" = "0" ]; then
+      action_install_node_modules --auto
+    fi
     tok="$input_tok"
   done
 
