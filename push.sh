@@ -6956,6 +6956,7 @@ relogin_if_needed() {
 main_loop() {
   while true; do
     SELECTED_BRANCHES=()
+    _PUSH_SESSION_NEW=0
     check_token_realtime
     show_main_menu
   done
