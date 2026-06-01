@@ -5410,11 +5410,12 @@
     "phoneNumber": "6283133481767@s.whatsapp.net"
   },
   "6281393564657@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281393564657@s.whatsapp.net",
-    "name": "Yus ( Donasi Jadi Bot )",
+    "id": "174577888038922@lid",
     "lid": "174577888038922@lid",
-    "phoneNumber": "6281393564657@s.whatsapp.net"
+    "isContact": true,
+    "name": "Yus ( Donasi Jadi Bot )",
+    "phoneNumber": "6281393564657@s.whatsapp.net",
+    "notify": "γυς ρου"
   },
   "6281953115676@s.whatsapp.net": {
     "isContact": true,
@@ -22290,7 +22291,8 @@
     "isContact": true,
     "name": "pushkontak wa 234",
     "phoneNumber": "6281527116245@s.whatsapp.net",
-    "notify": "Liu Jing (刘静)"
+    "notify": "Liu Jing (刘静)",
+    "imgUrl": "removed"
   },
   "6285854557180@s.whatsapp.net": {
     "isContact": true,

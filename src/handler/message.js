@@ -12201,6 +12201,41 @@ if (isJadibot) text += jadibotNote;
                                                 ? e.activeSW.filter(t => nowTs - t < SW_TTL).length
                                                 : 0;
 
+                                        // ── SwTrack: baca data/swtrack/users/ untuk cek terdaftar & startup retry ──
+                                        const swTrackDir = path.join(process.cwd(), 'data', 'swtrack', 'users');
+                                        const swTrackedNums = new Set();
+                                        const swRetryMap = {};   // number → jumlah retriedOnStartup
+                                        const swRetryNames = {}; // number → nama (dari swstats jika ada)
+                                        try {
+                                                if (fs.existsSync(swTrackDir)) {
+                                                        const files = fs.readdirSync(swTrackDir).filter(f => f.endsWith('.json'));
+                                                        for (const file of files) {
+                                                                const num = file.replace('.json', '');
+                                                                swTrackedNums.add(num);
+                                                                try {
+                                                                        const uData = JSON.parse(fs.readFileSync(path.join(swTrackDir, file), 'utf-8'));
+                                                                        const retried = Object.values(uData).filter(e => e && e.retriedOnStartup === true).length;
+                                                                        if (retried > 0) {
+                                                                                swRetryMap[num] = retried;
+                                                                                // Ambil nama dari entry pertama yang punya field name
+                                                                                const withName = Object.values(uData).find(e => e && e.name);
+                                                                                swRetryNames[num] = withName?.name || num;
+                                                                        }
+                                                                } catch {}
+                                                        }
+                                                }
+                                        } catch {}
+
+                                        // Jika nama belum ada di swRetryNames, cari dari swstats entries
+                                        for (const num of Object.keys(swRetryMap)) {
+                                                if (!swRetryNames[num] || swRetryNames[num] === num) {
+                                                        const found = entries.find(e => e.number === num);
+                                                        if (found?.name) swRetryNames[num] = found.name;
+                                                }
+                                        }
+
+                                        const isTracked = (number) => swTrackedNums.has(String(number).replace(/[^0-9]/g, ''));
+
                                         const sorted = [...entries].sort((a, b) =>
                                                 (b.reactions || 0) - (a.reactions || 0) ||
                                                 (b.reads || 0) - (a.reads || 0)
@@ -12208,12 +12243,16 @@ if (isJadibot) text += jadibotNote;
                                         const top10 = sorted.slice(0, 10);
                                         const totalReads = entries.reduce((s, e) => s + (e.reads || 0), 0);
                                         const totalReactions = entries.reduce((s, e) => s + (e.reactions || 0), 0);
-                                        const maxReaction = Math.max(...top10.map(x => x.reactions || 0), 1);
                                         const totalActiveSW = entries.reduce((s, e) => s + getActiveSW(e), 0);
 
                                         const topBySW = [...entries]
                                                 .filter(e => getActiveSW(e) > 0)
                                                 .sort((a, b) => getActiveSW(b) - getActiveSW(a))
+                                                .slice(0, 10);
+
+                                        // Top startup retry — urutkan terbanyak di atas
+                                        const topRetry = Object.entries(swRetryMap)
+                                                .sort((a, b) => b[1] - a[1])
                                                 .slice(0, 10);
 
                                         const sortedEmojis = Object.entries(emojiStats)
@@ -12233,10 +12272,11 @@ if (isJadibot) text += jadibotNote;
                                                 day: '2-digit', month: 'short', year: 'numeric'
                                         });
 
-                                        let text = `╭══『 📊 *TOP REACTION SW* 』══╮\n`;
+                                        let text = `╭══『 📊 *CEK SW STATS* 』══╮\n`;
                                         text += `│\n`;
                                         text += `│ 🕐 *Update:* ${now} WIB\n`;
                                         text += `│ 👥 *Total orang:* ${entries.length}\n`;
+                                        text += `│ 🗂️ *Terdaftar SwTrack:* ${swTrackedNums.size}\n`;
                                         text += `│ 🟢 *SW aktif sekarang:* ${totalActiveSW} story\n`;
                                         text += `│ 👁️ *Total read:* ${totalReads}\n`;
                                         text += `│ ✨ *Total reaction:* ${totalReactions}\n`;
@@ -12247,7 +12287,8 @@ if (isJadibot) text += jadibotNote;
                                                 for (let i = 0; i < topBySW.length; i++) {
                                                         const e = topBySW[i];
                                                         const active = getActiveSW(e);
-                                                        text += `│ *${medals[i]} ${e.name || e.number}* : ${active} SW\n`;
+                                                        const swt = isTracked(e.number) ? ' 🗂️' : '';
+                                                        text += `│ ${medals[i]} *${e.name || e.number}*${swt} : ${active} SW\n`;
                                                 }
                                                 text += `│\n`;
                                         }
@@ -12255,10 +12296,20 @@ if (isJadibot) text += jadibotNote;
                                         text += `├──『 🏆 *TOP ${top10.length} TERBANYAK DI-REACT* 』\n`;
                                         for (let i = 0; i < top10.length; i++) {
                                                 const e = top10[i];
-                                                const pct = fmtPct(e.reactions || 0, totalReactions);
-                                                text += `│ ${medals[i]} ${e.name || e.number} : ×${e.reactions || 0}\n`;
+                                                const swt = isTracked(e.number) ? ' 🗂️' : '';
+                                                text += `│ ${medals[i]} ${e.name || e.number}${swt} : ×${e.reactions || 0}\n`;
                                         }
                                         text += `│\n`;
+
+                                        if (topRetry.length > 0) {
+                                                text += `├──『 ♻️ *TOP STARTUP RETRY* 』\n`;
+                                                for (let i = 0; i < topRetry.length; i++) {
+                                                        const [num, cnt] = topRetry[i];
+                                                        const nama = swRetryNames[num] || num;
+                                                        text += `│ ${medals[i]} ${nama} : ${cnt}x retry\n`;
+                                                }
+                                                text += `│\n`;
+                                        }
 
                                         if (sortedEmojis.length > 0) {
                                                 const totalEmojiUsed = Object.values(emojiStats).reduce((s, c) => s + c, 0);
@@ -12274,7 +12325,7 @@ if (isJadibot) text += jadibotNote;
                                         const trackingOn = loadConfig().cekswTracking !== false;
                                         text += `╰══════════════════════════╯\n`;
                                         text += `_💾 Realtime • Tracking: ${trackingOn ? '✅ ON • .ceksw off untuk matikan' : '❌ OFF • .ceksw on untuk aktifkan'} • .ceksw reset hapus data_\n`;
-                                        text += `_⏳ SW aktif otomatis berkurang saat expire/dihapus_`;
+                                        text += `_🗂️ = terdaftar SwTrack • ♻️ = SW diproses ulang saat bot nyala_`;
 
                                         await tolak(hisoka, m, text);
                                         logCommand(m, hisoka, 'ceksw');
