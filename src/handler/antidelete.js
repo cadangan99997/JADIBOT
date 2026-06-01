@@ -134,6 +134,10 @@ async function downloadMedia(hisoka, cachedMsg, messageContent) {
         const content = messageContent[type];
         if (!content || !content.mimetype) return null;
 
+        // Cek pre-cache dulu (sudah didownload saat pesan masuk — instan, no CDN)
+        const precached = hisoka.mediaCacheAntidel?.get(cachedMsg?.key?.id);
+        if (precached && precached.length > 0) return precached;
+
         const safeLogger = hisoka.logger || _noopLogger;
         const msgForDownload = { ...cachedMsg, message: messageContent };
 

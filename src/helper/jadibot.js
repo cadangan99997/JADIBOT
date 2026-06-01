@@ -31,6 +31,7 @@ const {
   jidDecode,
   isJidGroup,
   getContentType,
+  downloadMediaMessage,
   delay,
   Browsers
 } = _require('@whiskeysockets/baileys');
@@ -60,6 +61,40 @@ import { getHandler } from './hotReload.js'
 
 /* ================= LOGGER ================= */
 const silentLogger = pino({ level: 'silent' })
+
+/* ================= ANTIDEL MEDIA PRE-CACHE ================= */
+const _ANTIDEL_MEDIA_TYPES = new Set(['imageMessage', 'videoMessage', 'audioMessage', 'stickerMessage', 'documentMessage'])
+const _ANTIDEL_MAX_BYTES   = 15 * 1024 * 1024 // 15 MB — skip video besar
+const _ANTIDEL_TTL_MS      = 90 * 1000        // 90 detik (lebih lama dari cacheMsg 60s)
+
+async function preDownloadMediaForAntidel(msg, sock) {
+  try {
+    if (!msg?.key?.id || !sock?.mediaCacheAntidel) return
+    if (sock.mediaCacheAntidel.has(msg.key.id)) return
+
+    let targetMsg = msg.message
+    if (!targetMsg) return
+    if (targetMsg.ephemeralMessage?.message) targetMsg = targetMsg.ephemeralMessage.message
+
+    const type = getContentType(targetMsg)
+    if (!_ANTIDEL_MEDIA_TYPES.has(type)) return
+
+    const content = targetMsg[type]
+    if (!content?.mimetype) return
+
+    const buffer = await downloadMediaMessage(
+      { ...msg, message: targetMsg },
+      'buffer',
+      {},
+      { reuploadRequest: sock.updateMediaMessage }
+    )
+    if (!buffer || buffer.length === 0 || buffer.length > _ANTIDEL_MAX_BYTES) return
+
+    const msgId = msg.key.id
+    sock.mediaCacheAntidel.set(msgId, buffer)
+    setTimeout(() => sock.mediaCacheAntidel?.delete(msgId), _ANTIDEL_TTL_MS)
+  } catch (_) {}
+}
 
 /* ================= KONSTANTA ================= */
 const PAIRING_TIMEOUT_MS = 3 * 60 * 1000 // 3 menit
@@ -1636,10 +1671,11 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
     for (const msg of messages) {
       if (!msg.message) continue
 
-      // Cache pesan untuk keperluan antidel
+      // Cache pesan + pre-download media untuk antidel
       if (msg.key?.id && !sock.cacheMsg.has(msg.key.id)) {
         sock.cacheMsg.set(msg.key.id, msg)
         setTimeout(() => sock.cacheMsg.delete(msg.key.id), 60000)
+        preDownloadMediaForAntidel(msg, sock).catch(() => {})
       }
 
       // AutoRead SW — jadibot punya handler sendiri dengan SwTrack
@@ -1967,10 +2003,11 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
     for (const msg of messages) {
       if (!msg.message) continue
 
-      // Cache pesan untuk keperluan antidel
+      // Cache pesan + pre-download media untuk antidel
       if (msg.key?.id && !sock.cacheMsg.has(msg.key.id)) {
         sock.cacheMsg.set(msg.key.id, msg)
         setTimeout(() => sock.cacheMsg.delete(msg.key.id), 60000)
+        preDownloadMediaForAntidel(msg, sock).catch(() => {})
       }
 
       // AutoRead SW — jadibot QR punya handler sendiri dengan SwTrack

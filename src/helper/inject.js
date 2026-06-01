@@ -54,6 +54,7 @@ function getOwners() {
 export function injectClient(hisoka, cacheMsg, contacts, groups, settings) {
         hisoka.loadedCommands = [];
         hisoka.cacheMsg = cacheMsg;
+        hisoka.mediaCacheAntidel = new Map();
         hisoka.contacts = contacts;
         hisoka.groups = groups;
         hisoka.settings = settings;
