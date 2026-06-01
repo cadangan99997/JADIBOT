@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 01/06/2026, 08.56.29  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 01/06/2026, 08.59.56  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -26,21 +26,21 @@
 │  #001  —  console.error
 ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 │  PESAN ERROR
-│  [31m[AntiDelete] Error downloading media:[39m fetch failed
+│  [31m[AntiDelete] Gagal download media setelah 3 percobaan:[39m fetch failed
 │
 │  DETAIL
 │  Sumber      : console.error
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 01/06/2026, 08.56.29
-│  Terakhir    : 01/06/2026, 08.56.29
+│  Pertama     : 01/06/2026, 08.59.56
+│  Terakhir    : 01/06/2026, 08.59.56
 │
 │  STACK TRACE (3 baris pertama)
-│  ▶  Error: [31m[AntiDelete] Error downloading media:[39m fetch failed
+│  ▶  Error: [31m[AntiDelete] Gagal download media setelah 3 percobaan:[39m fetch failed
 │     at console.error (file:///home/runner/workspace/index.js:391:27)
-│     at downloadMedia (file:///home/runner/workspace/src/handler/antidelete.js:148:25)
+│     at downloadMedia (file:///home/runner/workspace/src/handler/antidelete.js?t=1780304356418:179:25)
 └───────────────────────────────────────────────────────────────────────
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 01/06/2026, 08.56.29
+  Terakhir diperbarui: 01/06/2026, 08.59.56
 ════════════════════════════════════════════════════════════════════════

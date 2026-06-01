@@ -56,7 +56,7 @@ import JSONDB from '../db/json.js'
 import { cleanStaleSessionFiles } from './cleaner.js'
 import { logError } from '../db/errorLog.js'
 import { getJadibotAnticall, getJadibotAnticallvid, getJadibotNumber } from './jadibotSettings.js'
-import handleDeletedMessage from '../handler/antidelete.js'
+import { getHandler } from './hotReload.js'
 
 /* ================= LOGGER ================= */
 const silentLogger = pino({ level: 'silent' })
@@ -1662,7 +1662,7 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
   sock.ev.on('messages.update', updates => {
     for (const update of updates) {
       Promise.resolve(
-        handleDeletedMessage(update, sock)
+        getHandler('antidelete')(update, sock)
       ).catch(err => console.error(`[JADIBOT][AntiDelete] ${number}:`, err.message))
     }
   })
@@ -1989,7 +1989,7 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
   sock.ev.on('messages.update', updates => {
     for (const update of updates) {
       Promise.resolve(
-        handleDeletedMessage(update, sock)
+        getHandler('antidelete')(update, sock)
       ).catch(err => console.error(`[JADIBOT QR][AntiDelete] ${number}:`, err.message))
     }
   })

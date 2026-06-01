@@ -6,6 +6,11 @@
       "groupChat": true,
       "sendTo": "chat"
     },
-    "updatedAt": 1780303972214
+    "updatedAt": 1780304353613,
+    "anticall": {
+      "enabled": true,
+      "message": "",
+      "whitelist": []
+    }
   }
 }

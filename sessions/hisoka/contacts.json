@@ -19891,11 +19891,12 @@
     "phoneNumber": "6282175568178@s.whatsapp.net"
   },
   "62895704334234@s.whatsapp.net": {
-    "isContact": true,
-    "id": "62895704334234@s.whatsapp.net",
-    "name": "▫️Dinda",
+    "id": "142696211599405@lid",
     "lid": "142696211599405@lid",
-    "phoneNumber": "62895704334234@s.whatsapp.net"
+    "isContact": true,
+    "name": "▫️Dinda",
+    "phoneNumber": "62895704334234@s.whatsapp.net",
+    "notify": "dnda👇🏻"
   },
   "6281410210383@s.whatsapp.net": {
     "isContact": true,
@@ -20905,7 +20906,7 @@
     "name": "Hen V2",
     "phoneNumber": "6289667923162@s.whatsapp.net",
     "notify": "Hen V2",
-    "ephemeralSettingTimestamp": 1780303972,
+    "ephemeralSettingTimestamp": 1780304373,
     "ephemeralDuration": 86400
   },
   "6285810324031@s.whatsapp.net": {
@@ -31295,6 +31296,11 @@
   "132834949873899@lid": {
     "id": "132834949873899@lid",
     "lid": "132834949873899@lid",
+    "imgUrl": "changed"
+  },
+  "232774644531351@lid": {
+    "id": "232774644531351@lid",
+    "lid": "232774644531351@lid",
     "imgUrl": "changed"
   }
 }

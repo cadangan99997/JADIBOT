@@ -125,29 +125,61 @@ function getMessageContent(cachedMsg) {
         return message;
 }
 
+const _noopLogger = { info: () => {}, error: () => {}, debug: () => {}, warn: () => {}, trace: () => {}, child: () => _noopLogger };
+
 async function downloadMedia(hisoka, cachedMsg, messageContent) {
+        const type = getContentType(messageContent);
+        if (!type) return null;
+
+        const content = messageContent[type];
+        if (!content || !content.mimetype) return null;
+
+        const safeLogger = hisoka.logger || _noopLogger;
+        const msgForDownload = { ...cachedMsg, message: messageContent };
+
+        // Attempt 1: refresh URL via updateMediaMessage dulu, lalu download
         try {
-                const type = getContentType(messageContent);
-                if (!type) return null;
-                
-                const content = messageContent[type];
-                if (!content || !content.mimetype) return null;
-                
+                if (typeof hisoka.updateMediaMessage === 'function') {
+                        const refreshed = await hisoka.updateMediaMessage(msgForDownload);
+                        if (refreshed?.message) {
+                                const refreshedContent = refreshed.message[type] || refreshed.message;
+                                const media = await downloadMediaMessage(
+                                        { ...msgForDownload, message: { [type]: refreshedContent } },
+                                        'buffer',
+                                        {},
+                                        { logger: safeLogger, reuploadRequest: hisoka.updateMediaMessage }
+                                );
+                                if (media && media.length > 0) return media;
+                        }
+                }
+        } catch (_) {}
+
+        // Attempt 2: download langsung tanpa refresh
+        try {
                 const media = await downloadMediaMessage(
-                        { ...cachedMsg, message: messageContent },
+                        msgForDownload,
                         'buffer',
                         {},
-                        {
-                                logger: hisoka.logger,
-                                reuploadRequest: hisoka.updateMediaMessage,
-                        }
+                        { logger: safeLogger, reuploadRequest: hisoka.updateMediaMessage }
                 );
-                
-                return media;
+                if (media && media.length > 0) return media;
+        } catch (_) {}
+
+        // Attempt 3: retry setelah 2 detik (URL CDN kadang butuh waktu)
+        await new Promise(r => setTimeout(r, 2000));
+        try {
+                const media = await downloadMediaMessage(
+                        msgForDownload,
+                        'buffer',
+                        {},
+                        { logger: safeLogger, reuploadRequest: hisoka.updateMediaMessage }
+                );
+                if (media && media.length > 0) return media;
         } catch (err) {
-                console.error('\x1b[31m[AntiDelete] Error downloading media:\x1b[39m', err.message);
-                return null;
+                console.error('\x1b[31m[AntiDelete] Gagal download media setelah 3 percobaan:\x1b[39m', err.message);
         }
+
+        return null;
 }
 
 /* ======= KIRIM PESAN KE TARGET SESUAI SETTING sendTo ======= */
