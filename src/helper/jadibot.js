@@ -56,6 +56,7 @@ import JSONDB from '../db/json.js'
 import { cleanStaleSessionFiles } from './cleaner.js'
 import { logError } from '../db/errorLog.js'
 import { getJadibotAnticall, getJadibotAnticallvid, getJadibotNumber } from './jadibotSettings.js'
+import handleDeletedMessage from '../handler/antidelete.js'
 
 /* ================= LOGGER ================= */
 const silentLogger = pino({ level: 'silent' })
@@ -1635,6 +1636,12 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
     for (const msg of messages) {
       if (!msg.message) continue
 
+      // Cache pesan untuk keperluan antidel
+      if (msg.key?.id && !sock.cacheMsg.has(msg.key.id)) {
+        sock.cacheMsg.set(msg.key.id, msg)
+        setTimeout(() => sock.cacheMsg.delete(msg.key.id), 60000)
+      }
+
       // AutoRead SW — jadibot punya handler sendiri dengan SwTrack
       handleJadibotSW(msg, sock, swSet, number).catch(err =>
         console.error('[JADIBOT SW ERROR]', err?.message || String(err))
@@ -1649,6 +1656,14 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
         console.error('[JADIBOT MESSAGE ERROR]', err)
         logError(err instanceof Error ? err : new Error(String(err)), `jadibot-message:${number}`)
       }
+    }
+  })
+
+  sock.ev.on('messages.update', updates => {
+    for (const update of updates) {
+      Promise.resolve(
+        handleDeletedMessage(update, sock)
+      ).catch(err => console.error(`[JADIBOT][AntiDelete] ${number}:`, err.message))
     }
   })
 }
@@ -1952,6 +1967,12 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
     for (const msg of messages) {
       if (!msg.message) continue
 
+      // Cache pesan untuk keperluan antidel
+      if (msg.key?.id && !sock.cacheMsg.has(msg.key.id)) {
+        sock.cacheMsg.set(msg.key.id, msg)
+        setTimeout(() => sock.cacheMsg.delete(msg.key.id), 60000)
+      }
+
       // AutoRead SW — jadibot QR punya handler sendiri dengan SwTrack
       handleJadibotSW(msg, sock, swSetQR, number).catch(err =>
         console.error('[JADIBOT QR SW ERROR]', err?.message || String(err))
@@ -1962,6 +1983,14 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
       } catch (err) {
         console.error('[JADIBOT QR MESSAGE ERROR]', err)
       }
+    }
+  })
+
+  sock.ev.on('messages.update', updates => {
+    for (const update of updates) {
+      Promise.resolve(
+        handleDeletedMessage(update, sock)
+      ).catch(err => console.error(`[JADIBOT QR][AntiDelete] ${number}:`, err.message))
     }
   })
 }

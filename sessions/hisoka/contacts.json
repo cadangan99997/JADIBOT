@@ -3748,11 +3748,12 @@
     "phoneNumber": "6289525988211@s.whatsapp.net"
   },
   "6287852533256@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6287852533256@s.whatsapp.net",
-    "name": "!!!Raska",
+    "id": "227049553821873@lid",
     "lid": "227049553821873@lid",
-    "phoneNumber": "6287852533256@s.whatsapp.net"
+    "isContact": true,
+    "name": "!!!Raska",
+    "phoneNumber": "6287852533256@s.whatsapp.net",
+    "notify": "‎"
   },
   "62895384439960@s.whatsapp.net": {
     "isContact": true,
@@ -4688,11 +4689,12 @@
     "phoneNumber": "6281528927184@s.whatsapp.net"
   },
   "6282258833301@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282258833301@s.whatsapp.net",
-    "name": "!!!Nova",
+    "id": "244452643868853@lid",
     "lid": "244452643868853@lid",
-    "phoneNumber": "6282258833301@s.whatsapp.net"
+    "isContact": true,
+    "name": "!!!Nova",
+    "phoneNumber": "6282258833301@s.whatsapp.net",
+    "notify": "arip"
   },
   "62895325194973@s.whatsapp.net": {
     "isContact": true,
@@ -7093,8 +7095,7 @@
     "isContact": true,
     "name": "Remi_ikan 111",
     "phoneNumber": "6281295543915@s.whatsapp.net",
-    "notify": "Arthur.remi_kan",
-    "verifiedName": "Arthur.remi_kan"
+    "notify": "Arthur.remi_kan"
   },
   "628895573752@s.whatsapp.net": {
     "isContact": true,
@@ -20895,11 +20896,12 @@
     "phoneNumber": "6281348709685@s.whatsapp.net"
   },
   "6289667923162@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6289667923162@s.whatsapp.net",
-    "name": "Hen V2",
+    "id": "97968623505429@lid",
     "lid": "97968623505429@lid",
-    "phoneNumber": "6289667923162@s.whatsapp.net"
+    "isContact": true,
+    "name": "Hen V2",
+    "phoneNumber": "6289667923162@s.whatsapp.net",
+    "notify": "Hen V2"
   },
   "6285810324031@s.whatsapp.net": {
     "isContact": true,
@@ -31279,5 +31281,10 @@
     "id": "218493777666089@lid",
     "lid": "218493777666089@lid",
     "imgUrl": "changed"
+  },
+  "137482205151384@lid": {
+    "id": "137482205151384@lid",
+    "lid": "137482205151384@lid",
+    "imgUrl": "removed"
   }
 }
