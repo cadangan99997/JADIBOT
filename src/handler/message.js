@@ -16417,7 +16417,9 @@ hasil += `╰══════════════════════�
                         case 'hdvideo': {
                                 try {
                                         const { hdvideo }      = _require(path.resolve('./src/scrape/hdvid.cjs'));
-                                        const { winkHdEnhance, addHdBadge } = _require(path.resolve('./src/scrape/winkHd.cjs'));
+                                        const _winkPath = path.resolve('./src/scrape/winkHd.cjs');
+                                        delete _require.cache[_winkPath];
+                                        const { winkHdEnhance, addHdBadge } = _require(_winkPath);
 
                                         const isMediaMsg    = m.isMedia && (m.type === 'imageMessage' || m.type === 'videoMessage' || m.type === 'stickerMessage');
                                         const isQuotedMedia = m.isQuoted && quoted.isMedia && (quoted.type === 'imageMessage' || quoted.type === 'videoMessage' || quoted.type === 'stickerMessage');
@@ -16531,9 +16533,30 @@ hasil += `╰══════════════════════�
 
                                                 await hisoka.sendMessage(m.from, { react: { text: '✅', key: m.key } });
                                         } else {
+                                                const _sharp = _require('sharp');
+                                                const metaIn = await _sharp(mediaBuffer).metadata().catch(() => ({}));
+                                                const inW  = metaIn.width  || 0;
+                                                const inH  = metaIn.height || 0;
+                                                const outW = inW * 4;
+                                                const outH = inH * 4;
+
+                                                const _kLabel = (px) => {
+                                                        const mp = (px * px) / 1e6;
+                                                        if (mp >= 25)  return '8K';
+                                                        if (mp >= 8)   return '4K';
+                                                        if (mp >= 3.5) return '2K';
+                                                        return 'HD';
+                                                };
+                                                const inLabel  = inW  ? `${inW}×${inH}`  : '?';
+                                                const outLabel = outW ? `${outW}×${outH}` : '?';
+                                                const kOut     = outW ? _kLabel(outW)     : 'HD';
+
                                                 const loadMsg = await hisoka.sendMessage(m.from, {
                                                         text:
                                                                 `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
+                                                                `│ 📐 *Input :* ${inLabel}\n` +
+                                                                `│ 🎯 *Target:* ${outLabel} (${kOut})\n` +
+                                                                `│ ⚡ *Scale :* 4× Ultra HD\n│\n` +
                                                                 `│ 📤 *Step 1/3:* Mengupload gambar...\n` +
                                                                 `│ ⏳ Mohon tunggu sebentar\n│\n` +
                                                                 `╰══════════════════════════╯`
@@ -16546,6 +16569,9 @@ hasil += `╰══════════════════════�
 
                                                 await _edit(
                                                         `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
+                                                        `│ 📐 *Input :* ${inLabel}\n` +
+                                                        `│ 🎯 *Target:* ${outLabel} (${kOut})\n` +
+                                                        `│ ⚡ *Scale :* 4× Ultra HD\n│\n` +
                                                         `│ ✅ *Step 1/3:* Upload selesai\n` +
                                                         `│ 🤖 *Step 2/3:* AI sedang enhance...\n` +
                                                         `│ ⏳ Proses ~15-30 detik\n│\n` +
@@ -16558,23 +16584,25 @@ hasil += `╰══════════════════════�
 
                                                 await _edit(
                                                         `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
+                                                        `│ 📐 *Input :* ${inLabel}\n` +
+                                                        `│ 🎯 *Target:* ${outLabel} (${kOut})\n` +
+                                                        `│ ⚡ *Scale :* 4× Ultra HD\n│\n` +
                                                         `│ ✅ *Step 1/3:* Upload selesai\n` +
                                                         `│ ✅ *Step 2/3:* AI enhance selesai\n` +
-                                                        `│ 📥 *Step 3/3:* Mengunduh hasil...\n│\n` +
+                                                        `│ 📥 *Step 3/3:* Mengunduh & badge HD...\n│\n` +
                                                         `╰══════════════════════════╯`
                                                 );
+
+                                                await hisoka.sendMessage(m.from, { react: { text: '📥', key: m.key } });
 
                                                 const imgFetch = await fetch(resultUrl);
                                                 if (!imgFetch.ok) throw new Error('Gagal download hasil enhance');
                                                 const rawImgBuffer = Buffer.from(await imgFetch.arrayBuffer());
 
-                                                await _edit(
-                                                        `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
-                                                        `│ ✅ *Step 1/3:* Upload selesai\n` +
-                                                        `│ ✅ *Step 2/3:* AI enhance selesai\n` +
-                                                        `│ ✨ *Step 3/3:* Menambahkan badge HD...\n│\n` +
-                                                        `╰══════════════════════════╯`
-                                                );
+                                                const metaOut  = await _sharp(rawImgBuffer).metadata().catch(() => ({}));
+                                                const realOutW = metaOut.width  || outW;
+                                                const realOutH = metaOut.height || outH;
+                                                const realK    = _kLabel(realOutW);
 
                                                 const imgBuffer = await addHdBadge(rawImgBuffer).catch(() => rawImgBuffer);
 
@@ -16584,7 +16612,14 @@ hasil += `╰══════════════════════�
 
                                                 await hisoka.sendMessage(m.from, {
                                                         image  : imgBuffer,
-                                                        caption: `✅ *Gambar berhasil di-enhance ke Ultra HD!*\n🔗 Powered by Wink AI`
+                                                        caption:
+                                                                `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
+                                                                `│ ✅ *Enhance selesai!*\n│\n` +
+                                                                `│ 📐 *Input :* ${inLabel}\n` +
+                                                                `│ 🎯 *Output:* ${realOutW}×${realOutH} *(${realK})*\n` +
+                                                                `│ ⚡ *Scale :* 4× Ultra HD\n│\n` +
+                                                                `│ 🔗 Powered by Wink AI\n│\n` +
+                                                                `╰══════════════════════════╯`
                                                 }, { quoted: m });
 
                                                 await hisoka.sendMessage(m.from, { react: { text: '✅', key: m.key } });

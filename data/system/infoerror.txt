@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 02/06/2026, 06.31.00  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 02/06/2026, 06.47.01  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -26,21 +26,21 @@
 │  #001  —  console.error
 ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 │  PESAN ERROR
-│  [31m[HD] Error:[39m Gagal upscale. API tidak merespons dengan benar.
+│  [31m[HD] Error:[39m addHdBadge is not a function
 │
 │  DETAIL
 │  Sumber      : console.error
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 02/06/2026, 06.31.00
-│  Terakhir    : 02/06/2026, 06.31.00
+│  Pertama     : 02/06/2026, 06.47.01
+│  Terakhir    : 02/06/2026, 06.47.01
 │
 │  STACK TRACE (3 baris pertama)
-│  ▶  Error: [31m[HD] Error:[39m Gagal upscale. API tidak merespons dengan benar.
+│  ▶  Error: [31m[HD] Error:[39m addHdBadge is not a function
 │     at console.error (file:///home/runner/workspace/index.js:391:27)
-│     at default (file:///home/runner/workspace/src/handler/message.js?t=1780381724024:16545:49)
+│     at default (file:///home/runner/workspace/src/handler/message.js?t=1780382512381:16595:49)
 └───────────────────────────────────────────────────────────────────────
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 02/06/2026, 06.31.00
+  Terakhir diperbarui: 02/06/2026, 06.47.01
 ════════════════════════════════════════════════════════════════════════
