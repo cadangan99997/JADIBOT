@@ -12202,17 +12202,12 @@ if (isJadibot) text += jadibotNote;
                                         const realTotal = hisoka.loadedCommands?.length || total;
 
                                         // ── Tabel ringkasan teks (body list message)
-                                        let bodyLines = `*📋 Pratinjau Fitur Bot*\n`;
-                                        bodyLines += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
-                                        bodyLines += `Kategori             Jumlah\n`;
-                                        bodyLines += `────────────────────────────\n`;
+                                        let bodyLines = `*📋 Pratinjau Fitur Bot*\n\n`;
                                         for (const k of CEKFITUR_KATEGORI) {
-                                                const namaLabel = (k.emoji + ' ' + k.nama).padEnd(20);
-                                                bodyLines += `${namaLabel} ${String(k.cmds.length).padStart(2)} cmd\n`;
+                                                bodyLines += `${k.emoji} *${k.nama}* — ${k.cmds.length} cmd\n`;
                                         }
-                                        bodyLines += `────────────────────────────\n`;
-                                        bodyLines += `📦 Total   ${String(realTotal).padStart(8)} commands\n`;
-                                        bodyLines += `📂 Kategori${String(CEKFITUR_KATEGORI.length).padStart(8)} kategori`;
+                                        bodyLines += `\n📦 *Total: ${realTotal} commands*\n`;
+                                        bodyLines += `📂 ${CEKFITUR_KATEGORI.length} kategori tersedia`;
 
                                         // ── Sections untuk interactive list
                                         const listSections = [{
