@@ -9292,12 +9292,11 @@
     "phoneNumber": "6289528047290@s.whatsapp.net"
   },
   "6283141173926@s.whatsapp.net": {
-    "id": "139410695827562@lid",
-    "lid": "139410695827562@lid",
     "isContact": true,
+    "id": "6283141173926@s.whatsapp.net",
     "name": "Fahmi 567",
-    "phoneNumber": "6283141173926@s.whatsapp.net",
-    "notify": "Voyager"
+    "lid": "139410695827562@lid",
+    "phoneNumber": "6283141173926@s.whatsapp.net"
   },
   "6285760598295@s.whatsapp.net": {
     "isContact": true,
@@ -12485,12 +12484,11 @@
     "phoneNumber": "62895417926306@s.whatsapp.net"
   },
   "6283815424573@s.whatsapp.net": {
-    "id": "127393243132132@lid",
-    "lid": "127393243132132@lid",
     "isContact": true,
+    "id": "6283815424573@s.whatsapp.net",
     "name": "√ Istri Kei",
-    "phoneNumber": "6283815424573@s.whatsapp.net",
-    "notify": "(T)ipii kinetik"
+    "lid": "127393243132132@lid",
+    "phoneNumber": "6283815424573@s.whatsapp.net"
   },
   "6283188523467@s.whatsapp.net": {
     "isContact": true,
@@ -31899,19 +31897,24 @@
     "lid": "198796990484623@lid",
     "imgUrl": "removed"
   },
-  "85590628409444@lid": {
-    "id": "85590628409444@lid",
-    "lid": "85590628409444@lid",
+  "2113425907965@lid": {
+    "id": "2113425907965@lid",
+    "lid": "2113425907965@lid",
     "imgUrl": "changed"
   },
-  "271004282712246@lid": {
-    "id": "271004282712246@lid",
-    "lid": "271004282712246@lid",
+  "198973402927347@lid": {
+    "id": "198973402927347@lid",
+    "lid": "198973402927347@lid",
     "imgUrl": "changed"
   },
-  "140698850476252@lid": {
-    "id": "140698850476252@lid",
-    "lid": "140698850476252@lid",
-    "imgUrl": "changed"
+  "154090625589398@lid": {
+    "id": "154090625589398@lid",
+    "lid": "154090625589398@lid",
+    "imgUrl": "removed"
+  },
+  "163247948873976@lid": {
+    "id": "163247948873976@lid",
+    "lid": "163247948873976@lid",
+    "imgUrl": "removed"
   }
 }

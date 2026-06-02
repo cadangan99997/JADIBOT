@@ -12015,7 +12015,6 @@ if (isJadibot) text += jadibotNote;
                         }
 
                         case 'cekauto':
-                        case 'cekfitur':
                         case 'autolist': {
                                 if (!m.isOwner) return tolak(hisoka, m, '❌ Fitur ini hanya untuk owner!');
                                 const subCekauto = (query || '').trim().toLowerCase();
@@ -12025,6 +12024,243 @@ if (isJadibot) text += jadibotNote;
                                 } else {
                                         await sendCekautoMsg(hisoka, m);
                                         logCommand(m, hisoka, 'cekauto');
+                                }
+                                break;
+                        }
+
+                        case 'cekfitur':
+                        case 'listfitur':
+                        case 'fiturbot': {
+                                try {
+                                        const KATEGORI = [
+                                                {
+                                                        emoji: '📥', nama: 'Downloader',
+                                                        desc: 'Download media dari berbagai platform',
+                                                        cmds: [
+                                                                { cmd: 'tt',     info: 'Download TikTok (video/audio)' },
+                                                                { cmd: 'ig',     info: 'Download Instagram (foto/video/reels)' },
+                                                                { cmd: 'fb',     info: 'Download Facebook video' },
+                                                                { cmd: 'ytmp3',  info: 'Download YouTube → MP3' },
+                                                                { cmd: 'ytmp4',  info: 'Download YouTube → MP4' },
+                                                                { cmd: 'tele',   info: 'Download Telegram media' },
+                                                                { cmd: 'tvone',  info: 'Download video TvOne News' },
+                                                        ]
+                                                },
+                                                {
+                                                        emoji: '🎵', nama: 'Musik',
+                                                        desc: 'Cari, download & identifikasi lagu',
+                                                        cmds: [
+                                                                { cmd: 'carilagu',     info: 'Cari & download lagu' },
+                                                                { cmd: 'carijudullagu',info: 'Cari lagu dari judul' },
+                                                                { cmd: 'shazam',       info: 'Identifikasi lagu dari audio' },
+                                                                { cmd: 'tebaklagu',    info: 'Tebak judul lagu' },
+                                                                { cmd: 'tomp3',        info: 'Konversi video/audio → MP3' },
+                                                                { cmd: 'whatsmusik',   info: 'Rekomendasi musik WhatsApp' },
+                                                                { cmd: 'aimusik',      info: 'Generate musik AI' },
+                                                                { cmd: 'genius',       info: 'Cari info & lirik lagu' },
+                                                                { cmd: 'infomusik',    info: 'Info detail lagu dari file audio' },
+                                                                { cmd: 'infolirik',    info: 'Lirik lagu dari file audio' },
+                                                        ]
+                                                },
+                                                {
+                                                        emoji: '🎌', nama: 'Anime',
+                                                        desc: 'Info, download & update anime',
+                                                        cmds: [
+                                                                { cmd: 'alqanime',  info: 'Cari & download anime (AlqAnime)' },
+                                                                { cmd: 'alqdl',     info: 'Download episode anime AlqAnime' },
+                                                                { cmd: 'animasu',   info: 'Cari anime di Animasu' },
+                                                                { cmd: 'kusonime',  info: 'Cari anime di Kusonime' },
+                                                                { cmd: 'infowibu',  info: 'Info detail anime/manga (MAL)' },
+                                                                { cmd: 'malnews',   info: 'Berita terbaru dari MyAnimeList' },
+                                                                { cmd: 'ba',        info: 'Info karakter Blue Archive' },
+                                                                { cmd: 'anime',     info: 'Update anime terbaru' },
+                                                        ]
+                                                },
+                                                {
+                                                        emoji: '📖', nama: 'Manga/Komik',
+                                                        desc: 'Baca & download manga/komik',
+                                                        cmds: [
+                                                                { cmd: 'komiktap',  info: 'Cari manga di KomikTap' },
+                                                                { cmd: 'komikdl',   info: 'Download chapter manga' },
+                                                                { cmd: 'komikget',  info: 'Ambil halaman komik' },
+                                                                { cmd: 'pixiv',     info: 'Cari ilustrasi di Pixiv' },
+                                                                { cmd: 'cosplay',   info: 'Cari konten Cosplaytele' },
+                                                        ]
+                                                },
+                                                {
+                                                        emoji: '🖼️', nama: 'Media & Sticker',
+                                                        desc: 'Edit, konversi & proses media',
+                                                        cmds: [
+                                                                { cmd: 'sticker',   info: 'Buat sticker dari gambar/video' },
+                                                                { cmd: 'toimg',     info: 'Sticker → gambar' },
+                                                                { cmd: 'tovn',      info: 'Video → voice note' },
+                                                                { cmd: 'hd',        info: 'Enhance gambar ke Ultra HD (4×)' },
+                                                                { cmd: 'hdvid',     info: 'Enhance video ke kualitas HD' },
+                                                                { cmd: 'viewonce',  info: 'Buka pesan sekali-lihat' },
+                                                                { cmd: 'stickerly', info: 'Sticker pack dari Stickerly' },
+                                                        ]
+                                                },
+                                                {
+                                                        emoji: '🌐', nama: 'Web & Info',
+                                                        desc: 'Screenshot, scrape & cek website',
+                                                        cmds: [
+                                                                { cmd: 'ss',        info: 'Screenshot tampilan website' },
+                                                                { cmd: 'ssweb',     info: 'Screenshot + status website realtime' },
+                                                                { cmd: 'cuaca',     info: 'Cek cuaca kota manapun' },
+                                                                { cmd: 'cekhp',     info: 'Cek spesifikasi HP' },
+                                                                { cmd: 'bandingkan',info: 'Bandingkan 2 HP side-by-side' },
+                                                                { cmd: 'cekspeed',  info: 'Speedtest internet bot' },
+                                                                { cmd: 'ceksize',   info: 'Cek ukuran file dari URL' },
+                                                        ]
+                                                },
+                                                {
+                                                        emoji: '📧', nama: 'Temp Mail',
+                                                        desc: 'Email sementara sekali pakai',
+                                                        cmds: [
+                                                                { cmd: 'tmail',    info: 'Buat email temporary baru' },
+                                                                { cmd: 'tminbox',  info: 'Lihat inbox email temp' },
+                                                                { cmd: 'tmread',   info: 'Baca email masuk' },
+                                                                { cmd: 'tmdel',    info: 'Hapus email temp' },
+                                                                { cmd: 'tmwait',   info: 'Tunggu email masuk otomatis' },
+                                                        ]
+                                                },
+                                                {
+                                                        emoji: '🤖', nama: 'AI & Chat',
+                                                        desc: 'Chatbot AI & asisten pintar',
+                                                        cmds: [
+                                                                { cmd: 'ai',      info: 'Chat dengan AI (Gemini)' },
+                                                                { cmd: 'tanya',   info: 'Tanya AI apapun' },
+                                                                { cmd: 'simi',    info: 'Chatbot Simsimi' },
+                                                                { cmd: 'wily',    info: 'Wily AI — asisten personal' },
+                                                                { cmd: 'aimusik2',info: 'Generate musik AI (mode 2)' },
+                                                                { cmd: 'whatgenre',info: 'Identifikasi genre musik via AI' },
+                                                        ]
+                                                },
+                                                {
+                                                        emoji: '👥', nama: 'Grup',
+                                                        desc: 'Manajemen & fitur grup WhatsApp',
+                                                        cmds: [
+                                                                { cmd: 'hidetag',   info: 'Tag semua member diam-diam' },
+                                                                { cmd: 'all',       info: 'Sebut semua anggota grup' },
+                                                                { cmd: 'welcome',   info: 'Pesan sambutan anggota baru' },
+                                                                { cmd: 'goodbye',   info: 'Pesan perpisahan anggota keluar' },
+                                                                { cmd: 'antitagsw', info: 'Anti-tag dari status WA' },
+                                                                { cmd: 'antidel',   info: 'Anti-hapus pesan di grup' },
+                                                                { cmd: 'listgroup', info: 'Daftar semua grup bot' },
+                                                                { cmd: 'jadibot',   info: 'Sub-bot di grup' },
+                                                        ]
+                                                },
+                                                {
+                                                        emoji: '🔧', nama: 'System',
+                                                        desc: 'Kontrol & monitoring bot (owner)',
+                                                        cmds: [
+                                                                { cmd: 'restart',      info: 'Restart bot' },
+                                                                { cmd: 'shutdown',     info: 'Matikan bot' },
+                                                                { cmd: 'eval',         info: 'Eksekusi kode JS' },
+                                                                { cmd: 'backup',       info: 'Backup data bot' },
+                                                                { cmd: 'memori',       info: 'Cek penggunaan memori' },
+                                                                { cmd: 'botadmin',     info: 'Status admin bot di grup' },
+                                                                { cmd: 'cekauto',      info: 'Status fitur auto bot' },
+                                                                { cmd: 'cekerror',     info: 'Log error terakhir' },
+                                                                { cmd: 'sessioncleaner',info:'Bersihkan session lama' },
+                                                        ]
+                                                },
+                                        ];
+
+                                        const pfx   = m.prefix || '.';
+                                        const arg   = (query || '').trim().toLowerCase();
+                                        const total = KATEGORI.reduce((s, k) => s + k.cmds.length, 0);
+
+                                        if (!arg) {
+                                                const pad = (str, len) => str.length >= len ? str : str + ' '.repeat(len - str.length);
+
+                                                let txt =
+                                                        `╔═══『 📋 *DAFTAR FITUR BOT* 』═══╗
+` +
+                                                        `║
+` +
+                                                        `║  *Ketuk* nama kategori untuk detail
+` +
+                                                        `║  *${pfx}cekfitur <nama>*
+` +
+                                                        `║
+` +
+                                                        `╠═══════════════════════════════════╣
+`;
+
+                                                for (const [i, k] of KATEGORI.entries()) {
+                                                        const no    = String(i + 1).padStart(2, ' ');
+                                                        const nama  = pad(k.emoji + ' ' + k.nama, 24);
+                                                        const jml   = String(k.cmds.length).padStart(2, ' ') + ' cmd';
+                                                        txt += `║  *${no}.* ${nama}  ${jml}
+`;
+                                                }
+
+                                                txt +=
+                                                        `╠═══════════════════════════════════╣
+` +
+                                                        `║  📦 Total : *${total} commands* tersedia
+` +
+                                                        `║  🔗 Runtime: Baileys v6 (WA Web)
+` +
+                                                        `║
+` +
+                                                        `║  *Contoh detail:*
+` +
+                                                        `║  ${pfx}cekfitur musik
+` +
+                                                        `║  ${pfx}cekfitur anime
+` +
+                                                        `║  ${pfx}cekfitur downloader
+` +
+                                                        `╚═══════════════════════════════════╝`;
+
+                                                await tolak(hisoka, m, txt);
+                                        } else {
+                                                const found = KATEGORI.find(k =>
+                                                        k.nama.toLowerCase().includes(arg) ||
+                                                        arg.includes(k.nama.toLowerCase()) ||
+                                                        k.cmds.some(c => c.cmd === arg)
+                                                );
+
+                                                if (!found) {
+                                                        const namaList = KATEGORI.map((k, i) => `  *${i+1}.* ${k.emoji} ${k.nama}`).join('\n');
+                                                        await tolak(hisoka, m,
+                                                                `╭══『 ❌ *Kategori Tidak Ditemukan* 』══╮\n│\n` +
+                                                                `│ Kategori *"${arg}"* tidak ada.\n│\n` +
+                                                                `│ *Kategori tersedia:*\n` +
+                                                                namaList + `\n│\n` +
+                                                                `╰══════════════════════════════════╯`
+                                                        );
+                                                        break;
+                                                }
+
+                                                const maxCmdLen = Math.max(...found.cmds.map(c => c.cmd.length));
+                                                const pad = (str, len) => str.length >= len ? str : str + ' '.repeat(len - str.length);
+
+                                                let txt =
+                                                        `╔═══『 ${found.emoji} *${found.nama.toUpperCase()}* 』═══╗\n` +
+                                                        `║\n` +
+                                                        `║  📝 ${found.desc}\n` +
+                                                        `║  📦 Total: *${found.cmds.length} commands*\n` +
+                                                        `║\n` +
+                                                        `╠═══════════════════════════════════╣\n`;
+
+                                                for (const c of found.cmds) {
+                                                        txt += `║  *${pfx}${pad(c.cmd, maxCmdLen + 1)}* — ${c.info}\n`;
+                                                }
+
+                                                txt +=
+                                                        `║\n` +
+                                                        `╚═══════════════════════════════════╝`;
+
+                                                await tolak(hisoka, m, txt);
+                                        }
+
+                                        logCommand(m, hisoka, 'cekfitur');
+                                } catch (error) {
+                                        console.error('\x1b[31m[CekFitur] Error:\x1b[39m', error.message);
+                                        await tolak(hisoka, m, `❌ Error: ${error.message}`);
                                 }
                                 break;
                         }
@@ -16416,25 +16652,25 @@ hasil += `╰══════════════════════�
                         case 'vidhd':
                         case 'hdvideo': {
                                 try {
-                                        const { hdvideo }      = _require(path.resolve('./src/scrape/hdvid.cjs'));
-                                        const _winkPath = path.resolve('./src/scrape/winkHd.cjs');
-                                        delete _require.cache[_winkPath];
-                                        const { winkHdEnhance, addHdBadge } = _require(_winkPath);
+                                        const { hdvideo } = _require(path.resolve('./src/scrape/hdvid.cjs'));
+                                        const { sparkpixHdUpscale } = _require(path.resolve('./src/scrape/sparkpix.cjs'));
 
-                                        const isMediaMsg    = m.isMedia && (m.type === 'imageMessage' || m.type === 'videoMessage' || m.type === 'stickerMessage');
+                                        const isMediaMsg = m.isMedia && (m.type === 'imageMessage' || m.type === 'videoMessage' || m.type === 'stickerMessage');
                                         const isQuotedMedia = m.isQuoted && quoted.isMedia && (quoted.type === 'imageMessage' || quoted.type === 'videoMessage' || quoted.type === 'stickerMessage');
 
                                         if (!isMediaMsg && !isQuotedMedia) {
                                                 await tolak(hisoka, m,
-                                                        `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
+                                                        `╭═══『 🖼️ *HD Upscaler* 』═══╮\n│\n` +
                                                         `│ Tingkatkan kualitas gambar/video\n` +
                                                         `│ menjadi lebih tajam & jernih!\n│\n` +
                                                         `│ *Cara Pakai:*\n` +
-                                                        `│ • Kirim/reply gambar dengan caption:\n` +
-                                                        `│   *.hd* atau *.remini*\n│\n` +
-                                                        `│ *Alias:*\n` +
-                                                        `│ *.hd* / *.remini* / *.hdr*\n│\n` +
-                                                        `│ *Video HD:*\n` +
+                                                        `│ • Kirim gambar dengan caption:\n` +
+                                                        `│   *.hd* [resolusi]\n│\n` +
+                                                        `│ *Pilihan Resolusi:*\n` +
+                                                        `│ *.hd 4k* → 4K (default)\n` +
+                                                        `│ *.hd 6k* → 6K\n` +
+                                                        `│ *.hd 8k* → 8K (terbaik)\n│\n` +
+                                                        `│ *Video:*\n` +
                                                         `│ *.hdvid* / *.vidhd* / *.hdvideo*\n` +
                                                         `│\n╰══════════════════════════╯`
                                                 );
@@ -16446,7 +16682,7 @@ hasil += `╰══════════════════════�
 
                                         if (isMediaMsg) {
                                                 mediaBuffer = await m.downloadMedia();
-                                                mediaType   = m.type;
+                                                mediaType = m.type;
                                         } else {
                                                 mediaBuffer = await downloadMediaMessage(
                                                         { ...m.quoted, message: m.quoted.raw },
@@ -16466,28 +16702,10 @@ hasil += `╰══════════════════════�
                                         const isVideo = mediaType === 'videoMessage';
 
                                         await hisoka.sendMessage(m.from, { react: { text: '⏳', key: m.key } });
+                                        await tolak(hisoka, m, `⏳ Sedang memproses ${isVideo ? 'video' : 'gambar'} ke kualitas HD...\nMohon tunggu, proses ini membutuhkan waktu.`);
 
                                         if (isVideo) {
-                                                const loadMsg = await hisoka.sendMessage(m.from, {
-                                                        text:
-                                                                `╭═══『 🎬 *HD Video* 』═══╮\n│\n` +
-                                                                `│ 📤 Mengupload video...\n` +
-                                                                `│ ⏳ Mohon tunggu sebentar\n│\n` +
-                                                                `╰══════════════════════════╯`
-                                                }, { quoted: m }).catch(() => null);
-
-                                                const _editV = async (txt) => {
-                                                        if (!loadMsg?.key) return;
-                                                        try { await hisoka.sendMessage(m.from, { text: txt, edit: loadMsg.key }); } catch (_) {}
-                                                };
-
                                                 const resultUrl = await hdvideo(mediaBuffer);
-                                                await _editV(
-                                                        `╭═══『 🎬 *HD Video* 』═══╮\n│\n` +
-                                                        `│ ✅ Proses selesai!\n` +
-                                                        `│ 📥 Mengunduh hasil...\n│\n` +
-                                                        `╰══════════════════════════╯`
-                                                );
 
                                                 const videoFetch = await fetch(resultUrl);
                                                 if (!videoFetch.ok) throw new Error('Gagal mengunduh hasil video HD');
@@ -16521,105 +16739,38 @@ hasil += `╰══════════════════════�
                                                         try { fs.unlinkSync(tmpWmOut); } catch (_) {}
                                                 }
 
-                                                if (loadMsg?.key) {
-                                                        try { await hisoka.sendMessage(m.from, { delete: loadMsg.key }); } catch (_) {}
-                                                }
-
                                                 await hisoka.sendMessage(m.from, {
                                                         video: videoBuffer,
                                                         mimetype: 'video/mp4',
-                                                        caption: '✅ *Video berhasil diproses ke kualitas HD!*'
+                                                        caption: '✅ Video berhasil diproses ke kualitas HD!'
                                                 }, { quoted: m });
 
                                                 await hisoka.sendMessage(m.from, { react: { text: '✅', key: m.key } });
                                         } else {
-                                                const _sharp = _require('sharp');
-                                                const metaIn = await _sharp(mediaBuffer).metadata().catch(() => ({}));
-                                                const inW  = metaIn.width  || 0;
-                                                const inH  = metaIn.height || 0;
-                                                const outW = inW * 4;
-                                                const outH = inH * 4;
+                                                const resInput = (query || '4k').trim().toLowerCase().split(/\s+/)[0];
+                                                const { resolution } = (() => {
+                                                        const v = resInput;
+                                                        if (['6k','3','3x'].includes(v)) return { resolution: '6K' };
+                                                        if (['8k','4','4x'].includes(v)) return { resolution: '8K' };
+                                                        return { resolution: '4K' };
+                                                })();
 
-                                                const _kLabel = (px) => {
-                                                        const mp = (px * px) / 1e6;
-                                                        if (mp >= 25)  return '8K';
-                                                        if (mp >= 8)   return '4K';
-                                                        if (mp >= 3.5) return '2K';
-                                                        return 'HD';
-                                                };
-                                                const inLabel  = inW  ? `${inW}×${inH}`  : '?';
-                                                const outLabel = outW ? `${outW}×${outH}` : '?';
-                                                const kOut     = outW ? _kLabel(outW)     : 'HD';
+                                                await hisoka.sendMessage(m.from, { react: { text: '⏳', key: m.key } });
+                                                await tolak(hisoka, m, `⏳ Sedang upscale gambar ke *${resolution}* via SparkPix...\nMohon tunggu sebentar.`);
 
-                                                const loadMsg = await hisoka.sendMessage(m.from, {
-                                                        text:
-                                                                `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
-                                                                `│ 📐 *Input :* ${inLabel}\n` +
-                                                                `│ 🎯 *Target:* ${outLabel} (${kOut})\n` +
-                                                                `│ ⚡ *Scale :* 4× Ultra HD\n│\n` +
-                                                                `│ 📤 *Step 1/3:* Mengupload gambar...\n` +
-                                                                `│ ⏳ Mohon tunggu sebentar\n│\n` +
-                                                                `╰══════════════════════════╯`
-                                                }, { quoted: m }).catch(() => null);
+                                                const result = await sparkpixHdUpscale(mediaBuffer, { resolution: resInput });
 
-                                                const _edit = async (txt) => {
-                                                        if (!loadMsg?.key) return;
-                                                        try { await hisoka.sendMessage(m.from, { text: txt, edit: loadMsg.key }); } catch (_) {}
-                                                };
-
-                                                await _edit(
-                                                        `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
-                                                        `│ 📐 *Input :* ${inLabel}\n` +
-                                                        `│ 🎯 *Target:* ${outLabel} (${kOut})\n` +
-                                                        `│ ⚡ *Scale :* 4× Ultra HD\n│\n` +
-                                                        `│ ✅ *Step 1/3:* Upload selesai\n` +
-                                                        `│ 🤖 *Step 2/3:* AI sedang enhance...\n` +
-                                                        `│ ⏳ Proses ~15-30 detik\n│\n` +
-                                                        `╰══════════════════════════╯`
-                                                );
-
-                                                await hisoka.sendMessage(m.from, { react: { text: '🤖', key: m.key } });
-
-                                                const resultUrl = await winkHdEnhance(mediaBuffer);
-
-                                                await _edit(
-                                                        `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
-                                                        `│ 📐 *Input :* ${inLabel}\n` +
-                                                        `│ 🎯 *Target:* ${outLabel} (${kOut})\n` +
-                                                        `│ ⚡ *Scale :* 4× Ultra HD\n│\n` +
-                                                        `│ ✅ *Step 1/3:* Upload selesai\n` +
-                                                        `│ ✅ *Step 2/3:* AI enhance selesai\n` +
-                                                        `│ 📥 *Step 3/3:* Mengunduh & badge HD...\n│\n` +
-                                                        `╰══════════════════════════╯`
-                                                );
-
-                                                await hisoka.sendMessage(m.from, { react: { text: '📥', key: m.key } });
-
-                                                const imgFetch = await fetch(resultUrl);
-                                                if (!imgFetch.ok) throw new Error('Gagal download hasil enhance');
-                                                const rawImgBuffer = Buffer.from(await imgFetch.arrayBuffer());
-
-                                                const metaOut  = await _sharp(rawImgBuffer).metadata().catch(() => ({}));
-                                                const realOutW = metaOut.width  || outW;
-                                                const realOutH = metaOut.height || outH;
-                                                const realK    = _kLabel(realOutW);
-
-                                                const imgBuffer = await addHdBadge(rawImgBuffer).catch(() => rawImgBuffer);
-
-                                                if (loadMsg?.key) {
-                                                        try { await hisoka.sendMessage(m.from, { delete: loadMsg.key }); } catch (_) {}
+                                                if (!result.status || !result.result_url) {
+                                                        throw new Error(result.message || 'API SparkPix gagal merespons');
                                                 }
+
+                                                const imgFetch = await fetch(result.result_url);
+                                                if (!imgFetch.ok) throw new Error('Gagal download hasil upscale');
+                                                const imgBuffer = Buffer.from(await imgFetch.arrayBuffer());
 
                                                 await hisoka.sendMessage(m.from, {
                                                         image  : imgBuffer,
-                                                        caption:
-                                                                `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
-                                                                `│ ✅ *Enhance selesai!*\n│\n` +
-                                                                `│ 📐 *Input :* ${inLabel}\n` +
-                                                                `│ 🎯 *Output:* ${realOutW}×${realOutH} *(${realK})*\n` +
-                                                                `│ ⚡ *Scale :* 4× Ultra HD\n│\n` +
-                                                                `│ 🔗 Powered by Wink AI\n│\n` +
-                                                                `╰══════════════════════════╯`
+                                                        caption: `✅ *Gambar berhasil diupscale ke ${resolution}!*\n🔗 Powered by SparkPix AI`
                                                 }, { quoted: m });
 
                                                 await hisoka.sendMessage(m.from, { react: { text: '✅', key: m.key } });

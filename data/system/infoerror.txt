@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 02/06/2026, 06.47.01  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 02/06/2026, 04.20.23  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -23,24 +23,24 @@
 ────────────────────────────────────────────────────────────────────────
 
 ┌───────────────────────────────────────────────────────────────────────
-│  #001  —  console.error
+│  #001  —  unhandledRejection
 ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 │  PESAN ERROR
-│  [31m[HD] Error:[39m addHdBadge is not a function
+│  Connection Closed
 │
 │  DETAIL
-│  Sumber      : console.error
+│  Sumber      : unhandledRejection
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 02/06/2026, 06.47.01
-│  Terakhir    : 02/06/2026, 06.47.01
+│  Pertama     : 02/06/2026, 04.20.23
+│  Terakhir    : 02/06/2026, 04.20.23
 │
 │  STACK TRACE (3 baris pertama)
-│  ▶  Error: [31m[HD] Error:[39m addHdBadge is not a function
-│     at console.error (file:///home/runner/workspace/index.js:391:27)
-│     at default (file:///home/runner/workspace/src/handler/message.js?t=1780382512381:16595:49)
+│  ▶  Error: Connection Closed
+│     at sendRawMessage (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:57:19)
+│     at sendNode (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:76:16)
 └───────────────────────────────────────────────────────────────────────
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 02/06/2026, 06.47.01
+  Terakhir diperbarui: 02/06/2026, 04.20.23
 ════════════════════════════════════════════════════════════════════════
