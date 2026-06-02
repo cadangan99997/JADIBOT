@@ -1,0 +1,44 @@
+{
+  "AC7551213134BCA051A73181B6F26246": {
+    "id": "AC7551213134BCA051A73181B6F26246",
+    "sender": "6287761753469@s.whatsapp.net",
+    "name": "wilva lili purnani",
+    "type": "videoMessage",
+    "arrivedAt": "2026-06-02T05:31:55.003Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "📽️",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6287761753469",
+    "resolvedPn": "6287761753469@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6287761753469@s.whatsapp.net",
+      "fromMe": false,
+      "id": "AC7551213134BCA051A73181B6F26246",
+      "participant": "68110111498295@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-06-02T05:32:15.203Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6287761753469@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC7551213134BCA051A73181B6F26246",
+        "participant": "68110111498295@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6287761753469@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC7551213134BCA051A73181B6F26246",
+        "participant": "6287761753469@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-06-02T05:32:15.203Z"
+  }
+}
