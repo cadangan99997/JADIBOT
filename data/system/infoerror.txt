@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 02/06/2026, 04.20.23  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 02/06/2026, 06.31.00  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -23,24 +23,24 @@
 ────────────────────────────────────────────────────────────────────────
 
 ┌───────────────────────────────────────────────────────────────────────
-│  #001  —  unhandledRejection
+│  #001  —  console.error
 ├┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 │  PESAN ERROR
-│  Connection Closed
+│  [31m[HD] Error:[39m Gagal upscale. API tidak merespons dengan benar.
 │
 │  DETAIL
-│  Sumber      : unhandledRejection
+│  Sumber      : console.error
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 02/06/2026, 04.20.23
-│  Terakhir    : 02/06/2026, 04.20.23
+│  Pertama     : 02/06/2026, 06.31.00
+│  Terakhir    : 02/06/2026, 06.31.00
 │
 │  STACK TRACE (3 baris pertama)
-│  ▶  Error: Connection Closed
-│     at sendRawMessage (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:57:19)
-│     at sendNode (file:///home/runner/workspace/node_modules/@whiskeysockets/baileys/lib/Socket/socket.js:76:16)
+│  ▶  Error: [31m[HD] Error:[39m Gagal upscale. API tidak merespons dengan benar.
+│     at console.error (file:///home/runner/workspace/index.js:391:27)
+│     at default (file:///home/runner/workspace/src/handler/message.js?t=1780381724024:16545:49)
 └───────────────────────────────────────────────────────────────────────
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 02/06/2026, 04.20.23
+  Terakhir diperbarui: 02/06/2026, 06.31.00
 ════════════════════════════════════════════════════════════════════════

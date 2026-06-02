@@ -12484,11 +12484,12 @@
     "phoneNumber": "62895417926306@s.whatsapp.net"
   },
   "6283815424573@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283815424573@s.whatsapp.net",
-    "name": "√ Istri Kei",
+    "id": "127393243132132@lid",
     "lid": "127393243132132@lid",
-    "phoneNumber": "6283815424573@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Istri Kei",
+    "phoneNumber": "6283815424573@s.whatsapp.net",
+    "notify": "(T)ipii kinetik"
   },
   "6283188523467@s.whatsapp.net": {
     "isContact": true,
@@ -31896,5 +31897,15 @@
     "id": "198796990484623@lid",
     "lid": "198796990484623@lid",
     "imgUrl": "removed"
+  },
+  "85590628409444@lid": {
+    "id": "85590628409444@lid",
+    "lid": "85590628409444@lid",
+    "imgUrl": "changed"
+  },
+  "271004282712246@lid": {
+    "id": "271004282712246@lid",
+    "lid": "271004282712246@lid",
+    "imgUrl": "changed"
   }
 }
