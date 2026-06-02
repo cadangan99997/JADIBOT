@@ -227,3 +227,9 @@ id = "7BBnzNW1e84qO5_sMTPOS"
 uri = "file://lagu_anime_dungeon.mp3"
 type = "audio"
 title = "Cahaya yang Kutitipkan — Anime OST Dungeon Sad Piano"
+
+[[outputs]]
+id = "cCtFsaIk6tpb8bmIl2EDg"
+uri = "file://attached_assets/test_badge_preview.jpg"
+type = "image"
+title = "Preview HD Badge di gambar"

@@ -293,4 +293,42 @@ async function winkHdEnhance(imageBuffer) {
     throw new Error('Timeout: hasil enhance belum selesai dalam batas waktu');
 }
 
-module.exports = { winkHdEnhance };
+/**
+ * Tambah badge "HD" style WhatsApp di pojok kiri bawah gambar
+ * @param {Buffer} imgBuffer
+ * @returns {Promise<Buffer>}
+ */
+async function addHdBadge(imgBuffer) {
+    const sharp = require('sharp');
+
+    const meta = await sharp(imgBuffer).metadata();
+    const w = meta.width  || 500;
+    const h = meta.height || 500;
+
+    const bW = Math.round(w * 0.14);
+    const bH = Math.round(bW * 0.45);
+    const r  = Math.round(bH * 0.38);
+    const fs = Math.round(bH * 0.52);
+    const margin = Math.round(w * 0.025);
+
+    const svg = `<svg width="${bW}" height="${bH}" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="${bW}" height="${bH}" rx="${r}" ry="${r}" fill="rgba(0,0,0,0.60)"/>
+  <rect x="1.5" y="1.5" width="${bW - 3}" height="${bH - 3}" rx="${r - 1}" ry="${r - 1}"
+        fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="1.5"/>
+  <text x="50%" y="52%" dominant-baseline="central" text-anchor="middle"
+        font-family="Arial Black, Arial, sans-serif" font-size="${fs}"
+        font-weight="900" fill="white" letter-spacing="2">HD</text>
+</svg>`;
+
+    return sharp(imgBuffer)
+        .composite([{
+            input: Buffer.from(svg),
+            left: margin,
+            top:  h - bH - margin,
+            blend: 'over'
+        }])
+        .jpeg({ quality: 95 })
+        .toBuffer();
+}
+
+module.exports = { winkHdEnhance, addHdBadge };

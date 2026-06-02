@@ -9292,11 +9292,12 @@
     "phoneNumber": "6289528047290@s.whatsapp.net"
   },
   "6283141173926@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283141173926@s.whatsapp.net",
-    "name": "Fahmi 567",
+    "id": "139410695827562@lid",
     "lid": "139410695827562@lid",
-    "phoneNumber": "6283141173926@s.whatsapp.net"
+    "isContact": true,
+    "name": "Fahmi 567",
+    "phoneNumber": "6283141173926@s.whatsapp.net",
+    "notify": "Voyager"
   },
   "6285760598295@s.whatsapp.net": {
     "isContact": true,

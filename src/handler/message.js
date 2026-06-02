@@ -16417,7 +16417,7 @@ hasil += `╰══════════════════════�
                         case 'hdvideo': {
                                 try {
                                         const { hdvideo }      = _require(path.resolve('./src/scrape/hdvid.cjs'));
-                                        const { winkHdEnhance } = _require(path.resolve('./src/scrape/winkHd.cjs'));
+                                        const { winkHdEnhance, addHdBadge } = _require(path.resolve('./src/scrape/winkHd.cjs'));
 
                                         const isMediaMsg    = m.isMedia && (m.type === 'imageMessage' || m.type === 'videoMessage' || m.type === 'stickerMessage');
                                         const isQuotedMedia = m.isQuoted && quoted.isMedia && (quoted.type === 'imageMessage' || quoted.type === 'videoMessage' || quoted.type === 'stickerMessage');
@@ -16566,7 +16566,17 @@ hasil += `╰══════════════════════�
 
                                                 const imgFetch = await fetch(resultUrl);
                                                 if (!imgFetch.ok) throw new Error('Gagal download hasil enhance');
-                                                const imgBuffer = Buffer.from(await imgFetch.arrayBuffer());
+                                                const rawImgBuffer = Buffer.from(await imgFetch.arrayBuffer());
+
+                                                await _edit(
+                                                        `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
+                                                        `│ ✅ *Step 1/3:* Upload selesai\n` +
+                                                        `│ ✅ *Step 2/3:* AI enhance selesai\n` +
+                                                        `│ ✨ *Step 3/3:* Menambahkan badge HD...\n│\n` +
+                                                        `╰══════════════════════════╯`
+                                                );
+
+                                                const imgBuffer = await addHdBadge(rawImgBuffer).catch(() => rawImgBuffer);
 
                                                 if (loadMsg?.key) {
                                                         try { await hisoka.sendMessage(m.from, { delete: loadMsg.key }); } catch (_) {}
