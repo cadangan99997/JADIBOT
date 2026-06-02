@@ -1320,6 +1320,101 @@ const CEKAUTO_FITUR_LIST = [
         { key: 'autoSholat',     nama: 'Auto Sholat',      cmd: '.autosholat add/remove',  type: 'group',  toggleable: false, checkFn: (cfg) => Array.isArray(cfg.autoSholat?.groups) && cfg.autoSholat.groups.length > 0 },
 ];
 
+const CEKFITUR_KATEGORI = [
+        { emoji: '📥', nama: 'Downloader',    desc: 'Download media dari berbagai platform',         cmds: [
+                { cmd: 'tt',          info: 'Download TikTok (video/audio)'          },
+                { cmd: 'ig',          info: 'Download Instagram (foto/video/reels)'  },
+                { cmd: 'fb',          info: 'Download Facebook video'                },
+                { cmd: 'ytmp3',       info: 'Download YouTube → MP3'                 },
+                { cmd: 'ytmp4',       info: 'Download YouTube → MP4'                 },
+                { cmd: 'tele',        info: 'Download Telegram media'                },
+                { cmd: 'tvone',       info: 'Download video TvOne News'              },
+        ]},
+        { emoji: '🎵', nama: 'Musik',         desc: 'Cari, download & identifikasi lagu',            cmds: [
+                { cmd: 'carilagu',     info: 'Cari & download lagu'                  },
+                { cmd: 'carijudullagu',info: 'Cari lagu dari judul'                  },
+                { cmd: 'shazam',       info: 'Identifikasi lagu dari audio'          },
+                { cmd: 'tebaklagu',    info: 'Tebak judul lagu'                      },
+                { cmd: 'tomp3',        info: 'Konversi video/audio → MP3'            },
+                { cmd: 'whatsmusik',   info: 'Rekomendasi musik WhatsApp'            },
+                { cmd: 'aimusik',      info: 'Generate musik AI (mode 1)'            },
+                { cmd: 'aimusik2',     info: 'Generate musik AI (mode 2)'            },
+                { cmd: 'genius',       info: 'Cari info & lirik lagu'               },
+                { cmd: 'infomusik',    info: 'Info detail lagu dari file audio'      },
+        ]},
+        { emoji: '🎌', nama: 'Anime',         desc: 'Info, download & update anime',                 cmds: [
+                { cmd: 'alqanime',    info: 'Cari & download anime (AlqAnime)'       },
+                { cmd: 'alqdl',       info: 'Download episode anime AlqAnime'        },
+                { cmd: 'animasu',     info: 'Cari anime di Animasu'                  },
+                { cmd: 'kusonime',    info: 'Cari anime di Kusonime'                 },
+                { cmd: 'infowibu',    info: 'Info detail anime/manga (MAL)'          },
+                { cmd: 'malnews',     info: 'Berita terbaru dari MyAnimeList'        },
+                { cmd: 'ba',          info: 'Info karakter Blue Archive'             },
+                { cmd: 'anime',       info: 'Update anime terbaru'                   },
+        ]},
+        { emoji: '📖', nama: 'Manga',         desc: 'Baca & download manga/komik',                   cmds: [
+                { cmd: 'komiktap',    info: 'Cari manga di KomikTap'                 },
+                { cmd: 'komikdl',     info: 'Download chapter manga'                 },
+                { cmd: 'komikget',    info: 'Ambil halaman komik'                    },
+                { cmd: 'pixiv',       info: 'Cari ilustrasi di Pixiv'               },
+                { cmd: 'cosplay',     info: 'Cari konten Cosplaytele'               },
+        ]},
+        { emoji: '🖼️', nama: 'Media',         desc: 'Edit, konversi & proses media',                 cmds: [
+                { cmd: 'sticker',     info: 'Buat sticker dari gambar/video'        },
+                { cmd: 'toimg',       info: 'Sticker → gambar'                      },
+                { cmd: 'tovn',        info: 'Video → voice note'                    },
+                { cmd: 'hd',          info: 'Enhance gambar Ultra HD (4×)'          },
+                { cmd: 'hdvid',       info: 'Enhance video ke kualitas HD'          },
+                { cmd: 'viewonce',    info: 'Buka pesan sekali-lihat'               },
+                { cmd: 'stickerly',   info: 'Sticker pack dari Stickerly'           },
+        ]},
+        { emoji: '🌐', nama: 'Web & Info',    desc: 'Screenshot, scrape & cek website',              cmds: [
+                { cmd: 'ss',          info: 'Screenshot tampilan website'           },
+                { cmd: 'ssweb',       info: 'Screenshot + status realtime'          },
+                { cmd: 'cuaca',       info: 'Cek cuaca kota manapun'               },
+                { cmd: 'cekhp',       info: 'Cek spesifikasi HP'                    },
+                { cmd: 'bandingkan',  info: 'Bandingkan 2 HP side-by-side'          },
+                { cmd: 'cekspeed',    info: 'Speedtest internet bot'               },
+                { cmd: 'ceksize',     info: 'Cek ukuran file dari URL'              },
+        ]},
+        { emoji: '📧', nama: 'Temp Mail',     desc: 'Email sementara sekali pakai',                  cmds: [
+                { cmd: 'tmail',       info: 'Buat email temporary baru'             },
+                { cmd: 'tminbox',     info: 'Lihat inbox email temp'               },
+                { cmd: 'tmread',      info: 'Baca email masuk'                      },
+                { cmd: 'tmdel',       info: 'Hapus email temp'                      },
+                { cmd: 'tmwait',      info: 'Tunggu email masuk otomatis'           },
+        ]},
+        { emoji: '🤖', nama: 'AI & Chat',     desc: 'Chatbot AI & asisten pintar',                   cmds: [
+                { cmd: 'ai',          info: 'Chat dengan AI (Gemini)'               },
+                { cmd: 'tanya',       info: 'Tanya AI apapun'                       },
+                { cmd: 'simi',        info: 'Chatbot Simsimi'                       },
+                { cmd: 'wily',        info: 'Wily AI — asisten personal'            },
+                { cmd: 'whatgenre',   info: 'Identifikasi genre musik via AI'       },
+                { cmd: 'cekmeme',     info: 'Analisa meme via AI'                   },
+        ]},
+        { emoji: '👥', nama: 'Grup',          desc: 'Manajemen & fitur grup WhatsApp',               cmds: [
+                { cmd: 'hidetag',     info: 'Tag semua member diam-diam'           },
+                { cmd: 'all',         info: 'Sebut semua anggota grup'              },
+                { cmd: 'welcome',     info: 'Pesan sambutan anggota baru'           },
+                { cmd: 'goodbye',     info: 'Pesan perpisahan anggota keluar'       },
+                { cmd: 'antitagsw',   info: 'Anti-tag dari status WA'               },
+                { cmd: 'antidel',     info: 'Anti-hapus pesan di grup'              },
+                { cmd: 'listgroup',   info: 'Daftar semua grup bot'                 },
+                { cmd: 'jadibot',     info: 'Sub-bot di grup'                       },
+        ]},
+        { emoji: '🔧', nama: 'System',        desc: 'Kontrol & monitoring bot (owner)',               cmds: [
+                { cmd: 'restart',      info: 'Restart bot'                          },
+                { cmd: 'shutdown',     info: 'Matikan bot'                          },
+                { cmd: 'eval',         info: 'Eksekusi kode JS'                     },
+                { cmd: 'backup',       info: 'Backup data bot'                      },
+                { cmd: 'memori',       info: 'Cek penggunaan memori'               },
+                { cmd: 'botadmin',     info: 'Status admin bot di grup'             },
+                { cmd: 'cekauto',      info: 'Status fitur auto bot'               },
+                { cmd: 'cekerror',     info: 'Log error terakhir'                   },
+                { cmd: 'sessioncleaner',info: 'Bersihkan session lama'              },
+        ]},
+];
+
 const CEKAUTO_GROUP_FITUR_LIST = [
         {
                 key: 'infowibu', nama: 'Info Wibu', cmd: '.infowibu on/off', toggleable: true,
@@ -5629,6 +5724,36 @@ export default async function ({ message, type: messagesType }, hisoka) {
                         await hisoka.relayMessage(menuMsg2.key.remoteJid, menuMsg2.message, { messageId: menuMsg2.key.id });
                         return;
                 }
+                // ── .cekfitur interactive list callback ──────────────────────────────────
+                if (typeof m.text === 'string' && m.text.startsWith('__cekfitur_') && m.text.endsWith('__')) {
+                        try {
+                                const rawKey  = m.text.slice('__cekfitur_'.length, -2); // e.g. "downloader"
+                                const pfx     = m.prefix || '.';
+                                const found   = CEKFITUR_KATEGORI.find(k =>
+                                        k.nama.toLowerCase().replace(/[^a-z]/g, '') === rawKey
+                                );
+                                if (found) {
+                                        const maxLen = Math.max(...found.cmds.map(c => c.cmd.length));
+                                        const pad    = (s, n) => s.length >= n ? s : s + ' '.repeat(n - s.length);
+                                        let txt =
+                                                `╔═══『 ${found.emoji} *${found.nama.toUpperCase()}* 』═══╗\n` +
+                                                `║\n` +
+                                                `║  📝 ${found.desc}\n` +
+                                                `║  📦 Total: *${found.cmds.length} commands*\n` +
+                                                `║\n` +
+                                                `╠═══════════════════════════════════╣\n`;
+                                        for (const c of found.cmds) {
+                                                txt += `║  *${pfx}${pad(c.cmd, maxLen + 1)}* — ${c.info}\n`;
+                                        }
+                                        txt += `║\n╚═══════════════════════════════════╝`;
+                                        await tolak(hisoka, m, txt);
+                                        logCommand(m, hisoka, 'cekfitur/' + found.nama);
+                                }
+                        } catch (e) { console.error('[CekFitur CB]', e.message); }
+                        return;
+                }
+                // ──────────────────────────────────────────────────────────────────────
+
                 // ──────────────────────────────────────────────────────────────────────
 
                 switch (m.command) {
@@ -12032,228 +12157,123 @@ if (isJadibot) text += jadibotNote;
                         case 'listfitur':
                         case 'fiturbot': {
                                 try {
-                                        const KATEGORI = [
-                                                {
-                                                        emoji: '📥', nama: 'Downloader',
-                                                        desc: 'Download media dari berbagai platform',
-                                                        cmds: [
-                                                                { cmd: 'tt',     info: 'Download TikTok (video/audio)' },
-                                                                { cmd: 'ig',     info: 'Download Instagram (foto/video/reels)' },
-                                                                { cmd: 'fb',     info: 'Download Facebook video' },
-                                                                { cmd: 'ytmp3',  info: 'Download YouTube → MP3' },
-                                                                { cmd: 'ytmp4',  info: 'Download YouTube → MP4' },
-                                                                { cmd: 'tele',   info: 'Download Telegram media' },
-                                                                { cmd: 'tvone',  info: 'Download video TvOne News' },
-                                                        ]
-                                                },
-                                                {
-                                                        emoji: '🎵', nama: 'Musik',
-                                                        desc: 'Cari, download & identifikasi lagu',
-                                                        cmds: [
-                                                                { cmd: 'carilagu',     info: 'Cari & download lagu' },
-                                                                { cmd: 'carijudullagu',info: 'Cari lagu dari judul' },
-                                                                { cmd: 'shazam',       info: 'Identifikasi lagu dari audio' },
-                                                                { cmd: 'tebaklagu',    info: 'Tebak judul lagu' },
-                                                                { cmd: 'tomp3',        info: 'Konversi video/audio → MP3' },
-                                                                { cmd: 'whatsmusik',   info: 'Rekomendasi musik WhatsApp' },
-                                                                { cmd: 'aimusik',      info: 'Generate musik AI' },
-                                                                { cmd: 'genius',       info: 'Cari info & lirik lagu' },
-                                                                { cmd: 'infomusik',    info: 'Info detail lagu dari file audio' },
-                                                                { cmd: 'infolirik',    info: 'Lirik lagu dari file audio' },
-                                                        ]
-                                                },
-                                                {
-                                                        emoji: '🎌', nama: 'Anime',
-                                                        desc: 'Info, download & update anime',
-                                                        cmds: [
-                                                                { cmd: 'alqanime',  info: 'Cari & download anime (AlqAnime)' },
-                                                                { cmd: 'alqdl',     info: 'Download episode anime AlqAnime' },
-                                                                { cmd: 'animasu',   info: 'Cari anime di Animasu' },
-                                                                { cmd: 'kusonime',  info: 'Cari anime di Kusonime' },
-                                                                { cmd: 'infowibu',  info: 'Info detail anime/manga (MAL)' },
-                                                                { cmd: 'malnews',   info: 'Berita terbaru dari MyAnimeList' },
-                                                                { cmd: 'ba',        info: 'Info karakter Blue Archive' },
-                                                                { cmd: 'anime',     info: 'Update anime terbaru' },
-                                                        ]
-                                                },
-                                                {
-                                                        emoji: '📖', nama: 'Manga/Komik',
-                                                        desc: 'Baca & download manga/komik',
-                                                        cmds: [
-                                                                { cmd: 'komiktap',  info: 'Cari manga di KomikTap' },
-                                                                { cmd: 'komikdl',   info: 'Download chapter manga' },
-                                                                { cmd: 'komikget',  info: 'Ambil halaman komik' },
-                                                                { cmd: 'pixiv',     info: 'Cari ilustrasi di Pixiv' },
-                                                                { cmd: 'cosplay',   info: 'Cari konten Cosplaytele' },
-                                                        ]
-                                                },
-                                                {
-                                                        emoji: '🖼️', nama: 'Media & Sticker',
-                                                        desc: 'Edit, konversi & proses media',
-                                                        cmds: [
-                                                                { cmd: 'sticker',   info: 'Buat sticker dari gambar/video' },
-                                                                { cmd: 'toimg',     info: 'Sticker → gambar' },
-                                                                { cmd: 'tovn',      info: 'Video → voice note' },
-                                                                { cmd: 'hd',        info: 'Enhance gambar ke Ultra HD (4×)' },
-                                                                { cmd: 'hdvid',     info: 'Enhance video ke kualitas HD' },
-                                                                { cmd: 'viewonce',  info: 'Buka pesan sekali-lihat' },
-                                                                { cmd: 'stickerly', info: 'Sticker pack dari Stickerly' },
-                                                        ]
-                                                },
-                                                {
-                                                        emoji: '🌐', nama: 'Web & Info',
-                                                        desc: 'Screenshot, scrape & cek website',
-                                                        cmds: [
-                                                                { cmd: 'ss',        info: 'Screenshot tampilan website' },
-                                                                { cmd: 'ssweb',     info: 'Screenshot + status website realtime' },
-                                                                { cmd: 'cuaca',     info: 'Cek cuaca kota manapun' },
-                                                                { cmd: 'cekhp',     info: 'Cek spesifikasi HP' },
-                                                                { cmd: 'bandingkan',info: 'Bandingkan 2 HP side-by-side' },
-                                                                { cmd: 'cekspeed',  info: 'Speedtest internet bot' },
-                                                                { cmd: 'ceksize',   info: 'Cek ukuran file dari URL' },
-                                                        ]
-                                                },
-                                                {
-                                                        emoji: '📧', nama: 'Temp Mail',
-                                                        desc: 'Email sementara sekali pakai',
-                                                        cmds: [
-                                                                { cmd: 'tmail',    info: 'Buat email temporary baru' },
-                                                                { cmd: 'tminbox',  info: 'Lihat inbox email temp' },
-                                                                { cmd: 'tmread',   info: 'Baca email masuk' },
-                                                                { cmd: 'tmdel',    info: 'Hapus email temp' },
-                                                                { cmd: 'tmwait',   info: 'Tunggu email masuk otomatis' },
-                                                        ]
-                                                },
-                                                {
-                                                        emoji: '🤖', nama: 'AI & Chat',
-                                                        desc: 'Chatbot AI & asisten pintar',
-                                                        cmds: [
-                                                                { cmd: 'ai',      info: 'Chat dengan AI (Gemini)' },
-                                                                { cmd: 'tanya',   info: 'Tanya AI apapun' },
-                                                                { cmd: 'simi',    info: 'Chatbot Simsimi' },
-                                                                { cmd: 'wily',    info: 'Wily AI — asisten personal' },
-                                                                { cmd: 'aimusik2',info: 'Generate musik AI (mode 2)' },
-                                                                { cmd: 'whatgenre',info: 'Identifikasi genre musik via AI' },
-                                                        ]
-                                                },
-                                                {
-                                                        emoji: '👥', nama: 'Grup',
-                                                        desc: 'Manajemen & fitur grup WhatsApp',
-                                                        cmds: [
-                                                                { cmd: 'hidetag',   info: 'Tag semua member diam-diam' },
-                                                                { cmd: 'all',       info: 'Sebut semua anggota grup' },
-                                                                { cmd: 'welcome',   info: 'Pesan sambutan anggota baru' },
-                                                                { cmd: 'goodbye',   info: 'Pesan perpisahan anggota keluar' },
-                                                                { cmd: 'antitagsw', info: 'Anti-tag dari status WA' },
-                                                                { cmd: 'antidel',   info: 'Anti-hapus pesan di grup' },
-                                                                { cmd: 'listgroup', info: 'Daftar semua grup bot' },
-                                                                { cmd: 'jadibot',   info: 'Sub-bot di grup' },
-                                                        ]
-                                                },
-                                                {
-                                                        emoji: '🔧', nama: 'System',
-                                                        desc: 'Kontrol & monitoring bot (owner)',
-                                                        cmds: [
-                                                                { cmd: 'restart',      info: 'Restart bot' },
-                                                                { cmd: 'shutdown',     info: 'Matikan bot' },
-                                                                { cmd: 'eval',         info: 'Eksekusi kode JS' },
-                                                                { cmd: 'backup',       info: 'Backup data bot' },
-                                                                { cmd: 'memori',       info: 'Cek penggunaan memori' },
-                                                                { cmd: 'botadmin',     info: 'Status admin bot di grup' },
-                                                                { cmd: 'cekauto',      info: 'Status fitur auto bot' },
-                                                                { cmd: 'cekerror',     info: 'Log error terakhir' },
-                                                                { cmd: 'sessioncleaner',info:'Bersihkan session lama' },
-                                                        ]
-                                                },
-                                        ];
-
                                         const pfx   = m.prefix || '.';
                                         const arg   = (query || '').trim().toLowerCase();
-                                        const total = KATEGORI.reduce((s, k) => s + k.cmds.length, 0);
+                                        const total = CEKFITUR_KATEGORI.reduce((s, k) => s + k.cmds.length, 0);
 
-                                        if (!arg) {
-                                                const pad = (str, len) => str.length >= len ? str : str + ' '.repeat(len - str.length);
-
+                                        const _sendCekfiturDetail = async (k) => {
+                                                const maxLen = Math.max(...k.cmds.map(c => c.cmd.length));
+                                                const pad    = (s, n) => s.length >= n ? s : s + ' '.repeat(n - s.length);
                                                 let txt =
-                                                        `╔═══『 📋 *DAFTAR FITUR BOT* 』═══╗
-` +
-                                                        `║
-` +
-                                                        `║  *Ketuk* nama kategori untuk detail
-` +
-                                                        `║  *${pfx}cekfitur <nama>*
-` +
-                                                        `║
-` +
-                                                        `╠═══════════════════════════════════╣
-`;
-
-                                                for (const [i, k] of KATEGORI.entries()) {
-                                                        const no    = String(i + 1).padStart(2, ' ');
-                                                        const nama  = pad(k.emoji + ' ' + k.nama, 24);
-                                                        const jml   = String(k.cmds.length).padStart(2, ' ') + ' cmd';
-                                                        txt += `║  *${no}.* ${nama}  ${jml}
-`;
+                                                        `╔═══『 ${k.emoji} *${k.nama.toUpperCase()}* 』═══╗\n` +
+                                                        `║\n` +
+                                                        `║  📝 ${k.desc}\n` +
+                                                        `║  📦 Total: *${k.cmds.length} commands*\n` +
+                                                        `║\n` +
+                                                        `╠═══════════════════════════════════╣\n`;
+                                                for (const c of k.cmds) {
+                                                        txt += `║  *${pfx}${pad(c.cmd, maxLen + 1)}* — ${c.info}\n`;
                                                 }
-
-                                                txt +=
-                                                        `╠═══════════════════════════════════╣
-` +
-                                                        `║  📦 Total : *${total} commands* tersedia
-` +
-                                                        `║  🔗 Runtime: Baileys v6 (WA Web)
-` +
-                                                        `║
-` +
-                                                        `║  *Contoh detail:*
-` +
-                                                        `║  ${pfx}cekfitur musik
-` +
-                                                        `║  ${pfx}cekfitur anime
-` +
-                                                        `║  ${pfx}cekfitur downloader
-` +
-                                                        `╚═══════════════════════════════════╝`;
-
+                                                txt += `║\n╚═══════════════════════════════════╝`;
                                                 await tolak(hisoka, m, txt);
-                                        } else {
-                                                const found = KATEGORI.find(k =>
-                                                        k.nama.toLowerCase().includes(arg) ||
-                                                        arg.includes(k.nama.toLowerCase()) ||
+                                        };
+
+                                        if (arg) {
+                                                const found = CEKFITUR_KATEGORI.find(k =>
+                                                        k.nama.toLowerCase().replace(/[^a-z]/g, '').includes(arg.replace(/[^a-z]/g, '')) ||
                                                         k.cmds.some(c => c.cmd === arg)
                                                 );
-
                                                 if (!found) {
-                                                        const namaList = KATEGORI.map((k, i) => `  *${i+1}.* ${k.emoji} ${k.nama}`).join('\n');
+                                                        const namaList = CEKFITUR_KATEGORI.map((k, i) => `  *${i+1}.* ${k.emoji} ${k.nama}`).join('\n');
                                                         await tolak(hisoka, m,
-                                                                `╭══『 ❌ *Kategori Tidak Ditemukan* 』══╮\n│\n` +
+                                                                `╭══『 ❌ *Tidak Ditemukan* 』══╮\n│\n` +
                                                                 `│ Kategori *"${arg}"* tidak ada.\n│\n` +
-                                                                `│ *Kategori tersedia:*\n` +
-                                                                namaList + `\n│\n` +
-                                                                `╰══════════════════════════════════╯`
+                                                                `│ *Kategori tersedia:*\n${namaList}\n│\n` +
+                                                                `╰═══════════════════════════════╯`
                                                         );
                                                         break;
                                                 }
+                                                await _sendCekfiturDetail(found);
+                                                logCommand(m, hisoka, 'cekfitur ' + arg);
+                                                break;
+                                        }
 
-                                                const maxCmdLen = Math.max(...found.cmds.map(c => c.cmd.length));
-                                                const pad = (str, len) => str.length >= len ? str : str + ' '.repeat(len - str.length);
+                                        // ── Tabel ringkasan teks (body list message)
+                                        const pad20 = (s) => { const clean = s.replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27FF}]/gu, '  '); return clean.length >= 20 ? s : s + ' '.repeat(20 - clean.length); };
+                                        let bodyLines = `*Pratinjau tabel*\n\n`;
+                                        bodyLines += `Kategori              Jumlah\n`;
+                                        bodyLines += `──────────────────────────────\n`;
+                                        for (const k of CEKFITUR_KATEGORI) {
+                                                bodyLines += `${k.emoji} ${k.nama.padEnd(18)}  ${String(k.cmds.length).padStart(2)} cmd\n`;
+                                        }
 
-                                                let txt =
-                                                        `╔═══『 ${found.emoji} *${found.nama.toUpperCase()}* 』═══╗\n` +
-                                                        `║\n` +
-                                                        `║  📝 ${found.desc}\n` +
-                                                        `║  📦 Total: *${found.cmds.length} commands*\n` +
-                                                        `║\n` +
-                                                        `╠═══════════════════════════════════╣\n`;
+                                        // ── Sections untuk interactive list
+                                        const listSections = [{
+                                                title: '📋 Pilih Kategori',
+                                                rows: CEKFITUR_KATEGORI.map(k => ({
+                                                        header: String(k.cmds.length) + ' command',
+                                                        title:  k.emoji + ' ' + k.nama,
+                                                        description: k.desc,
+                                                        id: '__cekfitur_' + k.nama.toLowerCase().replace(/[^a-z]/g, '') + '__'
+                                                }))
+                                        }];
 
-                                                for (const c of found.cmds) {
-                                                        txt += `║  *${pfx}${pad(c.cmd, maxCmdLen + 1)}* — ${c.info}\n`;
+                                        const listnye = { title: '📋 Lihat semua', sections: listSections };
+                                        const footerTxt = `Total ${total} fitur tersedia  •  Baileys v6`;
+
+                                        // Kirim via listbut2 (interactive list)
+                                        let sent = false;
+                                        try {
+                                                const cfg2  = loadConfig();
+                                                const bReply = cfg2.botReply || {};
+                                                const tmbUrl = bReply.thumbnailUrl || '';
+                                                const bName  = bReply.botName      || 'Wily Bot';
+                                                const nwJid  = bReply.newsletterJid  || '';
+                                                const nwName = bReply.newsletterName || '';
+
+                                                const tmbMedia = resolveThumbnailMedia(tmbUrl);
+                                                const hdrMedia = tmbMedia
+                                                        ? await prepareWAMessageMedia({ image: tmbMedia }, { upload: hisoka.waUploadToServer })
+                                                        : {};
+
+                                                const msg = generateWAMessageFromContent(m.from, {
+                                                        viewOnceMessage: {
+                                                                message: {
+                                                                        messageContextInfo: { deviceListMetadata: {}, deviceListMetadataVersion: 2 },
+                                                                        interactiveMessage: proto.Message.InteractiveMessage.create({
+                                                                                contextInfo: {
+                                                                                        mentionedJid: [m.sender],
+                                                                                        forwardingScore: 999,
+                                                                                        isForwarded: true,
+                                                                                        forwardedNewsletterMessageInfo: { newsletterJid: nwJid, newsletterName: nwName, serverMessageId: Math.floor(Math.random() * 9999) + 1 }
+                                                                                },
+                                                                                body:   proto.Message.InteractiveMessage.Body.create({ text: bodyLines }),
+                                                                                footer: proto.Message.InteractiveMessage.Footer.create({ text: footerTxt }),
+                                                                                header: proto.Message.InteractiveMessage.Header.create({
+                                                                                        title: '', subtitle: '', gifPlayback: true,
+                                                                                        hasMediaAttachment: !!tmbMedia, ...hdrMedia
+                                                                                }),
+                                                                                nativeFlowMessage: proto.Message.InteractiveMessage.NativeFlowMessage.create({
+                                                                                        buttons: [{ name: 'single_select', buttonParamsJson: JSON.stringify(listnye) }]
+                                                                                })
+                                                                        })
+                                                                }
+                                                        }
+                                                }, { quoted: m });
+                                                await hisoka.relayMessage(msg.key.remoteJid, msg.message, { messageId: msg.key.id });
+                                                sent = true;
+                                        } catch (_) {}
+
+                                        if (!sent) {
+                                                // Fallback: teks biasa
+                                                const pad = (s, n) => s.length >= n ? s : s + ' '.repeat(n - s.length);
+                                                let txt = `╔═══『 📋 *DAFTAR FITUR BOT* 』═══╗\n║\n`;
+                                                for (const [i, k] of CEKFITUR_KATEGORI.entries()) {
+                                                        txt += `║  *${String(i+1).padStart(2,' ')}.* ${pad(k.emoji+' '+k.nama, 22)}  ${String(k.cmds.length).padStart(2,' ')} cmd\n`;
                                                 }
-
-                                                txt +=
-                                                        `║\n` +
-                                                        `╚═══════════════════════════════════╝`;
-
+                                                txt += `╠═══════════════════════════════════╣\n`;
+                                                txt += `║  📦 Total: *${total} commands*  🔗 Baileys v6\n`;
+                                                txt += `║  Ketik: *${pfx}cekfitur <kategori>*\n╚═══════════════════════════════════╝`;
                                                 await tolak(hisoka, m, txt);
                                         }
 

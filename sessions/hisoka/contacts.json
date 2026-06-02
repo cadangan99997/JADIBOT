@@ -15430,7 +15430,8 @@
     "isContact": true,
     "name": "Taki",
     "phoneNumber": "6288211045928@s.whatsapp.net",
-    "imgUrl": "changed"
+    "imgUrl": "changed",
+    "notify": "Hei"
   },
   "6281949249938@s.whatsapp.net": {
     "isContact": true,
