@@ -124,47 +124,5 @@
       }
     ],
     "processedAt": "2026-06-02T05:38:58.122Z"
-  },
-  "AC03953E44EBFAD395A08C613274CAE3": {
-    "id": "AC03953E44EBFAD395A08C613274CAE3",
-    "sender": "6282252134009@s.whatsapp.net",
-    "name": "NAKIRAN || ANNIHILATOR",
-    "type": "videoMessage",
-    "arrivedAt": "2026-06-02T07:07:05.950Z",
-    "read": true,
-    "reacted": true,
-    "emoji": "🇩🇿",
-    "resolve": "PN langsung ✓",
-    "source": "status",
-    "number": "6282252134009",
-    "resolvedPn": "6282252134009@s.whatsapp.net",
-    "messageKey": {
-      "remoteJid": "status@broadcast",
-      "remoteJidAlt": "6282252134009@s.whatsapp.net",
-      "fromMe": false,
-      "id": "AC03953E44EBFAD395A08C613274CAE3",
-      "participant": "76790290767977@lid",
-      "addressingMode": "lid"
-    },
-    "updatedAt": "2026-06-02T07:07:14.099Z",
-    "receiptKeys": [
-      {
-        "remoteJid": "status@broadcast",
-        "remoteJidAlt": "6282252134009@s.whatsapp.net",
-        "fromMe": false,
-        "id": "AC03953E44EBFAD395A08C613274CAE3",
-        "participant": "76790290767977@lid",
-        "addressingMode": "lid"
-      },
-      {
-        "remoteJid": "status@broadcast",
-        "remoteJidAlt": "6282252134009@s.whatsapp.net",
-        "fromMe": false,
-        "id": "AC03953E44EBFAD395A08C613274CAE3",
-        "participant": "6282252134009@s.whatsapp.net",
-        "addressingMode": "lid"
-      }
-    ],
-    "processedAt": "2026-06-02T07:07:14.099Z"
   }
 }

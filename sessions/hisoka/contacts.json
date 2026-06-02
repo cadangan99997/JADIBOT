@@ -15430,8 +15430,7 @@
     "isContact": true,
     "name": "Taki",
     "phoneNumber": "6288211045928@s.whatsapp.net",
-    "imgUrl": "changed",
-    "notify": "Hei"
+    "imgUrl": "changed"
   },
   "6281949249938@s.whatsapp.net": {
     "isContact": true,
@@ -31896,26 +31895,6 @@
   "198796990484623@lid": {
     "id": "198796990484623@lid",
     "lid": "198796990484623@lid",
-    "imgUrl": "removed"
-  },
-  "2113425907965@lid": {
-    "id": "2113425907965@lid",
-    "lid": "2113425907965@lid",
-    "imgUrl": "changed"
-  },
-  "198973402927347@lid": {
-    "id": "198973402927347@lid",
-    "lid": "198973402927347@lid",
-    "imgUrl": "changed"
-  },
-  "154090625589398@lid": {
-    "id": "154090625589398@lid",
-    "lid": "154090625589398@lid",
-    "imgUrl": "removed"
-  },
-  "163247948873976@lid": {
-    "id": "163247948873976@lid",
-    "lid": "163247948873976@lid",
     "imgUrl": "removed"
   }
 }
