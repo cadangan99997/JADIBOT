@@ -22,14 +22,25 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 
 /**
+ * Normalize URL - auto tambah https:// kalau tidak ada
+ * @param {string} url
+ * @returns {string}
+ */
+function normalizeUrl(url) {
+    url = url.trim();
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+        url = 'https://' + url;
+    }
+    return url;
+}
+
+/**
  * Ambil screenshot website menggunakan layanan gratis microlink.io
  * @param {string} url - URL yang akan di-screenshot
  * @returns {Promise<Buffer>} - Buffer gambar screenshot
  */
 async function screenshotWeb(url) {
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        url = 'https://' + url;
-    }
+    url = normalizeUrl(url);
 
     const encodedUrl = encodeURIComponent(url);
     const apiUrl = `https://api.microlink.io/?url=${encodedUrl}&screenshot=true&meta=false`;
@@ -60,14 +71,116 @@ async function screenshotWeb(url) {
 }
 
 /**
+ * Cek status website (ping) - ambil status code & response time
+ * @param {string} url
+ * @returns {Promise<Object>}
+ */
+async function checkWebStatus(url) {
+    url = normalizeUrl(url);
+    const startTime = Date.now();
+    try {
+        const res = await axios.get(url, {
+            timeout: 15000,
+            maxRedirects: 5,
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            },
+            validateStatus: () => true
+        });
+        const responseTime = Date.now() - startTime;
+        const html = typeof res.data === 'string' ? res.data : '';
+        let title = '';
+        let description = '';
+        if (html) {
+            const $ = cheerio.load(html);
+            title = $('title').text().trim() || $('h1').first().text().trim() || '';
+            description =
+                $('meta[name="description"]').attr('content') ||
+                $('meta[property="og:description"]').attr('content') ||
+                '';
+        }
+        return {
+            url,
+            statusCode: res.status,
+            statusText: getStatusText(res.status),
+            responseTime,
+            title: title.substring(0, 100),
+            description: description.substring(0, 200),
+            online: res.status >= 200 && res.status < 400
+        };
+    } catch (err) {
+        const responseTime = Date.now() - startTime;
+        return {
+            url,
+            statusCode: 0,
+            statusText: 'Tidak dapat dijangkau',
+            responseTime,
+            title: '',
+            description: '',
+            online: false,
+            error: err.message
+        };
+    }
+}
+
+/**
+ * Ambil teks deskripsi status HTTP
+ */
+function getStatusText(code) {
+    const map = {
+        200: '200 OK ✅',
+        201: '201 Created ✅',
+        204: '204 No Content ✅',
+        301: '301 Moved Permanently ↪️',
+        302: '302 Found ↪️',
+        304: '304 Not Modified ↪️',
+        400: '400 Bad Request ⚠️',
+        401: '401 Unauthorized 🔒',
+        403: '403 Forbidden 🚫',
+        404: '404 Not Found ❌',
+        429: '429 Too Many Requests ⏳',
+        500: '500 Internal Server Error 💥',
+        502: '502 Bad Gateway 💥',
+        503: '503 Service Unavailable 💥',
+        504: '504 Gateway Timeout ⏱️'
+    };
+    return map[code] || `${code}`;
+}
+
+/**
+ * Screenshot + cek status website sekaligus (untuk .ssweb)
+ * @param {string} url
+ * @returns {Promise<{imgBuffer: Buffer, status: Object}>}
+ */
+async function ssWebFull(url) {
+    url = normalizeUrl(url);
+
+    const [statusResult, imgBuffer] = await Promise.allSettled([
+        checkWebStatus(url),
+        screenshotWeb(url)
+    ]);
+
+    const status = statusResult.status === 'fulfilled'
+        ? statusResult.value
+        : { url, statusCode: 0, statusText: 'Tidak dapat dijangkau', responseTime: 0, title: '', description: '', online: false };
+
+    if (imgBuffer.status === 'rejected') {
+        throw new Error(imgBuffer.reason?.message || 'Gagal mengambil screenshot');
+    }
+
+    return {
+        imgBuffer: imgBuffer.value,
+        status
+    };
+}
+
+/**
  * Scrape konten teks dari sebuah website
  * @param {string} url - URL yang akan di-scrape
  * @returns {Promise<Object>} - Objek berisi info scraped
  */
 async function scrapeWeb(url) {
-    if (!url.startsWith('http://') && !url.startsWith('https://')) {
-        url = 'https://' + url;
-    }
+    url = normalizeUrl(url);
 
     const response = await axios.get(url, {
         timeout: 20000,
@@ -134,4 +247,4 @@ async function scrapeWeb(url) {
     };
 }
 
-module.exports = { screenshotWeb, scrapeWeb };
+module.exports = { screenshotWeb, scrapeWeb, ssWebFull, checkWebStatus };

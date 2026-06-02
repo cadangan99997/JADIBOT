@@ -16592,77 +16592,54 @@ hasil += `╰══════════════════════�
                         case 'scrapeweb':
                         case 'webinfo': {
                                 try {
-                                        const { scrapeWeb } = _require(path.resolve('./src/scrape/screenshot.cjs'));
+                                        const { ssWebFull } = _require(path.resolve('./src/scrape/screenshot.cjs'));
 
-                                        const targetUrl = query || '';
+                                        const targetUrl = (query || '').trim();
                                         if (!targetUrl) {
                                                 await tolak(hisoka, m,
-                                                        `╭═══『 🔍 *Scrape Web* 』═══╮\n│\n` +
-                                                        `│ Ambil info & konten dari website!\n│\n` +
+                                                        `╭═══『 📸 *SS Web* 』═══╮\n│\n` +
+                                                        `│ Screenshot + cek status website!\n│\n` +
                                                         `│ *Cara Pakai:*\n` +
-                                                        `│ *.ssweb* https://example.com\n│\n` +
+                                                        `│ *.ssweb* example.com\n│\n` +
                                                         `│ *Contoh:*\n` +
+                                                        `│ *.ssweb* kusonime.com\n` +
                                                         `│ *.ssweb* https://kusonime.com\n│\n` +
+                                                        `│ ℹ️ Dengan atau tanpa https:// bisa!\n│\n` +
                                                         `╰══════════════════════════╯`
                                                 );
                                                 break;
                                         }
 
                                         await hisoka.sendMessage(m.from, { react: { text: '⏳', key: m.key } });
-                                        await tolak(hisoka, m, `⏳ Sedang scraping *${targetUrl}*...\nMohon tunggu.`);
+                                        await tolak(hisoka, m, `⏳ Sedang mengambil screenshot & cek status *${targetUrl}*...\nMohon tunggu sebentar.`);
 
-                                        const data = await scrapeWeb(targetUrl);
+                                        const { imgBuffer, status } = await ssWebFull(targetUrl);
 
-                                        let teks = `╭═══『 🔍 *Scrape Web* 』═══╮\n│\n`;
-                                        teks += `│ 🌐 *URL:* ${data.url}\n`;
-                                        teks += `│ 📊 *Status:* ${data.statusCode}\n│\n`;
-                                        teks += `│ 📌 *Judul:*\n│ ${data.title}\n│\n`;
+                                        const pingEmoji = status.responseTime < 500 ? '🟢' : status.responseTime < 1500 ? '🟡' : '🔴';
 
-                                        if (data.description) {
-                                                teks += `│ 📝 *Deskripsi:*\n│ ${data.description}\n│\n`;
+                                        let caption = `╭═══『 📸 *SS Web* 』═══╮\n│\n`;
+                                        caption += `│ 🌐 *URL:* ${status.url}\n`;
+                                        caption += `│ 📊 *Status:* ${status.statusText}\n`;
+                                        caption += `│ ${pingEmoji} *Ping:* ${status.responseTime}ms\n│\n`;
+                                        if (status.title) {
+                                                caption += `│ 📌 *Judul:* ${status.title}\n`;
                                         }
-
-                                        if (data.headings && data.headings.length > 0) {
-                                                teks += `│ 🏷️ *Heading:*\n`;
-                                                data.headings.slice(0, 5).forEach(h => {
-                                                        teks += `│ • ${h}\n`;
-                                                });
-                                                teks += `│\n`;
+                                        if (status.description) {
+                                                caption += `│ 📝 *Desc:* ${status.description.substring(0, 120)}\n`;
                                         }
+                                        caption += `│\n╰══════════════════════════╯`;
 
-                                        if (data.paragraphs && data.paragraphs.length > 0) {
-                                                teks += `│ 📄 *Konten:*\n`;
-                                                data.paragraphs.slice(0, 3).forEach(p => {
-                                                        teks += `│ ${p}...\n`;
-                                                });
-                                                teks += `│\n`;
-                                        }
-
-                                        if (data.links && data.links.length > 0) {
-                                                teks += `│ 🔗 *Link:*\n`;
-                                                data.links.slice(0, 5).forEach(l => {
-                                                        teks += `│ • ${l.text}\n`;
-                                                });
-                                                teks += `│\n`;
-                                        }
-
-                                        teks += `╰══════════════════════════╯`;
-
-                                        if (data.ogImage) {
-                                                await hisoka.sendMessage(m.from, {
-                                                        image: { url: data.ogImage },
-                                                        caption: teks
-                                                }, { quoted: m });
-                                        } else {
-                                                await tolak(hisoka, m, teks);
-                                        }
+                                        await hisoka.sendMessage(m.from, {
+                                                image: imgBuffer,
+                                                caption
+                                        }, { quoted: m });
 
                                         await hisoka.sendMessage(m.from, { react: { text: '✅', key: m.key } });
                                         logCommand(m, hisoka, 'ssweb');
                                 } catch (error) {
                                         console.error('\x1b[31m[SSWEB] Error:\x1b[39m', error.message);
                                         await hisoka.sendMessage(m.from, { react: { text: '❌', key: m.key } });
-                                        await tolak(hisoka, m, `❌ Gagal scraping: ${error.message}`);
+                                        await tolak(hisoka, m, `❌ Gagal SS Web: ${error.message}`);
                                 }
                                 break;
                         }
