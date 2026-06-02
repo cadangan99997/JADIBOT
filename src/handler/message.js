@@ -12198,14 +12198,21 @@ if (isJadibot) text += jadibotNote;
                                                 break;
                                         }
 
+                                        // ── Hitung total REAL dari loadedCommands bot
+                                        const realTotal = hisoka.loadedCommands?.length || total;
+
                                         // ── Tabel ringkasan teks (body list message)
-                                        const pad20 = (s) => { const clean = s.replace(/[\u{1F000}-\u{1FFFF}\u{2600}-\u{27FF}]/gu, '  '); return clean.length >= 20 ? s : s + ' '.repeat(20 - clean.length); };
-                                        let bodyLines = `*Pratinjau tabel*\n\n`;
-                                        bodyLines += `Kategori              Jumlah\n`;
-                                        bodyLines += `──────────────────────────────\n`;
+                                        let bodyLines = `*📋 Pratinjau Fitur Bot*\n`;
+                                        bodyLines += `━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n`;
+                                        bodyLines += `Kategori             Jumlah\n`;
+                                        bodyLines += `────────────────────────────\n`;
                                         for (const k of CEKFITUR_KATEGORI) {
-                                                bodyLines += `${k.emoji} ${k.nama.padEnd(18)}  ${String(k.cmds.length).padStart(2)} cmd\n`;
+                                                const namaLabel = (k.emoji + ' ' + k.nama).padEnd(20);
+                                                bodyLines += `${namaLabel} ${String(k.cmds.length).padStart(2)} cmd\n`;
                                         }
+                                        bodyLines += `────────────────────────────\n`;
+                                        bodyLines += `📦 Total   ${String(realTotal).padStart(8)} commands\n`;
+                                        bodyLines += `📂 Kategori${String(CEKFITUR_KATEGORI.length).padStart(8)} kategori`;
 
                                         // ── Sections untuk interactive list
                                         const listSections = [{
@@ -12219,7 +12226,7 @@ if (isJadibot) text += jadibotNote;
                                         }];
 
                                         const listnye = { title: '📋 Lihat semua', sections: listSections };
-                                        const footerTxt = `Total ${total} fitur tersedia  •  Baileys v6`;
+                                        const footerTxt = `Total ${realTotal} commands • ${CEKFITUR_KATEGORI.length} kategori • Baileys v6`;
 
                                         // Kirim via listbut2 (interactive list)
                                         let sent = false;
