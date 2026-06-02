@@ -1492,7 +1492,7 @@
     "subjectOwner": "8014979436608@lid",
     "subjectOwnerPn": "6285187063723@s.whatsapp.net",
     "subjectTime": 1769244051,
-    "size": 353,
+    "size": 352,
     "creation": 1754438731,
     "owner": "8014979436608@lid",
     "ownerPn": "6285187063723@s.whatsapp.net",
@@ -2947,11 +2947,6 @@
         "admin": null
       },
       {
-        "id": "146317137420396@lid",
-        "phoneNumber": "6287858531950@s.whatsapp.net",
-        "admin": null
-      },
-      {
         "id": "41558825009170@lid",
         "phoneNumber": "6285695064942@s.whatsapp.net",
         "admin": null
@@ -3760,10 +3755,6 @@
         "admin": null
       },
       {
-        "id": "146317137420396@lid",
-        "admin": null
-      },
-      {
         "id": "101765055779048@lid",
         "admin": null
       },
@@ -4375,6 +4366,10 @@
         "admin": null
       },
       {
+        "id": "125632809799776@lid",
+        "admin": null
+      },
+      {
         "id": "4290907209979@lid",
         "admin": null
       },
@@ -4860,6 +4855,10 @@
         "admin": null
       },
       {
+        "id": "100185178923097@lid",
+        "admin": null
+      },
+      {
         "id": "133591300358369@lid",
         "admin": null
       },
@@ -5042,10 +5041,6 @@
       },
       {
         "id": "118352890572928@lid",
-        "admin": null
-      },
-      {
-        "id": "177146580492497@lid",
         "admin": null
       },
       {
@@ -5977,7 +5972,7 @@
     "subjectOwner": "172838711480524@lid",
     "subjectOwnerPn": "6283123405940@s.whatsapp.net",
     "subjectTime": 1761452838,
-    "size": 827,
+    "size": 837,
     "creation": 1693096407,
     "owner": "88609721962527@lid",
     "ownerPn": "6285807405071@s.whatsapp.net",
@@ -6241,13 +6236,13 @@
         "admin": null
       },
       {
-        "id": "81553543667726@lid",
-        "phoneNumber": "639309235458@s.whatsapp.net",
+        "id": "193454671958134@lid",
+        "phoneNumber": "6285169816780@s.whatsapp.net",
         "admin": null
       },
       {
-        "id": "193454671958134@lid",
-        "phoneNumber": "6285169816780@s.whatsapp.net",
+        "id": "264433184030932@lid",
+        "phoneNumber": "628131385703@s.whatsapp.net",
         "admin": null
       },
       {
@@ -6526,6 +6521,11 @@
         "admin": null
       },
       {
+        "id": "216561512145083@lid",
+        "phoneNumber": "6285831770729@s.whatsapp.net",
+        "admin": null
+      },
+      {
         "id": "135365188956327@lid",
         "phoneNumber": "6285591524348@s.whatsapp.net",
         "admin": null
@@ -6646,6 +6646,11 @@
         "admin": null
       },
       {
+        "id": "230163807748149@lid",
+        "phoneNumber": "6288299553166@s.whatsapp.net",
+        "admin": null
+      },
+      {
         "id": "148958374580285@lid",
         "phoneNumber": "6289699561129@s.whatsapp.net",
         "admin": null
@@ -6751,6 +6756,11 @@
         "admin": null
       },
       {
+        "id": "10462825607271@lid",
+        "phoneNumber": "6289609469666@s.whatsapp.net",
+        "admin": null
+      },
+      {
         "id": "128132396875789@lid",
         "phoneNumber": "6285896011259@s.whatsapp.net",
         "admin": null
@@ -6758,6 +6768,11 @@
       {
         "id": "259283518279812@lid",
         "phoneNumber": "6288989266992@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "141957913395379@lid",
+        "phoneNumber": "62895404824756@s.whatsapp.net",
         "admin": null
       },
       {
@@ -6868,6 +6883,11 @@
       {
         "id": "130812506837179@lid",
         "phoneNumber": "6288983960941@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "116153565335756@lid",
+        "phoneNumber": "628813258405@s.whatsapp.net",
         "admin": null
       },
       {
@@ -7049,6 +7069,11 @@
         "id": "203642216935458@lid",
         "phoneNumber": "6282249398155@s.whatsapp.net",
         "admin": "admin"
+      },
+      {
+        "id": "48220302475272@lid",
+        "phoneNumber": "6285787882354@s.whatsapp.net",
+        "admin": null
       },
       {
         "id": "257899918053568@lid",
@@ -7356,6 +7381,11 @@
         "admin": null
       },
       {
+        "id": "82769036214298@lid",
+        "phoneNumber": "6283179383044@s.whatsapp.net",
+        "admin": null
+      },
+      {
         "id": "173461515300986@lid",
         "phoneNumber": "6283172041302@s.whatsapp.net",
         "admin": null
@@ -7548,6 +7578,11 @@
       {
         "id": "142735101157410@lid",
         "phoneNumber": "6281266950382@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "200554152239244@lid",
+        "phoneNumber": "6285729714383@s.whatsapp.net",
         "admin": null
       },
       {
@@ -7758,11 +7793,6 @@
       {
         "id": "191994366292103@lid",
         "phoneNumber": "6289620026639@s.whatsapp.net",
-        "admin": null
-      },
-      {
-        "id": "132877731807281@lid",
-        "phoneNumber": "6289601761289@s.whatsapp.net",
         "admin": null
       },
       {
@@ -8076,11 +8106,6 @@
         "admin": null
       },
       {
-        "id": "28222901198942@lid",
-        "phoneNumber": "6285700860930@s.whatsapp.net",
-        "admin": null
-      },
-      {
         "id": "167474280546558@lid",
         "phoneNumber": "6285123608042@s.whatsapp.net",
         "admin": null
@@ -8281,11 +8306,6 @@
         "admin": null
       },
       {
-        "id": "77400226398433@lid",
-        "phoneNumber": "6285815661653@s.whatsapp.net",
-        "admin": null
-      },
-      {
         "id": "84207749623820@lid",
         "phoneNumber": "6285810817050@s.whatsapp.net",
         "admin": null
@@ -8356,6 +8376,11 @@
         "admin": null
       },
       {
+        "id": "229867387904158@lid",
+        "phoneNumber": "6288271027257@s.whatsapp.net",
+        "admin": null
+      },
+      {
         "id": "230644743409819@lid",
         "phoneNumber": "6288279441858@s.whatsapp.net",
         "admin": null
@@ -8388,6 +8413,11 @@
       {
         "id": "94356505633006@lid",
         "phoneNumber": "62895355722666@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "2616339787892@lid",
+        "phoneNumber": "6285123571261@s.whatsapp.net",
         "admin": null
       },
       {
@@ -8483,11 +8513,6 @@
       {
         "id": "214344705036398@lid",
         "phoneNumber": "6285162606423@s.whatsapp.net",
-        "admin": null
-      },
-      {
-        "id": "251823227170832@lid",
-        "phoneNumber": "243893843205@s.whatsapp.net",
         "admin": null
       },
       {
@@ -8926,6 +8951,11 @@
         "admin": null
       },
       {
+        "id": "11120324665585@lid",
+        "phoneNumber": "6282122689751@s.whatsapp.net",
+        "admin": null
+      },
+      {
         "id": "134883900977358@lid",
         "phoneNumber": "6282335453910@s.whatsapp.net",
         "admin": null
@@ -9028,6 +9058,11 @@
       {
         "id": "101340307046520@lid",
         "phoneNumber": "6285805897971@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "241330554961959@lid",
+        "phoneNumber": "628388435937@s.whatsapp.net",
         "admin": null
       },
       {
@@ -9268,11 +9303,6 @@
       {
         "id": "124851176120416@lid",
         "phoneNumber": "6289654753809@s.whatsapp.net",
-        "admin": null
-      },
-      {
-        "id": "166387670606037@lid",
-        "phoneNumber": "6285775301375@s.whatsapp.net",
         "admin": null
       },
       {
@@ -9736,11 +9766,6 @@
         "admin": null
       },
       {
-        "id": "106575637287014@lid",
-        "phoneNumber": "6289514203113@s.whatsapp.net",
-        "admin": null
-      },
-      {
         "id": "64588003451055@lid",
         "phoneNumber": "6282132083394@s.whatsapp.net",
         "admin": null
@@ -9773,6 +9798,11 @@
       {
         "id": "208705681395890@lid",
         "phoneNumber": "6283876513266@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "235931764289762@lid",
+        "phoneNumber": "6282342505685@s.whatsapp.net",
         "admin": null
       },
       {
@@ -9823,6 +9853,11 @@
       {
         "id": "61775101849659@lid",
         "phoneNumber": "6285117374133@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "211669628244074@lid",
+        "phoneNumber": "6285126679819@s.whatsapp.net",
         "admin": null
       },
       {
@@ -10129,6 +10164,11 @@
         "id": "274380311523546@lid",
         "phoneNumber": "62882022633535@s.whatsapp.net",
         "admin": null
+      },
+      {
+        "id": "166013891010786@lid",
+        "phoneNumber": "6283167861978@s.whatsapp.net",
+        "admin": null
       }
     ]
   },
@@ -10137,7 +10177,7 @@
     "addressingMode": "lid",
     "subject": "COMUNITY ZANSPIW⚡",
     "subjectTime": 1720055772,
-    "size": 1976,
+    "size": 1986,
     "creation": 1717629092,
     "desc": "Halo! Komunitas ini dibuat agar anggota dapat melakukan chat di grup berbasis topik dan menerima pengumuman penting.",
     "descId": "EC3085525F72F5A2E96C1A7369C9E946",
@@ -10164,6 +10204,10 @@
       },
       {
         "id": "245389500387425@lid",
+        "admin": null
+      },
+      {
+        "id": "56062929543258@lid",
         "admin": null
       },
       {
@@ -10647,6 +10691,10 @@
         "admin": null
       },
       {
+        "id": "211669628244074@lid",
+        "admin": null
+      },
+      {
         "id": "61775101849659@lid",
         "admin": null
       },
@@ -10724,6 +10772,10 @@
       },
       {
         "id": "107005570232457@lid",
+        "admin": null
+      },
+      {
+        "id": "235931764289762@lid",
         "admin": null
       },
       {
@@ -10840,10 +10892,6 @@
         "admin": null
       },
       {
-        "id": "106575637287014@lid",
-        "admin": null
-      },
-      {
         "id": "60001431322797@lid",
         "admin": null
       },
@@ -10932,6 +10980,10 @@
         "admin": null
       },
       {
+        "id": "69549009440823@lid",
+        "admin": null
+      },
+      {
         "id": "197126818639982@lid",
         "admin": null
       },
@@ -10941,6 +10993,10 @@
       },
       {
         "id": "133746120495229@lid",
+        "admin": null
+      },
+      {
+        "id": "5442478579963@lid",
         "admin": null
       },
       {
@@ -11420,10 +11476,6 @@
         "admin": null
       },
       {
-        "id": "56354987364366@lid",
-        "admin": null
-      },
-      {
         "id": "168414844854465@lid",
         "admin": null
       },
@@ -11448,15 +11500,15 @@
         "admin": null
       },
       {
+        "id": "100266716209173@lid",
+        "admin": null
+      },
+      {
         "id": "28184280092846@lid",
         "admin": null
       },
       {
         "id": "98355439005814@lid",
-        "admin": null
-      },
-      {
-        "id": "146317137420396@lid",
         "admin": null
       },
       {
@@ -11753,10 +11805,6 @@
       },
       {
         "id": "147605862486258@lid",
-        "admin": null
-      },
-      {
-        "id": "166387670606037@lid",
         "admin": null
       },
       {
@@ -12196,6 +12244,10 @@
         "admin": null
       },
       {
+        "id": "241330554961959@lid",
+        "admin": null
+      },
+      {
         "id": "154786913595581@lid",
         "admin": null
       },
@@ -12421,6 +12473,10 @@
       },
       {
         "id": "134883900977358@lid",
+        "admin": null
+      },
+      {
+        "id": "11120324665585@lid",
         "admin": null
       },
       {
@@ -12668,10 +12724,6 @@
         "admin": null
       },
       {
-        "id": "120182445969603@lid",
-        "admin": null
-      },
-      {
         "id": "84108545896612@lid",
         "admin": null
       },
@@ -12685,6 +12737,10 @@
       },
       {
         "id": "5476452458669@lid",
+        "admin": null
+      },
+      {
+        "id": "86479887966420@lid",
         "admin": null
       },
       {
@@ -12829,10 +12885,6 @@
       },
       {
         "id": "253571295613123@lid",
-        "admin": null
-      },
-      {
-        "id": "227985705709584@lid",
         "admin": null
       },
       {
@@ -13088,6 +13140,10 @@
         "admin": null
       },
       {
+        "id": "194120307982382@lid",
+        "admin": null
+      },
+      {
         "id": "184628329627889@lid",
         "admin": null
       },
@@ -13336,10 +13392,6 @@
         "admin": null
       },
       {
-        "id": "251823227170832@lid",
-        "admin": null
-      },
-      {
         "id": "130937094467653@lid",
         "admin": null
       },
@@ -13513,6 +13565,10 @@
       },
       {
         "id": "273499373465712@lid",
+        "admin": null
+      },
+      {
+        "id": "2616339787892@lid",
         "admin": null
       },
       {
@@ -13745,10 +13801,6 @@
       },
       {
         "id": "165009069977753@lid",
-        "admin": null
-      },
-      {
-        "id": "77400226398433@lid",
         "admin": null
       },
       {
@@ -14084,6 +14136,10 @@
         "admin": null
       },
       {
+        "id": "74694548033731@lid",
+        "admin": null
+      },
+      {
         "id": "81840870314206@lid",
         "admin": null
       },
@@ -14153,10 +14209,6 @@
       },
       {
         "id": "167474280546558@lid",
-        "admin": null
-      },
-      {
-        "id": "28222901198942@lid",
         "admin": null
       },
       {
@@ -14408,10 +14460,6 @@
         "admin": null
       },
       {
-        "id": "155817739296852@lid",
-        "admin": null
-      },
-      {
         "id": "43104962900024@lid",
         "admin": null
       },
@@ -14638,10 +14686,6 @@
       },
       {
         "id": "2972855603293@lid",
-        "admin": null
-      },
-      {
-        "id": "241107115978882@lid",
         "admin": null
       },
       {
@@ -15065,6 +15109,10 @@
         "admin": null
       },
       {
+        "id": "200554152239244@lid",
+        "admin": null
+      },
+      {
         "id": "252372966195349@lid",
         "admin": null
       },
@@ -15090,6 +15138,10 @@
       },
       {
         "id": "245771534336033@lid",
+        "admin": null
+      },
+      {
+        "id": "273998176850001@lid",
         "admin": null
       },
       {
@@ -15230,10 +15282,6 @@
       },
       {
         "id": "172151332192295@lid",
-        "admin": null
-      },
-      {
-        "id": "155968230961395@lid",
         "admin": null
       },
       {
@@ -15434,6 +15482,10 @@
       },
       {
         "id": "173461515300986@lid",
+        "admin": null
+      },
+      {
+        "id": "240991235764226@lid",
         "admin": null
       },
       {
@@ -15773,6 +15825,10 @@
         "admin": null
       },
       {
+        "id": "36112806494323@lid",
+        "admin": null
+      },
+      {
         "id": "61564631650473@lid",
         "admin": null
       },
@@ -15997,6 +16053,10 @@
         "admin": null
       },
       {
+        "id": "48220302475272@lid",
+        "admin": null
+      },
+      {
         "id": "203642216935458@lid",
         "admin": null
       },
@@ -16138,10 +16198,6 @@
       },
       {
         "id": "230700628373511@lid",
-        "admin": null
-      },
-      {
-        "id": "256929926500575@lid",
         "admin": null
       },
       {
@@ -16525,10 +16581,6 @@
         "admin": null
       },
       {
-        "id": "209144002961605@lid",
-        "admin": null
-      },
-      {
         "id": "184847523917904@lid",
         "admin": null
       },
@@ -16653,6 +16705,10 @@
         "admin": null
       },
       {
+        "id": "141957913395379@lid",
+        "admin": null
+      },
+      {
         "id": "259283518279812@lid",
         "admin": null
       },
@@ -16674,6 +16730,10 @@
       },
       {
         "id": "128132396875789@lid",
+        "admin": null
+      },
+      {
+        "id": "10462825607271@lid",
         "admin": null
       },
       {
@@ -16765,7 +16825,15 @@
         "admin": null
       },
       {
+        "id": "56917611274476@lid",
+        "admin": null
+      },
+      {
         "id": "43023459160304@lid",
+        "admin": null
+      },
+      {
+        "id": "160469188878552@lid",
         "admin": null
       },
       {
@@ -16941,6 +17009,10 @@
         "admin": null
       },
       {
+        "id": "230163807748149@lid",
+        "admin": null
+      },
+      {
         "id": "149877866643700@lid",
         "admin": null
       },
@@ -17085,10 +17157,6 @@
         "admin": null
       },
       {
-        "id": "79199733829782@lid",
-        "admin": null
-      },
-      {
         "id": "244839610327138@lid",
         "admin": null
       },
@@ -17178,6 +17246,10 @@
       },
       {
         "id": "58343506899149@lid",
+        "admin": null
+      },
+      {
+        "id": "216561512145083@lid",
         "admin": null
       },
       {
@@ -17398,6 +17470,10 @@
         "admin": null
       },
       {
+        "id": "272529348370661@lid",
+        "admin": null
+      },
+      {
         "id": "130992341794959@lid",
         "admin": null
       },
@@ -17522,10 +17598,6 @@
         "admin": null
       },
       {
-        "id": "74565464142049@lid",
-        "admin": null
-      },
-      {
         "id": "221208700313735@lid",
         "admin": null
       },
@@ -17638,6 +17710,10 @@
         "admin": null
       },
       {
+        "id": "264433184030932@lid",
+        "admin": null
+      },
+      {
         "id": "193454671958134@lid",
         "admin": null
       },
@@ -17651,10 +17727,6 @@
       },
       {
         "id": "89189962018911@lid",
-        "admin": null
-      },
-      {
-        "id": "81553543667726@lid",
         "admin": null
       },
       {
@@ -18055,6 +18127,10 @@
       },
       {
         "id": "254193512226986@lid",
+        "admin": null
+      },
+      {
+        "id": "166013891010786@lid",
         "admin": null
       }
     ]
