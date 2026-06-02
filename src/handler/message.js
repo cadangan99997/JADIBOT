@@ -16416,25 +16416,23 @@ hasil += `╰══════════════════════�
                         case 'vidhd':
                         case 'hdvideo': {
                                 try {
-                                        const { hdvideo } = _require(path.resolve('./src/scrape/hdvid.cjs'));
-                                        const { sparkpixHdUpscale } = _require(path.resolve('./src/scrape/sparkpix.cjs'));
+                                        const { hdvideo }      = _require(path.resolve('./src/scrape/hdvid.cjs'));
+                                        const { winkHdEnhance } = _require(path.resolve('./src/scrape/winkHd.cjs'));
 
-                                        const isMediaMsg = m.isMedia && (m.type === 'imageMessage' || m.type === 'videoMessage' || m.type === 'stickerMessage');
+                                        const isMediaMsg    = m.isMedia && (m.type === 'imageMessage' || m.type === 'videoMessage' || m.type === 'stickerMessage');
                                         const isQuotedMedia = m.isQuoted && quoted.isMedia && (quoted.type === 'imageMessage' || quoted.type === 'videoMessage' || quoted.type === 'stickerMessage');
 
                                         if (!isMediaMsg && !isQuotedMedia) {
                                                 await tolak(hisoka, m,
-                                                        `╭═══『 🖼️ *HD Upscaler* 』═══╮\n│\n` +
+                                                        `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
                                                         `│ Tingkatkan kualitas gambar/video\n` +
                                                         `│ menjadi lebih tajam & jernih!\n│\n` +
                                                         `│ *Cara Pakai:*\n` +
-                                                        `│ • Kirim gambar dengan caption:\n` +
-                                                        `│   *.hd* [resolusi]\n│\n` +
-                                                        `│ *Pilihan Resolusi:*\n` +
-                                                        `│ *.hd 4k* → 4K (default)\n` +
-                                                        `│ *.hd 6k* → 6K\n` +
-                                                        `│ *.hd 8k* → 8K (terbaik)\n│\n` +
-                                                        `│ *Video:*\n` +
+                                                        `│ • Kirim/reply gambar dengan caption:\n` +
+                                                        `│   *.hd* atau *.remini*\n│\n` +
+                                                        `│ *Alias:*\n` +
+                                                        `│ *.hd* / *.remini* / *.hdr*\n│\n` +
+                                                        `│ *Video HD:*\n` +
                                                         `│ *.hdvid* / *.vidhd* / *.hdvideo*\n` +
                                                         `│\n╰══════════════════════════╯`
                                                 );
@@ -16446,7 +16444,7 @@ hasil += `╰══════════════════════�
 
                                         if (isMediaMsg) {
                                                 mediaBuffer = await m.downloadMedia();
-                                                mediaType = m.type;
+                                                mediaType   = m.type;
                                         } else {
                                                 mediaBuffer = await downloadMediaMessage(
                                                         { ...m.quoted, message: m.quoted.raw },
@@ -16466,10 +16464,28 @@ hasil += `╰══════════════════════�
                                         const isVideo = mediaType === 'videoMessage';
 
                                         await hisoka.sendMessage(m.from, { react: { text: '⏳', key: m.key } });
-                                        await tolak(hisoka, m, `⏳ Sedang memproses ${isVideo ? 'video' : 'gambar'} ke kualitas HD...\nMohon tunggu, proses ini membutuhkan waktu.`);
 
                                         if (isVideo) {
+                                                const loadMsg = await hisoka.sendMessage(m.from, {
+                                                        text:
+                                                                `╭═══『 🎬 *HD Video* 』═══╮\n│\n` +
+                                                                `│ 📤 Mengupload video...\n` +
+                                                                `│ ⏳ Mohon tunggu sebentar\n│\n` +
+                                                                `╰══════════════════════════╯`
+                                                }, { quoted: m }).catch(() => null);
+
+                                                const _editV = async (txt) => {
+                                                        if (!loadMsg?.key) return;
+                                                        try { await hisoka.sendMessage(m.from, { text: txt, edit: loadMsg.key }); } catch (_) {}
+                                                };
+
                                                 const resultUrl = await hdvideo(mediaBuffer);
+                                                await _editV(
+                                                        `╭═══『 🎬 *HD Video* 』═══╮\n│\n` +
+                                                        `│ ✅ Proses selesai!\n` +
+                                                        `│ 📥 Mengunduh hasil...\n│\n` +
+                                                        `╰══════════════════════════╯`
+                                                );
 
                                                 const videoFetch = await fetch(resultUrl);
                                                 if (!videoFetch.ok) throw new Error('Gagal mengunduh hasil video HD');
@@ -16503,38 +16519,62 @@ hasil += `╰══════════════════════�
                                                         try { fs.unlinkSync(tmpWmOut); } catch (_) {}
                                                 }
 
+                                                if (loadMsg?.key) {
+                                                        try { await hisoka.sendMessage(m.from, { delete: loadMsg.key }); } catch (_) {}
+                                                }
+
                                                 await hisoka.sendMessage(m.from, {
                                                         video: videoBuffer,
                                                         mimetype: 'video/mp4',
-                                                        caption: '✅ Video berhasil diproses ke kualitas HD!'
+                                                        caption: '✅ *Video berhasil diproses ke kualitas HD!*'
                                                 }, { quoted: m });
 
                                                 await hisoka.sendMessage(m.from, { react: { text: '✅', key: m.key } });
                                         } else {
-                                                const resInput = (query || '4k').trim().toLowerCase().split(/\s+/)[0];
-                                                const { resolution } = (() => {
-                                                        const v = resInput;
-                                                        if (['6k','3','3x'].includes(v)) return { resolution: '6K' };
-                                                        if (['8k','4','4x'].includes(v)) return { resolution: '8K' };
-                                                        return { resolution: '4K' };
-                                                })();
+                                                const loadMsg = await hisoka.sendMessage(m.from, {
+                                                        text:
+                                                                `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
+                                                                `│ 📤 *Step 1/3:* Mengupload gambar...\n` +
+                                                                `│ ⏳ Mohon tunggu sebentar\n│\n` +
+                                                                `╰══════════════════════════╯`
+                                                }, { quoted: m }).catch(() => null);
 
-                                                await hisoka.sendMessage(m.from, { react: { text: '⏳', key: m.key } });
-                                                await tolak(hisoka, m, `⏳ Sedang upscale gambar ke *${resolution}* via SparkPix...\nMohon tunggu sebentar.`);
+                                                const _edit = async (txt) => {
+                                                        if (!loadMsg?.key) return;
+                                                        try { await hisoka.sendMessage(m.from, { text: txt, edit: loadMsg.key }); } catch (_) {}
+                                                };
 
-                                                const result = await sparkpixHdUpscale(mediaBuffer, { resolution: resInput });
+                                                await _edit(
+                                                        `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
+                                                        `│ ✅ *Step 1/3:* Upload selesai\n` +
+                                                        `│ 🤖 *Step 2/3:* AI sedang enhance...\n` +
+                                                        `│ ⏳ Proses ~15-30 detik\n│\n` +
+                                                        `╰══════════════════════════╯`
+                                                );
 
-                                                if (!result.status || !result.result_url) {
-                                                        throw new Error(result.message || 'API SparkPix gagal merespons');
-                                                }
+                                                await hisoka.sendMessage(m.from, { react: { text: '🤖', key: m.key } });
 
-                                                const imgFetch = await fetch(result.result_url);
-                                                if (!imgFetch.ok) throw new Error('Gagal download hasil upscale');
+                                                const resultUrl = await winkHdEnhance(mediaBuffer);
+
+                                                await _edit(
+                                                        `╭═══『 🖼️ *HD Enhancer* 』═══╮\n│\n` +
+                                                        `│ ✅ *Step 1/3:* Upload selesai\n` +
+                                                        `│ ✅ *Step 2/3:* AI enhance selesai\n` +
+                                                        `│ 📥 *Step 3/3:* Mengunduh hasil...\n│\n` +
+                                                        `╰══════════════════════════╯`
+                                                );
+
+                                                const imgFetch = await fetch(resultUrl);
+                                                if (!imgFetch.ok) throw new Error('Gagal download hasil enhance');
                                                 const imgBuffer = Buffer.from(await imgFetch.arrayBuffer());
+
+                                                if (loadMsg?.key) {
+                                                        try { await hisoka.sendMessage(m.from, { delete: loadMsg.key }); } catch (_) {}
+                                                }
 
                                                 await hisoka.sendMessage(m.from, {
                                                         image  : imgBuffer,
-                                                        caption: `✅ *Gambar berhasil diupscale ke ${resolution}!*\n🔗 Powered by SparkPix AI`
+                                                        caption: `✅ *Gambar berhasil di-enhance ke Ultra HD!*\n🔗 Powered by Wink AI`
                                                 }, { quoted: m });
 
                                                 await hisoka.sendMessage(m.from, { react: { text: '✅', key: m.key } });
