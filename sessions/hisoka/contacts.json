@@ -4885,11 +4885,12 @@
     "phoneNumber": "6281242267884@s.whatsapp.net"
   },
   "6285966168789@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285966168789@s.whatsapp.net",
-    "name": "▫️Wayne",
+    "id": "85983277308@lid",
     "lid": "85983277308@lid",
-    "phoneNumber": "6285966168789@s.whatsapp.net"
+    "isContact": true,
+    "name": "▫️Wayne",
+    "phoneNumber": "6285966168789@s.whatsapp.net",
+    "notify": "Wayne"
   },
   "6282164355067@s.whatsapp.net": {
     "isContact": true,
@@ -6195,11 +6196,12 @@
     "phoneNumber": "6282316475083@s.whatsapp.net"
   },
   "6282339320619@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282339320619@s.whatsapp.net",
-    "name": ". Eka",
+    "id": "48984253026348@lid",
     "lid": "48984253026348@lid",
-    "phoneNumber": "6282339320619@s.whatsapp.net"
+    "isContact": true,
+    "name": ". Eka",
+    "phoneNumber": "6282339320619@s.whatsapp.net",
+    "imgUrl": "changed"
   },
   "6285609134592@s.whatsapp.net": {
     "isContact": true,
@@ -29291,9 +29293,9 @@
     "phoneNumber": "6283852774869@s.whatsapp.net"
   },
   "6287748574387@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6287748574387@s.whatsapp.net",
+    "id": "207885762072821@lid",
     "lid": "207885762072821@lid",
+    "isContact": true,
     "name": "!!! Surya",
     "phoneNumber": "6287748574387@s.whatsapp.net",
     "notify": "Pria"
@@ -30217,11 +30219,12 @@
     "phoneNumber": "6287897935377@s.whatsapp.net"
   },
   "6285601705298@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285601705298@s.whatsapp.net",
-    "name": "√LEFERD",
+    "id": "186882700902550@lid",
     "lid": "186882700902550@lid",
-    "phoneNumber": "6285601705298@s.whatsapp.net"
+    "isContact": true,
+    "name": "√LEFERD",
+    "phoneNumber": "6285601705298@s.whatsapp.net",
+    "imgUrl": "changed"
   },
   "6285778517902@s.whatsapp.net": {
     "isContact": true,
