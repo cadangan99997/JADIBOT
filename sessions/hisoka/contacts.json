@@ -6698,11 +6698,12 @@
     "phoneNumber": "6285723886844@s.whatsapp.net"
   },
   "6281284894751@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281284894751@s.whatsapp.net",
-    "name": "•『ɴɪᴋᴛᴏ ʀ. ᴀʟᴇxᴀɴᴅᴇʀ ʟᴜᴍɪɢᴀs』•",
+    "id": "133874231279813@lid",
     "lid": "133874231279813@lid",
-    "phoneNumber": "6281284894751@s.whatsapp.net"
+    "isContact": true,
+    "name": "•『ɴɪᴋᴛᴏ ʀ. ᴀʟᴇxᴀɴᴅᴇʀ ʟᴜᴍɪɢᴀs』•",
+    "phoneNumber": "6281284894751@s.whatsapp.net",
+    "imgUrl": "changed"
   },
   "6285222746579@s.whatsapp.net": {
     "isContact": true,
@@ -15974,11 +15975,12 @@
     "phoneNumber": "6283133244884@s.whatsapp.net"
   },
   "6283821144939@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283821144939@s.whatsapp.net",
-    "name": "~ Alifa",
+    "id": "22827885432998@lid",
     "lid": "22827885432998@lid",
-    "phoneNumber": "6283821144939@s.whatsapp.net"
+    "isContact": true,
+    "name": "~ Alifa",
+    "phoneNumber": "6283821144939@s.whatsapp.net",
+    "imgUrl": "removed"
   },
   "6282138391761@s.whatsapp.net": {
     "isContact": true,

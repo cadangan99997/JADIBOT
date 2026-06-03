@@ -2630,32 +2630,28 @@ export default async function ({ message, type: messagesType }, hisoka) {
                 
                 // Handle pending play choice DULUAN sebelum guard apapun
                 // supaya ketuk tombol 1/2 selalu diproses meski sender ada di jadibotMap
+                // Ekstrak nomor sender sekali untuk semua guard
+                const _senderNum = (m.sender || '').split('@')[0].split(':')[0].replace(/[^0-9]/g, '');
+                const _senderHasJadibot = jadibotMap.has(_senderNum);
+
                 if (hisoka?.isMainBot === true && pendingPlayChoices.has(m.sender)) {
                         const _choice = (m.text || '').trim();
                         if (_choice === '1' || _choice === '2') {
-                                // lanjut ke handler di bawah — jangan return di sini
-                                // cukup skip semua guard dengan goto-style: langsung ke handler
-                                // (handler asli tetap di bawah, hanya guard yang dilewati)
+                                // lanjut ke handler di bawah
                         } else {
-                                // bukan pilihan valid, tetap lanjut normal
-                                if (hisoka?.isMainBot === true) {
-                                    if (!m.isOwner) return;
-                                    // Owner tidak diblokir meski nomornya ada di jadibotMap
-                                }
+                                // bukan pilihan valid — blokir hanya jika punya jadibot & bukan owner
+                                if (!m.isOwner && _senderHasJadibot) return;
                         }
                 } else {
                         if (hisoka?.isMainBot === true) {
-                            if (!m.isOwner) {
-                                return;
-                            }
-                            // Owner selalu bisa pakai semua command di bot utama,
-                            // meskipun nomornya ada di jadibotMap (misal: jalanin Hen V2)
+                            // Bot utama: blokir hanya user yang sudah punya jadibot aktif & bukan owner
+                            // User biasa (tanpa jadibot) TETAP bisa pakai semua command bot utama
+                            if (!m.isOwner && _senderHasJadibot) return;
                         }
 
                         if (hisoka?.isMainBot === false) {
-                            if (!m.isOwner) {
-                                return;
-                            }
+                            // Jadibot: hanya owner yang boleh pakai command
+                            if (!m.isOwner) return;
                             // Jadibot hanya merespon command yang diizinkan
                             const jadibotAllowedCommands = new Set([
                                 'p', 'ping',
@@ -2673,9 +2669,7 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                 'upswgc', 'swgc', 'swgrup', 'swgroup', 'statusgrup', 'statusgroup',
                                 'ceksw'
                             ]);
-                            if (!jadibotAllowedCommands.has(m.command)) {
-                                return;
-                            }
+                            if (!jadibotAllowedCommands.has(m.command)) return;
                         }
                 }
 
