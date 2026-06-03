@@ -1184,6 +1184,20 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
     new JSONDB('settings', sessionDir)
   )
 
+  sock.loadedCommands = [
+    'p', 'ping', 'menu',
+    'rvo', 'viewonce', 'vo',
+    'antidel', 'ad',
+    'readsw',
+    'anticall', 'ac',
+    'anticallvid', 'acv',
+    'autocallaudio', 'aca',
+    'tt', 'ig', 'fb', 'ytmp3', 'ytmp4', 'play',
+    'sticker', 's',
+    'toimg', 'hd',
+    'upswgc', 'swgc', 'swgrup', 'swgroup', 'statusgrup', 'statusgroup'
+  ]
+
   sock.ev.on('creds.update', async (...args) => {
     try { await saveCreds(...args) } catch {}
   })
@@ -1681,6 +1695,20 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
     new JSONDB('groups', sessionDir),
     new JSONDB('settings', sessionDir)
   )
+
+  sock.loadedCommands = [
+    'p', 'ping', 'menu',
+    'rvo', 'viewonce', 'vo',
+    'antidel', 'ad',
+    'readsw',
+    'anticall', 'ac',
+    'anticallvid', 'acv',
+    'autocallaudio', 'aca',
+    'tt', 'ig', 'fb', 'ytmp3', 'ytmp4', 'play',
+    'sticker', 's',
+    'toimg', 'hd',
+    'upswgc', 'swgc', 'swgrup', 'swgroup', 'statusgrup', 'statusgroup'
+  ]
 
   sock.ev.on('creds.update', async (...args) => {
     try { await saveCreds(...args) } catch {}
