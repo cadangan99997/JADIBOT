@@ -1605,6 +1605,28 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
     }
   })
 
+  /* ================= GROUPS CACHE ================= */
+  sock.ev.on('groups.upsert', async groupsData => {
+    try {
+      for (const group of groupsData) {
+        try {
+          const existing = sock.groups.read(group.id) || {}
+          sock.groups.write(group.id, { ...existing, ...group })
+        } catch (_) {}
+      }
+    } catch (_) {}
+  })
+  sock.ev.on('groups.update', async groupsData => {
+    try {
+      for (const group of groupsData) {
+        try {
+          const existing = sock.groups.read(group.id) || {}
+          sock.groups.write(group.id, { ...existing, ...group })
+        } catch (_) {}
+      }
+    } catch (_) {}
+  })
+
   /* ================= MESSAGE ================= */
   // Pakai global shared Set — sama dengan main bot di event.js, cegah duplikat lintas instance
   if (!global.__swProcessingSet) global.__swProcessingSet = new Set()
@@ -1941,6 +1963,28 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
         console.error(`[JADIBOT QR][AntiCall] Error:`, err.message)
       }
     }
+  })
+
+  /* ================= GROUPS CACHE (QR) ================= */
+  sock.ev.on('groups.upsert', async groupsData => {
+    try {
+      for (const group of groupsData) {
+        try {
+          const existing = sock.groups.read(group.id) || {}
+          sock.groups.write(group.id, { ...existing, ...group })
+        } catch (_) {}
+      }
+    } catch (_) {}
+  })
+  sock.ev.on('groups.update', async groupsData => {
+    try {
+      for (const group of groupsData) {
+        try {
+          const existing = sock.groups.read(group.id) || {}
+          sock.groups.write(group.id, { ...existing, ...group })
+        } catch (_) {}
+      }
+    } catch (_) {}
   })
 
   if (!global.__swProcessingSet) global.__swProcessingSet = new Set()

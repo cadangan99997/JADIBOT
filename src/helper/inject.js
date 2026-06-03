@@ -85,7 +85,15 @@ export function injectClient(hisoka, cacheMsg, contacts, groups, settings) {
 
                 if (isJidGroup(jid)) {
                         const group = groups.read(jid) || {};
-                        return group.subject || jid.split('@')[0];
+                        if (group.subject) return group.subject;
+                        // Fallback: cek cache grup bot utama (global) kalau jadibot belum punya
+                        if (global.__mainBotGroups) {
+                                try {
+                                        const mainGroup = global.__mainBotGroups.read(jid);
+                                        if (mainGroup?.subject) return mainGroup.subject;
+                                } catch (_) {}
+                        }
+                        return jid.split('@')[0];
                 }
 
                 if (areJidsSameUser(jid, hisoka.user.id)) {
@@ -501,9 +509,14 @@ async function injectEndMessage(hisoka, WAMessage) {
         const afterPrefix = WAMessage.text.replace(regPrefix, '').trim().split(/ +/)[0];
         const allowNoPrefix = process.env.BOT_ALLOWED_NO_PREFIX === 'true' && !prefix;
         const hasExtraWords = WAMessage.text.trim().includes(' ');
+        // Cache Set di hisoka untuk lookup O(1) — jauh lebih cepat dari O(n) regex scan per pesan
+        if (!hisoka._commandSet || hisoka._commandSetSize !== hisoka.loadedCommands.length) {
+                hisoka._commandSet = new Set(hisoka.loadedCommands.map(c => c.toLowerCase()));
+                hisoka._commandSetSize = hisoka.loadedCommands.length;
+        }
+        const _cmdMatch = hisoka._commandSet.has(afterPrefix.toLowerCase());
         const isCommand =
-                (!!prefix && hisoka.loadedCommands.some(cmd => new RegExp(`^${escapeRegExp(afterPrefix)}$`, 'i').test(cmd))) ||
-                (!prefix && !hasExtraWords && hisoka.loadedCommands.some(cmd => new RegExp(`^${escapeRegExp(afterPrefix)}$`, 'i').test(cmd))) ||
+                (_cmdMatch && (!!prefix || (!prefix && !hasExtraWords))) ||
                 allowNoPrefix;
         const query = isCommand
                 ? WAMessage.text.replace(regPrefix, '').replace(afterPrefix, '').trim()

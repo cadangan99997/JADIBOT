@@ -471,6 +471,7 @@ async function main() {
                 }
         }, 60000); // sampe sini
         const groups = new JSONDB('groups', sessionDir);
+        global.__mainBotGroups = groups; // Shared ke jadibot untuk fallback nama grup
         const contacts = new JSONDB('contacts', sessionDir);
         const settings = new JSONDB('settings', sessionDir);
 
