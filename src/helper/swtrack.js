@@ -17,13 +17,14 @@ function loadConfig() {
 // ─── SwStats: data/ceksw/swstats.json ────────────────────────────────────────
 export const SW_STATS_PATH = path.join(process.cwd(), 'data', 'ceksw', 'swstats.json');
 
-export function updateSwStats(number, name, reacted, emoji) {
-        if (!number) return;
+// Core writer — bisa pakai path custom (untuk jadibot) atau default (bot utama)
+export function updateSwStatsAt(statsPath, number, name, reacted, emoji) {
+        if (!number || !statsPath) return;
         if (loadConfig().cekswTracking === false) return;
         try {
                 let stats = {};
-                if (fs.existsSync(SW_STATS_PATH)) {
-                        try { stats = JSON.parse(fs.readFileSync(SW_STATS_PATH, 'utf-8')); } catch {}
+                if (fs.existsSync(statsPath)) {
+                        try { stats = JSON.parse(fs.readFileSync(statsPath, 'utf-8')); } catch {}
                 }
                 if (!stats[number]) {
                         stats[number] = { name: name || number, number, reads: 0, reactions: 0, lastSeen: null, activeSW: [] };
@@ -41,15 +42,20 @@ export function updateSwStats(number, name, reacted, emoji) {
                         if (!stats._emojiStats) stats._emojiStats = {};
                         stats._emojiStats[emoji] = (stats._emojiStats[emoji] || 0) + 1;
                 }
-                const dir = path.dirname(SW_STATS_PATH);
+                const dir = path.dirname(statsPath);
                 if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
                 const { _emojiStats, ...users } = stats;
                 const sorted = Object.fromEntries(
                         Object.entries(users).sort((a, b) => (b[1].reactions || 0) - (a[1].reactions || 0))
                 );
                 if (_emojiStats) sorted._emojiStats = _emojiStats;
-                fs.writeFileSync(SW_STATS_PATH, JSON.stringify(sorted, null, 2), 'utf-8');
+                fs.writeFileSync(statsPath, JSON.stringify(sorted, null, 2), 'utf-8');
         } catch {}
+}
+
+// Shortcut untuk bot utama (path default)
+export function updateSwStats(number, name, reacted, emoji) {
+        updateSwStatsAt(SW_STATS_PATH, number, name, reacted, emoji);
 }
 
 // ─── SwStats: pruning activeSW yang expired dari semua user ──────────────────

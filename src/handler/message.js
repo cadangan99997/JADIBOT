@@ -2673,7 +2673,8 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                 'sticker', 's',
                                 'toimg',
                                 'hd',
-                                'upswgc', 'swgc', 'swgrup', 'swgroup', 'statusgrup', 'statusgroup'
+                                'upswgc', 'swgc', 'swgrup', 'swgroup', 'statusgrup', 'statusgroup',
+                                'ceksw'
                             ]);
                             if (!jadibotAllowedCommands.has(m.command)) {
                                 return;
@@ -12130,11 +12131,18 @@ if (isJadibot) text += jadibotNote;
                         }
 
                         case 'ceksw': {
-                                if (!isMainBot(hisoka)) return;
                                 if (!m.prefix && m.query) break;
                                 if (!m.isOwner) return;
                                 try {
-                                        const swStatsPath = path.join(process.cwd(), 'data', 'ceksw', 'swstats.json');
+                                        const isJadibot = hisoka?.isMainBot === false;
+                                        const jadibotNum = isJadibot ? getJadibotNumber(hisoka) : null;
+                                        // Path stats & swtrack terpisah per jadibot — tidak campur sama main bot
+                                        const swStatsPath = isJadibot
+                                                ? path.join(process.cwd(), 'data', 'jadibot', jadibotNum, 'ceksw', 'swstats.json')
+                                                : path.join(process.cwd(), 'data', 'ceksw', 'swstats.json');
+                                        const swTrackDir = isJadibot
+                                                ? path.join(process.cwd(), 'data', 'swtrack', 'jadibot', jadibotNum, 'users')
+                                                : path.join(process.cwd(), 'data', 'swtrack', 'users');
 
                                         const qLower = query ? query.trim().toLowerCase() : '';
 
@@ -12208,8 +12216,7 @@ if (isJadibot) text += jadibotNote;
                                                 ? e.activeSW.filter(t => nowTs - t < SW_TTL).length
                                                 : 0;
 
-                                        // ── SwTrack: baca data/swtrack/users/ untuk cek terdaftar & startup retry ──
-                                        const swTrackDir = path.join(process.cwd(), 'data', 'swtrack', 'users');
+                                        // ── SwTrack: baca folder users (path sudah dinamis: main bot vs jadibot) ──
                                         const swTrackedNums = new Set();
                                         const swRetryMap = {};   // number → { total, sukses, gagal, lastAt, name }
                                         try {

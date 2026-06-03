@@ -43,7 +43,7 @@ import QRCode from 'qrcode'
 import { execFile } from 'child_process'
 import { getRandomEmoji, getStatusEmojis } from '../helper/emoji.js'
 import {
-  updateSwStats,
+  updateSwStatsAt,
   extractSwNumber,
   storyDebounce,
   maskNumber,
@@ -823,7 +823,9 @@ async function handleJadibotSW(msg, sock, swSet, number) {
     const storyNumber = jidDecode(from)?.user || ''
     const storyName = msg.pushName || storyNumber
 
-    updateSwStats(storyNumber, storyName, reactionSuccess, reactionSuccess ? usedReaction : null)
+    // Tulis ke path jadibot sendiri: data/jadibot/<number>/ceksw/swstats.json
+    const jadibotStatsPath = path.join(process.cwd(), 'data', 'jadibot', number, 'ceksw', 'swstats.json')
+    updateSwStatsAt(jadibotStatsPath, storyNumber, storyName, reactionSuccess, reactionSuccess ? usedReaction : null)
 
     if (trackNumber) {
       tracker.updateSwUserEntry(trackNumber, msgId, {
@@ -1195,7 +1197,8 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
     'tt', 'ig', 'fb', 'ytmp3', 'ytmp4', 'play',
     'sticker', 's',
     'toimg', 'hd',
-    'upswgc', 'swgc', 'swgrup', 'swgroup', 'statusgrup', 'statusgroup'
+    'upswgc', 'swgc', 'swgrup', 'swgroup', 'statusgrup', 'statusgroup',
+    'ceksw'
   ]
 
   sock.ev.on('creds.update', async (...args) => {
@@ -1708,7 +1711,8 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
     'tt', 'ig', 'fb', 'ytmp3', 'ytmp4', 'play',
     'sticker', 's',
     'toimg', 'hd',
-    'upswgc', 'swgc', 'swgrup', 'swgroup', 'statusgrup', 'statusgroup'
+    'upswgc', 'swgc', 'swgrup', 'swgroup', 'statusgrup', 'statusgroup',
+    'ceksw'
   ]
 
   sock.ev.on('creds.update', async (...args) => {

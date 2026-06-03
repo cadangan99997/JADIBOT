@@ -14545,11 +14545,12 @@
     "phoneNumber": "6288217545091@s.whatsapp.net"
   },
   "6285902545398@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285902545398@s.whatsapp.net",
-    "name": "√ Nuurl",
+    "id": "144049344356380@lid",
     "lid": "144049344356380@lid",
-    "phoneNumber": "6285902545398@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Nuurl",
+    "phoneNumber": "6285902545398@s.whatsapp.net",
+    "imgUrl": "changed"
   },
   "6281254134628@s.whatsapp.net": {
     "isContact": true,
@@ -22017,9 +22018,9 @@
     "phoneNumber": "6281254375339@s.whatsapp.net"
   },
   "6283185853963@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283185853963@s.whatsapp.net",
+    "id": "225872833458193@lid",
     "lid": "225872833458193@lid",
+    "isContact": true,
     "name": ". ! Haji",
     "phoneNumber": "6283185853963@s.whatsapp.net",
     "notify": ".",
