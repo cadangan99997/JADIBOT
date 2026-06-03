@@ -634,7 +634,7 @@ function getJadibotSwSet(number) {
 
 function getJadibotTracker(number) {
   if (!jadibotTrackers.has(number)) {
-    const userDir = path.join(process.cwd(), 'data', 'swtrack', 'jadibot', number, 'users')
+    const userDir = path.join(process.cwd(), 'data', 'jadibot', number, 'swtrack', 'users')
     jadibotTrackers.set(number, createSwTracker(userDir))
   }
   return jadibotTrackers.get(number)
