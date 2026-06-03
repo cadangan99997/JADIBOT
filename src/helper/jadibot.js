@@ -25,7 +25,6 @@ const _require = createRequire(import.meta.url);
 const {
   default: makeWASocket,
   fetchLatestBaileysVersion,
-  useMultiFileAuthState,
   DisconnectReason,
   jidNormalizedUser,
   jidDecode,
@@ -52,6 +51,7 @@ import {
   createSwTracker,
 } from './swtrack.js'
 import { injectClient } from '../helper/inject.js'
+import { useConsolidatedAuthState } from './authState.js'
 import messageHandler from '../handler/message.js'
 import JSONDB from '../db/json.js'
 import { cleanStaleSessionFiles } from './cleaner.js'
@@ -1172,7 +1172,7 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
 
   fs.mkdirSync(sessionDir, { recursive: true })
 
-  const { state, saveCreds } = await useMultiFileAuthState(sessionDir)
+  const { state, saveCreds } = await useConsolidatedAuthState(sessionDir)
   const { version } = await fetchLatestBaileysVersion()
 
   const sock = makeWASocket({
@@ -1708,7 +1708,7 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
 
   fs.mkdirSync(sessionDir, { recursive: true })
 
-  const { state, saveCreds } = await useMultiFileAuthState(sessionDir)
+  const { state, saveCreds } = await useConsolidatedAuthState(sessionDir)
   const { version } = await fetchLatestBaileysVersion()
 
   const sock = makeWASocket({

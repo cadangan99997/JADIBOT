@@ -2676,11 +2676,12 @@
     "phoneNumber": "62882007157688@s.whatsapp.net"
   },
   "6283134844523@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283134844523@s.whatsapp.net",
-    "name": "Hamdan",
+    "id": "239328697536578@lid",
     "lid": "239328697536578@lid",
-    "phoneNumber": "6283134844523@s.whatsapp.net"
+    "isContact": true,
+    "name": "Hamdan",
+    "phoneNumber": "6283134844523@s.whatsapp.net",
+    "notify": "Anda Siapa?"
   },
   "6285711324080@s.whatsapp.net": {
     "isContact": true,
@@ -4426,11 +4427,12 @@
     "phoneNumber": "6285787184706@s.whatsapp.net"
   },
   "6281393564657@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281393564657@s.whatsapp.net",
-    "name": "Yus ( Donasi Jadi Bot )",
+    "id": "174577888038922@lid",
     "lid": "174577888038922@lid",
-    "phoneNumber": "6281393564657@s.whatsapp.net"
+    "isContact": true,
+    "name": "Yus ( Donasi Jadi Bot )",
+    "phoneNumber": "6281393564657@s.whatsapp.net",
+    "notify": "γυς ρου"
   },
   "94740433191@s.whatsapp.net": {
     "isContact": true,
@@ -14782,11 +14784,12 @@
     "phoneNumber": "6282339320619@s.whatsapp.net"
   },
   "6289667923162@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6289667923162@s.whatsapp.net",
-    "name": "Hen V2",
+    "id": "97968623505429@lid",
     "lid": "97968623505429@lid",
-    "phoneNumber": "6289667923162@s.whatsapp.net"
+    "isContact": true,
+    "name": "Hen V2",
+    "phoneNumber": "6289667923162@s.whatsapp.net",
+    "notify": "Hen V2"
   },
   "6285779255277@s.whatsapp.net": {
     "isContact": true,
@@ -30039,11 +30042,12 @@
     "phoneNumber": "6288293834918@s.whatsapp.net"
   },
   "18258961472@s.whatsapp.net": {
-    "isContact": true,
-    "id": "18258961472@s.whatsapp.net",
-    "name": "Hamdan [ NOKOS ]",
+    "id": "54392187277397@lid",
     "lid": "54392187277397@lid",
-    "phoneNumber": "18258961472@s.whatsapp.net"
+    "isContact": true,
+    "name": "Hamdan [ NOKOS ]",
+    "phoneNumber": "18258961472@s.whatsapp.net",
+    "notify": "Anda Siapa??"
   },
   "6281242267884@s.whatsapp.net": {
     "isContact": true,
@@ -31126,6 +31130,11 @@
   "31959019446519@lid": {
     "id": "31959019446519@lid",
     "lid": "31959019446519@lid",
+    "imgUrl": "changed"
+  },
+  "17106854748264@lid": {
+    "id": "17106854748264@lid",
+    "lid": "17106854748264@lid",
     "imgUrl": "changed"
   }
 }

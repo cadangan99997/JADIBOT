@@ -5,9 +5,21 @@ import { proto } from '@whiskeysockets/baileys'
 import { initAuthCreds } from '@whiskeysockets/baileys/lib/Utils/auth-utils.js'
 import { BufferJSON } from '@whiskeysockets/baileys/lib/Utils/generics.js'
 
-// Tipe yang dikonsolidasikan ke 1 file (in-memory + satu JSON)
-// lid-mapping: 11k+ files → 1 file → koneksi jauh lebih cepat
-const CONSOLIDATED_TYPES = new Set(['lid-mapping', 'device-list', 'identity-key'])
+// Semua tipe key → satu file JSON per tipe (in-memory + disk)
+const CONSOLIDATED_TYPES = new Set([
+	'lid-mapping',
+	'device-list',
+	'identity-key',
+	'pre-key',
+	'sender-key',
+	'session',
+	'tctoken',
+	'app-state-sync-key',
+	'app-state-sync-version',
+])
+
+// sender-key-memory: in-memory saja, tidak pernah ditulis ke disk
+const MEMORY_ONLY_TYPES = new Set(['sender-key-memory'])
 
 export async function useConsolidatedAuthState(folder) {
 	const folderInfo = await stat(folder).catch(() => null)
@@ -19,37 +31,60 @@ export async function useConsolidatedAuthState(folder) {
 
 	const fixFileName = (file) => file?.replace(/\//g, '__')?.replace(/:/g, '-')
 
-	// Mutex per-file untuk tipe individual
-	const fileLocks = new Map()
-	const getFileLock = (path) => {
-		let m = fileLocks.get(path)
-		if (!m) { m = new Mutex(); fileLocks.set(path, m) }
+	// Mutex per consolidated file
+	const consolidatedLocks = new Map()
+	const getConsolidatedLock = (type) => {
+		let m = consolidatedLocks.get(type)
+		if (!m) { m = new Mutex(); consolidatedLocks.set(type, m) }
 		return m
 	}
 
-	// In-memory store untuk tipe yang dikonsolidasikan
+	// Mutex per individual file (non-consolidated)
+	const fileLocks = new Map()
+	const getFileLock = (p) => {
+		let m = fileLocks.get(p)
+		if (!m) { m = new Mutex(); fileLocks.set(p, m) }
+		return m
+	}
+
+	// In-memory store untuk tipe konsolidasi
 	const consolidatedStore = new Map()
+	// In-memory only store (sender-key-memory)
+	const memoryOnlyStore = new Map()
 	const writeTimers = new Map()
 
-	// Helper: tulis consolidated file (debounced 500ms)
+	// Debounced write ke disk (300ms)
 	const scheduleWrite = (type) => {
 		if (writeTimers.has(type)) clearTimeout(writeTimers.get(type))
 		writeTimers.set(type, setTimeout(async () => {
 			writeTimers.delete(type)
 			const store = consolidatedStore.get(type)
 			if (!store) return
-			const path = join(folder, `__consolidated-${type}.json`)
+			const filePath = join(folder, `__consolidated-${type}.json`)
 			const obj = {}
 			for (const [k, v] of store) obj[k] = v
-			try {
-				await writeFile(path, JSON.stringify(obj, BufferJSON.replacer))
-			} catch (err) {
-				console.error(`[AuthState] Gagal tulis consolidated ${type}:`, err.message)
-			}
-		}, 500))
+			const lock = getConsolidatedLock(type)
+			await lock.acquire().then(async (release) => {
+				try {
+					await writeFile(filePath, JSON.stringify(obj, BufferJSON.replacer))
+				} catch (err) {
+					console.error(`[AuthState] Gagal tulis consolidated ${type}:`, err.message)
+				} finally { release() }
+			})
+		}, 300))
 	}
 
-	// Load + migrasi tiap tipe konsolidasi
+	// Write langsung (non-debounced) — untuk migrasi & creds
+	const writeConsolidatedNow = async (type) => {
+		const store = consolidatedStore.get(type)
+		if (!store) return
+		const filePath = join(folder, `__consolidated-${type}.json`)
+		const obj = {}
+		for (const [k, v] of store) obj[k] = v
+		await writeFile(filePath, JSON.stringify(obj, BufferJSON.replacer))
+	}
+
+	// Load tiap tipe konsolidasi + migrasi file individual
 	for (const type of CONSOLIDATED_TYPES) {
 		const store = new Map()
 		consolidatedStore.set(type, store)
@@ -60,17 +95,19 @@ export async function useConsolidatedAuthState(folder) {
 			const raw = await readFile(consolidatedPath, 'utf-8')
 			const data = JSON.parse(raw, BufferJSON.reviver)
 			for (const [k, v] of Object.entries(data)) store.set(k, v)
-			console.log(`[AuthState] ✅ ${type}: ${store.size} entries dari consolidated file`)
+			if (store.size > 0) console.log(`[AuthState] ✅ ${type}: ${store.size} entries dari consolidated file`)
 		} catch (_) {}
 
-		// Migrasi file individual yang masih tersisa
+		// Migrasi file individual yang masih tersisa → hapus setelah merge
 		try {
 			const prefix = `${type}-`
 			const allFiles = await readdir(folder)
-			const toMigrate = allFiles.filter(f => f.startsWith(prefix) && f.endsWith('.json'))
+			const toMigrate = allFiles.filter(f =>
+				f.startsWith(prefix) && f.endsWith('.json') && !f.startsWith('__consolidated')
+			)
 
 			if (toMigrate.length > 0) {
-				console.log(`[AuthState] 🔄 Migrasi ${toMigrate.length} file ${type} individual...`)
+				console.log(`[AuthState] 🔄 Migrasi ${toMigrate.length} file ${type}...`)
 				let migrated = 0
 				for (const file of toMigrate) {
 					const filePath = join(folder, file)
@@ -83,19 +120,31 @@ export async function useConsolidatedAuthState(folder) {
 						migrated++
 					} catch (_) {}
 				}
-				console.log(`[AuthState] ✅ Migrasi selesai: ${migrated} file ${type} → consolidated`)
-
-				// Tulis segera (bukan debounced) setelah migrasi
-				const obj = {}
-				for (const [k, v] of store) obj[k] = v
-				await writeFile(consolidatedPath, JSON.stringify(obj, BufferJSON.replacer))
+				if (migrated > 0) {
+					console.log(`[AuthState] ✅ Migrasi selesai: ${migrated} file ${type} → 1 file consolidated`)
+					await writeConsolidatedNow(type)
+				}
 			}
 		} catch (err) {
 			console.error(`[AuthState] Migrasi ${type} gagal:`, err.message)
 		}
 	}
 
-	// Read/write/remove untuk tipe individual (non-consolidated)
+	// Init memory-only stores
+	for (const type of MEMORY_ONLY_TYPES) {
+		memoryOnlyStore.set(type, new Map())
+	}
+
+	// Hapus file sender-key-memory yang mungkin tertinggal di disk dari useMultiFileAuthState lama
+	try {
+		const allFiles = await readdir(folder)
+		const staleMemFiles = allFiles.filter(f => f.startsWith('sender-key-memory-') && f.endsWith('.json'))
+		for (const f of staleMemFiles) {
+			await unlink(join(folder, f)).catch(() => {})
+		}
+	} catch (_) {}
+
+	// Helpers untuk file non-consolidated (hanya creds.json, dll)
 	const writeData = async (data, file) => {
 		const filePath = join(folder, fixFileName(file))
 		const mutex = getFileLock(filePath)
@@ -137,16 +186,23 @@ export async function useConsolidatedAuthState(folder) {
 			keys: {
 				get: async (type, ids) => {
 					const data = {}
-					if (CONSOLIDATED_TYPES.has(type)) {
+					if (MEMORY_ONLY_TYPES.has(type)) {
+						const store = memoryOnlyStore.get(type)
+						for (const id of ids) data[id] = store?.get(id) ?? null
+					} else if (CONSOLIDATED_TYPES.has(type)) {
 						const store = consolidatedStore.get(type)
 						for (const id of ids) {
-							data[id] = store?.get(id) ?? null
+							let value = store?.get(id) ?? null
+							if (type === 'app-state-sync-key' && value) {
+								try { value = proto.Message.AppStateSyncKeyData.fromObject(value) } catch (_) {}
+							}
+							data[id] = value
 						}
 					} else {
 						await Promise.all(ids.map(async (id) => {
 							let value = await readData(`${type}-${id}.json`)
 							if (type === 'app-state-sync-key' && value) {
-								value = proto.Message.AppStateSyncKeyData.fromObject(value)
+								try { value = proto.Message.AppStateSyncKeyData.fromObject(value) } catch (_) {}
 							}
 							data[id] = value
 						}))
@@ -156,16 +212,20 @@ export async function useConsolidatedAuthState(folder) {
 				set: async (data) => {
 					const tasks = []
 					for (const category in data) {
-						if (CONSOLIDATED_TYPES.has(category)) {
+						if (MEMORY_ONLY_TYPES.has(category)) {
+							const store = memoryOnlyStore.get(category)
+							for (const id in data[category]) {
+								const value = data[category][id]
+								if (value != null) store.set(id, value)
+								else store.delete(id)
+							}
+						} else if (CONSOLIDATED_TYPES.has(category)) {
 							const store = consolidatedStore.get(category)
 							let changed = false
 							for (const id in data[category]) {
 								const value = data[category][id]
-								if (value != null) {
-									store.set(id, value)
-								} else {
-									store.delete(id)
-								}
+								if (value != null) store.set(id, value)
+								else store.delete(id)
 								changed = true
 							}
 							if (changed) scheduleWrite(category)
