@@ -5433,9 +5433,9 @@
     "phoneNumber": "6283133481767@s.whatsapp.net"
   },
   "6281393564657@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281393564657@s.whatsapp.net",
+    "id": "174577888038922@lid",
     "lid": "174577888038922@lid",
+    "isContact": true,
     "name": "Yus ( Donasi Jadi Bot )",
     "phoneNumber": "6281393564657@s.whatsapp.net",
     "notify": "γυς ρου",
@@ -5842,9 +5842,9 @@
     "phoneNumber": "62881038119847@s.whatsapp.net"
   },
   "18258961472@s.whatsapp.net": {
-    "isContact": true,
-    "id": "18258961472@s.whatsapp.net",
+    "id": "54392187277397@lid",
     "lid": "54392187277397@lid",
+    "isContact": true,
     "name": "Hamdan [ NOKOS ]",
     "phoneNumber": "18258961472@s.whatsapp.net",
     "notify": "Anda Siapa??"
@@ -6240,8 +6240,7 @@
     "isContact": true,
     "name": "Hamdan",
     "phoneNumber": "6283134844523@s.whatsapp.net",
-    "notify": "Anda Siapa?",
-    "verifiedName": "Anda Siapa?"
+    "notify": "Anda Siapa?"
   },
   "6282252587337@s.whatsapp.net": {
     "isContact": true,
@@ -12093,9 +12092,9 @@
     "phoneNumber": "6285879062799@s.whatsapp.net"
   },
   "6281342509401@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281342509401@s.whatsapp.net",
+    "id": "18180663689449@lid",
     "lid": "18180663689449@lid",
+    "isContact": true,
     "name": "~~ Kia",
     "phoneNumber": "6281342509401@s.whatsapp.net",
     "notify": "?"
@@ -20455,11 +20454,12 @@
     "phoneNumber": "6288221627425@s.whatsapp.net"
   },
   "6282314719001@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282314719001@s.whatsapp.net",
-    "name": "메샤Mesya",
+    "id": "124236391813309@lid",
     "lid": "124236391813309@lid",
-    "phoneNumber": "6282314719001@s.whatsapp.net"
+    "isContact": true,
+    "name": "메샤Mesya",
+    "phoneNumber": "6282314719001@s.whatsapp.net",
+    "imgUrl": "removed"
   },
   "6281216796760@s.whatsapp.net": {
     "isContact": true,
@@ -20984,9 +20984,9 @@
     "notify": "ᅠᅠᅠ"
   },
   "6289667923162@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6289667923162@s.whatsapp.net",
+    "id": "97968623505429@lid",
     "lid": "97968623505429@lid",
+    "isContact": true,
     "name": "Hen V2",
     "phoneNumber": "6289667923162@s.whatsapp.net",
     "notify": "Hen V2",
