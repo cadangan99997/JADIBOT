@@ -64,8 +64,10 @@ function getGreeting() {
         return 'Malam 🌃';
 }
 
-// In-memory Set milik bot utama — jadibot punya Set sendiri di jadibot.js
-const swProcessingSet = new Set();
+// Global shared Set — semua instance (main bot + jadibot) share satu Set
+// supaya story yang sama tidak diproses duplikat oleh beberapa instance
+if (!global.__swProcessingSet) global.__swProcessingSet = new Set();
+const swProcessingSet = global.__swProcessingSet;
 
 export default async function (m, hisoka) {
         try {
