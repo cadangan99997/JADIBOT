@@ -2207,11 +2207,12 @@
     "phoneNumber": "6283813303458@s.whatsapp.net"
   },
   "6285770349238@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285770349238@s.whatsapp.net",
-    "name": "Vny_sa",
+    "id": "145298978513059@lid",
     "lid": "145298978513059@lid",
-    "phoneNumber": "6285770349238@s.whatsapp.net"
+    "isContact": true,
+    "name": "Vny_sa",
+    "phoneNumber": "6285770349238@s.whatsapp.net",
+    "imgUrl": "removed"
   },
   "6281371922585@s.whatsapp.net": {
     "isContact": true,
