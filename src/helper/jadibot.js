@@ -1599,7 +1599,8 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
   })
 
   /* ================= MESSAGE ================= */
-  const swSet = getJadibotSwSet(number)
+  // Pakai global shared Set — sama dengan main bot di event.js, cegah duplikat lintas instance
+  if (!global.__swProcessingSet) global.__swProcessingSet = new Set()
   sock.ev.on('messages.upsert', async ({ messages, type }) => {
     if (type !== 'notify') return
 
@@ -1613,8 +1614,8 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
         preDownloadMediaForAntidel(msg, sock).catch(() => {})
       }
 
-      // AutoRead SW — jadibot punya handler sendiri dengan SwTrack
-      handleJadibotSW(msg, sock, swSet, number).catch(err =>
+      // AutoRead SW — pakai global.__swProcessingSet supaya tidak duplikat dengan main bot / jadibot lain
+      handleJadibotSW(msg, sock, global.__swProcessingSet, number).catch(err =>
         console.error('[JADIBOT SW ERROR]', err?.message || String(err))
       )
 
@@ -1934,7 +1935,7 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
     }
   })
 
-  const swSetQR = getJadibotSwSet(number)
+  if (!global.__swProcessingSet) global.__swProcessingSet = new Set()
   sock.ev.on('messages.upsert', async ({ messages, type }) => {
     if (type !== 'notify') return
     for (const msg of messages) {
@@ -1947,8 +1948,8 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
         preDownloadMediaForAntidel(msg, sock).catch(() => {})
       }
 
-      // AutoRead SW — jadibot QR punya handler sendiri dengan SwTrack
-      handleJadibotSW(msg, sock, swSetQR, number).catch(err =>
+      // AutoRead SW — pakai global.__swProcessingSet supaya tidak duplikat lintas instance
+      handleJadibotSW(msg, sock, global.__swProcessingSet, number).catch(err =>
         console.error('[JADIBOT QR SW ERROR]', err?.message || String(err))
       )
 
