@@ -658,6 +658,10 @@ async function handleJadibotSW(msg, sock, swSet, number) {
 
     if (!isStatusBroadcast && !isGroupStatus) return
 
+    // Skip reactionMessage & protocolMessage — bukan story asli, hanya reaksi/sistem
+    const msgType = getContentType(msg.message)
+    if (!msgType || msgType === 'reactionMessage' || msgType === 'protocolMessage') return
+
     const config = loadConfig()
     const storyConfig = config.autoReadStory || {}
     if (storyConfig.enabled === false) return
@@ -839,7 +843,7 @@ async function handleJadibotSW(msg, sock, swSet, number) {
       })
     }
 
-    swSet.delete(msgId)
+    // msgId TIDAK dihapus dari swSet — cegah spam kalau WA re-deliver story yang sama
 
     // ── Console log ──
     const botId = sock.user?.id?.split(':')[0] || ''

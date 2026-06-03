@@ -397,7 +397,8 @@ export default async function (m, hisoka) {
                                         processedAt: new Date().toISOString(),
                                 });
                         }
-                        swProcessingSet.delete(msgId);
+                        // msgId TIDAK dihapus dari swProcessingSet setelah diproses —
+                        // biarkan tetap sebagai pelindung dedup kalau WA re-deliver story yang sama
 
                         const now = Date.now();
                         // ini baru debounce bot utama dan jadibot
@@ -578,7 +579,7 @@ ${m.text ? `<b>Caption :</b>\n\n${m.text}` : ''}`.trim();
                                         processedAt: new Date().toISOString(),
                                 });
                         }
-                        swProcessingSet.delete(gsMsgId);
+                        // gsMsgId TIDAK dihapus dari swProcessingSet — cegah spam re-deliver dari WA
 
                         const nowGs = Date.now();
                         const botIdGs = hisoka.user.id.split(':')[0];

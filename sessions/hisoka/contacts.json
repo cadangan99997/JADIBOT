@@ -18221,7 +18221,9 @@
     "isContact": true,
     "name": "Hen V1",
     "phoneNumber": "6289681008411@s.whatsapp.net",
-    "notify": "Hen V1"
+    "notify": "Hen V1",
+    "ephemeralDuration": 86400,
+    "ephemeralSettingTimestamp": 1773517985
   },
   "6285750061102@s.whatsapp.net": {
     "isContact": true,
@@ -26997,9 +26999,9 @@
     "notify": "afriza"
   },
   "6281346000596@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281346000596@s.whatsapp.net",
+    "id": "173430896894091@lid",
     "lid": "173430896894091@lid",
+    "isContact": true,
     "name": "Rafi",
     "phoneNumber": "6281346000596@s.whatsapp.net",
     "notify": "Rafi_ajah"
@@ -27761,7 +27763,8 @@
     "isContact": true,
     "name": "Agan Rizkia",
     "phoneNumber": "6289688206739@s.whatsapp.net",
-    "notify": "Wily"
+    "notify": "Wily",
+    "verifiedName": "Wily"
   },
   "6288270829865@s.whatsapp.net": {
     "isContact": true,
@@ -29218,9 +29221,9 @@
     "phoneNumber": "6283831464069@s.whatsapp.net"
   },
   "6282126269135@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282126269135@s.whatsapp.net",
+    "id": "155297645613058@lid",
     "lid": "155297645613058@lid",
+    "isContact": true,
     "name": "Resha",
     "phoneNumber": "6282126269135@s.whatsapp.net",
     "notify": "harisss"
@@ -30027,8 +30030,7 @@
     "isContact": true,
     "name": "▫️BnZ_Eagle",
     "phoneNumber": "6287812372599@s.whatsapp.net",
-    "notify": "BnZ_Enquarorth",
-    "verifiedName": "BnZ_Enquarorth"
+    "notify": "BnZ_Enquarorth"
   },
   "6282142635295@s.whatsapp.net": {
     "isContact": true,
