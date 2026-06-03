@@ -10205,11 +10205,12 @@
     "phoneNumber": "601131842944@s.whatsapp.net"
   },
   "628989025750@s.whatsapp.net": {
-    "isContact": true,
-    "id": "628989025750@s.whatsapp.net",
-    "name": "! Raffi",
+    "id": "49516963168334@lid",
     "lid": "49516963168334@lid",
-    "phoneNumber": "628989025750@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Raffi",
+    "phoneNumber": "628989025750@s.whatsapp.net",
+    "notify": "Ra v"
   },
   "62895378218007@s.whatsapp.net": {
     "isContact": true,
