@@ -908,7 +908,7 @@
     "addressingMode": "lid",
     "subject": "USER AUTO READ STORY [V-2] ✅",
     "subjectTime": 1736524829,
-    "size": 112,
+    "size": 113,
     "creation": 1734823009,
     "desc": "━━━━━『 *𝗚𝗥𝗢𝗨𝗣 𝗕𝗢𝗧 𝗔𝗨𝗧𝗢 𝗥𝗘𝗔𝗗 𝗦𝗪* 』━━━━━\n\n『 📜 *PERATURAN GROUP* 』\n\n🤖 *Penggunaan Bot MD hanya untuk Admin Group*\n🚫 *Dilarang mengundang bot tanpa izin Admin*\n🔗 *Dilarang menyebarkan link group lain*\n📌 *Dilarang spam tag/mention group*\n🔞 *Dilarang berbagi konten dewasa/NSFW*\n🤬 *Dilarang toxic/kata kasar/hate speech*\n⛔ *Dilarang SARA/rasis dalam bentuk apapun*\n📸 *Dilarang berbagi foto/video +18*\n🖼️ *Dilarang spam foto/sticker tidak penting*\n⚠️ *Dilarang promosi/jualan tanpa izin Admin*\n❌ *Pelanggaran = Kick tanpa peringatan*\n📱 *Disarankan simpan nomor Admin Group*\n\n━━━━━━『 *CATATAN PENTING* 』━━━━━━\n• *Admins berhak mengeluarkan member tanpa peringatan*\n• *Tidak ada toleransi untuk pelanggaran berat*\n• *Rules dapat berubah sewaktu-waktu*\n• *Mohon patuhi semua peraturan demi kenyamanan bersama*\n\n*━━━━『 *DOWNLOAD SCRIPT* 』━━━━━━\nhttps://v2-web-bang-wily.vercel.app\n\n❗ *Note: Jika link error, silahkan hubungi Admin Wily*\n\n━━━━━━『 *INFO GROUP* 』━━━━━━\n📱 *Main Group*\n• https://chat.whatsapp.com/LkEuHgYf7Yk41wXoUMH0lc?mode=gi_t\n\n🤖 *Bot Groups*\n• V1: https://chat.whatsapp.com/FnfatV8TlOZEMwLlLoDCRp?mode=gi_t\n• V2: https://chat.whatsapp.com/KaNQoAG6eGWLGnso3cKvwq?mode=gi_t\n\n⏰ *Jadwal Operasional:*\n• Aktif: Malam - Subuh\n• Tutup: Pagi - Sore\n\n━━━━━━『 *KONTAK ADMIN* 』━━━━━━\n📞 *Owner:* wa.me/6289688206739\n\n🙏 *Terima kasih atas pengertian dan kerjasamanya*",
     "descId": "DEE5F3728EA4B43EE37B696D0F19274A",
@@ -1245,6 +1245,11 @@
       {
         "id": "9951875489877@lid",
         "phoneNumber": "6285752930307@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "10436871233676@lid",
+        "phoneNumber": "6285700996045@s.whatsapp.net",
         "admin": null
       },
       {
@@ -5925,7 +5930,7 @@
     "subjectOwner": "172838711480524@lid",
     "subjectOwnerPn": "6283123405940@s.whatsapp.net",
     "subjectTime": 1761452838,
-    "size": 860,
+    "size": 862,
     "creation": 1693096407,
     "owner": "88609721962527@lid",
     "ownerPn": "6285807405071@s.whatsapp.net",
@@ -7166,6 +7171,11 @@
       {
         "id": "34012684918803@lid",
         "phoneNumber": "6285285396390@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "36112806494323@lid",
+        "phoneNumber": "6285198743053@s.whatsapp.net",
         "admin": null
       },
       {
@@ -9474,6 +9484,11 @@
         "admin": null
       },
       {
+        "id": "100266716209173@lid",
+        "phoneNumber": "79238265772@s.whatsapp.net",
+        "admin": null
+      },
+      {
         "id": "79951453765790@lid",
         "phoneNumber": "601127282017@s.whatsapp.net",
         "admin": null
@@ -9709,6 +9724,11 @@
         "admin": null
       },
       {
+        "id": "111541038915750@lid",
+        "phoneNumber": "6282313188517@s.whatsapp.net",
+        "admin": null
+      },
+      {
         "id": "254962646921326@lid",
         "phoneNumber": "6285183153201@s.whatsapp.net",
         "admin": null
@@ -9821,11 +9841,6 @@
       {
         "id": "208774283403395@lid",
         "phoneNumber": "6282181085912@s.whatsapp.net",
-        "admin": null
-      },
-      {
-        "id": "50097186435206@lid",
-        "phoneNumber": "9647881256028@s.whatsapp.net",
         "admin": null
       },
       {
@@ -10241,11 +10256,6 @@
       {
         "id": "274380311523546@lid",
         "phoneNumber": "62882022633535@s.whatsapp.net",
-        "admin": null
-      },
-      {
-        "id": "111541038915750@lid",
-        "phoneNumber": "6282313188517@s.whatsapp.net",
         "admin": null
       }
     ]
@@ -10970,10 +10980,6 @@
         "admin": null
       },
       {
-        "id": "50097186435206@lid",
-        "admin": null
-      },
-      {
         "id": "121466674782250@lid",
         "admin": null
       },
@@ -11167,6 +11173,10 @@
       },
       {
         "id": "243898995744811@lid",
+        "admin": null
+      },
+      {
+        "id": "111541038915750@lid",
         "admin": null
       },
       {
@@ -18229,10 +18239,6 @@
       },
       {
         "id": "254193512226986@lid",
-        "admin": null
-      },
-      {
-        "id": "111541038915750@lid",
         "admin": null
       }
     ]

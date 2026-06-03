@@ -231,11 +231,12 @@
     "phoneNumber": "6281291483116@s.whatsapp.net"
   },
   "6281973145146@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281973145146@s.whatsapp.net",
-    "name": "√Salsaツ",
+    "id": "245023656403118@lid",
     "lid": "245023656403118@lid",
-    "phoneNumber": "6281973145146@s.whatsapp.net"
+    "isContact": true,
+    "name": "√Salsaツ",
+    "phoneNumber": "6281973145146@s.whatsapp.net",
+    "notify": "𝘿𝙚𝙡𝙩𝙖 𝙣𝙩4×"
   },
   "6285701279056@s.whatsapp.net": {
     "isContact": true,
@@ -2985,11 +2986,12 @@
     "phoneNumber": "6283112465283@s.whatsapp.net"
   },
   "6281374976765@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281374976765@s.whatsapp.net",
-    "name": "√tita💅",
+    "id": "195713338183899@lid",
     "lid": "195713338183899@lid",
-    "phoneNumber": "6281374976765@s.whatsapp.net"
+    "isContact": true,
+    "name": "√tita💅",
+    "phoneNumber": "6281374976765@s.whatsapp.net",
+    "notify": "."
   },
   "6282342727268@s.whatsapp.net": {
     "isContact": true,
@@ -6325,11 +6327,12 @@
     "phoneNumber": "6282290413722@s.whatsapp.net"
   },
   "6282272288038@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282272288038@s.whatsapp.net",
-    "name": "!akbar 001",
+    "id": "95666571350028@lid",
     "lid": "95666571350028@lid",
-    "phoneNumber": "6282272288038@s.whatsapp.net"
+    "isContact": true,
+    "name": "!akbar 001",
+    "phoneNumber": "6282272288038@s.whatsapp.net",
+    "notify": "Akbar"
   },
   "6282169968787@s.whatsapp.net": {
     "isContact": true,
@@ -15554,7 +15557,8 @@
     "isContact": true,
     "name": "Agan Rizkia",
     "phoneNumber": "6289688206739@s.whatsapp.net",
-    "notify": "Wily"
+    "notify": "Wily",
+    "verifiedName": "Wily"
   },
   "6285796008729@s.whatsapp.net": {
     "isContact": true,
@@ -23768,11 +23772,13 @@
     "phoneNumber": "6281521701210@s.whatsapp.net"
   },
   "6282268990535@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6282268990535@s.whatsapp.net",
-    "name": "√ Miku",
+    "id": "38642156306452@lid",
     "lid": "38642156306452@lid",
-    "phoneNumber": "6282268990535@s.whatsapp.net"
+    "isContact": true,
+    "name": "√ Miku",
+    "phoneNumber": "6282268990535@s.whatsapp.net",
+    "notify": "Otaku Hakase",
+    "verifiedName": "Otaku Hakase"
   },
   "62895405372727@s.whatsapp.net": {
     "isContact": true,
@@ -23829,7 +23835,8 @@
     "isContact": true,
     "name": "! Nurul 🗿",
     "phoneNumber": "6285136314199@s.whatsapp.net",
-    "notify": "Nursaori_saossoryy"
+    "notify": "Nursaori_saossoryy",
+    "imgUrl": "changed"
   },
   "6281245520898@s.whatsapp.net": {
     "isContact": true,
@@ -31135,6 +31142,26 @@
   "17106854748264@lid": {
     "id": "17106854748264@lid",
     "lid": "17106854748264@lid",
+    "imgUrl": "changed"
+  },
+  "107628206284815@lid": {
+    "id": "107628206284815@lid",
+    "lid": "107628206284815@lid",
+    "imgUrl": "changed"
+  },
+  "6282313188517@s.whatsapp.net": {
+    "id": "111541038915750@lid",
+    "lid": "111541038915750@lid",
+    "notify": "...."
+  },
+  "107030702518469@lid": {
+    "id": "107030702518469@lid",
+    "lid": "107030702518469@lid",
+    "imgUrl": "removed"
+  },
+  "13280206696653@lid": {
+    "id": "13280206696653@lid",
+    "lid": "13280206696653@lid",
     "imgUrl": "changed"
   }
 }
