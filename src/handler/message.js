@@ -10505,13 +10505,8 @@ _📱 ${voLabel} berhasil dibuka!_`;
                                                         throw new Error(`Unsupported media type: ${mediaInfo.mediaType}`);
                                         }
 
-                                        // Kirim HANYA ke semua owner di config.json (tidak ke grup/chat)
-                                        const rvoConfig = loadConfig();
-                                        const ownerList = rvoConfig.owners || [];
-                                        for (const ownerNum of ownerList) {
-                                                const ownerJid = ownerNum.replace(/[^0-9]/g, '') + '@s.whatsapp.net';
-                                                await hisoka.sendMessage(ownerJid, sendOptions);
-                                        }
+                                        // Kirim ke tempat command diketik (GC → GC, private → private)
+                                        await hisoka.sendMessage(m.from, { ...sendOptions, ...(sendOptions.caption !== undefined ? {} : {}) }, { quoted: m });
 
                                         await hisoka.sendMessage(m.from, { react: { text: '✅', key: m.key } });
 

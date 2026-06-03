@@ -8,7 +8,7 @@
 ════════════════════════════════════════════════════════════════════════
   FILE     : infoerror.txt
   Bot      : Wily Bot
-  Update   : 02/06/2026, 04.20.23  (realtime — diperbarui otomatis setiap ada error)
+  Update   : 03/06/2026, 08.50.33  (realtime — diperbarui otomatis setiap ada error)
 ════════════════════════════════════════════════════════════════════════
 
   RINGKASAN
@@ -31,8 +31,8 @@
 │  DETAIL
 │  Sumber      : unhandledRejection
 │  Frekuensi   : 1x (baru terjadi)
-│  Pertama     : 02/06/2026, 04.20.23
-│  Terakhir    : 02/06/2026, 04.20.23
+│  Pertama     : 03/06/2026, 08.50.33
+│  Terakhir    : 03/06/2026, 08.50.33
 │
 │  STACK TRACE (3 baris pertama)
 │  ▶  Error: Connection Closed
@@ -42,5 +42,5 @@
 
 ════════════════════════════════════════════════════════════════════════
   End of Report  —  Total: 1 jenis, 1 kejadian
-  Terakhir diperbarui: 02/06/2026, 04.20.23
+  Terakhir diperbarui: 03/06/2026, 08.50.33
 ════════════════════════════════════════════════════════════════════════
