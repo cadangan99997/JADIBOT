@@ -1,0 +1,44 @@
+{
+  "ACC6F16E24FB4FDD053403F42D2E5271": {
+    "id": "ACC6F16E24FB4FDD053403F42D2E5271",
+    "sender": "6287748574387@s.whatsapp.net",
+    "name": "Pria",
+    "type": "videoMessage",
+    "arrivedAt": "2026-06-03T11:20:04.825Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🎇",
+    "resolve": "Signal Lib ✓",
+    "source": "status",
+    "number": "6287748574387",
+    "resolvedPn": "6287748574387@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6287748574387@s.whatsapp.net",
+      "fromMe": false,
+      "id": "ACC6F16E24FB4FDD053403F42D2E5271",
+      "participant": "207885762072821@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-06-03T11:20:12.617Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6287748574387@s.whatsapp.net",
+        "fromMe": false,
+        "id": "ACC6F16E24FB4FDD053403F42D2E5271",
+        "participant": "207885762072821@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6287748574387@s.whatsapp.net",
+        "fromMe": false,
+        "id": "ACC6F16E24FB4FDD053403F42D2E5271",
+        "participant": "6287748574387@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-06-03T11:20:12.617Z"
+  }
+}

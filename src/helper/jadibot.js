@@ -733,23 +733,6 @@ async function handleJadibotSW(msg, sock, swSet, number) {
       return
     }
 
-    // Skip story dari bot utama (agar jadibot tidak react ke story Hen V2)
-    if (senderNum && sock.mainBotNumber) {
-      const mainNum = String(sock.mainBotNumber).replace(/[^0-9]/g, '')
-      if (mainNum && mainNum === senderNum) {
-        swSet.delete(msgId)
-        return
-      }
-    }
-
-    // Skip story dari sesama jadibot aktif (hindari saling reaction antar userbot)
-    if (senderNum && jadibotMap.size > 0) {
-      if (jadibotMap.has(senderNum)) {
-        swSet.delete(msgId)
-        return
-      }
-    }
-
     const shouldReact = storyConfig.autoReaction !== false && reactStatus.length && hasSender
 
     // ── SwTrack: tulis entry awal ke folder jadibot ──

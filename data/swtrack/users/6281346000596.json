@@ -1,0 +1,27 @@
+{
+  "AC9159118CBC1C33BA67B8D6F4389DF8": {
+    "id": "AC9159118CBC1C33BA67B8D6F4389DF8",
+    "sender": "6281346000596@s.whatsapp.net",
+    "name": "Rafi_ajah",
+    "type": "videoMessage",
+    "arrivedAt": "2026-06-03T10:56:55.852Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "😇",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6281346000596",
+    "resolvedPn": "6281346000596@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6281346000596@s.whatsapp.net",
+      "fromMe": false,
+      "id": "AC9159118CBC1C33BA67B8D6F4389DF8",
+      "participant": "173430896894091@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-06-03T11:02:03.715Z",
+    "retriedOnStartup": true,
+    "retriedAt": "2026-06-03T11:02:03.715Z"
+  }
+}
