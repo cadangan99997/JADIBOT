@@ -5,8 +5,9 @@
       "permanent": true,
       "status": "active",
       "createdAt": 1780478317777,
-      "updatedAt": 1780478317777,
-      "durationText": "Permanent"
+      "updatedAt": 1780478672614,
+      "durationText": "Permanent",
+      "connectedAt": 1780478672613
     }
   }
 }

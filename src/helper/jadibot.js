@@ -1157,9 +1157,6 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
 
   fs.mkdirSync(sessionDir, { recursive: true })
 
-  // Bersihkan session lama sebelum load (pre-key tidak disentuh)
-  cleanStaleSessionFiles(sessionDir)
-
   const { state, saveCreds } = await useMultiFileAuthState(sessionDir)
   const { version } = await fetchLatestBaileysVersion()
 
@@ -1362,17 +1359,6 @@ async function startJadibot(number, sendReply, mainBotNumber, editMsg = null, se
       startingSocketMap.delete(number)
       pairingRequested.delete(number)
 
-      // Periodic SessionCleaner — bersihkan session/sender-key lama tiap 6 jam
-      // Penting untuk jadibot yang berjalan lama tanpa reconnect
-      if (jadibotCleanerTimers.has(number)) {
-        clearInterval(jadibotCleanerTimers.get(number))
-      }
-      const _cleanIntervalMs = (() => {
-        try { return (loadConfig()?.sessionCleaner?.jadibotIntervalHours || 6) * 60 * 60 * 1000 } catch { return 6 * 60 * 60 * 1000 }
-      })()
-      jadibotCleanerTimers.set(number, setInterval(() => {
-        cleanStaleSessionFiles(sessionDir)
-      }, _cleanIntervalMs))
       if (durationMs === 'permanent') {
         setPermanentJadibot(number, 'active')
       } else if (hasRequestedDuration) {
@@ -1668,7 +1654,6 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
   const sessionDir = path.join(process.cwd(), 'jadibot', number)
 
   fs.mkdirSync(sessionDir, { recursive: true })
-  cleanStaleSessionFiles(sessionDir)
 
   const { state, saveCreds } = await useMultiFileAuthState(sessionDir)
   const { version } = await fetchLatestBaileysVersion()
@@ -1739,17 +1724,6 @@ async function startJadibotQR(number, sendReply, sendImage, mainBotNumber, durat
       jadibotMap.set(number, sock)
       jadibotConnectedAt.set(number, _connectTs)
       persistConnectedAt(number, _connectTs)
-
-      // Periodic SessionCleaner — bersihkan session/sender-key lama tiap 6 jam
-      if (jadibotCleanerTimers.has(number)) {
-        clearInterval(jadibotCleanerTimers.get(number))
-      }
-      const _cleanIntervalMsQR = (() => {
-        try { return (loadConfig()?.sessionCleaner?.jadibotIntervalHours || 6) * 60 * 60 * 1000 } catch { return 6 * 60 * 60 * 1000 }
-      })()
-      jadibotCleanerTimers.set(number, setInterval(() => {
-        cleanStaleSessionFiles(sessionDir)
-      }, _cleanIntervalMsQR))
 
       if (durationMs === 'permanent') {
         setPermanentJadibot(number, 'active')
