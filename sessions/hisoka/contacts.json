@@ -406,11 +406,12 @@
     "phoneNumber": "62895393418200@s.whatsapp.net"
   },
   "62881025542877@s.whatsapp.net": {
-    "isContact": true,
-    "id": "62881025542877@s.whatsapp.net",
-    "name": "! Rara",
+    "id": "74797375574209@lid",
     "lid": "74797375574209@lid",
-    "phoneNumber": "62881025542877@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Rara",
+    "phoneNumber": "62881025542877@s.whatsapp.net",
+    "notify": "🫪"
   },
   "62895405718686@s.whatsapp.net": {
     "isContact": true,
@@ -1477,11 +1478,12 @@
     "phoneNumber": "6285717622437@s.whatsapp.net"
   },
   "62895704334234@s.whatsapp.net": {
-    "isContact": true,
-    "id": "62895704334234@s.whatsapp.net",
-    "name": "▫️Dinda",
+    "id": "142696211599405@lid",
     "lid": "142696211599405@lid",
-    "phoneNumber": "62895704334234@s.whatsapp.net"
+    "isContact": true,
+    "name": "▫️Dinda",
+    "phoneNumber": "62895704334234@s.whatsapp.net",
+    "notify": "dnda👇🏻"
   },
   "6289684015190@s.whatsapp.net": {
     "isContact": true,
@@ -11123,11 +11125,13 @@
     "phoneNumber": "6282340800234@s.whatsapp.net"
   },
   "6285711200877@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285711200877@s.whatsapp.net",
-    "name": "Naizo 👍",
+    "id": "168736715731040@lid",
     "lid": "168736715731040@lid",
-    "phoneNumber": "6285711200877@s.whatsapp.net"
+    "isContact": true,
+    "name": "Naizo 👍",
+    "phoneNumber": "6285711200877@s.whatsapp.net",
+    "notify": "Albiverstappen",
+    "verifiedName": "Albiverstappen"
   },
   "6285261618586@s.whatsapp.net": {
     "isContact": true,
@@ -12425,11 +12429,12 @@
     "phoneNumber": "6287840002190@s.whatsapp.net"
   },
   "6283171949557@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283171949557@s.whatsapp.net",
-    "name": "Melki",
+    "id": "221543170892007@lid",
     "lid": "221543170892007@lid",
-    "phoneNumber": "6283171949557@s.whatsapp.net"
+    "isContact": true,
+    "name": "Melki",
+    "phoneNumber": "6283171949557@s.whatsapp.net",
+    "notify": "Melki"
   },
   "6285733191455@s.whatsapp.net": {
     "isContact": true,
@@ -14994,11 +14999,12 @@
     "phoneNumber": "6285367945392@s.whatsapp.net"
   },
   "6289504802678@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6289504802678@s.whatsapp.net",
-    "name": "! Rendra wa 126",
+    "id": "263445207371837@lid",
     "lid": "263445207371837@lid",
-    "phoneNumber": "6289504802678@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Rendra wa 126",
+    "phoneNumber": "6289504802678@s.whatsapp.net",
+    "notify": "Rendra pulang ada gulali"
   },
   "6282334052257@s.whatsapp.net": {
     "isContact": true,
@@ -23815,11 +23821,12 @@
     "phoneNumber": "6283115523917@s.whatsapp.net"
   },
   "6285136314199@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285136314199@s.whatsapp.net",
-    "name": "! Nurul 🗿",
+    "id": "90916371062907@lid",
     "lid": "90916371062907@lid",
-    "phoneNumber": "6285136314199@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Nurul 🗿",
+    "phoneNumber": "6285136314199@s.whatsapp.net",
+    "notify": "Nursaori_saossoryy"
   },
   "6281245520898@s.whatsapp.net": {
     "isContact": true,
@@ -26307,11 +26314,12 @@
     "phoneNumber": "6283121126957@s.whatsapp.net"
   },
   "6281353726941@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6281353726941@s.whatsapp.net",
-    "name": "Ikell🅥",
+    "id": "192706760442045@lid",
     "lid": "192706760442045@lid",
-    "phoneNumber": "6281353726941@s.whatsapp.net"
+    "isContact": true,
+    "name": "Ikell🅥",
+    "phoneNumber": "6281353726941@s.whatsapp.net",
+    "notify": "Ikell ♪"
   },
   "6285774467278@s.whatsapp.net": {
     "isContact": true,
@@ -31094,5 +31102,20 @@
     "name": "▫️Vivi",
     "lid": "125173013422190@lid",
     "phoneNumber": "6289505550576@s.whatsapp.net"
+  },
+  "144049344356380@lid": {
+    "id": "144049344356380@lid",
+    "lid": "144049344356380@lid",
+    "imgUrl": "removed"
+  },
+  "6111872712738@lid": {
+    "id": "6111872712738@lid",
+    "lid": "6111872712738@lid",
+    "imgUrl": "removed"
+  },
+  "76416209145992@lid": {
+    "id": "76416209145992@lid",
+    "lid": "76416209145992@lid",
+    "imgUrl": "removed"
   }
 }

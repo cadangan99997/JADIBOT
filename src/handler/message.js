@@ -2638,20 +2638,8 @@ export default async function ({ message, type: messagesType }, hisoka) {
                                 // (handler asli tetap di bawah, hanya guard yang dilewati)
                         } else {
                                 // bukan pilihan valid, tetap lanjut normal
-                                if (hisoka?.isMainBot === true) {
-                                    if (!m.isOwner) return;
-                                    // Owner tidak diblokir meski nomornya ada di jadibotMap
-                                }
                         }
                 } else {
-                        if (hisoka?.isMainBot === true) {
-                            if (!m.isOwner) {
-                                return;
-                            }
-                            // Owner selalu bisa pakai semua command di bot utama,
-                            // meskipun nomornya ada di jadibotMap (misal: jalanin Hen V2)
-                        }
-
                         if (hisoka?.isMainBot === false) {
                             if (!m.isOwner) {
                                 return;

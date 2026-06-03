@@ -56,7 +56,7 @@ import messageHandler from '../handler/message.js'
 import JSONDB from '../db/json.js'
 import { cleanStaleSessionFiles } from './cleaner.js'
 import { logError } from '../db/errorLog.js'
-import { getJadibotAnticall, getJadibotAnticallvid, getJadibotNumber } from './jadibotSettings.js'
+import { getJadibotAnticall, getJadibotAnticallvid, getJadibotNumber, getJadibotReadsw } from './jadibotSettings.js'
 import { getHandler } from './hotReload.js'
 
 /* ================= LOGGER ================= */
@@ -662,8 +662,7 @@ async function handleJadibotSW(msg, sock, swSet, number) {
     const msgType = getContentType(msg.message)
     if (!msgType || msgType === 'reactionMessage' || msgType === 'protocolMessage') return
 
-    const config = loadConfig()
-    const storyConfig = config.autoReadStory || {}
+    const storyConfig = getJadibotReadsw(number)
     if (storyConfig.enabled === false) return
 
     const msgId = msg.key?.id
