@@ -1,0 +1,44 @@
+{
+  "A5AEE8C00A49599B467D7EF2225760F5": {
+    "id": "A5AEE8C00A49599B467D7EF2225760F5",
+    "sender": "6283801316138@s.whatsapp.net",
+    "name": "Majidi Shop",
+    "type": "videoMessage",
+    "arrivedAt": "2026-06-03T08:25:15.097Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "📤",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6283801316138",
+    "resolvedPn": "6283801316138@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6283801316138@s.whatsapp.net",
+      "fromMe": false,
+      "id": "A5AEE8C00A49599B467D7EF2225760F5",
+      "participant": "160782520160300@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-06-03T08:25:19.095Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6283801316138@s.whatsapp.net",
+        "fromMe": false,
+        "id": "A5AEE8C00A49599B467D7EF2225760F5",
+        "participant": "160782520160300@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6283801316138@s.whatsapp.net",
+        "fromMe": false,
+        "id": "A5AEE8C00A49599B467D7EF2225760F5",
+        "participant": "6283801316138@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-06-03T08:25:19.095Z"
+  }
+}

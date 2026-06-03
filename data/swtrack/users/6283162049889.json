@@ -1,0 +1,27 @@
+{
+  "ACD7849D63EC8A1BD2EEA084BE861DDB": {
+    "id": "ACD7849D63EC8A1BD2EEA084BE861DDB",
+    "sender": "6283162049889@s.whatsapp.net",
+    "name": "𝓼ᴛᴜ̈𝓼𝓼𝔂",
+    "type": "videoMessage",
+    "arrivedAt": "2026-06-03T08:53:17.617Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "💱",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6283162049889",
+    "resolvedPn": "6283162049889@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6283162049889@s.whatsapp.net",
+      "fromMe": false,
+      "id": "ACD7849D63EC8A1BD2EEA084BE861DDB",
+      "participant": "132860719661169@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-06-03T08:54:19.113Z",
+    "retriedOnStartup": true,
+    "retriedAt": "2026-06-03T08:54:19.113Z"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "AC15FE68B311968229639999B948832C": {
+    "id": "AC15FE68B311968229639999B948832C",
+    "sender": "6285728458204@s.whatsapp.net",
+    "name": "Tea.. Time",
+    "type": "videoMessage",
+    "arrivedAt": "2026-06-03T08:21:23.294Z",
+    "read": true,
+    "reacted": true,
+    "emoji": "🤮",
+    "resolve": "PN langsung ✓",
+    "source": "status",
+    "number": "6285728458204",
+    "resolvedPn": "6285728458204@s.whatsapp.net",
+    "messageKey": {
+      "remoteJid": "status@broadcast",
+      "remoteJidAlt": "6285728458204@s.whatsapp.net",
+      "fromMe": false,
+      "id": "AC15FE68B311968229639999B948832C",
+      "participant": "49997814964231@lid",
+      "addressingMode": "lid"
+    },
+    "updatedAt": "2026-06-03T08:21:29.732Z",
+    "receiptKeys": [
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6285728458204@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC15FE68B311968229639999B948832C",
+        "participant": "49997814964231@lid",
+        "addressingMode": "lid"
+      },
+      {
+        "remoteJid": "status@broadcast",
+        "remoteJidAlt": "6285728458204@s.whatsapp.net",
+        "fromMe": false,
+        "id": "AC15FE68B311968229639999B948832C",
+        "participant": "6285728458204@s.whatsapp.net",
+        "addressingMode": "lid"
+      }
+    ],
+    "processedAt": "2026-06-03T08:21:29.732Z"
+  }
+}
