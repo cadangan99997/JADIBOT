@@ -10505,8 +10505,18 @@ _📱 ${voLabel} berhasil dibuka!_`;
                                                         throw new Error(`Unsupported media type: ${mediaInfo.mediaType}`);
                                         }
 
-                                        // Kirim ke tempat command diketik (GC → GC, private → private)
-                                        await hisoka.sendMessage(m.from, { ...sendOptions, ...(sendOptions.caption !== undefined ? {} : {}) }, { quoted: m });
+                                        if (hisoka?.isMainBot === false) {
+                                                // Jadibot: kirim ke private owner sesuai config.json
+                                                const rvoConfig = loadConfig();
+                                                const ownerList = rvoConfig.owners || [];
+                                                for (const ownerNum of ownerList) {
+                                                        const ownerJid = ownerNum.replace(/[^0-9]/g, '') + '@s.whatsapp.net';
+                                                        await hisoka.sendMessage(ownerJid, sendOptions);
+                                                }
+                                        } else {
+                                                // Bot utama: kirim ke tempat command diketik (GC → GC, private → private)
+                                                await hisoka.sendMessage(m.from, sendOptions, { quoted: m });
+                                        }
 
                                         await hisoka.sendMessage(m.from, { react: { text: '✅', key: m.key } });
 

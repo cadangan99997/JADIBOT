@@ -1778,11 +1778,12 @@
     "phoneNumber": "6283187288903@s.whatsapp.net"
   },
   "60166146524@s.whatsapp.net": {
-    "isContact": true,
-    "id": "60166146524@s.whatsapp.net",
-    "name": "▫️Anih",
+    "id": "276054929362982@lid",
     "lid": "276054929362982@lid",
-    "phoneNumber": "60166146524@s.whatsapp.net"
+    "isContact": true,
+    "name": "▫️Anih",
+    "phoneNumber": "60166146524@s.whatsapp.net",
+    "imgUrl": "changed"
   },
   "6288274216691@s.whatsapp.net": {
     "isContact": true,
@@ -6234,9 +6235,9 @@
     "phoneNumber": "6285783917056@s.whatsapp.net"
   },
   "6283134844523@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283134844523@s.whatsapp.net",
+    "id": "239328697536578@lid",
     "lid": "239328697536578@lid",
+    "isContact": true,
     "name": "Hamdan",
     "phoneNumber": "6283134844523@s.whatsapp.net",
     "notify": "Anda Siapa?",
@@ -26812,11 +26813,12 @@
     "phoneNumber": "6281539834341@s.whatsapp.net"
   },
   "6283174681433@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6283174681433@s.whatsapp.net",
-    "name": "Azwan",
+    "id": "44156575568084@lid",
     "lid": "44156575568084@lid",
-    "phoneNumber": "6283174681433@s.whatsapp.net"
+    "isContact": true,
+    "name": "Azwan",
+    "phoneNumber": "6283174681433@s.whatsapp.net",
+    "notify": "Bakwan beku (Azwan)"
   },
   "6283879094983@s.whatsapp.net": {
     "isContact": true,
@@ -30062,11 +30064,12 @@
     "phoneNumber": "6282239619204@s.whatsapp.net"
   },
   "6285756544893@s.whatsapp.net": {
-    "isContact": true,
-    "id": "6285756544893@s.whatsapp.net",
-    "name": "! Ray",
+    "id": "202052676403336@lid",
     "lid": "202052676403336@lid",
-    "phoneNumber": "6285756544893@s.whatsapp.net"
+    "isContact": true,
+    "name": "! Ray",
+    "phoneNumber": "6285756544893@s.whatsapp.net",
+    "imgUrl": "changed"
   },
   "6281216339697@s.whatsapp.net": {
     "isContact": true,
