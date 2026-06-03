@@ -21,10 +21,16 @@
 import fs from 'fs';
 import path from 'path';
 
+// Tulis ke disk debounced — tidak ngeblok event loop
+// Cache diupdate langsung (baca tetap instant), disk di-flush tiap 500ms
+const WRITE_DEBOUNCE_MS = 500;
+
 export class JSONDB {
         cache = {};
         hasLoaded = false;
         filePath = '';
+        _dirty = false;
+        _flushTimer = null;
 
         constructor(fileName, dir = null) {
                 if (!dir) {
@@ -70,10 +76,45 @@ export class JSONDB {
                 }
         }
 
-        exists(key) {
-                if (!this.hasLoaded) {
-                        this.load();
+        // Tulis cache ke disk segera (sinkron) — pakai hanya saat shutdown/kritis
+        flushSync() {
+                if (!this._dirty) return;
+                try {
+                        const dir = path.dirname(this.filePath);
+                        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+                        fs.writeFileSync(this.filePath, JSON.stringify(this.cache, null, 2), 'utf-8');
+                        this._dirty = false;
+                } catch (err) {
+                        console.error('[JSONDB] flushSync error:', this.filePath, err.message);
                 }
+        }
+
+        // Jadwalkan flush async — tidak ngeblok event loop
+        _scheduleFlush() {
+                this._dirty = true;
+                if (this._flushTimer) return; // sudah dijadwalkan
+                this._flushTimer = setTimeout(() => {
+                        this._flushTimer = null;
+                        const dir = path.dirname(this.filePath);
+                        try {
+                                if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+                                fs.writeFile(
+                                        this.filePath,
+                                        JSON.stringify(this.cache, null, 2),
+                                        'utf-8',
+                                        (err) => {
+                                                if (err) console.error('[JSONDB] flush error:', this.filePath, err.message);
+                                                else this._dirty = false;
+                                        }
+                                );
+                        } catch (err) {
+                                console.error('[JSONDB] flush error:', this.filePath, err.message);
+                        }
+                }, WRITE_DEBOUNCE_MS);
+        }
+
+        exists(key) {
+                this.loadIfNeeded();
                 return Object.prototype.hasOwnProperty.call(this.cache, key);
         }
 
@@ -89,20 +130,14 @@ export class JSONDB {
         write(key, value) {
                 this.loadIfNeeded();
                 this.cache[key] = value;
-                const data = JSON.stringify(this.cache, null, 2);
-                const dir = path.dirname(this.filePath);
-                if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-                fs.writeFileSync(this.filePath, data, 'utf-8');
+                this._scheduleFlush(); // async — tidak ngeblok
                 return value;
         }
 
         delete(key) {
                 this.loadIfNeeded();
                 delete this.cache[key];
-                const data = JSON.stringify(this.cache, null, 2);
-                const dir = path.dirname(this.filePath);
-                if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-                fs.writeFileSync(this.filePath, data, 'utf-8');
+                this._scheduleFlush(); // async — tidak ngeblok
         }
 
         keys() {

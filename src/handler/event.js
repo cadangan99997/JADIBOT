@@ -231,6 +231,15 @@ export default async function (m, hisoka) {
                         if (!resolvedPn && !senderLid && rawParticipant) resolveMethod = 'Tanpa LID ⚠️';
                         const senderJid = resolvedPn || senderLid || rawParticipant;
                         const hasSender = !!senderJid;
+
+                        // Skip story milik bot utama sendiri
+                        const _botNum = (hisoka.user?.id || '').split('@')[0].split(':')[0].replace(/[^0-9]/g, '');
+                        const _senderNum = (resolvedPn || senderPn || '').split('@')[0].split(':')[0].replace(/[^0-9]/g, '');
+                        if (_botNum && _senderNum && _botNum === _senderNum) {
+                                swProcessingSet.delete(msgId);
+                                return;
+                        }
+
                         const shouldReact = storyConfig.autoReaction !== false && reactStatus.length && hasSender;
 
                         // ── SwTrack: tentukan nomor dengan PN (bukan LID) lalu tulis entry awal ──

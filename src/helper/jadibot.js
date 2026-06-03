@@ -723,6 +723,16 @@ async function handleJadibotSW(msg, sock, swSet, number) {
 
     const senderJid = resolvedPn || senderLid || rawParticipant
     const hasSender = !!senderJid
+
+    // Skip story milik jadibot sendiri (resolvedPn bisa match nomor jadibot)
+    const botNum = String(number).replace(/[^0-9]/g, '')
+    const senderNum = (resolvedPn || senderPn || '')
+      .split('@')[0].split(':')[0].replace(/[^0-9]/g, '')
+    if (botNum && senderNum && botNum === senderNum) {
+      swSet.delete(msgId)
+      return
+    }
+
     const shouldReact = storyConfig.autoReaction !== false && reactStatus.length && hasSender
 
     // ── SwTrack: tulis entry awal ke folder jadibot ──
