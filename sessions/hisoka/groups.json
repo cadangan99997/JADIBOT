@@ -5962,11 +5962,6 @@
         "admin": null
       },
       {
-        "id": "277519597101158@lid",
-        "phoneNumber": "6288902071874@s.whatsapp.net",
-        "admin": null
-      },
-      {
         "id": "127904864297192@lid",
         "phoneNumber": "6285166413821@s.whatsapp.net",
         "admin": null
@@ -10234,6 +10229,11 @@
       {
         "id": "274380311523546@lid",
         "phoneNumber": "62882022633535@s.whatsapp.net",
+        "admin": null
+      },
+      {
+        "id": "26453357904028@lid",
+        "phoneNumber": "6285647157289@s.whatsapp.net",
         "admin": null
       }
     ]
@@ -18212,15 +18212,15 @@
         "admin": null
       },
       {
-        "id": "277519597101158@lid",
-        "admin": null
-      },
-      {
         "id": "132178172235899@lid",
         "admin": null
       },
       {
         "id": "254193512226986@lid",
+        "admin": null
+      },
+      {
+        "id": "26453357904028@lid",
         "admin": null
       }
     ]
