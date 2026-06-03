@@ -85,7 +85,7 @@ export function injectClient(hisoka, cacheMsg, contacts, groups, settings) {
 
                 if (isJidGroup(jid)) {
                         const group = groups.read(jid) || {};
-                        return group.subject;
+                        return group.subject || jid.split('@')[0];
                 }
 
                 if (areJidsSameUser(jid, hisoka.user.id)) {

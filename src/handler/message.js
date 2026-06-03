@@ -2639,20 +2639,17 @@ export default async function ({ message, type: messagesType }, hisoka) {
                         } else {
                                 // bukan pilihan valid, tetap lanjut normal
                                 if (hisoka?.isMainBot === true) {
-                                    const allowedJadibotManagerCommands = new Set(['jadibot', 'stopbot', 'listbot', 'jadibotmenu', 'upbot', 'anticall', 'ac', 'anticallvid', 'acv']);
-                                    const isJadibotManagerCommand = allowedJadibotManagerCommands.has(m.command);
                                     if (!m.isOwner) return;
-                                    if (jadibotMap.has(m.sender.split('@')[0]) && !isJadibotManagerCommand) return;
+                                    // Owner tidak diblokir meski nomornya ada di jadibotMap
                                 }
                         }
                 } else {
                         if (hisoka?.isMainBot === true) {
-                            const allowedJadibotManagerCommands = new Set(['jadibot', 'stopbot', 'listbot', 'jadibotmenu', 'upbot', 'anticall', 'ac', 'anticallvid', 'acv']);
-                            const isJadibotManagerCommand = allowedJadibotManagerCommands.has(m.command);
                             if (!m.isOwner) {
                                 return;
                             }
-                            if (jadibotMap.has(m.sender.split('@')[0]) && !isJadibotManagerCommand) return;
+                            // Owner selalu bisa pakai semua command di bot utama,
+                            // meskipun nomornya ada di jadibotMap (misal: jalanin Hen V2)
                         }
 
                         if (hisoka?.isMainBot === false) {
